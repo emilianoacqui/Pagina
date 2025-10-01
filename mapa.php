@@ -570,6 +570,7 @@ window.addEventListener('scroll', function() {
     }
   </style>
 </head>
+<div id="cms-root"></div>
 <body>
   <div class="loading" id="loading">
     <div class="spinner"></div>

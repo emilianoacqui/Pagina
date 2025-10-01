@@ -7,16 +7,16 @@ $pageUrl = $_GET['pageUrl'] ?? '';
 
 if ($pageUrl) {
     $manager = new PagesManager();
-    $pages = $manager->getAllPages();
-    
     $pageId = 'existing_' . jsHash($pageUrl);
-    $savedPage = null;
-    
-    // Buscar página por ID o por URL
-    foreach ($pages as $page) {
-        if ($page['id'] === $pageId || (isset($page['url']) && $page['url'] === $pageUrl)) {
-            $savedPage = $page;
-            break;
+    $savedPage = $manager->getPage($pageId);
+    // Si no encontró por id, buscar por URL
+    if (!$savedPage) {
+        // Búsqueda directa por URL usando getAll (simple y suficiente para volumen bajo)
+        foreach ($manager->getAllPages() as $page) {
+            if (isset($page['url']) && $page['url'] === $pageUrl) {
+                $savedPage = $page;
+                break;
+            }
         }
     }
     
@@ -41,7 +41,6 @@ if ($pageUrl) {
 
 // Hash simple compatible con el usado en JavaScript
 function jsHash($str) {
-    // Usar el mismo algoritmo que JavaScript para consistencia
     $hash = 0;
     if (strlen($str) == 0) return $hash;
     for ($i = 0; $i < strlen($str); $i++) {

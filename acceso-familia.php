@@ -353,6 +353,8 @@
         }
     </style>
 </head>
+
+<div id="cms-root"></div>
 <body>
     <!-- Navigation -->
     <nav class="navbar">
@@ -637,5 +639,6 @@
             lastScrollTop = scrollTop;
         });
     </script>
+    <script src="cms-admin.js"></script>
 </body>
 </html>

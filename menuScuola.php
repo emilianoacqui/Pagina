@@ -224,6 +224,7 @@
 
   </style>
 </head>
+<div id="cms-root"></div>
 <body>
   <div class="left" style="background-image: url('fotosPrincipales/ejemplo1.jpg');">
     <div class="curve"></div>
@@ -325,27 +326,28 @@
         savedPages = await loadPagesFromServer();
         const submenu = document.getElementById("submenu");
         
-        if (savedPages.length === 0) {
-            submenu.innerHTML = "<li>No hay páginas creadas</li>";
-        } else {
-            submenu.innerHTML = savedPages.map(page =>
-                `<li onclick="viewPage(${page.id})">${page.name}</li>`
-            ).join('');
+        if (!Array.isArray(savedPages) || savedPages.length === 0) {
+            submenu.innerHTML = "<li style=\"padding:8px 15px;\">No hay páginas creadas</li>";
+            return;
         }
+
+        // Enlaces Rápidos: mostrar páginas creadas
+        submenu.innerHTML = savedPages.map(page => {
+            const label = page.name || ('Página ' + page.id);
+            return `<li><a href=\"view_page.php?id=${page.id}\" style=\"text-decoration:none; color:#2c3e50; display:block; padding:8px 15px;\">${label}</a></li>`;
+        }).join('');
     }
 
     function viewPage(id) {
-        const page = savedPages.find(p => p.id === id);
-        if (!page) return;
-        
-        // 🔥 CORRECCIÓN: Abrir la página usando view_page.php para mantener estilos
-        window.open(`view_page.php?id=${id}`, '_blank');
+        // Navegación normal
+        window.location.href = `view_page.php?id=${id}`;
     }
 
     function toggleMenu(event) {
         event.stopPropagation();
         document.getElementById("submenu").classList.toggle("show");
     }
+
 
     // Cerrar con transición
     document.querySelector('.close-button').addEventListener('click', () => {

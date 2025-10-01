@@ -709,6 +709,15 @@ async function savePageToServer(pageData) {
     savedPages = await loadPagesFromServer();
     console.log('📂 Páginas disponibles:', savedPages);
     
+    // Cargar historial persistido (si existe)
+    try {
+        const persisted = JSON.parse(localStorage.getItem('cms_history_log') || '[]');
+        if (Array.isArray(persisted)) {
+            historyLog = persisted;
+            updateHistoryDisplay();
+        }
+    } catch (e) {}
+
     addToHistory('Sistema iniciado', 'Gestor de contenido cargado correctamente');
     
     // Inicializar modo activo
@@ -2059,6 +2068,8 @@ if (editingPageId) {
             template: currentTemplate,
             name: pageName,
             content: templateContent,
+            // URL requerida por la BD (única). Usamos un esquema interno estable.
+            url: 'custom_' + Date.now(),
             created: new Date().toLocaleString(),
             lastModified: new Date().toLocaleString()
         };
@@ -2242,9 +2253,11 @@ if (editingPageId) {
         action: action,
         detail: detail
       };
-      
+      // Mantener máximo 50 entradas
       historyLog.unshift(historyItem);
-      
+      if (historyLog.length > 50) historyLog = historyLog.slice(0, 50);
+      // Persistir
+      try { localStorage.setItem('cms_history_log', JSON.stringify(historyLog)); } catch (e) {}
       // Update history display
       updateHistoryDisplay();
     }

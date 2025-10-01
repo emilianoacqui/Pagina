@@ -60,34 +60,11 @@ async function loadSavedContent() {
         console.log('ℹ️ No se pudo cargar del servidor, intentando localStorage...');
     }
     
+    // Sin fallback a localStorage: mostrar contenido original si no hay en servidor
     if (!contentFound) {
-        // Fallback a localStorage
-        const savedPages = JSON.parse(localStorage.getItem('savedPages')) || [];
-        console.log('📋 Páginas guardadas:', savedPages.length);
-        
-        // Buscar por ID exacto primero, luego por URL
-        let savedPage = savedPages.find(page => page.id === pageId);
-        if (!savedPage) {
-            savedPage = savedPages.find(page => page.url === currentUrl);
-        }
-        
-        if (savedPage && savedPage.content && savedPage.content.trim()) {
-            console.log('✅ Contenido cargado de localStorage:', savedPage.name);
-            if (cmsRoot) {
-                console.log('📝 Insertando contenido desde localStorage:', savedPage.content.length, 'caracteres');
-                cmsRoot.innerHTML = savedPage.content;
-                // ...cargar contenido CMS...
-                document.body.classList.add('loading-cms-content');
-                cmsRoot.style.display = 'block';
-                originalContent.style.display = 'none';
-                contentFound = true;
-            }
-        } else {
-            // 🔥 Asegúrate de mostrar el contenido original si NO hay contenido guardado
-            document.body.classList.remove('loading-cms-content');
-            if (cmsRoot) cmsRoot.style.display = 'none';
-            if (originalContent) originalContent.style.display = 'block';
-        }
+        document.body.classList.remove('loading-cms-content');
+        if (cmsRoot) cmsRoot.style.display = 'none';
+        if (originalContent) originalContent.style.display = 'block';
     }
     
     // Si no hay contenido guardado, mostrar contenido original
@@ -140,26 +117,28 @@ function md5(str) {
 }
 function loadSpecificPage() {
     if (!pageId) return;
-    
     // Ocultar contenido original inmediatamente
     document.body.classList.add('loading-cms-content');
-    
-    const savedPages = JSON.parse(localStorage.getItem('savedPages')) || [];
-    const page = savedPages.find(p => p.id == pageId);
-    
-    if (page && page.content) {
-        // Cargar contenido de la página
-        const cmsRoot = document.getElementById('cms-root');
-        if (cmsRoot) {
-            cmsRoot.innerHTML = page.content;
-            
-            // Actualizar título
-            document.title = page.name + ' - Scuola Italiana di Montevideo';
+    const cmsRoot = document.getElementById('cms-root');
+    fetch('pages_manager.php', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: 'action=getById&pageId=' + encodeURIComponent(pageId)
+    })
+    .then(res => res.json())
+    .then(page => {
+        if (page && page.content) {
+            if (cmsRoot) {
+                cmsRoot.innerHTML = page.content;
+                document.title = (page.name || 'Página') + ' - Scuola Italiana di Montevideo';
+            }
+        } else {
+            document.body.classList.remove('loading-cms-content');
         }
-    } else {
-        // Si no hay página, mostrar contenido original
+    })
+    .catch(() => {
         document.body.classList.remove('loading-cms-content');
-    }
+    });
 }
     
     // Crear menú de administrador
@@ -241,11 +220,11 @@ function loadSpecificPage() {
         });
         
         gestorBtn.addEventListener('click', () => {
-            window.open('gestorCont.html', '_blank');
+            window.open('gestorCont.php', '_blank');
         });
         
         indexBtn.addEventListener('click', () => {
-            window.open('index.html?cms_admin_token=true', '_blank');
+            window.open('index.php?cms_admin_token=true', '_blank');
         });
         
         editBtn.addEventListener('click', () => {
@@ -611,48 +590,18 @@ function loadSpecificPage() {
         
         if (result.success) {
             alert('✅ Cambios guardados en el servidor!');
-            updateLocalStorage(currentUrl, cleanContent, pageTitle);
         } else {
             throw new Error(result.message || 'Error del servidor');
         }
     } catch (error) {
         console.error('❌ Error guardando en servidor:', error);
-        alert('⚠️ Error del servidor. Guardando localmente...');
-        updateLocalStorage(currentUrl, cleanContent, pageTitle);
+        alert('⚠️ Error del servidor. No se pudieron guardar los cambios.');
     }
     
     disableEditMode();
 }
 
-// 🔥 FUNCIÓN ÚNICA updateLocalStorage - VERSIÓN CORREGIDA
-function updateLocalStorage(pageUrl, content, title) {
-    let savedPages = JSON.parse(localStorage.getItem('savedPages')) || [];
-    const pageId = 'existing_' + md5(pageUrl);
-    
-    // Buscar por ID o por URL para mayor compatibilidad
-    const pageIndex = savedPages.findIndex(page => 
-        page.id === pageId || page.url === pageUrl
-    );
-    
-    if (pageIndex !== -1) {
-        savedPages[pageIndex].content = content;
-        savedPages[pageIndex].lastModified = new Date().toLocaleString();
-        savedPages[pageIndex].name = title || savedPages[pageIndex].name;
-        savedPages[pageIndex].id = pageId; // Asegurar ID consistente
-    } else {
-        savedPages.push({
-            id: pageId,
-            url: pageUrl,
-            name: title || 'Página editada',
-            content: content,
-            lastModified: new Date().toLocaleString(),
-            template: 'existing_page'
-        });
-    }
-    
-    localStorage.setItem('savedPages', JSON.stringify(savedPages));
-    console.log('💾 Contenido guardado en localStorage con ID:', pageId);
-}
+// LocalStorage deshabilitado para almacenamiento persistente
     
     function saveAsNewPage(newPageId, currentUrl) {
         // Obtener el contenido actual

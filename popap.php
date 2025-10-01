@@ -84,6 +84,7 @@
     }
   </style>
 </head>
+<div id="cms-root"></div>
 <body>
   <div class="container">
     <!-- Logo -->

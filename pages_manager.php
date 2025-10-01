@@ -11,6 +11,16 @@ switch ($action) {
     case 'getAll':
         echo json_encode($manager->getAllPages());
         break;
+    
+    case 'getById':
+        $pageId = $_POST['pageId'] ?? '';
+        if ($pageId) {
+            $page = $manager->getPage($pageId);
+            echo json_encode($page ?: []);
+        } else {
+            echo json_encode([]);
+        }
+        break;
         
     case 'save':
         $pageData = json_decode($_POST['pageData'], true);
