@@ -3,8 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Scuola Italiana di Montevideo - Lista</title>
+    <title>Scuola Italiana di Montevideo - Acceso a Familia</title>
     <link href="https://fonts.googleapis.com/css2?family=Merriweather+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="breadcrumbs.css">
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body { font-family: 'Merriweather Sans', sans-serif; line-height: 1.6; color: #333; }
@@ -350,6 +351,7 @@
             .footer-section {
                 margin-bottom: 20px;
             }
+            
         }
     </style>
 </head>
@@ -369,15 +371,17 @@
             </div>
         </div>
     </nav>
+    
 
     <!-- Hero Section -->
     <section class="hero-list">
         <div class="hero-overlay"></div>
         <div class="hero-content-left">
-            <h1 class="hero-title-left">Título de la Lista</h1>
+            <h1 class="hero-title-left">Acceso a familia</h1>
             <p class="hero-subtitle-left">Una colección organizada de elementos o información</p>
         </div>
     </section>
+    <div id="breadcrumbs" class="breadcrumbs-container"></div>
 
     <!-- Main Content -->
     <main class="main-list">
@@ -639,6 +643,7 @@
             lastScrollTop = scrollTop;
         });
     </script>
+    <script src="breadcrumbs.js"></script>
     <script src="cms-admin.js"></script>
 </body>
 </html>
