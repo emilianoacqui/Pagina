@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Intercambios - Scuola Italiana</title>
+    <link rel="stylesheet" href="breadcrumbs.css">
 </head>
 <div id="cms-root"></div>
 <body>

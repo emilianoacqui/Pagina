@@ -6,6 +6,7 @@
     <title>Casa dei Bambini - Scuola Italiana di Montevideo</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Merriweather+Sans:wght@400;700&family=Crimson+Pro:wght@400;600;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="breadcrumbs.css">
 </head>
 <div id="cms-root"></div>
 <body>
@@ -35,17 +36,8 @@
         <section class="hero-section">
             <img src="fotosClases/Bambini4.jpg" alt="Casa dei Bambini" class="hero-image">
         </section>
+        <div id="breadcrumbs" class="breadcrumbs-container"></div>
 
-        <!-- Navigation Tabs -->
-        <section class="tabs-navigation">
-            <div class="tabs-container">
-                <div class="tab-item">BBSIM</div>
-                <div class="tab-item active">Casa dei bambini</div>
-                <div class="tab-item">Primaria</div>
-                <div class="tab-item">Secundaria</div>
-                <div class="tab-item">BT</div>
-            </div>
-        </section>
 
         <!-- Title Section -->
         <section class="title-section">
@@ -255,7 +247,7 @@
         /* Hero Section */
         .hero-section {
             position: absolute;
-            top: 290px;
+            top: 0px;
             left: 50%;
             transform: translateX(-50%);
             z-index: 10;
@@ -601,6 +593,7 @@
             });
         });
     </script>
+    <script src="breadcrumbs.js"></script>
     <script src="cms-admin.js"></script>
 </body>
 </html>

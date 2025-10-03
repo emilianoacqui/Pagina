@@ -6,6 +6,7 @@
     <title>Casa dei Bambini - Scuola Italiana di Montevideo</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Merriweather+Sans:wght@400;700&family=Crimson+Pro:wght@400;600;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="breadcrumbs.css">
 </head>
 <div id="cms-root"></div>
 <body>
@@ -35,17 +36,7 @@
         <section class="hero-section">
             <img src="fotosClases/bachillerato1.jpg" alt="Casa dei Bambini" class="hero-image">
         </section>
-
-        <!-- Navigation Tabs -->
-        <section class="tabs-navigation">
-            <div class="tabs-container">
-                <div class="tab-item">BBSIM</div>
-                <div class="tab-item">Casa dei bambini</div>
-                <div class="tab-item">Primaria</div>
-                <div class="tab-item active">Secundaria</div>
-                <div class="tab-item">BT</div>
-            </div>
-        </section>
+        <div id="breadcrumbs" class="breadcrumbs-container"></div>
 
         <!-- Title Section -->
         <section class="title-section">
@@ -266,15 +257,15 @@ Los alumnos que ingresan a la Scuola provenientes de otras Instituciones Educati
         /* Hero Section */
         .hero-section {
             position: absolute;
-            top: 290px;
+            top: 80px;
             left: 50%;
             transform: translateX(-50%);
             z-index: 10;
         }
 
         .hero-image {
-            width: 1168px;
-            max-width: 85vw;
+            width: 650px;
+            max-width: 55vw;
             height: auto;
             border-radius: 10px;
             box-shadow: 0 20px 40px rgba(0,0,0,0.3);

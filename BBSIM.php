@@ -3,9 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Casa dei Bambini - Scuola Italiana di Montevideo</title>
+    <title>BBSIM - Scuola Italiana di Montevideo</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Merriweather+Sans:wght@400;700&family=Crimson+Pro:wght@400;600;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="breadcrumbs.css">
 </head>
 <div id="cms-root"></div>
 <body>
@@ -35,15 +36,8 @@
         <section class="hero-section">
             <img src="fotosClases/BBSIM1.jpg" alt="BBSIM" class="hero-image">
         </section>
+        <div id="breadcrumbs" class="breadcrumbs-container"></div>
 
-        <!-- Navigation Tabs -->
-        <section class="tabs-navigation">
-            <div class="tabs-container">
-                <div class="tab-item active" >BBSIM</div>
-                <div class="tab-item">Casa dei bambini</div>
-                <div class="tab-item">Primaria</div>
-                <div class="tab-item">Secundaria</div>
-                <div class="tab-item">BT</div>
             </div>
         </section>
 
@@ -252,7 +246,7 @@ BBSIM cuenta con un equipo de profesionales altamente calificado dando a cada ni
         /* Hero Section */
         .hero-section {
             position: absolute;
-            top: 290px;
+            top: 0px;
             left: 50%;
             transform: translateX(-50%);
             z-index: 10;

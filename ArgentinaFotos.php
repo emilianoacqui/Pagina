@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Argentina Fotos</title>
+    <link rel="stylesheet" href="breadcrumbs.css">
 </head>
 <div id="cms-root"></div>
 <body>
@@ -29,6 +30,7 @@
                   <p class="hero-subtitle-gallery editable-text">Una colección de imágenes organizadas visualmente</p>
               </div>
           </section>
+          <div id="breadcrumbs" class="breadcrumbs-container"></div>
 
           <!-- Main Content -->
           <main class="main-gallery">

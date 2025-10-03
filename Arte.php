@@ -3,8 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Scuola Italiana di Montevideo</title>
+    <title>Arte</title>
     <link href="https://fonts.googleapis.com/css2?family=Merriweather+Sans:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="breadcrumbs.css">
     <style>
         * {
             margin: 0;
@@ -424,6 +425,7 @@
             <p class="hero-subtitle editable-text">Descubre todo lo que hace especial a la Scuola Italiana di Montevideo</p>
         </div>
     </section>
+    <div id="breadcrumbs" class="breadcrumbs-container"></div>
 
     <!-- Main Content -->
     <main class="main-content">
