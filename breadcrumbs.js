@@ -1,40 +1,32 @@
 (function () {
+  console.log('🍞 Iniciando breadcrumbs jerárquicos...');
+
   const container = document.getElementById('breadcrumbs');
   if (!container) return;
 
-  const storageKey = 'site_breadcrumbs_v1';
-  const currentUrl = window.location.pathname + window.location.search + window.location.hash;
-  const pageTitle = (document.title && document.title.trim()) ? document.title.trim() : currentUrl;
+  const path = window.location.pathname.replace(/\/$/, ''); // quita / final
+  const segments = path.split('/').filter(Boolean); // elimina vacíos
 
-  let breadcrumbs = [];
-  try {
-    breadcrumbs = JSON.parse(localStorage.getItem(storageKey) || '[]');
-  } catch (e) {
-    breadcrumbs = [];
-  }
+  let crumbsHtml = '';
+  let cumulativePath = '';
 
-  // Evita duplicados consecutivos
-  if (breadcrumbs.length === 0 || breadcrumbs[breadcrumbs.length - 1].url !== currentUrl) {
-    breadcrumbs.push({ url: currentUrl, title: pageTitle });
-    // mantener sólo últimas 10 entradas
-    if (breadcrumbs.length > 10) breadcrumbs = breadcrumbs.slice(-10);
-    localStorage.setItem(storageKey, JSON.stringify(breadcrumbs));
-  }
+  segments.forEach((seg, idx) => {
+    cumulativePath += '/' + seg;
 
-  // Render
-  container.innerHTML = breadcrumbs
-    .map((item, idx) => {
-      if (idx === breadcrumbs.length - 1) {
-        return `<span class="crumb-current">${escapeHtml(item.title)}</span>`;
-      }
-      return `<a class="crumb-link" href="${item.url}">${escapeHtml(item.title)}</a>`;
-    })
-    .join(' <span class="crumb-sep">›</span> ');
+    const isLast = idx === segments.length - 1;
 
-  // Helpers
-  function escapeHtml(str) {
-    return String(str).replace(/[&<>"']/g, function (s) {
-      return ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[s]);
-    });
-  }
+    // Capitalizar el texto (o podés mapear nombres bonitos según la carpeta)
+    const title = seg.replace('.php', '').replace(/[-_]/g, ' ')
+                     .replace(/\b\w/g, l => l.toUpperCase());
+
+    if (isLast) {
+      crumbsHtml += `<span class="crumb-current">${title}</span>`;
+    } else {
+      crumbsHtml += `<a class="crumb-link" href="${cumulativePath}">${title}</a> <span class="crumb-sep">›</span> `;
+    }
+  });
+
+
+  container.innerHTML = crumbsHtml;
+  container.style.display = 'block';
 })();

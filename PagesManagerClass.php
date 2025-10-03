@@ -1,64 +1,84 @@
 <?php
 class PagesManager {
-    private $pagesFile;
+    private $conn;
     
-    public function __construct($pagesFile = 'pages_data.json') {
-        $this->pagesFile = $pagesFile;
-        
-        // Crear archivo si no existe
-        if (!file_exists($this->pagesFile)) {
-            file_put_contents($this->pagesFile, '[]', LOCK_EX);
-        }
+    public function __construct() {
+        require_once 'conexion.php';
+        $this->conn = $conn;
+        $this->ensureTables();
+    }
+    
+    private function ensureTables() {
+        $sql = "CREATE TABLE IF NOT EXISTS cms_pages (
+            id VARCHAR(255) PRIMARY KEY,
+            url VARCHAR(512) NOT NULL,
+            name VARCHAR(255) DEFAULT NULL,
+            content MEDIUMTEXT NOT NULL,
+            template VARCHAR(100) DEFAULT 'existing_page',
+            last_modified DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+            created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+            UNIQUE KEY uq_cms_pages_url (url)
+        ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4";
+        $this->conn->query($sql);
     }
     
     public function getPage($id) {
-        $pages = $this->getAllPages();
-        foreach ($pages as $page) {
-            if ($page['id'] == $id) {
-                return $page;
-            }
+        $stmt = $this->conn->prepare("SELECT id, url, name, content, template, DATE_FORMAT(last_modified, '%Y-%m-%d %H:%i:%s') as lastModified FROM cms_pages WHERE id = ? LIMIT 1");
+        $stmt->bind_param('s', $id);
+        if ($stmt->execute()) {
+            $result = $stmt->get_result();
+            $row = $result->fetch_assoc();
+            $stmt->close();
+            return $row ?: null;
         }
+        $stmt->close();
         return null;
     }
     
     public function getAllPages() {
-        if (file_exists($this->pagesFile)) {
-            $content = file_get_contents($this->pagesFile);
-            $decoded = json_decode($content, true);
-            return is_array($decoded) ? $decoded : [];
+        $pages = [];
+        $sql = "SELECT id, url, name, content, template, DATE_FORMAT(last_modified, '%Y-%m-%d %H:%i:%s') as lastModified FROM cms_pages ORDER BY last_modified DESC";
+        if ($result = $this->conn->query($sql)) {
+            while ($row = $result->fetch_assoc()) {
+                $pages[] = $row;
+            }
+            $result->free();
         }
-        return [];
+        return $pages;
     }
     
     public function savePage($pageData) {
-        $pages = $this->getAllPages();
+        $id = $pageData['id'] ?? '';
+        $url = $pageData['url'] ?? '';
+        $name = $pageData['name'] ?? null;
+        $content = $pageData['content'] ?? '';
+        $template = $pageData['template'] ?? 'existing_page';
         
-        // Buscar si ya existe para actualizar
-        $found = false;
-        foreach ($pages as &$page) {
-            if ($page['id'] == $pageData['id']) {
-                $page = $pageData;
-                $found = true;
-                break;
-            }
+        if (!$id || !$url || $content === '') {
+            return false;
         }
         
-        // Si no existe, agregar nueva
-        if (!$found) {
-            $pages[] = $pageData;
-        }
-        
-        return file_put_contents($this->pagesFile, json_encode($pages, JSON_PRETTY_PRINT), LOCK_EX);
+        // Upsert
+        $sql = "INSERT INTO cms_pages (id, url, name, content, template)
+                VALUES (?, ?, ?, ?, ?)
+                ON DUPLICATE KEY UPDATE
+                    url = VALUES(url),
+                    name = VALUES(name),
+                    content = VALUES(content),
+                    template = VALUES(template)";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->bind_param('sssss', $id, $url, $name, $content, $template);
+        $ok = $stmt->execute();
+        $stmt->close();
+        return $ok;
     }
     
     public function deletePage($id) {
-        $pages = $this->getAllPages();
-        $newPages = array_filter($pages, function($page) use ($id) {
-            return $page['id'] != $id;
-        });
-        
-        $newPages = array_values($newPages);
-        return file_put_contents($this->pagesFile, json_encode($newPages, JSON_PRETTY_PRINT), LOCK_EX);
+        $stmt = $this->conn->prepare("DELETE FROM cms_pages WHERE id = ?");
+        $stmt->bind_param('s', $id);
+        $ok = $stmt->execute();
+        $stmt->close();
+        return $ok;
     }
 }
 ?>

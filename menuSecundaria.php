@@ -6,6 +6,7 @@
     <title>Inicial - Scuola Italiana di Montevideo</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
 </head>
+<div id="cms-root"></div>
 <body>
     <!-- Navigation -->
     <nav class="navbar">

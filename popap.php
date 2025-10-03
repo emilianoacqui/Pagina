@@ -84,10 +84,13 @@
     }
   </style>
 </head>
+<div id="cms-root"></div>
 <body>
   <div class="container">
     <!-- Logo -->
-    <img src="fotosPrincipales/logotipo.png" alt="Logo Scuola Italiana di Montevideo" class="logo">
+    <a href="index.php">
+      <img src="fotosPrincipales/logotipo.png" alt="Logo Scuola Italiana di Montevideo" class="logo">
+    </a>
 
     <!-- Título -->
     <h1>Admisiones 2026</h1>

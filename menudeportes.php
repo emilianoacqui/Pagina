@@ -286,8 +286,8 @@ img,
     }
   </style>
 </head>
+<div id="cms-root"></div>
 
-<script src="cms-admin.js"></script>
 <body>
   <div class="main-container">
     <img class="bg-image" src="https://placehold.co/1410x2262" />
@@ -344,5 +344,8 @@ img,
 
     <img class="footer" src="https://placehold.co/1379x391" />
   </div>
+
+
+  <script src="cms-admin.js"></script>
 </body>
 </html>

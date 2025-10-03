@@ -28,12 +28,12 @@ if ($pageUrl && $content) {
         'name' => $pageTitle,
         'content' => $content,
         'template' => 'existing_page',
-        'lastModified' => date('Y-m-d H:i:s')
+        // last_modified se maneja por la BD
     ];
     
     $result = $manager->savePage($pageData);
     
-    if ($result !== false) {
+    if ($result) {
         echo json_encode([
             'success' => true,
             'message' => 'Contenido guardado correctamente'

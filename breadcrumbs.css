@@ -1,0 +1,71 @@
+/* Breadcrumbs - Debajo del Hero */
+.breadcrumbs-container {
+    background: white;
+    padding: 20px 5%;
+    font-size: 14px;
+    border-bottom: 2px solid #e0e0e0;
+    position: relative;
+    z-index: 100;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    /* Hacer el texto seleccionable */
+    user-select: text !important;
+    -webkit-user-select: text !important;
+    -moz-user-select: text !important;
+}
+
+.breadcrumbs-container * {
+    /* Permitir selección en todos los elementos hijos */
+    user-select: text !important;
+    -webkit-user-select: text !important;
+    -moz-user-select: text !important;
+}
+
+.crumb-link {
+    color: #3498db;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    padding: 4px 8px;
+    border-radius: 4px;
+    display: inline-block;
+    cursor: pointer;
+}
+
+.crumb-link:hover {
+    color: #2980b9;
+    background: #f0f8ff;
+    text-decoration: underline;
+}
+
+.crumb-sep {
+    margin: 0 8px;
+    color: #999;
+    font-weight: bold;
+}
+
+.crumb-current {
+    color: #2c3e50;
+    font-weight: 600;
+    padding: 4px 8px;
+    background: #f8f9fa;
+    border-radius: 4px;
+    display: inline-block;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .breadcrumbs-container {
+        padding: 15px 20px;
+        font-size: 13px;
+    }
+    
+    .crumb-sep {
+        margin: 0 4px;
+    }
+    /* Permitir selección en breadcrumbs y enlaces */
+#breadcrumbs, #breadcrumbs *, a, .crumb-link {
+    user-select: text !important;
+    -webkit-user-select: text !important;
+    -moz-user-select: text !important;
+    cursor: pointer !important;
+}
+}

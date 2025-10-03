@@ -6,6 +6,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Merriweather+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
     <title>Scuola Italiana di Montevideo</title>
 </head>
+<div id="cms-root"></div>
 <body>
      <!-- Navigation -->
           <nav class="navbar">
