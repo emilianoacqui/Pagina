@@ -30,6 +30,7 @@
                   <p class="hero-subtitle-gallery editable-text">Mantente informado sobre las últimas novedades de nuestra institución</p>
               </div>
           </section>
+          <div id="breadcrumbs" class="breadcrumbs-container"></div>
 
           <!-- Main Content -->
           <main class="main-gallery">

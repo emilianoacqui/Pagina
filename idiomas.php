@@ -425,6 +425,7 @@
             <p class="hero-subtitle editable-text">Descubre todo lo que hace especial a la Scuola Italiana di Montevideo</p>
         </div>
     </section>
+    <div id="breadcrumbs" class="breadcrumbs-container"></div>
 
     <!-- Main Content -->
     <main class="main-content">

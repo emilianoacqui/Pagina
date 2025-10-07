@@ -79,7 +79,7 @@
     </button>
   </div>
 </section>
-
+<link rel="stylesheet" href="breadcrumbs.css">
 <style>
 .boton-imagenes {
     text-align: center; /* centra el botón en la sección */

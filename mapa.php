@@ -590,17 +590,9 @@ window.addEventListener('scroll', function() {
   <div class="main-section">
     <h1 class="main-title">Acerca de la Scuola italiana</h1>
   </div>
+  <div id="breadcrumbs" class="breadcrumbs-container"></div>
 
-  <!-- Navegación interna -->
-  <div class="internal-nav">
-    <div class="nav-grid">
-      <div class="nav-grid-item">Bienvenido a Scuola Italiana<br>Explora nuestro campus</div>
-      <div class="nav-grid-item">Nuestra Misión e Historia<br>Voces de la comunidad</div>
-      <div class="nav-grid-item">Liderazgo y Visión estratégica<br>Equidad y participación comunitaria</div>
-      <div class="nav-grid-item">Nuestro personal docente y administrativo<br>Verano en Scuola Italiana</div>
-      <div class="nav-grid-item">Carreras<br>Calendario escolar</div>
-    </div>
-  </div>
+
 
   <!-- Sección Explore Campus -->
   <div class="explore-section fade-in">

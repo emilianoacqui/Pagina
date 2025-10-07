@@ -31,6 +31,7 @@
                   <p class="hero-subtitle-gallery">Diplomati - Momentos especiales de nuestra comunidad educativa</p>
               </div>
           </section>
+          <div id="breadcrumbs" class="breadcrumbs-container"></div>
 
           <!-- Student Cards Section -->
           <section class="student-cards-section">

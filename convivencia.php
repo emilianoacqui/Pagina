@@ -400,9 +400,8 @@
         }
     </style>
 </head>
-<div id="cms-root"></div>
 <body>
-
+<div id="original-content"> 
     <!-- Navigation -->
     <nav class="navbar">
         <div class="nav-container">
@@ -427,6 +426,7 @@
             <p class="hero-subtitle editable-text">Descubre todo lo que hace especial a la Scuola Italiana di Montevideo</p>
         </div>
     </section>
+    <div id="breadcrumbs" class="breadcrumbs-container"></div>
         
         <section class="content-section">
     <div class="container">      
@@ -511,6 +511,8 @@
             <p>Desarrollado por el equipo SGE | Proyecto de apoyo 2002 - EE Informática</p>
         </div>
     </footer>
+    </div>
+    <div id="cms-root"></div>
     <script>
         let lastScrollTop = 0;
 
@@ -529,6 +531,7 @@
             lastScrollTop = scrollTop;
         });
     </script>
+
 <script src="cms-admin.js"></script>
 </body>
 </html>

@@ -45,10 +45,10 @@
                 </form>
                 
                 <div class="switch-form">
-                    ¿Ya tienes una cuenta? <a href="login.php" id="go-to-login">Iniciar sesión</a>
+                    ¿Ya tienes una cuenta? <a href="#" id="go-to-login">Iniciar sesión</a>
                 </div>
-            
-    
+            </div>
+        </div>
         
         <!-- Pantalla de Login -->
         <div id="login-screen" class="screen">
@@ -73,7 +73,7 @@
                 </form>
                 
                 <div class="switch-form">
-                    ¿No tienes una cuenta? <a href="login.php" id="go-to-register">Registrarse</a>
+                    ¿No tienes una cuenta? <a href="#" id="go-to-register">Registrarse</a>
                 </div>
             </div>
         </div>

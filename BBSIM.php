@@ -10,6 +10,7 @@
 </head>
 <div id="cms-root"></div>
 <body>
+    <div id="original-content"> 
     <!-- Navigation -->
     <nav class="navbar">
         <div class="nav-container">
@@ -154,7 +155,7 @@ BBSIM cuenta con un equipo de profesionales altamente calificado dando a cada ni
             <p>Desarrollado por el equipo SGE | Proyecto de apoyo 2002 - EE Informática</p>
         </div>
     </footer>
-
+</div>
     <style>
         * {
             margin: 0;

@@ -36,17 +36,7 @@
         <section class="hero-section">
             <img src="fotosClases/Primerciclo1.jpg" alt="Casa dei Bambini" class="hero-image">
         </section>
-
-        <!-- Navigation Tabs -->
-        <section class="tabs-navigation">
-            <div class="tabs-container">
-                <div class="tab-item">BBSIM</div>
-                <div class="tab-item">Casa dei bambini</div>
-                <div class="tab-item">Primaria</div>
-                <div class="tab-item active">Secundaria</div>
-                <div class="tab-item">BT</div>
-            </div>
-        </section>
+        <div id="breadcrumbs" class="breadcrumbs-container"></div>
 
         <!-- Title Section -->
         <section class="title-section">
@@ -267,7 +257,7 @@ Los alumnos que ingresan a la Scuola provenientes de otras Instituciones Educati
         /* Hero Section */
         .hero-section {
             position: absolute;
-            top: 290px;
+            top: 0px;
             left: 50%;
             transform: translateX(-50%);
             z-index: 10;

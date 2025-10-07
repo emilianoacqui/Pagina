@@ -1119,17 +1119,14 @@ body:not(.loading-cms-content) #cms-root {
 
 <body>
     
-    
-    <div id="cms-root"></div>
-    
-    <div id="original-content">
+    <div id="original-content"> </div>
         <!-- Navigation -->
         <nav class="navbar">
             <div class="nav-container">
                 <div class="nav-logo">
                     <img src="fotosPrincipales/logo2.png" alt="Scuola Italiana di Montevideo">
                 </div>
-                <a href="indexRegistro.php" class="nav-login-btn">iniciar sesion</a>
+                <a href="Registro/index.php" class="nav-login-btn">iniciar sesion</a>
                 <div class="nav-menu-button" onclick="window.location.href='menuScuola.php'">
                     <span></span>
                     <span></span>
@@ -1176,7 +1173,7 @@ body:not(.loading-cms-content) #cms-root {
                     <p class="level-age">12 a 18 años</p>
                     <a href="menuSecundaria.php" class="level-btn btn-red">Ver mas</a>
                 </div>
-            </div>
+            
                     </section>
         </div>
 
@@ -1410,6 +1407,7 @@ body:not(.loading-cms-content) #cms-root {
                 </a>
             </div>
         </section>
+    
 
         <!-- Footer Bottom -->
         <footer class="footer-bottom-new">
@@ -1448,6 +1446,7 @@ body:not(.loading-cms-content) #cms-root {
         </footer>
     </div>
 
+    <div id="cms-root"></div>
    
     <script>
         // Navbar hide/show on scroll
