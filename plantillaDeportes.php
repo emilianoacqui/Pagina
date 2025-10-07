@@ -30,7 +30,6 @@
             <img src="https://placehold.co/1920x800/E8E8E8/666?text=HERO+IMAGE" alt="Atletismo Hero" class="hero-image">
         </div>
         <div class="hero-content">
-            <div class="hero-breadcrumb">
                 <span>Deportes</span>
                 <i class="fas fa-chevron-right"></i>
                 <span class="current">[SPORT_NAME]</span>
@@ -205,7 +204,7 @@
             <p>Desarrollado por el equipo SGE | Proyecto de apoyo 2002 - EE Informática</p>
         </div>
     </footer>
-
+<link rel="stylesheet" href="breadcrumbs.css">
     <style>
         * {
             margin: 0;

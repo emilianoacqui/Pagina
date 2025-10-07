@@ -8,6 +8,7 @@
 </head>
 <div id="cms-root"></div>
 <body>
+    <div id="original-content"> 
      <!-- Navigation -->
           <nav class="navbar">
               <div class="nav-container">
@@ -359,6 +360,7 @@ trabajan contenidos curriculares con una miranda transversal sobre la nutrición
 }
 
 </style>
+</div>
 <script src="breadcrumbs.js"></script>
 <script src="cms-admin.js"></script>
 

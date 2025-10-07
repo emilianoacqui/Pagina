@@ -31,6 +31,7 @@
                 <h1 class="hero-title">Secundaria</h1>
             </div>
         </section>
+        <div id="breadcrumbs" class="breadcrumbs-container"></div>
 
         <!-- Programs Section -->
         <section class="programs-section">

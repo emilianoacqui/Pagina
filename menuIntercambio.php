@@ -31,6 +31,7 @@
             <p class="hero-subtitle">Programas de intercambio estudiantil</p>
         </div>
     </section
+    <div id="breadcrumbs" class="breadcrumbs-container"></div>
 
 
     

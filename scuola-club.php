@@ -198,7 +198,7 @@ Los estudiantes de 1ro.de Bachillerato, II de Liceo Italiano y 1ro. Bachillerato
         <p>Desarrollado por el equipo SGE | Proyecto de apoyo 2002 - EE Informática</p>
     </div>
 </footer>
-
+<link rel="stylesheet" href="breadcrumbs.css">
 <style>
 .footer-bottom-new {
     background: #1B4F72;

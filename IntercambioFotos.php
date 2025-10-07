@@ -29,6 +29,7 @@
                   <p class="hero-subtitle-gallery editable-text">Una colección de imágenes organizadas visualmente</p>
               </div>
           </section>
+          <div id="breadcrumbs" class="breadcrumbs-container"></div>
 
           <!-- Main Content -->
           <main class="main-gallery">

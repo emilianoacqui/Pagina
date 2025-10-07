@@ -400,8 +400,8 @@
         }
     </style>
 </head>
-<div id="cms-root"></div>
 <body>
+    <div id="original-content"> 
 
     <!-- Navigation -->
     <nav class="navbar">
@@ -485,7 +485,7 @@
             <p>Desarrollado por el equipo SGE | Proyecto de apoyo 2002 - EE Informática</p>
         </div>
     </footer>
-
+    </div>
     <script>
         let lastScrollTop = 0;
 
@@ -504,6 +504,7 @@
             lastScrollTop = scrollTop;
         });
     </script>
+    <div id="cms-root"></div>
 <script src="cms-admin.js"></script>
 </body>
 </html>

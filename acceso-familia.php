@@ -359,6 +359,7 @@
 
 <div id="cms-root"></div>
 <body>
+    <div id="original-content"> 
     <!-- Navigation -->
     <nav class="navbar">
         <div class="nav-container">
@@ -623,7 +624,7 @@
             <p>Desarrollado por el equipo SGE | Proyecto de apoyo 2002 - EE Informática</p>
         </div>
     </footer>
-
+    </div>
     <script>
         let lastScrollTop = 0;
 

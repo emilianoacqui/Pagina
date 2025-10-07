@@ -31,6 +31,7 @@
                   <p class="hero-subtitle-center editable-text">Intercambio a argentina</p>
               </div>
           </section>
+          <div id="breadcrumbs" class="breadcrumbs-container"></div>
 
           <!-- Main Content -->
           <main class="main-centered">

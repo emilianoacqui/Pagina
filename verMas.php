@@ -496,6 +496,7 @@
             <h1 class="hero-title">Acerca de la Scuola italiana</h1>
         </div>
     </section>
+    <div id="breadcrumbs" class="breadcrumbs-container"></div>
 
     <!-- Welcome Section -->
     <section class="welcome-section">
