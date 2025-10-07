@@ -11,6 +11,7 @@
         body { font-family: 'Merriweather Sans', sans-serif; line-height: 1.6; color: #333; }
         .container { max-width: 1000px; margin: 0 auto; padding: 0 20px; }
 
+
         /* Navigation */
         .navbar {
             position: fixed;
