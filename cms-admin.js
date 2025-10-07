@@ -250,6 +250,10 @@ function loadSpecificPage() {
         
         // MEJORADO: Buscar contenido editable en toda la página
         const cmsRoot = document.getElementById('cms-root');
+        // Asegurar que solo un contenedor esté visible para evitar duplicación
+        const originalWrapper = document.getElementById('original-content');
+        if (originalWrapper) originalWrapper.style.display = 'none';
+        if (cmsRoot) cmsRoot.style.display = 'block';
         // Si cms-root está vacío, mover el contenido original dentro para editar todo
         if (cmsRoot && !cmsRoot.innerHTML.trim()) {
             const original = document.getElementById('original-content');
@@ -443,6 +447,12 @@ function loadSpecificPage() {
             const style = document.createElement('style');
             style.id = 'cms-editing-styles';
             style.innerHTML = `
+                /* Forzar selección de texto en modo edición */
+                body.cms-editing-mode, body.cms-editing-mode * {
+                    user-select: text !important;
+                    -webkit-user-select: text !important;
+                    -moz-user-select: text !important;
+                }
                 .cms-editable-text:hover::after {
                     content: "✏️ Editable";
                     position: absolute;
