@@ -8,6 +8,7 @@
 </head>
 <div id="cms-root"></div>
 <body>
+    <div id="original-content">
     <!-- Navigation -->
     <nav class="navbar">
         <div class="nav-container">
@@ -32,9 +33,7 @@
         </div>
     </section
     <div id="breadcrumbs" class="breadcrumbs-container"></div>
-
-
-    
+    <!-- Main Content -->
     <main class="main-content">
         <div class="container">
             <div class="intercambios-grid">
@@ -389,7 +388,7 @@
             }
         }
     </style>
-
+    <script src="breadcrumbs.js"></script>
     <script src="cms-admin.js"></script>
 </body>
 </html>

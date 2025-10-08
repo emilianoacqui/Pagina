@@ -9,6 +9,7 @@
 </head>
 <div id="cms-root"></div>
 <body>
+    <div id="original-content">
     <!-- Navigation -->
     <nav class="navbar">
         <div class="nav-container">
@@ -396,7 +397,7 @@ racional las situaciones y los problemas que se les presenten.</p>
             }
         }
     </style>
-
+</div>
     <script>
         let lastScrollTop = 0;
 
@@ -417,6 +418,7 @@ racional las situaciones y los problemas que se les presenten.</p>
             lastScrollTop = scrollTop;
         });
     </script>
+    <script src="breadcrumbs.js"></script>
     <script src="cms-admin.js"></script>
 </body>
 </html>

@@ -8,7 +8,7 @@
 </head>
 <div id="cms-root"></div>
 <body>
-     <!-- Navigation -->
+     <div id="original-content">
           <nav class="navbar">
               <div class="nav-container">
                   <div class="nav-logo">
@@ -358,7 +358,8 @@ Los estudiantes de 1ro.de Bachillerato, II de Liceo Italiano y 1ro. Bachillerato
 }
 
 </style>
-
+</div>
+<script src="breadcrumbs.js"></script>
 <script src="cms-admin.js"></script>
 </body>
 </html>

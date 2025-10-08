@@ -4,10 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="breadcrumbs.css">
 </head>
 <div id="cms-root"></div>
 <body>
-     <!-- Navigation -->
+     <div id="original-content">
           <nav class="navbar">
               <div class="nav-container">
                   <div class="nav-logo">
@@ -354,7 +355,8 @@
 }
 
 </style>
-
+</div>
+<script src="breadcrumbs.js"></script>
 <script src="cms-admin.js"></script>
 </body>
 </html>

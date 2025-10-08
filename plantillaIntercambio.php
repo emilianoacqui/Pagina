@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="breadcrumbs.css">
 </head>
 <div id="cms-root"></div>
 <body>
@@ -79,7 +80,8 @@
     </button>
   </div>
 </section>
-<link rel="stylesheet" href="breadcrumbs.css">
+
+<div id="breadcrumbs" class="breadcrumbs-container"></div>
 <style>
 .boton-imagenes {
     text-align: center; /* centra el botón en la sección */

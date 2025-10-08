@@ -593,6 +593,7 @@ BBSIM cuenta con un equipo de profesionales altamente calificado dando a cada ni
             });
         });
     </script>
+    <script src="breadcrumbs.js"></script>
     <script src="cms-admin.js"></script>
 </body>
 </html>

@@ -10,6 +10,7 @@
 </head>
 <div id="cms-root"></div>
 <body>
+    <div id="original-content">
     <!-- Navigation -->
     <nav class="navbar">
         <div class="nav-container">
@@ -576,7 +577,7 @@ Los alumnos que ingresan a la Scuola provenientes de otras Instituciones Educati
             }
         }
     </style>
-
+</div>
     <script>
         let lastScrollTop = 0;
 
@@ -603,6 +604,7 @@ Los alumnos que ingresan a la Scuola provenientes de otras Instituciones Educati
             });
         });
     </script>
+    <script src="breadcrumbs.js"></script>
     <script src="cms-admin.js"></script>
 </body>
 </html>

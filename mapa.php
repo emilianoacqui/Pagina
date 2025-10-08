@@ -642,6 +642,7 @@ window.addEventListener('scroll', function() {
       Nuestro entorno físico tiene un impacto significativo en nuestra capacidad de aprendizaje. En Kent Denver, creemos que los estudiantes deben contar con espacios de aprendizaje dinámicos, espaciosos y de vanguardia que estimulen su curiosidad, estimulen su imaginación y les permitan alcanzar su máximo potencial. Nuestro campus de 81 hectáreas incluye:
     </p>
 
+<div id="original-content">
     <!-- Carrusel responsivo -->
     <div class="carousel-container">
       <div class="carousel-track" id="carouselTrack">
@@ -671,7 +672,7 @@ window.addEventListener('scroll', function() {
     <img id="infoImage" src="" alt="Imagen del punto" />
     <div class="content" id="infoText">Aquí aparecerá la información.</div>
   </div>
-
+      </div>
   <script>
     // Funciones del mapa
     function mostrarInfo(imagen, texto) {
@@ -833,5 +834,7 @@ window.addEventListener('scroll', function() {
       document.body.appendChild(script);
     }
   </script>
+  <script src="breadcrumbs.js"></script>
+<script src="cms-admin.js"></script>
 </body>
 </html>

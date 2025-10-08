@@ -530,7 +530,7 @@
             lastScrollTop = scrollTop;
         });
     </script>
-
+<script src="breadcrumbs.js"></script>
 <script src="cms-admin.js"></script>
 </body>
 </html>

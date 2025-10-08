@@ -345,7 +345,7 @@ img,
     <img class="footer" src="https://placehold.co/1379x391" />
   </div>
 
-
+<script src="breadcrumbs.js"></script>
   <script src="cms-admin.js"></script>
 </body>
 </html>

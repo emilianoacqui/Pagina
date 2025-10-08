@@ -8,6 +8,7 @@
 </head>
 <div id="cms-root"></div>
 <body>
+    <div id="original-content">
      <!-- Navigation -->
           <nav class="navbar">
               <div class="nav-container">
@@ -163,7 +164,7 @@
           }
     
         </style>
-        <script src="cms-admin.js"></script>
+        
         <footer class="footer-bottom-new">
     <div class="footer-container">
         <div class="footer-Aleft">
@@ -355,7 +356,8 @@
 }
 
 </style>
-
+</div>
+<script src="breadcrumbs.js"></script>
 <script src="cms-admin.js"></script>
 </body>
 </html>
