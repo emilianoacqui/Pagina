@@ -14,7 +14,7 @@
     <nav class="navbar">
         <div class="nav-container">
             <div class="nav-logo">
-                <img src="fotosPrincipales/logo2.png" alt="Scuola Italiana di Montevideo">
+                <img src="FOTOS/fotosPrincipales/logo2.png" alt="Scuola Italiana di Montevideo">
             </div>
             <div class="nav-menu-button" onclick="window.location.href='menuScuola.php'">
                 <span></span>
@@ -34,7 +34,7 @@
 
         <!-- Hero Image -->
         <section class="hero-section">
-            <img src="fotosClases/Primaria1.jpg" alt="Casa dei Bambini" class="hero-image">
+            <img src="FOTOS/fotosClases/Primaria1.jpg" alt="Casa dei Bambini" class="hero-image">
         </section>
         <div id="breadcrumbs" class="breadcrumbs-container"></div>
 
@@ -61,14 +61,14 @@
 </p>
                 </div>
                 <div class="image-content right">
-                    <img src="fotosClases/Primaria2.jpg" alt="Actividades Montessori">
+                    <img src="FOTOS/fotosClases/Primaria2.jpg" alt="Actividades Montessori">
                 </div>
             </div>
 
             <!-- Section 2 -->
             <div class="content-row reverse">
                 <div class="image-content left">
-                    <img src="fotosClases/Primaria3.jpg" alt="Psicomotricidad">
+                    <img src="FOTOS/fotosClases/Primaria3.jpg" alt="Psicomotricidad">
                 </div>
                 <div class="text-content right">
                     <p>Renovamos año a año ese desafío con el convencimiento de ofrecer una enseñanza con altas expectativas hacia el logro de personas comprensivas y competentes, priorizando los valores humanos, actitudes y sentimientos de auténticos ciudadanos del mundo. La Educación constituye el principal motor de innovación tecnológica, de modernización y representa la mejora herramienta para construir un mundo mejor.</p>
@@ -81,14 +81,14 @@
                     <p>“Sembrad en los niños ideas buenas, aunque no las entiendan: los años se encargarán de descifrarlas en su entendimiento y de hacerlas florecer en su corazón” M. Montessori</p>
                 </div>
                 <div class="image-content right">
-                    <img src="fotosClases/Primaria4.jpeg" alt="Idiomas">
+                    <img src="FOTOS/fotosClases/Primaria4.jpeg" alt="Idiomas">
                 </div>
             </div>
 
             <!-- Section 4 -->
             <div class="content-row reverse">
                 <div class="image-content left">
-                    <img src="fotosClases/Primaria5.jpg" alt="Italiano">
+                    <img src="FOTOS/fotosClases/Primaria5.jpg" alt="Italiano">
                 </div>
                 <div class="text-content right">
                 </div>
@@ -105,12 +105,12 @@
                 <div class="line right-line"></div>
             </div>
             <div class="gallery-grid">
-                <img src="fotosClases/Primaria1.jpg" alt="Galería 1">
-                <img src="fotosClases/Primaria2.jpg" alt="Galería 2">
-                <img src="fotosClases/Primaria3.jpg" alt="Galería 3">
-                <img src="fotosClases/Primaria4.jpeg" alt="Galería 4">
-                <img src="fotosClases/Primaria5.jpg" alt="Galería 5">
-                <img src="fotosClases/Primaria1.jpg" alt="Galería 6">
+                <img src="FOTOS/fotosClases/Primaria1.jpg" alt="Galería 1">
+                <img src="FOTOS/fotosClases/Primaria2.jpg" alt="Galería 2">
+                <img src="FOTOS/fotosClases/Primaria3.jpg" alt="Galería 3">
+                <img src="FOTOS/fotosClases/Primaria4.jpeg" alt="Galería 4">
+                <img src="FOTOS/fotosClases/Primaria5.jpg" alt="Galería 5">
+                <img src="FOTOS/fotosClases/Primaria1.jpg" alt="Galería 6">
             </div>
         </section>
 

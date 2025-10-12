@@ -414,7 +414,7 @@
     <nav class="navbar">
         <div class="nav-container">
             <div class="nav-logo">
-                <img src="fotosPrincipales/logo2.png" alt="Scuola Italiana di Montevideo">
+                <img src="FOTOS/fotosPrincipales/logo2.png" alt="Scuola Italiana di Montevideo">
             </div>
             <div class="nav-menu-button" onclick="window.location.href='menuScuola.php'">
                 <span></span>
@@ -425,7 +425,7 @@
     </nav>
 
     <!-- Hero Section -->
-    <section class="hero editable-image" style="background-image: url('fotosPrincipales/CursosExtracurriculares1.jpg'); margin-top: 0px;">
+    <section class="hero editable-image" style="background-image: url('FOTOS/fotosPrincipales/CursosExtracurriculares1.jpg'); margin-top: 0px;">
         <div class="hero-overlay"></div>
         <div class="hero-content">
             <h1 class="hero-title editable-text">Nuestros Cursos de Idioma</h1>
@@ -447,7 +447,7 @@
                     </div>
                     <div class="intro-visual">
                         <div class="visual-card">
-                            <img class="editable-image" src="fotosPrincipales/CursosExtracurriculares2.jpg" alt="Estudiantes en el aula">
+                            <img class="editable-image" src="FOTOS/fotosPrincipales/CursosExtracurriculares2.jpg" alt="Estudiantes en el aula">
                         </div>
                     </div>
                 </div>
@@ -462,7 +462,7 @@
                             <p class="editable-text">El campus se extiende por 13 hectáreas de espacios verdes que invitan al aprendizaje al aire libre y al contacto directo con la naturaleza. Creemos que un ambiente inspirador es fundamental para el desarrollo integral de nuestros estudiantes.</p>
                         </div>
                         <div class="content-image">
-                            <img class="editable-image" src="fotosPrincipales/CursosExtracurriculares3.jpg" alt="Campus de la Scuola Italiana">
+                            <img class="editable-image" src="FOTOS/fotosPrincipales/CursosExtracurriculares3.jpg" alt="Campus de la Scuola Italiana">
                         </div>
                     </div>
                 </div>
@@ -479,7 +479,7 @@
                             <p class="editable-text">El campus se extiende por 13 hectáreas de espacios verdes que invitan al aprendizaje al aire libre y al contacto directo con la naturaleza. Creemos que un ambiente inspirador es fundamental para el desarrollo integral de nuestros estudiantes.</p>
                         </div>
                         <div class="content-image">
-                            <img class="editable-image" src="fotosPrincipales/CursosExtracurriculares2.jpg" alt="Campus de la Scuola Italiana">
+                            <img class="editable-image" src="FOTOS/fotosPrincipales/CursosExtracurriculares2.jpg" alt="Campus de la Scuola Italiana">
                         </div>
                     </div>
                 </div>
@@ -495,7 +495,7 @@
                             <p class="editable-text">El campus se extiende por 13 hectáreas de espacios verdes que invitan al aprendizaje al aire libre y al contacto directo con la naturaleza. Creemos que un ambiente inspirador es fundamental para el desarrollo integral de nuestros estudiantes.</p>
                         </div>
                         <div class="content-image">
-                            <img class="editable-image" src="fotosPrincipales/CursosExtracurriculares3.jpg" alt="Campus de la Scuola Italiana">
+                            <img class="editable-image" src="FOTOS/fotosPrincipales/CursosExtracurriculares3.jpg" alt="Campus de la Scuola Italiana">
                         </div>
                     </div>
                 </div>
@@ -529,7 +529,7 @@
         <div class="footer-container">
             <div class="footer-Aleft">
                 <div class="footer-logo">
-                    <img src="fotosPrincipales/logotipo.png" alt="Scuola Italiana di Montevideo" style="height: 60px;">
+                    <img src="FOTOS/fotosPrincipales/logotipo.png" alt="Scuola Italiana di Montevideo" style="height: 60px;">
                 </div>
                 <div class="footer-subtitle">
                     <p>Scuola Italiana di Montevideo</p>

@@ -13,7 +13,7 @@
           <nav class="navbar">
               <div class="nav-container">
                   <div class="nav-logo">
-                      <img src="fotosPrincipales/logo2.png" alt="Scuola Italiana di Montevideo" style="height: 120px;">
+                      <img src="FOTOS/fotosPrincipales/logo2.png" alt="Scuola Italiana di Montevideo" style="height: 120px;">
                   </div>
                   <div class="nav-menu-button" onclick="window.location.href='menuScuola.php'">
                       <span></span>
@@ -24,7 +24,7 @@
           </nav>
 
           <!-- Hero Section -->
-          <section class="hero-gallery editable-image" style="background-image: url('fotosPrincipales/heliopolis3.jpg'); background-size: cover; background-position: center;">
+          <section class="hero-gallery editable-image" style="background-image: url('FOTOS/fotosPrincipales/heliopolis3.jpg'); background-size: cover; background-position: center;">
               <div class="hero-overlay"></div>
               <div class="hero-content-gallery">
                   <h1 class="hero-title-gallery editable-text">Noticias Scuola Italiana</h1>
@@ -49,7 +49,7 @@
                               <div class="carousel-slide">
                                   <div class="news-card">
                                       <div class="news-image">
-                                          <img class="editable-image" src="fotosPrincipales/arcimboldo2.jpg" alt="Noticia 1">
+                                          <img class="editable-image" src="FOTOS/fotosPrincipales/arcimboldo2.jpg" alt="Noticia 1">
                                       </div>
                                       <div class="news-content">
                                           <span class="news-date">15 Septiembre 2025</span>
@@ -62,7 +62,7 @@
                               <div class="carousel-slide">
                                   <div class="news-card">
                                       <div class="news-image">
-                                          <img class="editable-image" src="fotosPrincipales/arcimboldo3.jpg" alt="Noticia 2">
+                                          <img class="editable-image" src="FOTOS/fotosPrincipales/arcimboldo3.jpg" alt="Noticia 2">
                                       </div>
                                       <div class="news-content">
                                           <span class="news-date">10 Septiembre 2025</span>
@@ -75,7 +75,7 @@
                               <div class="carousel-slide">
                                   <div class="news-card">
                                       <div class="news-image">
-                                          <img class="editable-image" src="fotosPrincipales/arcimboldo4.jpg" alt="Noticia 3">
+                                          <img class="editable-image" src="FOTOS/fotosPrincipales/arcimboldo4.jpg" alt="Noticia 3">
                                       </div>
                                       <div class="news-content">
                                           <span class="news-date">5 Septiembre 2025</span>
@@ -88,7 +88,7 @@
                               <div class="carousel-slide">
                                   <div class="news-card">
                                       <div class="news-image">
-                                          <img class="editable-image" src="fotosPrincipales/arcimboldo5.jpg" alt="Noticia 4">
+                                          <img class="editable-image" src="FOTOS/fotosPrincipales/arcimboldo5.jpg" alt="Noticia 4">
                                       </div>
                                       <div class="news-content">
                                           <span class="news-date">1 Septiembre 2025</span>
@@ -101,7 +101,7 @@
                               <div class="carousel-slide">
                                   <div class="news-card">
                                       <div class="news-image">
-                                          <img class="editable-image" src="fotosPrincipales/arcimboldo.jpg" alt="Noticia 5">
+                                          <img class="editable-image" src="FOTOS/fotosPrincipales/arcimboldo.jpg" alt="Noticia 5">
                                       </div>
                                       <div class="news-content">
                                           <span class="news-date">25 Agosto 2025</span>
@@ -217,7 +217,7 @@
     <div class="footer-container">
         <div class="footer-Aleft">
             <div class="footer-logo">
-                <img src="fotosPrincipales/logotipo.png" alt="Scuola Italiana di Montevideo" style="height: 60px;">
+                <img src="FOTOS/fotosPrincipales/logotipo.png" alt="Scuola Italiana di Montevideo" style="height: 60px;">
             </div>
             <div class="footer-subtitle">
                 <p>Scuola Italiana di Montevideo</p>

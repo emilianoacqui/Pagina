@@ -1,7 +1,7 @@
 <?php
 
 session_start();
-require_once "conexion.php";
+require_once('../../MODELO/conexion.php');
 
 /* seguridad: sólo alumnos */
 if (!isset($_SESSION['rol']) || $_SESSION['rol'] !== 'alumno') {

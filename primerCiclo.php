@@ -15,7 +15,7 @@
     <nav class="navbar">
         <div class="nav-container">
             <div class="nav-logo">
-                <img src="fotosPrincipales/logo2.png" alt="Scuola Italiana di Montevideo">
+                <img src="FOTOS/fotosPrincipales/logo2.png" alt="Scuola Italiana di Montevideo">
             </div>
             <div class="nav-menu-button" onclick="window.location.href='menuScuola.php'">
                 <span></span>
@@ -35,7 +35,7 @@
 
         <!-- Hero Image -->
         <section class="hero-section">
-            <img src="fotosClases/Primerciclo1.jpg" alt="Casa dei Bambini" class="hero-image">
+            <img src="FOTOS/fotosClases/Primerciclo1.jpg" alt="Casa dei Bambini" class="hero-image">
         </section>
         <div id="breadcrumbs" class="breadcrumbs-container"></div>
 
@@ -60,14 +60,14 @@ La estructura actual comprende un tercer ciclo de Educación Básica Integral (E
                     <p>Promovemos el trabajo cooperativo, la interdisciplinariedad, la reflexión, el desarrollo de estrategias meta-cognitivas y de las capacidades de autonomía en el estudio que permitan al alumno ser independiente en la adquisición de nuevos saberes.</p>
                 </div>
                 <div class="image-content right">
-                    <img src="fotosClases/primerciclo2.jpg" alt="Actividades Montessori">
+                    <img src="FOTOS/fotosClases/primerciclo2.jpg" alt="Actividades Montessori">
                 </div>
             </div>
 
             <!-- Section 2 -->
             <div class="content-row reverse">
                 <div class="image-content left">
-                    <img src="fotosClases/primerciclo3.jpg" alt="Psicomotricidad">
+                    <img src="FOTOS/fotosClases/primerciclo3.jpg" alt="Psicomotricidad">
                 </div>
                 <div class="text-content right">
                     <p> <STRONG>Objetivos:</STRONG>
@@ -92,14 +92,14 @@ La estructura actual comprende un tercer ciclo de Educación Básica Integral (E
 Nuestro Plan de Estudios Integrado, correspondiente a ambos sistemas, reconocido por Italia y Uruguay, permite continuar los estudios en nuestro Bachillerato Internacional Europeo. Al finalizar se obtiene doble titulación, nuestro Diploma habilita a continuar los estudios terciarios en Uruguay, Italia y en todos los países en que es reconocido.</p>
                 </div>
                 <div class="image-content right">
-                    <img src="fotosClases/primerciclo4.jpg" alt="Idiomas">
+                    <img src="FOTOS/fotosClases/primerciclo4.jpg" alt="Idiomas">
                 </div>
             </div>
 
             <!-- Section 4 -->
             <div class="content-row reverse">
                 <div class="image-content left">
-                    <img src="fotosClases/primerciclo5.jpg" alt="Italiano">
+                    <img src="FOTOS/fotosClases/primerciclo5.jpg" alt="Italiano">
                 </div>
                 <div class="text-content right">
                     <p>La Secundaria de la Scuola italiana di Montevideo es Paritaria para Italia y Habilitada para Uruguay.
@@ -119,12 +119,12 @@ Los alumnos que ingresan a la Scuola provenientes de otras Instituciones Educati
                 <div class="line right-line"></div>
             </div>
             <div class="gallery-grid">
-                <img src="fotosClases/Primerciclo1.jpg" alt="Galería 1">
-                <img src="fotosClases/primerciclo2.jpg" alt="Galería 2">
-                <img src="fotosClases/primerciclo3.jpg" alt="Galería 3">
-                <img src="fotosClases/primerciclo4.jpg" alt="Galería 4">
-                <img src="fotosClases/primerciclo5.jpg" alt="Galería 5">
-                <img src="fotosClases/Primerciclo1.jpg" alt="Galería 6">
+                <img src="FOTOS/fotosClases/Primerciclo1.jpg" alt="Galería 1">
+                <img src="FOTOS/fotosClases/primerciclo2.jpg" alt="Galería 2">
+                <img src="FOTOS/fotosClases/primerciclo3.jpg" alt="Galería 3">
+                <img src="FOTOS/fotosClases/primerciclo4.jpg" alt="Galería 4">
+                <img src="FOTOS/fotosClases/primerciclo5.jpg" alt="Galería 5">
+                <img src="FOTOS/fotosClases/Primerciclo1.jpg" alt="Galería 6">
             </div>
         </section>
 
@@ -136,7 +136,7 @@ Los alumnos que ingresan a la Scuola provenientes de otras Instituciones Educati
         <div class="footer-container">
             <div class="footer-Aleft">
                 <div class="footer-logo">
-                    <img src="fotosPrincipales/logotipo.png" alt="Scuola Italiana di Montevideo" style="height: 60px;">
+                    <img src="FOTOS/fotosPrincipales/logotipo.png" alt="Scuola Italiana di Montevideo" style="height: 60px;">
                 </div>
                 <div class="footer-subtitle">
                     <p>Scuola Italiana di Montevideo</p>

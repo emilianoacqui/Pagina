@@ -87,7 +87,7 @@
             width: 100%;
             height: 100vh;
             position: relative;
-            background: url('fotosPrincipales/FotoScuola1.jpg') center/cover;
+            background: url('FOTOS/fotosPrincipales/FotoScuola1.jpg') center/cover;
             margin-top: 0px;
             
         }
@@ -480,7 +480,7 @@
     <nav class="navbar">
         <div class="nav-container">
             <div class="nav-logo">
-                <img src="fotosPrincipales/logo2.png" alt="Scuola Italiana di Montevideo">
+                <img src="FOTOS/fotosPrincipales/logo2.png" alt="Scuola Italiana di Montevideo">
             </div>
             <div class="nav-menu-button" onclick="alert('Navegación al menú')">
                 <span></span>
@@ -510,7 +510,7 @@
 
         <div class="welcome-content">
             <div class="welcome-image">
-                <img src="fotosClases/primerciclo3.jpg" alt="Estudiantes de la Scuola Italiana">
+                <img src="FOTOS/fotosClases/primerciclo3.jpg" alt="Estudiantes de la Scuola Italiana">
             </div>
             
             <div class="welcome-text">
@@ -525,7 +525,7 @@
     <section class="cards-section">
         <div class="cards-container">
             <div class="card">
-                <div class="card-image" style="background-image: url('fotosPrincipales/FotoScuola3.jpg')"></div>
+                <div class="card-image" style="background-image: url('FOTOS/fotosPrincipales/FotoScuola3.jpg')"></div>
                 <div class="card-content">
                     <h3 class="card-title">Nuestra misión</h3>
                     <p class="card-text">Acompañar y guiar a nuestros alumnos en su proceso de aprendizaje, para que puedan crecer y desarrollarse como personas autónomas, creativas, solidarias, y comprometidas con la construcción de una ciudadanía responsable en un ambiente multicultural y plurilingüe.<br><br>Trabajar para mantener viva la lengua y cultura italiana en nuestro país.</p>
@@ -533,7 +533,7 @@
             </div>
 
             <div class="card">
-                <div class="card-image" style="background-image: url('fotosPrincipales/FotoScuola2.jpg')"></div>
+                <div class="card-image" style="background-image: url('FOTOS/fotosPrincipales/FotoScuola2.jpg')"></div>
                 <div class="card-content">
                     <h3 class="card-title">Nuestra visión</h3>
                     <p class="card-text">Ser reconocidos como un referente cultural y educativo que, desde una perspectiva humanista, innovadora y dinámica, acompaña a los estudiantes en la construcción de su identidad personal. Promovemos un ambiente de cooperación, aprendizaje continuo y valores como el respeto, la responsabilidad, la honestidad y el esfuerzo.</p>
@@ -541,7 +541,7 @@
             </div>
 
             <div class="card">
-                <div class="card-image" style="background-image: url('fotosPrincipales/Comunidad.jpg')"></div>
+                <div class="card-image" style="background-image: url('FOTOS/fotosPrincipales/Comunidad.jpg')"></div>
                 <div class="card-content">
                     <h3 class="card-title">Nuestra comunidad</h3>
                     <p class="card-text">La Scuola Italiana fomenta una cultura donde todas las diferencias e identidades de género, capacidad, religión, orientación sexual, raza, etnia y origen económico se valoran, celebran y reconocen como una cualidad esencial de la educación ofrecida en nuestro dinámico entorno de aprendizaje.</p>
@@ -587,7 +587,7 @@
 
         <div class="proposal-content">
             <div class="proposal-image">
-                <img src="fotosPrincipales/propuesta.jpg" alt="Campus de la Scuola Italiana">
+                <img src="FOTOS/fotosPrincipales/propuesta.jpg" alt="Campus de la Scuola Italiana">
             </div>
             
             <div class="proposal-text-box">

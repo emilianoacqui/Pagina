@@ -15,7 +15,7 @@
     <nav class="navbar">
         <div class="nav-container">
             <div class="nav-logo">
-                <img src="fotosPrincipales/logo2.png" alt="Scuola Italiana di Montevideo">
+                <img src="FOTOS/fotosPrincipales/logo2.png" alt="Scuola Italiana di Montevideo">
             </div>
             <div class="nav-menu-button" onclick="window.location.href='menuScuola.php'">
                 <span></span>
@@ -35,7 +35,7 @@
 
         <!-- Hero Image -->
         <section class="hero-section">
-            <img src="fotosClases/BBSIM1.jpg" alt="BBSIM" class="hero-image">
+            <img src="FOTOS/fotosClases/BBSIM1.jpg" alt="BBSIM" class="hero-image">
         </section>
         <div id="breadcrumbs" class="breadcrumbs-container"></div>
 
@@ -63,14 +63,14 @@ BBSIM cuenta con un equipo de profesionales altamente calificado dando a cada ni
                     <p>Una de las grandes fortalezas del material Montessori es que todo tiene un propósito definido.<br/>Los niños aprenden con alegría, investigando a través de recursos didácticos que despiertan su interés y fomentan su curiosidad: aprenden, memorizan fijando ideas y conceptos naturalmente. Este material acompaña todos los procesos en "Casa dei Bambini" y les da la oportunidad de construir su propio aprendizaje.<br/>Basados en este principio como columna vertebral de la metodología, cada niño sigue sus propios intereses, elige libremente sus actividades, desarrolla su capacidad de concentración y genera vínculos compartiendo con sus pares la alegría de aprender.<br/>Así, naturalmente los idiomas llegan al aula. Los pequeños asimilan los códigos lingüísticos de italiano e inglés de la misma forma que incorporaron su lengua materna.<br/>Bienvenidos a Casa dei Bambini: aquí sus hijos crecerán felices...</p>
                 </div>
                 <div class="image-content right">
-                    <img src="fotosClases/BBSIM1.jpg" alt="Actividades Montessori">
+                    <img src="FOTOS/fotosClases/BBSIM1.jpg" alt="Actividades Montessori">
                 </div>
             </div>
 
             <!-- Section 2 -->
             <div class="content-row reverse">
                 <div class="image-content left">
-                    <img src="fotosClases/BBSIM2.jpg" alt="Psicomotricidad">
+                    <img src="FOTOS/fotosClases/BBSIM2.jpg" alt="Psicomotricidad">
                 </div>
                 <div class="text-content right">
                     <p>Está comprobado que en los primeros años de vida, los niños adquieren destrezas fundamentales para su formación como personas.<br/>Para ello disponemos de espacios de estimulación, coordinación y equilibrio en los que la práctica y el descubrimiento se hacen presentes.<br/>Dentro del horario escolar se desarrollan las clases de psicomotricidad, educación física, danza y música, pudiendo optar también por clases de ballet.<br/>Aprender disfrutando y generando vínculos, esa es nuestra consigna.</p>
@@ -83,14 +83,14 @@ BBSIM cuenta con un equipo de profesionales altamente calificado dando a cada ni
                     <p>La habilidad de entender y comunicarse en más de una lengua es esencial en los primeros años de vida.<br/>Teniendo en cuenta que el ambiente condiciona los aprendizajes del niño, la inmersión temprana en una segunda y tercera lengua determina un aprendizaje de inglés e italiano que realiza el mismo recorrido que al aprender su lengua materna.<br/>Este es el momento de acercarlo a un ambiente multicultural para que adquiera las herramientas comunicativas que irán perfeccionándose a medida que crece.</p>
                 </div>
                 <div class="image-content right">
-                    <img src="fotosClases/BBSIM3.jpg" alt="Idiomas">
+                    <img src="FOTOS/fotosClases/BBSIM3.jpg" alt="Idiomas">
                 </div>
             </div>
 
             <!-- Section 4 -->
             <div class="content-row reverse">
                 <div class="image-content left">
-                    <img src="fotosClases/BBSIM4.jpg" alt="Italiano">
+                    <img src="FOTOS/fotosClases/BBSIM4.jpg" alt="Italiano">
                 </div>
                 <div class="text-content right">
                     <p>Aprender Italiano en la Scuola es mucho más que adquirir una lengua.<br/>Representa nuestra bandera institucional y la patria de gran parte de los inmigrantes de nuestro país.<br/>Italia significa arte, música, moda, gastronomía y tradiciones, siendo el país con mayor número de lugares declarados como Patrimonio de la Humanidad por la UNESCO del mundo.<br/>El aprendizaje del italiano le permitirá cerrar el círculo académico en la Scuola logrando un IB internacional (Maturità) en ese idioma.</p>
@@ -108,12 +108,12 @@ BBSIM cuenta con un equipo de profesionales altamente calificado dando a cada ni
                 <div class="line right-line"></div>
             </div>
             <div class="gallery-grid">
-                <img src="fotosClases/BBSIM5.jpg" alt="Galería 1">
-                <img src="fotosClases/BBSIM1.jpg" alt="Galería 2">
-                <img src="fotosClases/BBSIM2.jpg" alt="Galería 3">
-                <img src="fotosClases/BBSIM3.jpg" alt="Galería 4">
-                <img src="fotosClases/BBSIM4.jpg" alt="Galería 5">
-                <img src="fotosClases/BBSIM5.jpg" alt="Galería 6">
+                <img src="FOTOS/fotosClases/BBSIM5.jpg" alt="Galería 1">
+                <img src="FOTOS/fotosClases/BBSIM1.jpg" alt="Galería 2">
+                <img src="FOTOS/fotosClases/BBSIM2.jpg" alt="Galería 3">
+                <img src="FOTOS/fotosClases/BBSIM3.jpg" alt="Galería 4">
+                <img src="FOTOS/fotosClases/BBSIM4.jpg" alt="Galería 5">
+                <img src="FOTOS/fotosClases/BBSIM5.jpg" alt="Galería 6">
             </div>
         </section>
 
@@ -125,7 +125,7 @@ BBSIM cuenta con un equipo de profesionales altamente calificado dando a cada ni
         <div class="footer-container">
             <div class="footer-Aleft">
                 <div class="footer-logo">
-                    <img src="fotosPrincipales/logotipo.png" alt="Scuola Italiana di Montevideo" style="height: 60px;">
+                    <img src="FOTOS/fotosPrincipales/logotipo.png" alt="Scuola Italiana di Montevideo" style="height: 60px;">
                 </div>
                 <div class="footer-subtitle">
                     <p>Scuola Italiana di Montevideo</p>

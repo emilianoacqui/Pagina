@@ -226,7 +226,7 @@
 </head>
 <div id="cms-root"></div>
 <body>
-  <div class="left" style="background-image: url('fotosPrincipales/ejemplo1.jpg');">
+  <div class="left" style="background-image: url('FOTOS/Principales/ejemplo1.jpg');">
     <div class="curve"></div>
   </div>
 
@@ -247,27 +247,27 @@
     <!-- Contenedor principal del menú -->
 <div class="menu-container">
   <div class="menu">
-    <div class="menu-item" onclick="window.location.href='acerca.php'" data-target="submenu1" data-img="fotosPrincipales/ejemplo1.jpg">
+    <div class="menu-item" onclick="window.location.href='acerca.php'" data-target="submenu1" data-img="FOTOS/fotosPrincipales/ejemplo1.jpg">
       Acerca Scuola Italiana
     </div>
 
-    <div class="menu-item" onclick="window.location.href='admision.php'" data-target="submenu2" data-img="fotosPrincipales/ejemplo2.jpg">
+    <div class="menu-item" onclick="window.location.href='admision.php'" data-target="submenu2" data-img="FOTOS/fotosPrincipales/ejemplo2.jpg">
       Admisión
     </div>
 
-    <div class="menu-item" onclick="window.location.href='propuesta.php'" data-target="submenu3" data-img="fotosPrincipales/ejemplo3.jpg">
+    <div class="menu-item" onclick="window.location.href='propuesta.php'" data-target="submenu3" data-img="FOTOS/fotosPrincipales/ejemplo3.jpg">
       Propuesta Educativa
     </div>
 
-    <div class="menu-item" onclick="window.location.href='mapa.php'" data-target="submenu4" data-img="fotosPrincipales/ejemplo4.jpg">
+    <div class="menu-item" onclick="window.location.href='mapa.php'" data-target="submenu4" data-img="FOTOS/fotosPrincipales/ejemplo4.jpg">
       Mapa del colegio
     </div>
 
-    <div class="menu-item" onclick="window.location.href='deportes.php'" data-target="submenu5" data-img="fotosPrincipales/ejemplo5.jpg">
+    <div class="menu-item" onclick="window.location.href='deportes.php'" data-target="submenu5" data-img="FOTOS/fotosPrincipales/ejemplo5.jpg">
       Deportes
     </div>
 
-    <div class="menu-item" onclick="window.location.href='otra.php'" data-target="submenu6" data-img="fotosPrincipales/ejemplo6.jpg">
+    <div class="menu-item" onclick="window.location.href='otra.php'" data-target="submenu6" data-img="FOTOS/fotosPrincipales/ejemplo6.jpg">
       Otra sección
     </div>
   </div>

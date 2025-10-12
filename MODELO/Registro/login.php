@@ -1,6 +1,6 @@
 <?php
 header('Content-Type: application/json; charset=utf-8');
-require 'conexion.php';
+require_once('../conexion.php');
 session_start();
 
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
@@ -38,15 +38,14 @@ $_SESSION['email']      = $user['email'];
 $_SESSION['rol']        = $user['rol'];
 
 /* Redirección por rol */
-$redirect = 'dashboard.php';
+$redirect = '../../dashboard.php';
 if ($user['rol'] === 'coordinador') {
-    $redirect = 'coordinador_panel.php';
+    $redirect = '../../VISTA/Paneles/coordinador_panel.php';
 } elseif ($user['rol'] === 'profesor') {
-    $redirect = 'profesor_panel.php';
+    $redirect = '../../VISTA/Paneles/profesor_panel.php';
 } elseif ($user['rol'] === 'alumno') {
-    $redirect = 'alumno_panel.php';
+    $redirect = '../../VISTA/Paneles/alumno_panel.php';
 }
-
 echo json_encode(['ok' => true, 'redirect' => $redirect]);
 exit();
 ?>

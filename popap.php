@@ -89,7 +89,7 @@
   <div class="container">
     <!-- Logo -->
     <a href="index.php">
-      <img src="fotosPrincipales/logotipo.png" alt="Logo Scuola Italiana di Montevideo" class="logo">
+      <img src="FOTOS/fotosPrincipales/logotipo.png" alt="Logo Scuola Italiana di Montevideo" class="logo">
     </a>
 
     <!-- Título -->
@@ -117,7 +117,7 @@
     </form>
 
     <!-- Imagen inferior -->
-    <img src="fotosPrincipales/popap.png" alt="Deportes y alumnos" class="footer-img">
+    <img src="FOTOS/fotosPrincipales/popap.png" alt="Deportes y alumnos" class="footer-img">
   </div>
   <script src="cms-admin.js"></script>
 </body>

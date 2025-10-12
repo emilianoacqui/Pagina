@@ -116,7 +116,7 @@ body:not(.loading-cms-content) #cms-root {
         .header {
             position: relative;
             height: 100vh;
-            background: url('fotosPrincipales/portada1.jpg') center/cover;
+            background: url('FOTOS/fotosPrincipales/portada1.jpg') center/cover;
             display: flex;
             align-items: center;
         }
@@ -193,17 +193,17 @@ body:not(.loading-cms-content) #cms-root {
         }
 
         .inicial {
-            background-image: url('fotosPrincipales/inicial1.jpg');
+            background-image: url('FOTOS/fotosPrincipales/inicial1.jpg');
         }
         .inicial::before { background: #049B4C; }
 
         .primaria {
-            background-image: url('fotosPrincipales/primaria1.jpg');
+            background-image: url('FOTOS/fotosPrincipales/primaria1.jpg');
         }
         .primaria::before { background: #D9D9D9; }
 
         .secundaria {
-            background-image: url('fotosPrincipales/secundaria1.jpg');
+            background-image: url('FOTOS/fotosPrincipales/secundaria1.jpg');
         }
         .secundaria::before { background: #DC343C; }
 
@@ -1119,14 +1119,14 @@ body:not(.loading-cms-content) #cms-root {
 
 <body>
     
-    <div id="original-content"> </div>
+    
         <!-- Navigation -->
         <nav class="navbar">
             <div class="nav-container">
                 <div class="nav-logo">
-                    <img src="fotosPrincipales/logo2.png" alt="Scuola Italiana di Montevideo">
+                    <img src="FOTOS/fotosPrincipales/logo2.png" alt="Scuola Italiana di Montevideo">
                 </div>
-                <a href="Registro/index.php" class="nav-login-btn">iniciar sesion</a>
+                <a href="MODELO/Registro/index.php" class="nav-login-btn">iniciar sesion</a>
                 <div class="nav-menu-button" onclick="window.location.href='menuScuola.php'">
                     <span></span>
                     <span></span>
@@ -1135,7 +1135,7 @@ body:not(.loading-cms-content) #cms-root {
             </div>
         </nav>
 
-        
+        <div id="original-content"> </div>
         <header class="header">
             <div class="hero-content">
                 <h1 class="hero-title">Una nueva visión de la educación.<br>La Scuola aperta al mondo</h1>
@@ -1188,7 +1188,7 @@ body:not(.loading-cms-content) #cms-root {
         <!-- About Section -->
         <section class="about-section">
             <div class="about-image">
-                <img src="fotosPrincipales/estructura.jpg" alt="Sobre nosotros">
+                <img src="FOTOS/fotosPrincipales/estructura.jpg" alt="Sobre nosotros">
             </div>
             <div class="about-content">
                 <h2 class="section-title-small">SOBRE NOSOTROS</h2>
@@ -1245,8 +1245,8 @@ body:not(.loading-cms-content) #cms-root {
                     <!-- Centro - Video -->
                     <div class="center-video">
                         <div class="video-container">
-                            <video class="video-thumbnail" controls poster="fotosPrincipales/scuola.jpg">
-                                <source src="fotosPrincipales/scuola.mp4" type="video/mp4">
+                            <video class="video-thumbnail" controls poster="FOTOS/fotosPrincipales/secundaria3.jpg">
+                                <source src="FOTOS/fotosPrincipales/scuola.mp4" type="video/mp4">
                             </video>
                         </div>
                         
@@ -1311,7 +1311,7 @@ body:not(.loading-cms-content) #cms-root {
                         <a href="arcimboldo.php" class="project-btn">Ver mas</a>
                     </div>
                     <div class="project-image">
-                        <img src="fotosPrincipales/archimboldo.jpg" alt="Arcimboldo">
+                        <img src="FOTOS/fotosPrincipales/archimboldo.jpg" alt="Arcimboldo">
                     </div>
                 </div>
                 
@@ -1322,7 +1322,7 @@ body:not(.loading-cms-content) #cms-root {
                         <a href="heliopolis.php" class="project-btn">Ver Mas</a>
                     </div>
                     <div class="project-image">
-                        <img src="fotosPrincipales/heliopolis.jpg" alt="Heliopolis">
+                        <img src="FOTOS/fotosPrincipales/heliopolis.jpg" alt="Heliopolis">
                     </div>
                 </div>
                 
@@ -1333,7 +1333,7 @@ body:not(.loading-cms-content) #cms-root {
                         <a href="paradiso.php" class="project-btn">Ver mas</a>
                     </div>
                     <div class="project-image">
-                        <img src="fotosPrincipales/paradiso.jpg" alt="Scuola paradiso">
+                        <img src="FOTOS/fotosPrincipales/paradiso.jpg" alt="Scuola paradiso">
                     </div>
                 </div>
             </div>
@@ -1348,7 +1348,7 @@ body:not(.loading-cms-content) #cms-root {
             
             <div class="news-grid">
                 <div class="news-card">
-                    <img src="fotosPrincipales/arcimboldo4.jpg" alt="Noticia 1">
+                    <img src="FOTOS/fotosPrincipales/arcimboldo4.jpg" alt="Noticia 1">
                     <div class="news-card-content">
                         <p class="news-card-text">Consiste en un gran plan pluridisciplinar pensado, planificado y elaborado por los propios alumnos con la guía de sus docentes, que prevé la construcción y/o recuperación de diferentes espacios, reforestación, huertas orgánicas, etc., en base a principios ecológicos respetuosos del medio ambiente.</p>
                         <a href="noticiaDestacada1.php" class="news-card-btn">Ver mas</a>
@@ -1356,7 +1356,7 @@ body:not(.loading-cms-content) #cms-root {
                 </div>
                 
                 <div class="news-card">
-                    <img src="fotosPrincipales/PrimerDia4.jpg.png" alt="Noticia 2">
+                    <img src="FOTOS/fotosPrincipales/PrimerDia4.jpg.png" alt="Noticia 2">
                     <div class="news-card-content">
                         <p class="news-card-text">Consiste en un gran plan pluridisciplinar pensado, planificado y elaborado por los propios alumnos con la guía de sus docentes, que prevé la construcción y/o recuperación de diferentes espacios, reforestación, huertas orgánicas, etc., en base a principios ecológicos respetuosos del medio ambiente.</p>
                         <a href="noticiaDestacada2.php" class="news-card-btn">Ver mas</a>
@@ -1364,7 +1364,7 @@ body:not(.loading-cms-content) #cms-root {
                 </div>
                 
                 <div class="news-card">
-                    <img src="fotosPrincipales/Comunidad.jpg" alt="Noticia 3">
+                    <img src="FOTOS/fotosPrincipales/Comunidad.jpg" alt="Noticia 3">
                     <div class="news-card-content">
                         <p class="news-card-text">Consiste en un gran plan pluridisciplinar pensado, planificado y elaborado por los propios alumnos con la guía de sus docentes, que prevé la construcción y/o recuperación de diferentes espacios, reforestación, huertas orgánicas, etc., en base a principios ecológicos respetuosos del medio ambiente.</p>
                         <a href="noticiaDestacada3.php" class="news-card-btn">Ver mas</a>
@@ -1377,32 +1377,32 @@ body:not(.loading-cms-content) #cms-root {
         <section class="footer-links">
             <div class="footer-grid">
                 <a href="acceso-familia.php" class="footer-card blue">
-                    <img src="fotosSeccion/familia.jpg" alt="Acceso a familia">
+                    <img src="FOTOS/fotosSeccion/familia.jpg" alt="Acceso a familia">
                     <div class="footer-card-content">Acceso a<br>familia</div>
                 </a>
                 
                 <a href="comunidad-exalumnos.php" class="footer-card red">
-                    <img src="fotosPrincipales/Comunidad.jpg" alt="Comunidad Exalumnos">
+                    <img src="FOTOS/fotosPrincipales/Comunidad.jpg" alt="Comunidad Exalumnos">
                     <div class="footer-card-content">Comunidad<br>Exalumnos</div>
                 </a>
                 
                 <a href="scuola-club.php" class="footer-card yellow">
-                    <img src="fotosSeccion/scuolaClub.png" alt="Scuola Club">
+                    <img src="FOTOS/fotosSeccion/scuolaClub.png" alt="Scuola Club">
                     <div class="footer-card-content">Scuola Club</div>
                 </a>
                 
                 <a href="noticias.php" class="footer-card green">
-                    <img src="fotosPrincipales/ejemplo5.jpg" alt="Noticias">
+                    <img src="FOTOS/fotosPrincipales/ejemplo5.jpg" alt="Noticias">
                     <div class="footer-card-content">Noticias</div>
                 </a>
                 
                 <a href="CursosIdioma.php" class="footer-card dark-blue">
-                    <img src="fotosClases/bachillerato3.jpg" alt="Cursos de idioma">
+                    <img src="FOTOS/fotosClases/bachillerato3.jpg" alt="Cursos de idioma">
                     <div class="footer-card-content">Cursos de<br>idioma</div>
                 </a>
                 
                 <a href="trabaja-con-nosotros.php" class="footer-card red">
-                    <img src="fotosSeccion/trabaja.jpg" alt="Trabaja con nosotros">
+                    <img src="FOTOS/fotosSeccion/trabaja.jpg" alt="Trabaja con nosotros">
                     <div class="footer-card-content">Trabaja con<br>nosotros</div>
                 </a>
             </div>
@@ -1414,7 +1414,7 @@ body:not(.loading-cms-content) #cms-root {
             <div class="footer-container">
                 <div class="footer-left">
                     <div class="footer-logo">
-                        <img src="fotosPrincipales/logo2.png" alt="Scuola Italiana di Montevideo">
+                        <img src="FOTOS/fotosPrincipales/logo2.png" alt="Scuola Italiana di Montevideo">
                     </div>
                     <div class="footer-subtitle">
                         <p>AMC Scuola Italiana di Montevideo</p>

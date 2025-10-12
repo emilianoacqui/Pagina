@@ -1,6 +1,6 @@
 <?php
 header('Content-Type: application/json; charset=utf-8');
-require 'conexion.php';
+require_once('../conexion.php');
 
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
   echo json_encode(['ok' => false, 'error' => 'Método no permitido']);

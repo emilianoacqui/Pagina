@@ -14,7 +14,7 @@
     <nav class="navbar">
         <div class="nav-container">
             <div class="nav-logo">
-                <img src="fotosPrincipales/logo2.png" alt="Scuola Italiana di Montevideo">
+                <img src="FOTOS/fotosPrincipales/logo2.png" alt="Scuola Italiana di Montevideo">
             </div>
             <div class="nav-menu-button" onclick="window.location.href='menuScuola.php'">
                 <span></span>
@@ -40,7 +40,7 @@
                 <!-- Casa dei Bambini -->
                 <div class="program-section">
                     <div class="program-image">
-                        <img src="fotosClases/Bambini1.jpg" alt="Casa dei Bambini">
+                        <img src="FOTOS/fotosClases/Bambini1.jpg" alt="Casa dei Bambini">
                     </div>
                     <div class="program-info">
                         <h3>Casa dei Bambini</h3>
@@ -58,7 +58,7 @@
                 <!-- BBSIM -->
                 <div class="program-section">
                     <div class="program-image">
-                        <img src="fotosClases/BBSIM1.jpg" alt="BBSIM">
+                        <img src="FOTOS/fotosClases/BBSIM1.jpg" alt="BBSIM">
                     </div>
                     <div class="program-info">
                         <h3>BBSIM</h3>
@@ -81,7 +81,7 @@
         <div class="footer-container">
             <div class="footer-Aleft">
                 <div class="footer-logo">
-                    <img src="fotosPrincipales/logotipo.png" alt="Scuola Italiana di Montevideo" style="height: 60px;">
+                    <img src="FOTOS/fotosPrincipales/logotipo.png" alt="Scuola Italiana di Montevideo" style="height: 60px;">
                 </div>
                 <div class="footer-subtitle">
                     <p>Scuola Italiana di Montevideo</p>

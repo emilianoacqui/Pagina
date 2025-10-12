@@ -769,7 +769,7 @@ async function savePageToServer(pageData) {
           <nav class="navbar">
               <div class="nav-container">
                   <div class="nav-logo">
-                      <img src="fotosPrincipales/logo2.png" alt="Scuola Italiana di Montevideo" style="height: 120px;">
+                      <img src="FOTOS/fotosPrincipales/logo2.png" alt="Scuola Italiana di Montevideo" style="height: 120px;">
                   </div>
                   <div class="nav-menu-button" onclick="window.location.href='menuScuola.php'">
                       <span></span>
@@ -1275,7 +1275,7 @@ async function savePageToServer(pageData) {
           <nav class="navbar">
               <div class="nav-container">
                   <div class="nav-logo">
-                      <img src="fotosPrincipales/logo2.png" alt="Scuola Italiana di Montevideo" style="height: 120px;">
+                      <img src="FOTOS/fotosPrincipales/logo2.png" alt="Scuola Italiana di Montevideo" style="height: 120px;">
                   </div>
                   <div class="nav-menu-button" onclick="window.location.href='menuScuola.php'">
                       <span></span>
@@ -1402,7 +1402,7 @@ async function savePageToServer(pageData) {
           <nav class="navbar">
               <div class="nav-container">
                   <div class="nav-logo">
-                      <img src="fotosPrincipales/logo2.png" alt="Scuola Italiana di Montevideo" style="height: 120px;">
+                      <img src="FOTOS/fotosPrincipales/logo2.png" alt="Scuola Italiana di Montevideo" style="height: 120px;">
                   </div>
                   <div class="nav-menu-button" onclick="window.location.href='menuScuola.php'">
                       <span></span>
@@ -1552,7 +1552,7 @@ async function savePageToServer(pageData) {
           <nav class="navbar">
               <div class="nav-container">
                   <div class="nav-logo">
-                      <img src="fotosPrincipales/logo2.png" alt="Scuola Italiana di Montevideo" style="height: 120px;">
+                      <img src="FOTOS/fotosPrincipales/logo2.png" alt="Scuola Italiana di Montevideo" style="height: 120px;">
                   </div>
                   <div class="nav-menu-button" onclick="window.location.href='menuScuola.php'">
                       <span></span>
@@ -1735,7 +1735,7 @@ async function savePageToServer(pageData) {
     <div class="footer-container">
         <div class="footer-left">
             <div class="footer-logo">
-                <img src="fotosPrincipales/logo2.png" alt="Scuola Italiana di Montevideo" style="height: 120px;">
+                <img src="FOTOS/fotosPrincipales/logo2.png" alt="Scuola Italiana di Montevideo" style="height: 120px;">
             </div>
             <div class="footer-subtitle">
                 <p>AMC Scuola Italiana di Montevideo</p>

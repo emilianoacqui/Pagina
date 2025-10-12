@@ -13,7 +13,7 @@
           <nav class="navbar">
               <div class="nav-container">
                   <div class="nav-logo">
-                      <img src="fotosPrincipales/logo2.png" alt="Scuola Italiana di Montevideo" style="height: 120px;">
+                      <img src="FOTOS/fotosPrincipales/logo2.png" alt="Scuola Italiana di Montevideo" style="height: 120px;">
                   </div>
                   <div class="nav-menu-button" onclick="window.location.href='menuScuola.php'">
                       <span></span>
@@ -24,7 +24,7 @@
           </nav>
 
           <!-- Hero Section -->
-          <section class="hero-gallery editable-image" style="background-image: url('fotosPrincipales/heliopolis3.jpg'); background-size: cover; background-position: center;">
+          <section class="hero-gallery editable-image" style="background-image: url('FOTOS/fotosPrincipales/heliopolis3.jpg'); background-size: cover; background-position: center;">
               <div class="hero-overlay"></div>
               <div class="hero-content-gallery">
                   <h1 class="hero-title-gallery editable-text">Heliopolis</h1>
@@ -49,7 +49,7 @@ Los estudiantes de 1ro.de Bachillerato, II de Liceo Italiano y 1ro. Bachillerato
                   <section class="photo-grid">
                       <div class="grid-container">
                           <div class="photo-item large">
-                              <img class="editable-image" src="fotosPrincipales/arcimboldo2.jpg" alt="Imagen principal">
+                              <img class="editable-image" src="FOTOS/fotosPrincipales/arcimboldo2.jpg" alt="Imagen principal">
                               <div class="photo-overlay">
                                   <h3 class="photo-title editable-text">Imagen destacada</h3>
                                   <p class="photo-caption editable-text">Descripción de la imagen principal</p>
@@ -57,35 +57,35 @@ Los estudiantes de 1ro.de Bachillerato, II de Liceo Italiano y 1ro. Bachillerato
                           </div>
                           
                           <div class="photo-item">
-                              <img class="editable-image" src="fotosPrincipales/arcimboldo3.jpg" alt="Imagen 1">
+                              <img class="editable-image" src="FOTOS/fotosPrincipales/arcimboldo3.jpg" alt="Imagen 1">
                               <div class="photo-overlay">
                                   <h3 class="photo-title editable-text">Primera imagen</h3>
                               </div>
                           </div>
                           
                           <div class="photo-item">
-                              <img class="editable-image" src="fotosPrincipales/arcimboldo4.jpg" alt="Imagen 2">
+                              <img class="editable-image" src="FOTOS/fotosPrincipales/arcimboldo4.jpg" alt="Imagen 2">
                               <div class="photo-overlay">
                                   <h3 class="photo-title editable-text">Segunda imagen</h3>
                               </div>
                           </div>
                           
                           <div class="photo-item">
-                              <img class="editable-image" src="fotosPrincipales/arcimboldo5.jpg" alt="Imagen 3">
+                              <img class="editable-image" src="FOTOS/fotosPrincipales/arcimboldo5.jpg" alt="Imagen 3">
                               <div class="photo-overlay">
                                   <h3 class="photo-title editable-text">Tercera imagen</h3>
                               </div>
                           </div>
                           
                           <div class="photo-item">
-                              <img class="editable-image" src="fotosPrincipales/arcimboldo.jpg" alt="Imagen 4">
+                              <img class="editable-image" src="FOTOS/fotosPrincipales/arcimboldo.jpg" alt="Imagen 4">
                               <div class="photo-overlay">
                                   <h3 class="photo-title editable-text">Cuarta imagen</h3>
                               </div>
                           </div>
                           
                           <div class="photo-item">
-                              <img class="editable-image" src="fotosPrincipales/arcimboldo2.jpg" alt="Imagen 5">
+                              <img class="editable-image" src="FOTOS/fotosPrincipales/arcimboldo2.jpg" alt="Imagen 5">
                               <div class="photo-overlay">
                                   <h3 class="photo-title editable-text">Quinta imagen</h3>
                               </div>
@@ -172,7 +172,7 @@ Los estudiantes de 1ro.de Bachillerato, II de Liceo Italiano y 1ro. Bachillerato
     <div class="footer-container">
         <div class="footer-Aleft">
             <div class="footer-logo">
-                <img src="fotosPrincipales/logotipo.png" alt="Scuola Italiana di Montevideo" style="height: 60px;">
+                <img src="FOTOS/fotosPrincipales/logotipo.png" alt="Scuola Italiana di Montevideo" style="height: 60px;">
             </div>
             <div class="footer-subtitle">
                 <p>Scuola Italiana di Montevideo</p>

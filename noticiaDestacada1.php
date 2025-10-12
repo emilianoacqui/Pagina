@@ -14,7 +14,7 @@
           <nav class="navbar">
               <div class="nav-container">
                   <div class="nav-logo">
-                      <img src="fotosPrincipales/logo2.png" alt="Scuola Italiana di Montevideo" style="height: 120px;">
+                      <img src="FOTOS/fotosPrincipales/logo2.png" alt="Scuola Italiana di Montevideo" style="height: 120px;">
                   </div>
                   <div class="nav-menu-button" onclick="window.location.href='menuScuola.php'">
                       <span></span>
@@ -25,7 +25,7 @@
           </nav>
 
           <!-- Hero Section -->
-          <section class="hero-gallery" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('fotosPrincipales/PrimerDia.jpg.png'); background-size: cover; background-position: center;">
+          <section class="hero-gallery" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('FOTOS/fotosPrincipales/PrimerDia.jpg.png'); background-size: cover; background-position: center;">
               <div class="hero-overlay"></div>
               <div class="hero-content-gallery">
                   <h1 class="hero-title-gallery">Scuola Italiana di Montevideo</h1>
@@ -45,7 +45,7 @@
                   <div class="student-grid">
                       <div class="student-card featured">
                           <div class="card-image">
-                              <img src="fotosPrincipales/PrimerDia.jpg.png" alt="Estudiantes principales">
+                              <img src="FOTOS/fotosPrincipales/PrimerDia.jpg.png" alt="Estudiantes principales">
                               <div class="card-badge">Destacado</div>
                           </div>
                           <div class="card-content">
@@ -56,7 +56,7 @@
                       
                       <div class="student-card">
                           <div class="card-image">
-                              <img src="fotosPrincipales/PrimerDia2.jpg.png" alt="Estudiantes en el patio">
+                              <img src="FOTOS/fotosPrincipales/PrimerDia2.jpg.png" alt="Estudiantes en el patio">
                           </div>
                           <div class="card-content">
                               <h3>Recreos Activos</h3>
@@ -66,7 +66,7 @@
                       
                       <div class="student-card">
                           <div class="card-image">
-                              <img src="fotosPrincipales/PrimerDia3.jpg.png" alt="Actividades grupales">
+                              <img src="FOTOS/fotosPrincipales/PrimerDia3.jpg.png" alt="Actividades grupales">
                           </div>
                           <div class="card-content">
                               <h3>Trabajo en Equipo</h3>
@@ -76,7 +76,7 @@
                       
                       <div class="student-card">
                           <div class="card-image">
-                              <img src="fotosPrincipales/PrimerDia4.jpg.png" alt="Actividades deportivas">
+                              <img src="FOTOS/fotosPrincipales/PrimerDia4.jpg.png" alt="Actividades deportivas">
                           </div>
                           <div class="card-content">
                               <h3>Deporte y Salud</h3>
@@ -86,7 +86,7 @@
                       
                       <div class="student-card">
                           <div class="card-image">
-                              <img src="fotosPrincipales/PrimerDia5.jpg.png" alt="Momentos especiales">
+                              <img src="FOTOS/fotosPrincipales/PrimerDia5.jpg.png" alt="Momentos especiales">
                           </div>
                           <div class="card-content">
                               <h3>Tradiciones Escolares</h3>
@@ -120,7 +120,7 @@
                           </div>
                       </div>
                       <div class="showcase-image">
-                          <img src="fotosPrincipales/PrimerDia.jpg.png" alt="Estudiantes de la Scuola">
+                          <img src="FOTOS/fotosPrincipales/PrimerDia.jpg.png" alt="Estudiantes de la Scuola">
                       </div>
                   </div>
               </div>
@@ -354,7 +354,7 @@
     <div class="footer-container">
         <div class="footer-left">
             <div class="footer-logo">
-                <img src="fotosPrincipales/logotipo.png" alt="Scuola Italiana di Montevideo" style="height: 60px;">
+                <img src="FOTOS/fotosPrincipales/logotipo.png" alt="Scuola Italiana di Montevideo" style="height: 60px;">
             </div>
             <div class="footer-subtitle">
                 <p>Scuola Italiana di Montevideo</p>

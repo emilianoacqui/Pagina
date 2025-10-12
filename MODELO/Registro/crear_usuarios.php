@@ -1,5 +1,5 @@
 <?php
-require_once "conexion.php"; // tu conexión
+require_once('../conexion.php');
 
 $pass_coordinador = password_hash("123456", PASSWORD_DEFAULT);
 $pass_profesor = password_hash("123456", PASSWORD_DEFAULT);

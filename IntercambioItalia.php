@@ -13,7 +13,7 @@
           <nav class="navbar">
               <div class="nav-container">
                   <div class="nav-logo">
-                      <img src="fotosPrincipales/logo2.png" alt="Scuola Italiana di Montevideo">
+                      <img src="FOTOS/fotosPrincipales/logo2.png" alt="Scuola Italiana di Montevideo">
                   </div>
                   <div class="nav-menu-button" onclick="window.location.href='menuScuola.php'">
                       <span></span>
@@ -24,7 +24,7 @@
           </nav>
           
           <!-- Hero Section -->
-          <section class="hero-centered editable-image" style="background-image: url('fotosIntercambio/italia.jpg'); background-size: cover; background-position: center;">
+          <section class="hero-centered editable-image" style="background-image: url('FOTOS/fotosIntercambio/italia.jpg'); background-size: cover; background-position: center;">
               <div class="hero-overlay"></div>
               <div class="hero-content-center">
                   <h1 class="hero-title-center editable-text">Italia</h1>
@@ -168,7 +168,7 @@
     <div class="footer-container">
         <div class="footer-left">
             <div class="footer-logo">
-                <img src="fotos/logo.png" alt="Scuola Italiana di Montevideo" style="height: 60px;">
+                <img src="FOTOS/fotosPrincipales/logo.png" alt="Scuola Italiana di Montevideo" style="height: 60px;">
             </div>
             <div class="footer-subtitle">
                 <p>AMC Scuola Italiana di Montevideo</p>
