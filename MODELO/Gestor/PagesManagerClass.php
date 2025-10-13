@@ -3,7 +3,7 @@ class PagesManager {
     private $conn;
     
     public function __construct() {
-        require_once 'conexion.php';
+        require_once('../conexion.php');
         $this->conn = $conn;
         $this->ensureTables();
     }

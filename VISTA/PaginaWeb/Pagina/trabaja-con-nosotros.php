@@ -507,7 +507,7 @@
                 Únete a nuestro equipo educativo y forma parte de una institución comprometida con la excelencia académica y los valores italianos.
             </p>
 
-            <form action="procesar_trabajo.php" method="POST" enctype="multipart/form-data">
+            <form action="../../../MODELO/Pagina/procesar_trabajo.php" method="POST" enctype="multipart/form-data">
                 <div class="form-group">
                     <label for="nombre">Nombre y Apellido *</label>
                     <input type="text" id="nombre" name="nombre" class="form-control" required>
@@ -666,6 +666,31 @@
             }
         });
     </script>
+    <script>
+document.querySelector("form").addEventListener("submit", function(e) {
+    e.preventDefault(); // Evita que se recargue la página
+
+    const form = e.target;
+    const formData = new FormData(form); // Captura todos los datos del formulario
+
+    fetch(form.action, {
+        method: form.method,
+        body: formData
+    })
+    .then(response => response.text())
+    .then(data => {
+        // Mostrar mensaje de éxito sin recargar
+        alert("✅ Tu solicitud se envió correctamente.");
+        form.reset(); // Limpia los campos del formulario
+        console.log("Respuesta del servidor:", data); // Útil para depurar
+    })
+    .catch(error => {
+        alert("❌ Ocurrió un error al enviar la solicitud.");
+        console.error("Error:", error);
+    });
+});
+</script>
+
     <script src="breadcrumbs.js"></script>
     <script src="cms-admin.js"></script>
 </body>

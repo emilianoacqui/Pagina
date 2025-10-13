@@ -108,7 +108,7 @@
                 </div>
             </div>
         </div>
-        
+        </div>
         <div class="footer-info-bar">
             <p>Desarrollado por el equipo SGE | Proyecto de apoyo 2002 - EE Informática</p>
         </div>

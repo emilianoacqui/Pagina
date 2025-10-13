@@ -645,7 +645,7 @@
     async function loadPagesFromServer() {
     try {
         console.log('🔄 Cargando páginas del servidor...');
-        const response = await fetch('pages_manager.php', {
+        const response = await fetch('../../../MODELO/Gestor/pages_manager.php', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/x-www-form-urlencoded',
@@ -675,7 +675,7 @@
 async function savePageToServer(pageData) {
     try {
         console.log('💾 Guardando página en servidor...', pageData);
-        const response = await fetch('pages_manager.php', {
+        const response = await fetch('../../../MODELO/Gestor/pages_manager.php', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/x-www-form-urlencoded',
@@ -2185,7 +2185,7 @@ if (editingPageId) {
         console.log('🗑️ Eliminando página del servidor...', pageId);
         
         // Eliminar del servidor
-        const response = await fetch('pages_manager.php', {
+        const response = await fetch('../../../MODELO/Gestor/pages_manager.php', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/x-www-form-urlencoded',

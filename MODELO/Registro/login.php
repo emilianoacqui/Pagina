@@ -40,11 +40,11 @@ $_SESSION['rol']        = $user['rol'];
 /* Redirección por rol */
 $redirect = '../../dashboard.php';
 if ($user['rol'] === 'coordinador') {
-    $redirect = '../../VISTA/Paneles/coordinador_panel.php';
+    $redirect = '../../VISTA/Paneles/html/coordinador_panel.php';
 } elseif ($user['rol'] === 'profesor') {
-    $redirect = '../../VISTA/Paneles/profesor_panel.php';
+    $redirect = '../../VISTA/Paneles/html/profesor_panel.php';
 } elseif ($user['rol'] === 'alumno') {
-    $redirect = '../../VISTA/Paneles/alumno_panel.php';
+    $redirect = '../../VISTA/Paneles/html/alumno_panel.php';
 }
 echo json_encode(['ok' => true, 'redirect' => $redirect]);
 exit();
