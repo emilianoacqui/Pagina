@@ -1,6 +1,6 @@
 <?php
 header('Content-Type: application/json; charset=utf-8');
-require_once('../conexion.php');
+require_once(__DIR__ . '/../config/bootstrap.php');
 session_start();
 
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
@@ -38,7 +38,7 @@ $_SESSION['email']      = $user['email'];
 $_SESSION['rol']        = $user['rol'];
 
 /* Redirección por rol */
-$redirect = '../../dashboard.php';
+$redirect = '../../MODELO/Registro/dashboard.php';
 if ($user['rol'] === 'coordinador') {
     $redirect = '../../VISTA/Paneles/html/coordinador_panel.php';
 } elseif ($user['rol'] === 'profesor') {

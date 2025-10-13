@@ -1,9 +1,10 @@
 <?php
+require_once(__DIR__ . '/../config/bootstrap.php');
+
 class PagesManager {
     private $conn;
     
     public function __construct() {
-        require_once('../conexion.php');
         $this->conn = $conn;
         $this->ensureTables();
     }

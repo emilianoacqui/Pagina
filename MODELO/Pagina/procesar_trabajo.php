@@ -1,5 +1,5 @@
 <?php
-require_once('..//conexion.php');
+require_once(__DIR__ . '/../config/bootstrap.php');
 
 header('Content-Type: application/json');
 
@@ -67,7 +67,7 @@ $stmt->close();
 if ($ok) {
     // Respuesta para peticiones HTML (form normal) o AJAX
     if (isset($_SERVER['HTTP_ACCEPT']) && strpos($_SERVER['HTTP_ACCEPT'], 'application/json') === false) {
-        header('Location: trabaja-con-nosotros.php?enviado=1');
+        header('Location: ../../VISTA/PaginaWeb/Pagina/trabaja-con-nosotros.php?enviado=1');
         exit;
     }
     echo json_encode(['success' => true, 'message' => 'Solicitud enviada correctamente']);

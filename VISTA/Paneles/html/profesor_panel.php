@@ -1,7 +1,7 @@
 <?php
 
 session_start();
-require_once('../../../MODELO/conexion.php');
+require_once('../../../MODELO/config/bootstrap.php');
 
 /* seguridad: sólo profesores */
 if (!isset($_SESSION['rol']) || $_SESSION['rol'] !== 'profesor') {

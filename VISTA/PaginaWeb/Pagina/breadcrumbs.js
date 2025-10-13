@@ -1,47 +1,63 @@
 (function () {
-  console.log('🍞 Iniciando breadcrumbs jerárquicos...');
-
   const container = document.getElementById('breadcrumbs');
   if (!container) return;
 
-  const path = window.location.pathname.replace(/\/$/, '');
-  const segments = path.split('/').filter(Boolean);
+  const fullPath = decodeURIComponent(window.location.pathname);
+  const parts = fullPath.split('/');
+  const file = parts.pop() || 'index.php';
+  const baseDir = parts.join('/') + '/';
 
-  // Carpetas técnicas que querés omitir del breadcrumb
-  const ignoreFolders = ['VISTA', 'Pagina%20-%20copia' , 'PaginaWeb' ];
-  
-  // Filtrar solo los segmentos relevantes
-  const relevantSegments = segments.filter(seg => !ignoreFolders.includes(seg));
-
-  // Si no hay segmentos relevantes, no mostrar nada
-  if (relevantSegments.length === 0) {
-    container.style.display = 'none';
-    return;
+  function humanizeFileName(name) {
+    const base = name.replace('.php', '').trim();
+    if (!base || base.toLowerCase() === 'index') return 'Pagina';
+    const pretty = base
+      .replace(/([a-z])([A-Z])/g, '$1 $2')
+      .replace(/[-_]+/g, ' ')
+      .replace(/\s+/g, ' ')
+      .trim();
+    return pretty.charAt(0).toUpperCase() + pretty.slice(1);
   }
 
-  let crumbsHtml = '';
-  let cumulativePath = '';
+  // Breadcrumb determinístico (sin historial): Pagina fijo + jerarquía por convención
+  const trail = [];
+  trail.push({ file: 'index.php', label: 'Pagina' });
 
-  // Reconstruir el path real para los links
-  const baseStructure = segments.slice(0, segments.indexOf(relevantSegments[0])).join('/');
-
-  relevantSegments.forEach((seg, idx) => {
-    cumulativePath += '/' + seg;
-    const fullPath = baseStructure ? `/${baseStructure}${cumulativePath}` : cumulativePath;
-
-    const isLast = idx === relevantSegments.length - 1;
-
-    // Capitalizar el texto
-    const title = seg.replace('.php', '').replace(/[-_]/g, ' ')
-                     .replace(/\b\w/g, l => l.toUpperCase());
-
-    if (isLast) {
-      crumbsHtml += `<span class="crumb-current">${title}</span>`;
-    } else {
-      crumbsHtml += `<a class="crumb-link" href="${fullPath}">${title}</a> <span class="crumb-sep">›</span> `;
+  if (file !== 'index.php') {
+    // Menús (ej: menuIntercambio.php)
+    if (/^menu/i.test(file)) {
+      trail.push({ file, label: humanizeFileName(file) });
     }
-  });
+    // Fotos (ej: ArgentinaFotos.php, ItaliaFotos.php, EEUUFotos.php)
+    else if (/Fotos/i.test(file)) {
+      // Si es fotos de Intercambio, inferir padre de país y menú
+      if (/Argentina|EEUU|Italia/i.test(file)) {
+        trail.push({ file: 'menuIntercambio.php', label: 'Menu intercambio' });
+        const country = /Argentina/i.test(file)
+          ? 'IntercambioArgentina.php'
+          : /EEUU/i.test(file)
+            ? 'IntercambioEEUU.php'
+            : 'IntercambioItalia.php';
+        trail.push({ file: country, label: humanizeFileName(country) });
+      }
+      trail.push({ file, label: humanizeFileName(file) });
+    }
+    // Páginas de Intercambio (ej: IntercambioArgentina.php)
+    else if (/Intercambio/i.test(file)) {
+      trail.push({ file: 'menuIntercambio.php', label: 'Menu intercambio' });
+      trail.push({ file, label: humanizeFileName(file) });
+    }
+    // Resto: directo
+    else {
+      trail.push({ file, label: humanizeFileName(file) });
+    }
+  }
 
-  container.innerHTML = crumbsHtml;
+  const html = trail.map((entry, idx) => {
+    const isLast = idx === trail.length - 1;
+    if (isLast) return `<span class=\"crumb-current\">${entry.label}</span>`;
+    return `<a class=\"crumb-link\" href=\"${baseDir}${entry.file}\">${entry.label}</a> <span class=\"crumb-sep\">›</span> `;
+  }).join('');
+
+  container.innerHTML = html;
   container.style.display = 'block';
 })();

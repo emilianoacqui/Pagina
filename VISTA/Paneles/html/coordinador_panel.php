@@ -1,7 +1,7 @@
 <?php
 
 session_start();
-require_once('../../../MODELO/conexion.php');
+require_once('../../../MODELO/config/bootstrap.php');
 
 if (!isset($_SESSION['rol']) || $_SESSION['rol'] !== 'coordinador') {
     header("Location: index.php");

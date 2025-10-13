@@ -33,7 +33,7 @@ async function loadSavedContent() {
     
     try {
         // Intentar cargar del servidor primero
-        const response = await fetch('load_page_content.php?pageUrl=' + encodeURIComponent(currentUrl));
+        const response = await fetch('../../../MODELO/Gestor/load_page_content.php?pageUrl=' + encodeURIComponent(currentUrl));
         
         if (response.ok) {
             const result = await response.json();
@@ -120,7 +120,7 @@ function loadSpecificPage() {
     // Ocultar contenido original inmediatamente
     document.body.classList.add('loading-cms-content');
     const cmsRoot = document.getElementById('cms-root');
-    fetch('pages_manager.php', {
+    fetch('../../../MODELO/Gestor/pages_manager.php', {
         method: 'POST',
         headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
         body: 'action=getById&pageId=' + encodeURIComponent(pageId)
@@ -590,7 +590,7 @@ function loadSpecificPage() {
         formData.append('content', cleanContent);
         formData.append('pageTitle', pageTitle);
 
-        const response = await fetch('save_page_content.php', {
+        const response = await fetch('../../../MODELO/Gestor/save_page_content.php', {
             method: 'POST',
             body: formData
         });

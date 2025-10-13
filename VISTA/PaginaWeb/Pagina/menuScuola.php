@@ -305,7 +305,7 @@
 
     async function loadPagesFromServer() {
         try {
-            const response = await fetch('pages_manager.php', {
+            const response = await fetch('../../../MODELO/Gestor/pages_manager.php', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/x-www-form-urlencoded',

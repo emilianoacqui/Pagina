@@ -22,22 +22,22 @@
                     ¡Registro exitoso! Serás redirigido al login en unos segundos...
                 </div>
                 
-                <form id="register-form">
+                <form id="register-form" autocomplete="off">
                     <div class="form-group">
                         <label for="register-email">Correo Institucional</label>
-                        <input type="email" id="register-email" name="email" placeholder="nombre@scuolaitaliana.edu.uy" required>
+                        <input type="email" id="register-email" name="email" placeholder="nombre@scuolaitaliana.edu.uy" autocomplete="username" required>
                         <div class="validation-message" id="email-validation"></div>
                     </div>
                     
                     <div class="form-group">
                         <label for="register-password">Contraseña</label>
-                        <input type="password" id="register-password" name="password" placeholder="Ingresa tu contraseña" required>
+                        <input type="password" id="register-password" name="password" placeholder="Ingresa tu contraseña" autocomplete="new-password" required>
                         <div class="validation-message" id="password-validation"></div>
                     </div>
                     
                     <div class="form-group">
                         <label for="register-confirm-password">Confirmar Contraseña</label>
-                        <input type="password" id="register-confirm-password" name="confirm-password" placeholder="Confirma tu contraseña" required>
+                        <input type="password" id="register-confirm-password" name="confirm-password" placeholder="Confirma tu contraseña" autocomplete="new-password" required>
                         <div class="validation-message" id="confirm-password-validation"></div>
                     </div>
                     
@@ -58,15 +58,15 @@
             </div>
             
             <div class="form-container">
-                <form id="login-form">
+                <form id="login-form" autocomplete="off">
                     <div class="form-group">
                         <label for="login-email">Correo Electrónico</label>
-                        <input type="email" id="login-email" name="email" placeholder="nombre@scuolaitaliana.edu.uy" required>
+                        <input type="email" id="login-email" name="email" placeholder="nombre@scuolaitaliana.edu.uy" autocomplete="username" required>
                     </div>
                     
                     <div class="form-group">
                         <label for="login-password">Contraseña</label>
-                        <input type="password" id="login-password" name="password" placeholder="Ingresa tu contraseña" required>
+                        <input type="password" id="login-password" name="password" placeholder="Ingresa tu contraseña" autocomplete="current-password" required>
                     </div>
                     
                     <button type="submit" class="btn">Iniciar Sesión</button>
