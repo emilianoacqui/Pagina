@@ -6,7 +6,7 @@
     <title>Scuola Italiana di Montevideo - Acceso a Familia</title>
     <link href="https://fonts.googleapis.com/css2?family=Merriweather+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="breadcrumbs.css">
-    <style>
+    <style> 
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body { font-family: 'Merriweather Sans', sans-serif; line-height: 1.6; color: #333; }
         .container { max-width: 1000px; margin: 0 auto; padding: 0 20px; }
