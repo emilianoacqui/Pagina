@@ -6,6 +6,7 @@
     <title>Casa dei Bambini - Scuola Italiana di Montevideo</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Merriweather+Sans:wght@400;700&family=Crimson+Pro:wght@400;600;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/Primaria.css">
 </head>
 <div id="cms-root"></div>
 <body>

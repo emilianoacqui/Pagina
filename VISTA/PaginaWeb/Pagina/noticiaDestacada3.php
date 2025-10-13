@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://fonts.googleapis.com/css2?family=Merriweather+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="breadcrumbs.css">
+    <link rel="stylesheet" href="../css/noticiaDestacada3.css">
+    
     <title>Noticia3</title>
 </head>
 <div id="cms-root"></div>

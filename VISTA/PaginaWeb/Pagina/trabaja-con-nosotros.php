@@ -6,6 +6,7 @@
     <title>Trabaja con Nosotros - Scuola Italiana di Montevideo</title>
     <link href="https://fonts.googleapis.com/css2?family=Merriweather+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="breadcrumbs.css">
+    <link rel="stylesheet" href="../css/trabaja-con-nosotros.css">
     <style>
         * {
             margin: 0;

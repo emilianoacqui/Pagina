@@ -6,6 +6,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Merriweather+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
     <title>Noticia1</title>
     <link rel="stylesheet" href="breadcrumbs.css">
+    <link rel="stylesheet" href="../css/noticiaDestacada1.css">
 </head>
 <div id="cms-root"></div>
 <body>

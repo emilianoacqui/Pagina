@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Intercabmio EEUU</title>
     <link rel="stylesheet" href="breadcrumbs.css">
+    <link rel="stylesheet" href="../css/IntercambioEEUU.css">
 </head>
 <div id="cms-root"></div>
 <body>

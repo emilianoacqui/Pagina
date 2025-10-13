@@ -6,6 +6,7 @@
     <title>Scuola Italiana di Montevideo</title>
     <link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,400;0,600;0,700;1,400&family=Merriweather+Sans:wght@400;700;800&family=Red+Hat+Text:wght@400;600;700&family=Ruwudu:wght@400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="breadcrumbs.css">
+    <link rel="stylesheet" href="../css/verMas.css">
     <style>
         * {
             margin: 0;
