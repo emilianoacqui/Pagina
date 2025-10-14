@@ -165,7 +165,7 @@ registerForm.addEventListener('submit', async (e) => {
     const formData = new FormData(registerForm);
 
     try {
-        const resp = await fetch('register.php', { method: 'POST', body: formData });
+        const resp = await fetch('../../CONTROLADOR/Auth/register.php', { method: 'POST', body: formData });
         const data = await resp.json();
 
         if (data.ok) {
@@ -205,7 +205,7 @@ loginForm.addEventListener('submit', async (e) => {
     const formData = new FormData(loginForm);
 
     try {
-        const resp = await fetch('login.php', { method: 'POST', body: formData });
+        const resp = await fetch('../../CONTROLADOR/Auth/login.php', { method: 'POST', body: formData });
         const data = await resp.json();
 
         if (data.ok) {

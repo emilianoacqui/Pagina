@@ -1,5 +1,5 @@
 <?php
-require_once(__DIR__ . '/../config/bootstrap.php');
+require_once(__DIR__ . '/../../MODELO/config/bootstrap.php');
 
 header('Content-Type: application/json');
 
@@ -75,5 +75,3 @@ if ($ok) {
     echo json_encode(['success' => false, 'message' => 'No se pudo guardar la solicitud']);
 }
 ?>
-
-

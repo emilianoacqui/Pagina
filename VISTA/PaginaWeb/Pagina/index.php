@@ -1127,7 +1127,7 @@ body:not(.loading-cms-content) #cms-root {
                 <div class="nav-logo">
                     <img src="FOTOS/fotosPrincipales/logo2.png" alt="Scuola Italiana di Montevideo">
                 </div>
-                <a href="../../../MODELO/Registro/index.php" class="nav-login-btn">iniciar sesion</a>
+                <a href="../../../VISTA/Auth/index.php" class="nav-login-btn">iniciar sesion</a>
                 <div class="nav-menu-button" onclick="window.location.href='menuScuola.php'">
                     <span></span>
                     <span></span>
@@ -1507,6 +1507,7 @@ body:not(.loading-cms-content) #cms-root {
     </script>
     
 <script src="cms-admin.js"></script>
+<script src="analytics.js"></script>
     </body>
     </html>
   

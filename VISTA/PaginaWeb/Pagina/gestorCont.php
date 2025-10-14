@@ -1,3 +1,6 @@
+<?php
+require_once('auth_check.php');
+?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -460,6 +463,17 @@
         <span>Página</span>
       </li>
     </ul>
+    
+    <!-- User Info and Logout -->
+    <div style="position: absolute; bottom: 20px; left: 20px; right: 20px; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 15px;">
+      <div style="color: #ecf0f1; font-size: 14px; margin-bottom: 10px;">
+        <strong><?php echo htmlspecialchars($_SESSION['nombre']); ?></strong><br>
+        <small style="color: #bdc3c7;"><?php echo ucfirst($_SESSION['rol']); ?></small>
+      </div>
+      <button class="btn btn-danger btn-small" onclick="logout()" style="width: 100%; font-size: 12px;">
+        🚪 Cerrar Sesión
+      </button>
+    </div>
   </nav>
 
   <!-- Main Content -->
@@ -587,8 +601,53 @@
         <h1 class="page-title">Estadísticas de Visitas</h1>
         <p class="page-subtitle">Analiza el tráfico de tus páginas</p>
       </div>
-      <div class="alert alert-info">
-        Las estadísticas de visitas se implementarán con datos JSON como mencionaste.
+      
+      <!-- Resumen de estadísticas -->
+      <div class="stats-summary" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; margin-bottom: 30px;">
+        <div class="stat-card" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 20px; border-radius: 10px; text-align: center;">
+          <h3 id="total-visits" style="margin: 0; font-size: 2em;">-</h3>
+          <p style="margin: 5px 0 0 0; opacity: 0.9;">Total Visitas (30 días)</p>
+        </div>
+        <div class="stat-card" style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%); color: white; padding: 20px; border-radius: 10px; text-align: center;">
+          <h3 id="unique-visitors" style="margin: 0; font-size: 2em;">-</h3>
+          <p style="margin: 5px 0 0 0; opacity: 0.9;">Visitantes Únicos</p>
+        </div>
+        <div class="stat-card" style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%); color: white; padding: 20px; border-radius: 10px; text-align: center;">
+          <h3 id="avg-daily" style="margin: 0; font-size: 2em;">-</h3>
+          <p style="margin: 5px 0 0 0; opacity: 0.9;">Promedio Diario</p>
+        </div>
+      </div>
+      
+      <!-- Controles -->
+      <div style="margin-bottom: 20px;">
+        <button class="btn btn-primary" onclick="loadAnalytics()">🔄 Actualizar Datos</button>
+        <button class="btn btn-secondary" onclick="exportAnalytics()">📊 Exportar</button>
+        <button class="btn btn-danger" onclick="resetAnalytics()" style="background: #dc3545; border-color: #dc3545;">🗑️ Resetear Estadísticas</button>
+      </div>
+      
+      <!-- Gráficas -->
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 30px;">
+        <div class="chart-container" style="background: white; padding: 20px; border-radius: 10px; box-shadow: 0 2px 10px rgba(0,0,0,0.1);">
+          <h3 style="margin-top: 0; color: #2c3e50;">Páginas Más Visitadas</h3>
+          <canvas id="topPagesChart" width="400" height="300"></canvas>
+        </div>
+        <div class="chart-container" style="background: white; padding: 20px; border-radius: 10px; box-shadow: 0 2px 10px rgba(0,0,0,0.1);">
+          <h3 style="margin-top: 0; color: #2c3e50;">Visitas por Día (7 días)</h3>
+          <canvas id="dailyVisitsChart" width="400" height="300"></canvas>
+        </div>
+      </div>
+      
+      <div class="chart-container" style="background: white; padding: 20px; border-radius: 10px; box-shadow: 0 2px 10px rgba(0,0,0,0.1);">
+        <h3 style="margin-top: 0; color: #2c3e50;">Visitas por Hora (Promedio)</h3>
+        <canvas id="hourlyVisitsChart" width="800" height="300"></canvas>
+      </div>
+      
+      <!-- Tabla de páginas -->
+      <div style="background: white; padding: 20px; border-radius: 10px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); margin-top: 20px;">
+        <h3 style="margin-top: 0; color: #2c3e50;">Detalle de Páginas</h3>
+        <div id="pages-table-container">
+          <p>Cargando datos...</p>
+        </div>
       </div>
     </section>
     <section id="historial" class="content-area" style="display: none;">
@@ -646,7 +705,7 @@
     async function loadPagesFromServer() {
     try {
         console.log('🔄 Cargando páginas del servidor...');
-        const response = await fetch('../../../MODELO/Gestor/pages_manager.php', {
+        const response = await fetch('../../../CONTROLADOR/Cms/pages_manager.php', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/x-www-form-urlencoded',
@@ -676,7 +735,7 @@
 async function savePageToServer(pageData) {
     try {
         console.log('💾 Guardando página en servidor...', pageData);
-        const response = await fetch('../../../MODELO/Gestor/pages_manager.php', {
+        const response = await fetch('../../../CONTROLADOR/Cms/pages_manager.php', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/x-www-form-urlencoded',
@@ -2186,7 +2245,7 @@ if (editingPageId) {
         console.log('🗑️ Eliminando página del servidor...', pageId);
         
         // Eliminar del servidor
-        const response = await fetch('../../../MODELO/Gestor/pages_manager.php', {
+        const response = await fetch('../../../CONTROLADOR/Cms/pages_manager.php', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/x-www-form-urlencoded',
@@ -2322,6 +2381,306 @@ function openSiteInNewTab() {
     window.open('index.php', '_blank');
     addToHistory('Sitio abierto', 'Se abrió el sitio en nueva pestaña');
 }
+
+// Función para cerrar sesión
+function logout() {
+    if (confirm('¿Estás seguro de que quieres cerrar sesión?')) {
+        // Crear un formulario para enviar la petición de logout
+        const form = document.createElement('form');
+        form.method = 'POST';
+        form.action = '../../../CONTROLADOR/Auth/logout.php';
+        document.body.appendChild(form);
+        form.submit();
+    }
+}
+
+// ==========================
+// SISTEMA DE ANALYTICS
+// ==========================
+
+// Variables globales para las gráficas
+let topPagesChart, dailyVisitsChart, hourlyVisitsChart;
+let analyticsData = null;
+
+// Cargar Chart.js dinámicamente
+function loadChartJS() {
+    return new Promise((resolve, reject) => {
+        if (typeof Chart !== 'undefined') {
+            resolve();
+            return;
+        }
+        
+        const script = document.createElement('script');
+        script.src = 'https://cdn.jsdelivr.net/npm/chart.js';
+        script.onload = resolve;
+        script.onerror = reject;
+        document.head.appendChild(script);
+    });
+}
+
+// Cargar datos de analytics
+async function loadAnalytics() {
+    try {
+        const response = await fetch('../../../CONTROLADOR/Analytics/get_stats.php');
+        analyticsData = await response.json();
+        
+        // Actualizar estadísticas
+        document.getElementById('total-visits').textContent = analyticsData.total_visits || 0;
+        document.getElementById('unique-visitors').textContent = analyticsData.unique_visitors || 0;
+        
+        const avgDaily = analyticsData.daily_visits.length > 0 
+            ? Math.round(analyticsData.total_visits / analyticsData.daily_visits.length)
+            : 0;
+        document.getElementById('avg-daily').textContent = avgDaily;
+        
+        // Crear gráficas
+        await createCharts();
+        
+        // Actualizar tabla
+        updatePagesTable();
+        
+        console.log('✅ Analytics cargados correctamente');
+    } catch (error) {
+        console.error('❌ Error cargando analytics:', error);
+        alert('Error cargando estadísticas. Intenta de nuevo.');
+    }
+}
+
+// Crear gráficas
+async function createCharts() {
+    await loadChartJS();
+    
+    // Gráfica de páginas más visitadas
+    const topPagesCtx = document.getElementById('topPagesChart').getContext('2d');
+    if (topPagesChart) topPagesChart.destroy();
+    
+    topPagesChart = new Chart(topPagesCtx, {
+        type: 'doughnut',
+        data: {
+            labels: analyticsData.top_pages.map(p => p.title),
+            datasets: [{
+                data: analyticsData.top_pages.map(p => p.visits),
+                backgroundColor: [
+                    '#FF6384', '#36A2EB', '#FFCE56', '#4BC0C0', '#9966FF',
+                    '#FF9F40', '#FF6384', '#C9CBCF', '#4BC0C0', '#FF6384'
+                ]
+            }]
+        },
+        options: {
+            responsive: true,
+            plugins: {
+                legend: {
+                    position: 'bottom'
+                }
+            }
+        }
+    });
+    
+    // Gráfica de visitas diarias
+    const dailyCtx = document.getElementById('dailyVisitsChart').getContext('2d');
+    if (dailyVisitsChart) dailyVisitsChart.destroy();
+    
+    dailyVisitsChart = new Chart(dailyCtx, {
+        type: 'line',
+        data: {
+            labels: analyticsData.daily_visits.map(d => d.date),
+            datasets: [{
+                label: 'Visitas',
+                data: analyticsData.daily_visits.map(d => d.visits),
+                borderColor: '#36A2EB',
+                backgroundColor: 'rgba(54, 162, 235, 0.1)',
+                tension: 0.4,
+                fill: true
+            }]
+        },
+        options: {
+            responsive: true,
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        }
+    });
+    
+    // Gráfica de visitas por hora
+    const hourlyCtx = document.getElementById('hourlyVisitsChart').getContext('2d');
+    if (hourlyVisitsChart) hourlyVisitsChart.destroy();
+    
+    // Crear array de 24 horas
+    const hourlyData = Array(24).fill(0);
+    analyticsData.hourly_visits.forEach(h => {
+        hourlyData[h.hour] = h.visits;
+    });
+    
+    hourlyVisitsChart = new Chart(hourlyCtx, {
+        type: 'bar',
+        data: {
+            labels: Array.from({length: 24}, (_, i) => i + ':00'),
+            datasets: [{
+                label: 'Visitas',
+                data: hourlyData,
+                backgroundColor: 'rgba(75, 192, 192, 0.6)',
+                borderColor: 'rgba(75, 192, 192, 1)',
+                borderWidth: 1
+            }]
+        },
+        options: {
+            responsive: true,
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        }
+    });
+}
+
+// Actualizar tabla de páginas
+function updatePagesTable() {
+    const container = document.getElementById('pages-table-container');
+    
+    if (!analyticsData.top_pages.length) {
+        container.innerHTML = '<p>No hay datos de visitas disponibles.</p>';
+        return;
+    }
+    
+    let tableHTML = `
+        <table style="width: 100%; border-collapse: collapse; margin-top: 10px;">
+            <thead>
+                <tr style="background: #f8f9fa;">
+                    <th style="padding: 12px; text-align: left; border-bottom: 2px solid #dee2e6;">Página</th>
+                    <th style="padding: 12px; text-align: center; border-bottom: 2px solid #dee2e6;">Visitas</th>
+                    <th style="padding: 12px; text-align: center; border-bottom: 2px solid #dee2e6;">Porcentaje</th>
+                </tr>
+            </thead>
+            <tbody>
+    `;
+    
+    const totalVisits = analyticsData.total_visits;
+    
+    analyticsData.top_pages.forEach((page, index) => {
+        const percentage = totalVisits > 0 ? ((page.visits / totalVisits) * 100).toFixed(1) : 0;
+        tableHTML += `
+            <tr style="border-bottom: 1px solid #dee2e6;">
+                <td style="padding: 12px;">
+                    <strong>${page.title}</strong><br>
+                    <small style="color: #6c757d;">${page.url}</small>
+                </td>
+                <td style="padding: 12px; text-align: center; font-weight: bold;">${page.visits}</td>
+                <td style="padding: 12px; text-align: center;">
+                    <div style="background: #e9ecef; border-radius: 10px; height: 20px; position: relative;">
+                        <div style="background: linear-gradient(90deg, #667eea, #764ba2); height: 100%; border-radius: 10px; width: ${percentage}%;"></div>
+                        <span style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); font-size: 12px; font-weight: bold;">${percentage}%</span>
+                    </div>
+                </td>
+            </tr>
+        `;
+    });
+    
+    tableHTML += '</tbody></table>';
+    container.innerHTML = tableHTML;
+}
+
+// Exportar datos
+function exportAnalytics() {
+    if (!analyticsData) {
+        alert('No hay datos para exportar. Carga las estadísticas primero.');
+        return;
+    }
+    
+    const dataStr = JSON.stringify(analyticsData, null, 2);
+    const dataBlob = new Blob([dataStr], {type: 'application/json'});
+    const url = URL.createObjectURL(dataBlob);
+    
+    const link = document.createElement('a');
+    link.href = url;
+    link.download = `analytics_${new Date().toISOString().split('T')[0]}.json`;
+    link.click();
+    
+    URL.revokeObjectURL(url);
+}
+
+// Resetear estadísticas
+async function resetAnalytics() {
+    // Confirmación doble para evitar resets accidentales
+    const confirm1 = confirm('⚠️ ADVERTENCIA: Esta acción eliminará TODAS las estadísticas de visitas.\n\n¿Estás seguro de que quieres continuar?');
+    if (!confirm1) return;
+    
+    const confirm2 = prompt('Para confirmar, escribe exactamente: RESET_STATS');
+    if (confirm2 !== 'RESET_STATS') {
+        alert('❌ Confirmación incorrecta. Operación cancelada.');
+        return;
+    }
+    
+    try {
+        // Mostrar loading
+        const resetBtn = event.target;
+        const originalText = resetBtn.innerHTML;
+        resetBtn.innerHTML = '⏳ Reseteando...';
+        resetBtn.disabled = true;
+        
+        // Enviar petición de reset
+        const formData = new FormData();
+        formData.append('confirm', 'RESET_STATS');
+        
+        const response = await fetch('../../../CONTROLADOR/Analytics/reset_stats.php', {
+            method: 'POST',
+            body: formData
+        });
+        
+        const result = await response.json();
+        
+        if (result.success) {
+            alert(`✅ ${result.message}`);
+            
+            // Limpiar las gráficas
+            if (topPagesChart) topPagesChart.destroy();
+            if (dailyVisitsChart) dailyVisitsChart.destroy();
+            if (hourlyVisitsChart) hourlyVisitsChart.destroy();
+            
+            // Limpiar estadísticas
+            document.getElementById('total-visits').textContent = '0';
+            document.getElementById('unique-visitors').textContent = '0';
+            document.getElementById('avg-daily').textContent = '0';
+            
+            // Limpiar tabla
+            document.getElementById('pages-table-container').innerHTML = '<p>No hay datos de visitas disponibles.</p>';
+            
+            // Limpiar datos
+            analyticsData = null;
+            
+            console.log('✅ Estadísticas reseteadas correctamente');
+        } else {
+            alert(`❌ Error: ${result.message}`);
+        }
+        
+    } catch (error) {
+        console.error('❌ Error reseteando estadísticas:', error);
+        alert('❌ Error de conexión. Intenta de nuevo.');
+    } finally {
+        // Restaurar botón
+        resetBtn.innerHTML = originalText;
+        resetBtn.disabled = false;
+    }
+}
+
+// Cargar analytics cuando se muestre la sección
+document.addEventListener('DOMContentLoaded', function() {
+    // Interceptar cuando se muestra la sección de visitas
+    const visitasSection = document.getElementById('visitas');
+    const observer = new MutationObserver(function(mutations) {
+        mutations.forEach(function(mutation) {
+            if (mutation.type === 'attributes' && mutation.attributeName === 'style') {
+                if (visitasSection.style.display !== 'none') {
+                    loadAnalytics();
+                }
+            }
+        });
+    });
+    
+    observer.observe(visitasSection, { attributes: true });
+});
   </script>
 </body>
 </html>

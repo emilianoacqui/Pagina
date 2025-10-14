@@ -308,7 +308,7 @@ while ($row = $res->fetch_assoc()) { $eventos_arr[] = $row; }
       <a href="#" class="active" onclick="mostrarSeccion('seccionUsuarios', this)">👤 Usuarios</a>
       <a href="#" onclick="mostrarSeccion('seccionClases', this)">🏫 Clases y Asignación</a>
       <a href="#" onclick="mostrarSeccion('seccionEventos', this)">🎉 Eventos</a>
-      <a href="logout.php" style="margin-top: 20px; background: rgba(255,255,255,0.1);">🚪 Cerrar Sesión</a>
+      <a href="../../../CONTROLADOR/Auth/logout.php" style="margin-top: 20px; background: rgba(255,255,255,0.1);">🚪 Cerrar Sesión</a>
     </nav>
   </aside>
 

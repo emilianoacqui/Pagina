@@ -1,5 +1,5 @@
 <?php
-require_once 'PagesManagerClass.php';
+require_once '../../MODELO/Gestor/PagesManagerClass.php';
 
 header('Content-Type: application/json');
 

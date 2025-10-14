@@ -5,6 +5,7 @@ class PagesManager {
     private $conn;
     
     public function __construct() {
+        global $conn;
         $this->conn = $conn;
         $this->ensureTables();
     }
@@ -20,7 +21,10 @@ class PagesManager {
             created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
             UNIQUE KEY uq_cms_pages_url (url)
         ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4";
-        $this->conn->query($sql);
+        
+        if (!$this->conn->query($sql)) {
+            die("Error creando tabla: " . $this->conn->error);
+        }
     }
     
     public function getPage($id) {

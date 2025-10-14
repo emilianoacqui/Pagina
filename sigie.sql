@@ -94,7 +94,9 @@ CREATE TABLE `cms_pages` (
   `content` mediumtext NOT NULL,
   `template` varchar(100) DEFAULT 'existing_page',
   `last_modified` datetime NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
-  `created_at` datetime NOT NULL DEFAULT current_timestamp()
+  `created_at` datetime NOT NULL DEFAULT current_timestamp(),
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `uq_cms_pages_url` (`url`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -227,12 +229,6 @@ ALTER TABLE `clases`
   ADD PRIMARY KEY (`id_clase`),
   ADD UNIQUE KEY `uniq_clase_nombre_anio` (`nombre`,`año`);
 
---
--- Indexes for table `cms_pages`
---
-ALTER TABLE `cms_pages`
-  ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `uq_cms_pages_url` (`url`);
 
 --
 -- Indexes for table `eventos`
