@@ -348,5 +348,6 @@ img,
 
 <script src="breadcrumbs.js"></script>
   <script src="cms-admin.js"></script>
+  <script src="analytics.js"></script>
 </body>
 </html>

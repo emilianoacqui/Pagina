@@ -116,7 +116,7 @@ if (count($clases_alumno) > 0) {
       <a href="#" onclick="mostrarSeccion('seccionCalendario', this)">📅 Calendario</a>
       <a href="#" onclick="mostrarSeccion('seccionEventos', this)">🎉 Eventos</a>
       <a href="#" onclick="mostrarSeccion('seccionLinks', this)">🔗 Mis Links</a>
-      <a href="logout.php" style="margin-top: 20px; background: rgba(255,255,255,0.1);">🚪 Cerrar Sesión</a>
+      <a href="../../../CONTROLADOR/Auth/logout.php" style="margin-top: 20px; background: rgba(255,255,255,0.1);">🚪 Cerrar Sesión</a>
     </nav>
   </aside>
 
@@ -398,7 +398,7 @@ if (count($clases_alumno) > 0) {
       
       // Navigation links
       document.querySelectorAll('.nav a').forEach(link => {
-        if (link.getAttribute('href') !== 'logout.php') {
+        if (link.getAttribute('href') !== '../../../CONTROLADOR/Auth/logout.php') {
           link.addEventListener('click', function(e) {
             e.preventDefault();
             const match = this.getAttribute('onclick');

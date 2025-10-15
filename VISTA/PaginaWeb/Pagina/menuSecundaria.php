@@ -421,5 +421,6 @@ racional las situaciones y los problemas que se les presenten.</p>
     </script>
     <script src="breadcrumbs.js"></script>
     <script src="cms-admin.js"></script>
+    <script src="analytics.js"></script>
 </body>
 </html>

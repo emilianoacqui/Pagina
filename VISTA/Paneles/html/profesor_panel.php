@@ -167,7 +167,7 @@ $clases_select = $clases_prof;
     <a href="#" onclick="mostrarSeccion('seccionCalendario', this)">📅 Calendario</a>
     <a href="#" onclick="mostrarSeccion('seccionEventos', this)">🎉 Eventos</a>
     <a href="#" onclick="mostrarSeccion('seccionLinks', this)">🔗 Mis Links</a>
-    <a href="logout.php" style="margin-top: 20px; background: rgba(255,255,255,0.1);">🚪 Cerrar Sesión</a>
+    <a href="../../../CONTROLADOR/Auth/logout.php" style="margin-top: 20px; background: rgba(255,255,255,0.1);">🚪 Cerrar Sesión</a>
   </nav>
 </aside>
 
@@ -355,7 +355,7 @@ cargarLinks();
 
 /* Mantener active en menu */
 document.querySelectorAll('.nav a').forEach(a => {
-  if (a.getAttribute('href') !== 'logout.php') {
+        if (a.getAttribute('href') !== '../../../CONTROLADOR/Auth/logout.php') {
     a.addEventListener('click', function(e){ 
       e.preventDefault(); 
       mostrarSeccion(this.getAttribute('onclick').match(/'([^']+)'/)[1], this); 

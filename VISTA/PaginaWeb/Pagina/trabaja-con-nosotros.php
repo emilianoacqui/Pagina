@@ -508,7 +508,7 @@
                 Únete a nuestro equipo educativo y forma parte de una institución comprometida con la excelencia académica y los valores italianos.
             </p>
 
-            <form action="../../../MODELO/Pagina/procesar_trabajo.php" method="POST" enctype="multipart/form-data">
+            <form action="../../../CONTROLADOR/Jobs/apply.php" method="POST" enctype="multipart/form-data">
                 <div class="form-group">
                     <label for="nombre">Nombre y Apellido *</label>
                     <input type="text" id="nombre" name="nombre" class="form-control" required>
@@ -694,5 +694,6 @@ document.querySelector("form").addEventListener("submit", function(e) {
 
     <script src="breadcrumbs.js"></script>
     <script src="cms-admin.js"></script>
+    <script src="analytics.js"></script>
 </body>
 </html>

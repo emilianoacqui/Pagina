@@ -457,5 +457,6 @@
 
 
   <script src="cms-admin.js"></script>
+  <script src="analytics.js"></script>
 </body>
 </html>
