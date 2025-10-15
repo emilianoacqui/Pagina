@@ -121,5 +121,6 @@
     <img src="FOTOS/fotosPrincipales/popap.png" alt="Deportes y alumnos" class="footer-img">
   </div>
   <script src="cms-admin.js"></script>
+  <script src="analytics.js"></script>
 </body>
 </html>

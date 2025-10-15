@@ -694,5 +694,6 @@ document.querySelector("form").addEventListener("submit", function(e) {
 
     <script src="breadcrumbs.js"></script>
     <script src="cms-admin.js"></script>
+    <script src="analytics.js"></script>
 </body>
 </html>

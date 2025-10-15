@@ -360,5 +360,6 @@ Los estudiantes de 1ro.de Bachillerato, II de Liceo Italiano y 1ro. Bachillerato
 </div>
 <script src="breadcrumbs.js"></script>
 <script src="cms-admin.js"></script>
+<script src="analytics.js"></script>
 </body>
 </html>

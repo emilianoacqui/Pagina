@@ -142,6 +142,7 @@ trabajan contenidos curriculares con una miranda transversal sobre la nutrición
 </div>
 <script src="breadcrumbs.js"></script>
 <script src="cms-admin.js"></script>
+<script src="analytics.js"></script>
 
 </body>
 </html>
