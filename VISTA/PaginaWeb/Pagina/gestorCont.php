@@ -443,23 +443,23 @@ require_once('auth_check.php');
     
     <ul class="nav-menu">
       <li class="nav-item active" data-section="agregar" onclick="showSection('agregar', event)">
-        <span class="nav-icon">➕</span>
+        <span class="nav-icon"></span>
         <span>Agregar</span>
       </li>
       <li class="nav-item" data-section="editar" onclick="showSection('editar', event)">
-        <span class="nav-icon">✏️</span>
+        <span class="nav-icon"></span>
         <span>Editar</span>
       </li>
       <li class="nav-item" data-section="visitas" onclick="showSection('visitas', event)">
-        <span class="nav-icon">📊</span>
+        <span class="nav-icon"></span>
         <span>Visitas</span>
       </li>
       <li class="nav-item" data-section="historial" onclick="showSection('historial', event)">
-        <span class="nav-icon">📜</span>
+        <span class="nav-icon"></span>
         <span>Historial</span>
       </li>
       <li class="nav-item" data-section="pagina" onclick="showSection('pagina', event)">
-        <span class="nav-icon">👁️</span>
+        <span class="nav-icon"></span>
         <span>Página</span>
       </li>
     </ul>
@@ -471,7 +471,7 @@ require_once('auth_check.php');
         <small style="color: #bdc3c7;"><?php echo ucfirst($_SESSION['rol']); ?></small>
       </div>
       <button class="btn btn-danger btn-small" onclick="logout()" style="width: 100%; font-size: 12px;">
-        🚪 Cerrar Sesión
+         Cerrar Sesión
       </button>
     </div>
   </nav>
@@ -578,11 +578,11 @@ require_once('auth_check.php');
       <div id="pages-list-container">
         <h3 style="margin-bottom: 20px; color: #2c3e50;">Páginas Creadas</h3>
         <div style="margin-bottom: 20px;">
-          <button class="btn btn-primary btn-small" onclick="setModo('editar')">✏️ Editar</button>
-          <button class="btn btn-danger btn-small" onclick="setModo('eliminar')">🗑️ Eliminar</button>
+          <button class="btn btn-primary btn-small" onclick="setModo('editar')"> Editar</button>
+          <button class="btn btn-danger btn-small" onclick="setModo('eliminar')"> Eliminar</button>
           <div id="edit-page-btn-container" style="margin: 40px 0 20px 0; display: none;">
             <button class="btn btn-success" style="width: 100%; font-size: 16px;" onclick="goToIndexDirectly()">
-              🌐 Ir a Sitio Principal
+               Ir a Sitio Principal
             </button>
           </div>
         </div>
@@ -620,9 +620,9 @@ require_once('auth_check.php');
       
       <!-- Controles -->
       <div style="margin-bottom: 20px;">
-        <button class="btn btn-primary" onclick="loadAnalytics()">🔄 Actualizar Datos</button>
-        <button class="btn btn-secondary" onclick="exportAnalytics()">📊 Exportar</button>
-        <button class="btn btn-danger" onclick="resetAnalytics()" style="background: #dc3545; border-color: #dc3545;">🗑️ Resetear Estadísticas</button>
+        <button class="btn btn-primary" onclick="loadAnalytics()"> Actualizar Datos</button>
+        <button class="btn btn-secondary" onclick="exportAnalytics()"> Exportar</button>
+        <button class="btn btn-danger" onclick="resetAnalytics()" style="background: #dc3545; border-color: #dc3545;"> Resetear Estadísticas</button>
       </div>
       
       <!-- Gráficas -->
@@ -671,8 +671,8 @@ require_once('auth_check.php');
     </div>
     
     <div style="margin-bottom: 20px;">
-        <button class="btn btn-primary" onclick="refreshSiteView()">🔄 Actualizar Vista</button>
-        <button class="btn btn-secondary" onclick="openSiteInNewTab()">🌐 Abrir en Nueva Pestaña</button>
+        <button class="btn btn-primary" onclick="refreshSiteView()"> Actualizar Vista</button>
+        <button class="btn btn-secondary" onclick="openSiteInNewTab()"> Abrir en Nueva Pestaña</button>
     </div>
     
     <div class="site-view-container">
@@ -718,7 +718,7 @@ require_once('auth_check.php');
         }
         
         const pages = await response.json();
-        console.log('✅ Páginas cargadas:', pages);
+        console.log(' Páginas cargadas:', pages);
         
         // 🔥 FILTRAR: Mostrar solo páginas creadas, no las existentes editadas
         return pages.filter(page => page.template !== 'existing_page');
@@ -734,7 +734,7 @@ require_once('auth_check.php');
 // Función para guardar página en el servidor
 async function savePageToServer(pageData) {
     try {
-        console.log('💾 Guardando página en servidor...', pageData);
+        console.log(' Guardando página en servidor...', pageData);
         const response = await fetch('../../../CONTROLADOR/Cms/pages_manager.php', {
             method: 'POST',
             headers: {
@@ -748,26 +748,26 @@ async function savePageToServer(pageData) {
         }
         
         const result = await response.json();
-        console.log('✅ Página guardada en servidor:', result);
+        console.log(' Página guardada en servidor:', result);
         return result;
     } catch (error) {
-        console.error('❌ Error guardando en servidor:', error);
+        console.error(' Error guardando en servidor:', error);
         // Si falla, guarda en localStorage como respaldo
         const localPages = JSON.parse(localStorage.getItem('savedPages')) || [];
         localPages.push(pageData);
         //localStorage.setItem('savedPages', JSON.stringify(localPages));
-        console.log('📦 Página guardada en localStorage como respaldo');
+        console.log(' Página guardada en localStorage como respaldo');
         return { success: false, message: 'Guardado local como respaldo' };
     }
 }
 
 
     document.addEventListener('DOMContentLoaded', async function() {
-    console.log('🚀 Gestor de contenido iniciado');
+    console.log(' Gestor de contenido iniciado');
     
     // CARGAR PÁGINAS DEL SERVIDOR
     savedPages = await loadPagesFromServer();
-    console.log('📂 Páginas disponibles:', savedPages);
+    console.log(' Páginas disponibles:', savedPages);
     
     // Cargar historial persistido (si existe)
     try {
