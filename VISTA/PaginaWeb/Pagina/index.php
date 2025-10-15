@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../css/index.css">
-    <title>Scuola Italiana di Montevideo</title>
+    <title>Inicio</title>
      
     <style>
         * {
@@ -1508,6 +1508,7 @@ body:not(.loading-cms-content) #cms-root {
     
 <script src="cms-admin.js"></script>
 <script src="analytics.js"></script>
+
     </body>
     </html>
   
