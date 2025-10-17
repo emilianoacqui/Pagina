@@ -1245,7 +1245,7 @@ body:not(.loading-cms-content) #cms-root {
                 ];
                 $ages = [
                     'es' => ['3 meses a 5 años','6 a 12 años','12 a 18 años'],
-                    'en' => ['3 months to 5 years','6 to 12 years','12 to 18 years'],
+                    'en' => ['3 months to 5 years old','6 to 12 years old','12 to 18 years old'],
                     'it' => ['3 mesi a 5 anni','6 a 12 anni','12 a 18 anni'],
                 ];
             ?>
