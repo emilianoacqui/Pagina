@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<?php if (session_status() === PHP_SESSION_NONE) { session_start(); } if (isset($_GET['lang']) && in_array($_GET['lang'], ['es','en','it'])) { $_SESSION['lang'] = $_GET['lang']; } ?>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -83,6 +84,8 @@ body:not(.loading-cms-content) #cms-root {
             transition: all 0.3s ease;
         }
 
+        
+
         .nav-login-btn {
             background: #0A2452;
             color: #FFFFFF;
@@ -98,6 +101,48 @@ body:not(.loading-cms-content) #cms-root {
             background: #F39C12;
             color: #0A2452;
             transform: translateY(-1px);
+        }
+
+        /* Flag icon size */
+        .nav-login-btn .flag,
+        .lang-dropdown-mini .flag {
+            width: 20px;
+            height: 14px;
+            object-fit: cover;
+            vertical-align: middle;
+            display: inline-block;
+        }
+
+        /* Language dropdown (minimal) */
+        .lang-wrapper { position: relative; }
+        .lang-dropdown-mini {
+            position: absolute;
+            right: 0;
+            top: 110%;
+            background: #ffffff;
+            border: 1px solid rgba(0,0,0,0.1);
+            border-radius: 8px;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.15);
+            display: none;
+            min-width: 120px;
+            overflow: hidden;
+            z-index: 1001;
+        }
+        .lang-wrapper.open .lang-dropdown-mini { display: block; }
+        .lang-dropdown-mini a {
+            display: block;
+            padding: 8px 12px;
+            text-decoration: none;
+            font-size: 16px;
+            border-bottom: 1px solid rgba(0,0,0,0.06);
+            background: #ffffff;
+            color: #0A2452;
+            text-align: center;
+        }
+        .lang-dropdown-mini a:last-child { border-bottom: none; }
+        .lang-dropdown-mini a:hover {
+            background: #F39C12;
+            color: #0A2452;
         }
 
         .nav-menu-button span {
@@ -1116,6 +1161,7 @@ body:not(.loading-cms-content) #cms-root {
 }
     </style>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
 </head>
 
 <body>
@@ -1127,7 +1173,26 @@ body:not(.loading-cms-content) #cms-root {
                 <div class="nav-logo">
                     <img src="FOTOS/fotosPrincipales/logo2.png" alt="Scuola Italiana di Montevideo">
                 </div>
-                <a href="../../../VISTA/Auth/index.php" class="nav-login-btn">iniciar sesion</a>
+                <div style="display:flex; align-items:center; gap:12px;">
+                    <a href="../../../VISTA/Auth/index.php" class="nav-login-btn">Ingresar</a>
+                    <?php 
+                        $currentLang = $_SESSION['lang'] ?? 'es';
+                        // Use CDN flags to avoid emoji fallback to letters
+                        $flags = [
+                            'es' => '<img class="flag" src="https://flagcdn.com/24x18/es.png" alt="ES">',
+                            'en' => '<img class="flag" src="https://flagcdn.com/24x18/gb.png" alt="EN">',
+                            'it' => '<img class="flag" src="https://flagcdn.com/24x18/it.png" alt="IT">',
+                        ];
+                        $others = array_values(array_diff(['es','en','it'], [$currentLang]));
+                    ?>
+                    <div class="lang-wrapper" id="langWrap">
+                        <a href="#" class="nav-login-btn" id="langBtn" aria-haspopup="true" aria-expanded="false"><?php echo $flags[$currentLang]; ?></a>
+                        <div class="lang-dropdown-mini" id="langDrop">
+                            <a href="?lang=<?php echo $others[0]; ?>"><?php echo $flags[$others[0]]; ?></a>
+                            <a href="?lang=<?php echo $others[1]; ?>"><?php echo $flags[$others[1]]; ?></a>
+                        </div>
+                    </div>
+                </div>
                 <div class="nav-menu-button" onclick="window.location.href='menuScuola.php'">
                     <span></span>
                     <span></span>
@@ -1139,8 +1204,21 @@ body:not(.loading-cms-content) #cms-root {
         <div id="original-content"> </div>
         <header class="header">
             <div class="hero-content">
-                <h1 class="hero-title">Una nueva visión de la educación.<br>La Scuola aperta al mondo</h1>
-                <a href="popap.php" class="admissions-btn">Admisiones</a>
+                <?php 
+                    $cl = $_SESSION['lang'] ?? 'es';
+                    $hero = [
+                        'es' => ['Una nueva visión de la educación.', 'La escuela abierta al mundo'],
+                        'en' => ['A new vision of education.', 'The school open to the world'],
+                        'it' => ["Una nuova visione dell'educazione.", 'La scuola aperta al mondo'],
+                    ];
+                    $admissions = [
+                        'es' => 'Admisiones',
+                        'en' => 'Admissions',
+                        'it' => 'Ammissioni',
+                    ];
+                ?>
+                <h1 class="hero-title"><?php echo $hero[$cl][0]; ?><br><?php echo $hero[$cl][1]; ?></h1>
+                <a href="popap.php" class="admissions-btn"><?php echo $admissions[$cl]; ?></a>
             </div>
         </header>
 
@@ -1154,25 +1232,42 @@ body:not(.loading-cms-content) #cms-root {
 
         <!-- Education Levels Section -->
         <section class="education-levels">
+            <?php 
+                $levelTitle = [
+                    'es' => ['Inicial','Primaria','Secundaria'],
+                    'en' => ['Early Years','Primary','Secondary'],
+                    'it' => ['Infanzia','Primaria','Secondaria'],
+                ];
+                $seeMore = [
+                    'es' => 'Ver más',
+                    'en' => 'See more',
+                    'it' => 'Vedi di più',
+                ];
+                $ages = [
+                    'es' => ['3 meses a 5 años','6 a 12 años','12 a 18 años'],
+                    'en' => ['3 months to 5 years','6 to 12 years','12 to 18 years'],
+                    'it' => ['3 mesi a 5 anni','6 a 12 anni','12 a 18 anni'],
+                ];
+            ?>
             <div class="level-card inicial">
                 <div class="level-content">
-                    <h2 class="level-title">Inicial</h2>
-                    <p class="level-age">3 meses a 5 años</p>
-                    <a href="menuInicial.php" class="level-btn btn-green">Ver mas</a>
+                    <h2 class="level-title"><?php echo $levelTitle[$cl][0]; ?></h2>
+                    <p class="level-age"><?php echo $ages[$cl][0]; ?></p>
+                    <a href="menuInicial.php" class="level-btn btn-green"><?php echo $seeMore[$cl]; ?></a>
                 </div>
             </div>
             <div class="level-card primaria">
                 <div class="level-content">
-                    <h2 class="level-title">Primaria</h2>
-                    <p class="level-age">6 a 12 años</p>
-                    <a href="Primaria.php" class="level-btn btn-gray">Ver Mas</a>
+                    <h2 class="level-title"><?php echo $levelTitle[$cl][1]; ?></h2>
+                    <p class="level-age"><?php echo $ages[$cl][1]; ?></p>
+                    <a href="Primaria.php" class="level-btn btn-gray"><?php echo $seeMore[$cl]; ?></a>
                 </div>
             </div>
             <div class="level-card secundaria">
                 <div class="level-content">
-                    <h2 class="level-title">Secundaria</h2>
-                    <p class="level-age">12 a 18 años</p>
-                    <a href="menuSecundaria.php" class="level-btn btn-red">Ver mas</a>
+                    <h2 class="level-title"><?php echo $levelTitle[$cl][2]; ?></h2>
+                    <p class="level-age"><?php echo $ages[$cl][2]; ?></p>
+                    <a href="menuSecundaria.php" class="level-btn btn-red"><?php echo $seeMore[$cl]; ?></a>
                 </div>
             
                     </section>
@@ -1192,16 +1287,50 @@ body:not(.loading-cms-content) #cms-root {
                 <img src="FOTOS/fotosPrincipales/estructura.jpg" alt="Sobre nosotros">
             </div>
             <div class="about-content">
-                <h2 class="section-title-small">SOBRE NOSOTROS</h2>
-                <p class="about-text">La Scuola Italiana di Montevideo desarrolla un programa educativo nacional e internacional que abre las puertas a un mundo plurilingüe y multicultural.</p>
-                <a href="verMas.php" class="read-more-btn">Leer Mas -></a>
+                <?php 
+                    $aboutTitle = [
+                        'es' => 'SOBRE NOSOTROS',
+                        'en' => 'ABOUT US',
+                        'it' => 'CHI SIAMO',
+                    ];
+                    $aboutText = [
+                        'es' => 'La Scuola Italiana di Montevideo desarrolla un programa educativo nacional e internacional que abre las puertas a un mundo plurilingüe y multicultural.',
+                        'en' => 'The Scuola Italiana di Montevideo offers a national and international educational program that opens doors to a multilingual and multicultural world.',
+                        'it' => 'La Scuola Italiana di Montevideo sviluppa un programma educativo nazionale e internazionale che apre le porte a un mondo plurilingue e multiculturale.',
+                    ];
+                    $readMore = [
+                        'es' => 'Leer más ->',
+                        'en' => 'Read more ->',
+                        'it' => 'Leggi di più ->',
+                    ];
+                ?>
+                <h2 class="section-title-small"><?php echo $aboutTitle[$cl]; ?></h2>
+                <p class="about-text"><?php echo $aboutText[$cl]; ?></p>
+                <a href="verMas.php" class="read-more-btn"><?php echo $readMore[$cl]; ?></a>
             </div>
         </section>
 
         <!-- Quality Section -->
         <section class="quality-section">
             <div class="quality-content">
-                <h2 class="main-title">Vivir la scuola</h2>
+                <?php
+                    $qualityTitle = [
+                        'es' => 'Vivir la scuola',
+                        'en' => 'Live the scuola',
+                        'it' => 'Vivere la scuola',
+                    ];
+                    $qualityItemsLeft = [
+                        'es' => ['Cursos extracurriculares','Voluntariado','Idiomas','Propuesta<br>ecológica'],
+                        'en' => ['Extracurricular courses','Volunteering','Languages','Ecological<br>initiative'],
+                        'it' => ['Corsi extracurriculari','Volontariato','Lingue','Proposta<br>ecologica'],
+                    ];
+                    $qualityItemsRight = [
+                        'es' => ['Convivencia<br>en el colegio','Deportes','Arte, ciencia<br>y tecnología','Intercambios'],
+                        'en' => ['School life &<br>coexistence','Sports','Art, science<br>& technology','Exchanges'],
+                        'it' => ['Convivenza<br>a scuola','Sport','Arte, scienza<br>e tecnologia','Scambi'],
+                    ];
+                ?>
+                <h2 class="main-title"><?php echo $qualityTitle[$cl]; ?></h2>
                 
                 <div class="quality-grid-new">
                     <!-- Columna izquierda -->
@@ -1211,7 +1340,7 @@ body:not(.loading-cms-content) #cms-root {
                                 <div class="quality-icon-new">
                                     <i class="fas fa-paint-brush"></i>
                                 </div>
-                                <p class="quality-text-new">Cursos extracurriculares</p>
+                                <p class="quality-text-new"><?php echo $qualityItemsLeft[$cl][0]; ?></p>
                             </a>
                         </div>
                         
@@ -1220,7 +1349,7 @@ body:not(.loading-cms-content) #cms-root {
                                 <div class="quality-icon-new">
                                     <i class="fas fa-hands-helping"></i>
                                 </div>
-                                <p class="quality-text-new">Voluntariado</p>
+                                <p class="quality-text-new"><?php echo $qualityItemsLeft[$cl][1]; ?></p>
                             </a>
                         </div>
                         
@@ -1229,7 +1358,7 @@ body:not(.loading-cms-content) #cms-root {
                                 <div class="quality-icon-new">
                                     <i class="fas fa-language"></i>
                                 </div>
-                                <p class="quality-text-new">Idiomas</p>
+                                <p class="quality-text-new"><?php echo $qualityItemsLeft[$cl][2]; ?></p>
                             </a>
                         </div>
                         
@@ -1238,7 +1367,7 @@ body:not(.loading-cms-content) #cms-root {
                                 <div class="quality-icon-new">
                                     <i class="fas fa-leaf"></i>
                                 </div>
-                                <p class="quality-text-new">Propuesta<br>ecológica</p>
+                                <p class="quality-text-new"><?php echo $qualityItemsLeft[$cl][3]; ?></p>
                             </a>
                         </div>
                     </div>
@@ -1263,7 +1392,7 @@ body:not(.loading-cms-content) #cms-root {
                                 <div class="quality-icon-new">
                                     <i class="fas fa-users"></i>
                                 </div>
-                                <p class="quality-text-new">Convivencia<br>en el colegio</p>
+                                <p class="quality-text-new"><?php echo $qualityItemsRight[$cl][0]; ?></p>
                             </a>
                         </div>
                         
@@ -1272,7 +1401,7 @@ body:not(.loading-cms-content) #cms-root {
                                 <div class="quality-icon-new">
                                     <i class="fas fa-running"></i>
                                 </div>
-                                <p class="quality-text-new">Deportes</p>
+                                <p class="quality-text-new"><?php echo $qualityItemsRight[$cl][1]; ?></p>
                             </a>
                         </div>
                         
@@ -1281,7 +1410,7 @@ body:not(.loading-cms-content) #cms-root {
                                 <div class="quality-icon-new">
                                     <i class="fas fa-atom"></i>
                                 </div>
-                                <p class="quality-text-new">Arte, ciencia<br>y tecnología</p>
+                                <p class="quality-text-new"><?php echo $qualityItemsRight[$cl][2]; ?></p>
                             </a>
                         </div>
                         
@@ -1290,7 +1419,7 @@ body:not(.loading-cms-content) #cms-root {
                                 <div class="quality-icon-new">
                                     <i class="fas fa-exchange-alt"></i>
                                 </div>
-                                <p class="quality-text-new">Intercambios</p>
+                                <p class="quality-text-new"><?php echo $qualityItemsRight[$cl][3]; ?></p>
                             </a>
                         </div>
                     </div>
@@ -1302,14 +1431,38 @@ body:not(.loading-cms-content) #cms-root {
 
         <!-- Projects Section -->
         <section class="projects-section">
-            <h2 class="projects-title">Nuestros Proyectos</h2>
+            <?php
+                $projectsTitle = [
+                    'es' => 'Nuestros Proyectos',
+                    'en' => 'Our Projects',
+                    'it' => 'I nostri progetti',
+                ];
+                $proj = [
+                    'es' => [
+                        ['Arcimboldo', 'Propuesta multidisciplinaria para 6º de Ciencias Biológicas y Social-Económico integrando italiano, matemática, literatura, biología y química.', 'Ver mas'],
+                        ['Heliopolis', 'Proyecto para investigar a Francisco Piria y sus vínculos con la alquimia y la astronomía, con visitas a Piriápolis.', 'Ver Mas'],
+                        ['Scuola paradiso ecologico', 'Plan pluridisciplinar con participación estudiantil para crear y recuperar espacios con criterios de sustentabilidad.', 'Ver mas'],
+                    ],
+                    'en' => [
+                        ['Arcimboldo', 'A multidisciplinary proposal for 6th year students integrating Italian, math, literature, biology and chemistry.', 'See more'],
+                        ['Heliopolis', 'A project exploring Francisco Piria’s links to alchemy and astronomy, including field trips to Piriápolis.', 'See more'],
+                        ['Scuola paradiso ecologico', 'A cross-curricular plan led by students to build and restore spaces with sustainable practices.', 'See more'],
+                    ],
+                    'it' => [
+                        ['Arcimboldo', 'Proposta multidisciplinare per studenti del 6º anno integrando italiano, matematica, letteratura, biologia e chimica.', 'Vedi di più'],
+                        ['Heliopolis', 'Progetto che esplora i legami di Francisco Piria con alchimia e astronomia, con visite a Piriápolis.', 'Vedi di più'],
+                        ['Scuola paradiso ecologico', 'Piano pluridisciplinare guidato dagli studenti per creare e recuperare spazi con pratiche sostenibili.', 'Vedi di più'],
+                    ],
+                ];
+            ?>
+            <h2 class="projects-title"><?php echo $projectsTitle[$cl]; ?></h2>
             
             <div class="projects-grid">
                 <div class="project-item">
                     <div class="project-content">
-                        <h3 class="project-title">Arcimboldo</h3>
-                        <p class="project-description">Se trata de una propuesta multidisciplinaria dirigida a estudiantes de 6º año de Ciencias Biológicas y Social-Económico, integrando contenidos de italiano, matemática, literatura, biología y química.</p>
-                        <a href="arcimboldo.php" class="project-btn">Ver mas</a>
+                        <h3 class="project-title"><?php echo $proj[$cl][0][0]; ?></h3>
+                        <p class="project-description"><?php echo $proj[$cl][0][1]; ?></p>
+                        <a href="arcimboldo.php" class="project-btn"><?php echo $proj[$cl][0][2]; ?></a>
                     </div>
                     <div class="project-image">
                         <img src="FOTOS/fotosPrincipales/archimboldo.jpg" alt="Arcimboldo">
@@ -1318,9 +1471,9 @@ body:not(.loading-cms-content) #cms-root {
                 
                 <div class="project-item">
                     <div class="project-content">
-                        <h3 class="project-title">Heliopolis</h3>
-                        <p class="project-description">En el marco del proyecto "Heliópolis" cuyo objetivo es investigar sobre la figura de Francisco Piria y sus conexiones con la alquimia y el estudio de la astronomía los alumnos visitan la ciudad de Piriápolis.</p>
-                        <a href="heliopolis.php" class="project-btn">Ver Mas</a>
+                        <h3 class="project-title"><?php echo $proj[$cl][1][0]; ?></h3>
+                        <p class="project-description"><?php echo $proj[$cl][1][1]; ?></p>
+                        <a href="heliopolis.php" class="project-btn"><?php echo $proj[$cl][1][2]; ?></a>
                     </div>
                     <div class="project-image">
                         <img src="FOTOS/fotosPrincipales/heliopolis.jpg" alt="Heliopolis">
@@ -1329,9 +1482,9 @@ body:not(.loading-cms-content) #cms-root {
                 
                 <div class="project-item">
                     <div class="project-content">
-                        <h3 class="project-title">Scuola paradiso ecologico</h3>
-                        <p class="project-description">Consiste en un gran plan pluridisciplinar pensado, planificado y elaborado por los propios alumnos con la guía de sus docentes, que prevé la construcción y/o recuperación de diferentes espacios, reforestación, huertas orgánicas, etc., en base a principios ecológicos respetuosos del medio ambiente.</p>
-                        <a href="paradiso.php" class="project-btn">Ver mas</a>
+                        <h3 class="project-title"><?php echo $proj[$cl][2][0]; ?></h3>
+                        <p class="project-description"><?php echo $proj[$cl][2][1]; ?></p>
+                        <a href="paradiso.php" class="project-btn"><?php echo $proj[$cl][2][2]; ?></a>
                     </div>
                     <div class="project-image">
                         <img src="FOTOS/fotosPrincipales/paradiso.jpg" alt="Scuola paradiso">
@@ -1342,33 +1495,58 @@ body:not(.loading-cms-content) #cms-root {
 
         <!-- News Section -->
         <section class="news-section" id="news-animate">
+            <?php
+                $newsHdr = [
+                    'es' => ['Noticias','Destacadas'],
+                    'en' => ['News','Highlights'],
+                    'it' => ['Notizie','In evidenza'],
+                ];
+                $newsTexts = [
+                    'es' => [
+                        'Estudiantes desarrollan iniciativas ambientales y proyectos de reforestación en el campus.',
+                        'Regreso a clases con jornadas de integración y actividades en equipo.',
+                        'La comunidad de exalumnos comparte experiencias y oportunidades profesionales.',
+                    ],
+                    'en' => [
+                        'Students lead environmental initiatives and reforestation projects on campus.',
+                        'Back to school with integration days and team-building activities.',
+                        'The alumni community shares experiences and career opportunities.',
+                    ],
+                    'it' => [
+                        'Gli studenti guidano iniziative ambientali e progetti di riforestazione nel campus.',
+                        'Ritorno a scuola con giornate di integrazione e attività di team building.',
+                        'La comunità degli ex-alunni condivide esperienze e opportunità professionali.',
+                    ],
+                ];
+                $seeMoreNews = [ 'es' => 'Ver mas', 'en' => 'See more', 'it' => 'Vedi di più' ];
+            ?>
             <div class="news-header">
-                <h2 class="news-title">Noticias</h2>
-                <p class="news-subtitle">Destacadas</p>
+                <h2 class="news-title"><?php echo $newsHdr[$cl][0]; ?></h2>
+                <p class="news-subtitle"><?php echo $newsHdr[$cl][1]; ?></p>
             </div>
             
             <div class="news-grid">
                 <div class="news-card">
                     <img src="FOTOS/fotosPrincipales/arcimboldo4.jpg" alt="Noticia 1">
                     <div class="news-card-content">
-                        <p class="news-card-text">Consiste en un gran plan pluridisciplinar pensado, planificado y elaborado por los propios alumnos con la guía de sus docentes, que prevé la construcción y/o recuperación de diferentes espacios, reforestación, huertas orgánicas, etc., en base a principios ecológicos respetuosos del medio ambiente.</p>
-                        <a href="noticiaDestacada1.php" class="news-card-btn">Ver mas</a>
+                        <p class="news-card-text"><?php echo $newsTexts[$cl][0]; ?></p>
+                        <a href="noticiaDestacada1.php" class="news-card-btn"><?php echo $seeMoreNews[$cl]; ?></a>
                     </div>
                 </div>
                 
                 <div class="news-card">
                     <img src="FOTOS/fotosPrincipales/PrimerDia4.jpg.png" alt="Noticia 2">
                     <div class="news-card-content">
-                        <p class="news-card-text">Consiste en un gran plan pluridisciplinar pensado, planificado y elaborado por los propios alumnos con la guía de sus docentes, que prevé la construcción y/o recuperación de diferentes espacios, reforestación, huertas orgánicas, etc., en base a principios ecológicos respetuosos del medio ambiente.</p>
-                        <a href="noticiaDestacada2.php" class="news-card-btn">Ver mas</a>
+                        <p class="news-card-text"><?php echo $newsTexts[$cl][1]; ?></p>
+                        <a href="noticiaDestacada2.php" class="news-card-btn"><?php echo $seeMoreNews[$cl]; ?></a>
                     </div>
                 </div>
                 
                 <div class="news-card">
                     <img src="FOTOS/fotosPrincipales/Comunidad.jpg" alt="Noticia 3">
                     <div class="news-card-content">
-                        <p class="news-card-text">Consiste en un gran plan pluridisciplinar pensado, planificado y elaborado por los propios alumnos con la guía de sus docentes, que prevé la construcción y/o recuperación de diferentes espacios, reforestación, huertas orgánicas, etc., en base a principios ecológicos respetuosos del medio ambiente.</p>
-                        <a href="noticiaDestacada3.php" class="news-card-btn">Ver mas</a>
+                        <p class="news-card-text"><?php echo $newsTexts[$cl][2]; ?></p>
+                        <a href="noticiaDestacada3.php" class="news-card-btn"><?php echo $seeMoreNews[$cl]; ?></a>
                     </div>
                 </div>
             </div>
@@ -1377,34 +1555,41 @@ body:not(.loading-cms-content) #cms-root {
         <!-- Footer Links -->
         <section class="footer-links">
             <div class="footer-grid">
+                <?php
+                    $footerCards = [
+                        'es' => ['Acceso a<br>familia','Comunidad<br>Exalumnos','Scuola Club','Noticias','Cursos de<br>idioma','Trabaja con<br>nosotros'],
+                        'en' => ['Family<br>access','Alumni<br>community','Scuola Club','News','Language<br>courses','Work with<br>us'],
+                        'it' => ['Accesso<br>famiglia','Comunità<br>ex-alunni','Scuola Club','Notizie','Corsi di<br>lingua','Lavora con<br>noi'],
+                    ];
+                ?>
                 <a href="acceso-familia.php" class="footer-card blue">
                     <img src="FOTOS/fotosSeccion/familia.jpg" alt="Acceso a familia">
-                    <div class="footer-card-content">Acceso a<br>familia</div>
+                    <div class="footer-card-content"><?php echo $footerCards[$cl][0]; ?></div>
                 </a>
                 
                 <a href="comunidad-exalumnos.php" class="footer-card red">
                     <img src="FOTOS/fotosPrincipales/Comunidad.jpg" alt="Comunidad Exalumnos">
-                    <div class="footer-card-content">Comunidad<br>Exalumnos</div>
+                    <div class="footer-card-content"><?php echo $footerCards[$cl][1]; ?></div>
                 </a>
                 
                 <a href="scuola-club.php" class="footer-card yellow">
                     <img src="FOTOS/fotosSeccion/scuolaClub.png" alt="Scuola Club">
-                    <div class="footer-card-content">Scuola Club</div>
+                    <div class="footer-card-content"><?php echo $footerCards[$cl][2]; ?></div>
                 </a>
                 
                 <a href="noticias.php" class="footer-card green">
                     <img src="FOTOS/fotosPrincipales/ejemplo5.jpg" alt="Noticias">
-                    <div class="footer-card-content">Noticias</div>
+                    <div class="footer-card-content"><?php echo $footerCards[$cl][3]; ?></div>
                 </a>
                 
                 <a href="CursosIdioma.php" class="footer-card dark-blue">
                     <img src="FOTOS/fotosClases/bachillerato3.jpg" alt="Cursos de idioma">
-                    <div class="footer-card-content">Cursos de<br>idioma</div>
+                    <div class="footer-card-content"><?php echo $footerCards[$cl][4]; ?></div>
                 </a>
                 
                 <a href="trabaja-con-nosotros.php" class="footer-card red">
                     <img src="FOTOS/fotosSeccion/trabaja.jpg" alt="Trabaja con nosotros">
-                    <div class="footer-card-content">Trabaja con<br>nosotros</div>
+                    <div class="footer-card-content"><?php echo $footerCards[$cl][5]; ?></div>
                 </a>
             </div>
         </section>
@@ -1424,7 +1609,8 @@ body:not(.loading-cms-content) #cms-root {
                 
                 <div class="footer-center">
                     <div class="footer-section">
-                        <h4>Contacto</h4>
+                        <?php $footerTitles = ['es' => 'Contacto','en' => 'Contact','it' => 'Contatto']; ?>
+                        <h4><?php echo $footerTitles[$cl]; ?></h4>
                         <p>Av. Brasil 3149, Montevideo</p>
                         <p>(+598) 2621 4822 / 2622 1422</p>
                         <p>info@scuolaitaliana.edu.uy</p>
@@ -1433,10 +1619,18 @@ body:not(.loading-cms-content) #cms-root {
                 
                 <div class="footer-right">
                     <div class="footer-section">
-                        <h4>Enlaces útiles</h4>
-                        <p>Política de privacidad</p>
-                        <p>Requisitos técnicos</p>
-                        <p>Accesibilidad</p>
+                        <?php
+                            $linksTitle = ['es' => 'Enlaces útiles','en' => 'Useful links','it' => 'Link utili'];
+                            $linkItems = [
+                                'es' => ['Política de privacidad','Requisitos técnicos','Accesibilidad'],
+                                'en' => ['Privacy Policy','Technical Requirements','Accessibility'],
+                                'it' => ['Informativa sulla privacy','Requisiti tecnici','Accessibilità'],
+                            ];
+                        ?>
+                        <h4><?php echo $linksTitle[$cl]; ?></h4>
+                        <p><?php echo $linkItems[$cl][0]; ?></p>
+                        <p><?php echo $linkItems[$cl][1]; ?></p>
+                        <p><?php echo $linkItems[$cl][2]; ?></p>
                     </div>
                 </div>
             </div>
@@ -1500,6 +1694,39 @@ body:not(.loading-cms-content) #cms-root {
         document.addEventListener('DOMContentLoaded', function() {
             window.scrollTo(0, 0);
             startNewsObserver();
+            // Language dropdown toggle
+            const langWrap = document.getElementById('langWrap');
+            const langBtn = document.getElementById('langBtn');
+            if (langWrap && langBtn) {
+                langBtn.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    const isOpen = langWrap.classList.contains('open');
+                    if (isOpen) {
+                        langWrap.classList.remove('open');
+                        langBtn.setAttribute('aria-expanded', 'false');
+                    } else {
+                        langWrap.classList.add('open');
+                        langBtn.setAttribute('aria-expanded', 'true');
+                    }
+                });
+
+                // Close on outside click
+                document.addEventListener('click', function(e) {
+                    if (!langWrap.contains(e.target)) {
+                        langWrap.classList.remove('open');
+                        langBtn.setAttribute('aria-expanded', 'false');
+                    }
+                });
+
+                // Close on Escape
+                document.addEventListener('keydown', function(e) {
+                    if (e.key === 'Escape') {
+                        langWrap.classList.remove('open');
+                        langBtn.setAttribute('aria-expanded', 'false');
+                    }
+                });
+            }
         });
 
 

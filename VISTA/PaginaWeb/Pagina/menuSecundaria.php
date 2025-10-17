@@ -1,9 +1,19 @@
 <!DOCTYPE html>
+<?php if (session_status() === PHP_SESSION_NONE) { session_start(); } $cl = $_SESSION['lang'] ?? 'es'; ?>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Menu Secundaria - Scuola Italiana di Montevideo</title>
+    <title><?php 
+        $ms_title = [
+            'es' => 'Menú Secundaria - Scuola Italiana di Montevideo',
+            'en' => 'Secondary Menu - Scuola Italiana di Montevideo',
+            'it' => 'Menu Secondaria - Scuola Italiana di Montevideo',
+        ];
+        echo $ms_title[$cl];
+    ?></title>
+
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <link rel="stylesheet" href="breadcrumbs.css">
     <link rel="stylesheet" href="../css/menuSecundaria.css">
@@ -28,11 +38,30 @@
     <!-- Main Content -->
     <main class="main-content">
         <!-- Hero Section -->
+        <?php 
+            $ms = [
+                'hero' => [ 'es' => 'Secundaria', 'en' => 'Secondary', 'it' => 'Secondaria' ],
+                'pc_h' => [ 'es' => 'Primer Ciclo', 'en' => 'First Cycle', 'it' => 'Primo Ciclo' ],
+                'pc_p' => [
+                    'es' => 'En los primeros años de Secundaria se continúa el trabajo iniciado en Primaria con prácticas reflexivas, autonomía y creciente rigor académico para continuar estudios superiores.',
+                    'en' => 'In the first years of Secondary, we continue the work started in Primary with reflective practices, autonomy and increasing academic rigor to pursue higher studies.',
+                    'it' => 'Nei primi anni della Secondaria, proseguiamo il lavoro iniziato in Primaria con pratiche riflessive, autonomia e crescente rigore accademico per proseguire gli studi superiori.',
+                ],
+                'bach_h' => [ 'es' => 'Bachillerato', 'en' => 'High School', 'it' => 'Liceo' ],
+                'bach_p' => [
+                    'es' => 'En el Segundo Ciclo se consolidan métodos de estudio autónomo e investigación. Buscamos formar personas cultas, críticas y creativas, capaces de enfrentar problemas con actitud racional.',
+                    'en' => 'In the Second Cycle we consolidate autonomous study methods and research. We aim to form cultured, critical and creative people able to face problems with a rational mindset.',
+                    'it' => 'Nel Secondo Ciclo consolidiamo metodi di studio autonomo e ricerca. Puntiamo a formare persone colte, critiche e creative, capaci di affrontare i problemi con mentalità razionale.',
+                ],
+                'see_program' => [ 'es' => 'Ver programa', 'en' => 'See program', 'it' => 'Vedi programma' ],
+            ];
+        ?>
         <section class="hero-inicial">
             <div class="hero-content">
-                <h1 class="hero-title">Secundaria</h1>
+                <h1 class="hero-title"><?php echo $ms['hero'][$cl]; ?></h1>
             </div>
         </section>
+
         <div id="breadcrumbs" class="breadcrumbs-container"></div>
 
         <!-- Programs Section -->
@@ -44,12 +73,12 @@
                         <img src="FOTOS/fotosClases/Primerciclo1.jpg" alt="Casa dei Bambini">
                     </div>
                     <div class="program-info">
-                        <h3>Primer Ciclo</h3>
-<p>                        En los primeros años de Secundaria se continúa el trabajo iniciado en Primaria con las prácticas reflexivas, autónomas y de creciente rigor académico que permitan, finalizado el ciclo, continuar los estudios superiores. 
-</p>
+                        <h3><?php echo $ms['pc_h'][$cl]; ?></h3>
+                        <p><?php echo $ms['pc_p'][$cl]; ?></p>
                             <a href="primerCiclo.php" class="program-button" style="display: inline-block; text-decoration: none;">
-    Ver programa
+    <?php echo $ms['see_program'][$cl]; ?>
 </a>
+
                         
                     </div>
                 </div>
@@ -60,14 +89,13 @@
                         <img src="FOTOS/fotosClases/bachillerato1.jpg" alt="BBSIM">
                     </div>
                     <div class="program-info">
-                        <h3>Bachillerato</h3>
-                        <p>En el Segundo Ciclo de Secundaria se continúa el trabajo iniciado en Primer Ciclo, consolidando métodos de estudio autónomo, 
-mecanismos de búsqueda e investigación. Nuestro objetivo es formar personas cultas, críticas y creativas, capaces de enfrentar con actitud
-racional las situaciones y los problemas que se les presenten.</p>
+                        <h3><?php echo $ms['bach_h'][$cl]; ?></h3>
+                        <p><?php echo $ms['bach_p'][$cl]; ?></p>
                         
                             <a href="Bachillerato.php" class="program-button" style="display: inline-block; text-decoration: none;">
-    Ver programa
+    <?php echo $ms['see_program'][$cl]; ?>
 </a>
+
                         
                     </div>
                 </div>
@@ -89,7 +117,9 @@ racional las situaciones y los problemas que se les presenten.</p>
             
             <div class="footer-center">
                 <div class="footer-section">
-                    <h4>Contacto</h4>
+                    <?php $ms_contact = ['es' => 'Contacto','en' => 'Contact','it' => 'Contatto']; ?>
+                    <h4><?php echo $ms_contact[$cl]; ?></h4>
+
                     <p>Av. Brasil 3149, Montevideo</p>
                     <p>(+598) 2621 4822 / 2622 1422</p>
                     <p>info@scuolaitaliana.edu.uy</p>
@@ -98,10 +128,19 @@ racional las situaciones y los problemas que se les presenten.</p>
             
             <div class="footer-right">
                 <div class="footer-section">
-                    <h4>Enlaces útiles</h4>
-                    <p>Política de privacidad</p>
-                    <p>Requisitos técnicos</p>
-                    <p>Accesibilidad</p>
+                    <?php 
+                        $ms_linksTitle = ['es' => 'Enlaces útiles','en' => 'Useful links','it' => 'Link utili'];
+                        $ms_links = [
+                            'es' => ['Política de privacidad','Requisitos técnicos','Accesibilidad'],
+                            'en' => ['Privacy Policy','Technical Requirements','Accessibility'],
+                            'it' => ['Informativa sulla privacy','Requisiti tecnici','Accessibilità'],
+                        ];
+                    ?>
+                    <h4><?php echo $ms_linksTitle[$cl]; ?></h4>
+                    <p><?php echo $ms_links[$cl][0]; ?></p>
+                    <p><?php echo $ms_links[$cl][1]; ?></p>
+                    <p><?php echo $ms_links[$cl][2]; ?></p>
+
                 </div>
             </div>
         </div>

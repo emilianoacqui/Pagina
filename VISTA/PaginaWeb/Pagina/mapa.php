@@ -1,9 +1,12 @@
 <!DOCTYPE html>
+<?php if (session_status() === PHP_SESSION_NONE) { session_start(); } $cl = $_SESSION['lang'] ?? 'es'; ?>
 <html lang="es">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Scuola Italiana - Campus Interactivo</title>
+  <title><?php $mp_meta=['es'=>'Scuola Italiana - Campus Interactivo','en'=>'Scuola Italiana - Interactive Campus','it'=>'Scuola Italiana - Campus Interattivo']; echo $mp_meta[$cl]; ?></title>
+
   <link rel="stylesheet" href="breadcrumbs.css">
   <link rel="stylesheet" href="../css/mapa.css">
 
@@ -119,19 +122,36 @@ window.addEventListener('scroll', function() {
     
 
   <!-- Sección principal -->
+  <?php 
+    $mp = [
+      'main_t' => ['es'=>'Acerca de la Scuola italiana','en'=>'About the Scuola Italiana','it'=>'Informazioni sulla Scuola Italiana'],
+      'explore_t' => ['es'=>'Explora Nuestro Campus','en'=>'Explore Our Campus','it'=>'Esplora il nostro Campus'],
+      'explore_p' => [
+        'es' => 'Nuestro campus de 13 hectáreas integra espacios académicos, artísticos y deportivos de vanguardia. Contamos con áreas verdes, laboratorios, polideportivo y canchas que promueven el aprendizaje, la creatividad y el bienestar.',
+        'en' => 'Our 13‑hectare campus integrates state‑of‑the‑art academic, arts and sports facilities. Green areas, labs, a sports center and fields promote learning, creativity and well‑being.',
+        'it' => 'Il nostro campus di 13 ettari integra spazi accademici, artistici e sportivi all’avanguardia. Aree verdi, laboratori, polisportivo e campi favoriscono apprendimento, creatività e benessere.',
+      ],
+      'contact' => ['es'=>'Contacto','en'=>'Contact','it'=>'Contatto'],
+      'links' => ['es'=>'Enlaces útiles','en'=>'Useful links','it'=>'Link utili'],
+      'link_items' => [
+        'es' => ['Política de privacidad','Requisitos técnicos','Accesibilidad'],
+        'en' => ['Privacy Policy','Technical Requirements','Accessibility'],
+        'it' => ['Informativa sulla privacy','Requisiti tecnici','Accessibilità'],
+      ],
+    ];
+  ?>
   <div class="main-section">
-    <h1 class="main-title">Acerca de la Scuola italiana</h1>
+    <h1 class="main-title"><?php echo $mp['main_t'][$cl]; ?></h1>
   </div>
+
   <div id="breadcrumbs" class="breadcrumbs-container"></div>
 
 
 
   <!-- Sección Explore Campus -->
   <div class="explore-section fade-in">
-    <h2 class="section-title">Explore Our Campus</h2>
-    <p class="section-description">
-      Kent Denver's scenic, 200-acre campus supports more than 200,000 square feet of state-of-the-art academic, arts and athletic facilities. Our wide-open spaces also include a Tiny Farm, two reservoirs, 1,600+ trees, a thriving wetlands and easy access to the High Line Canal Trail.
-    </p>
+    <h2 class="section-title"><?php echo $mp['explore_t'][$cl]; ?></h2>
+    <p class="section-description"><?php echo $mp['explore_p'][$cl]; ?></p>
   </div>
 
   <!-- Mapa interactivo -->
@@ -218,7 +238,7 @@ window.addEventListener('scroll', function() {
         
         <div class="footer-center">
             <div class="footer-section">
-                <h4>Contacto</h4>
+                <h4><?php echo $mp['contact'][$cl]; ?></h4>
                 <p>Av. Brasil 3149, Montevideo</p>
                 <p>(+598) 2621 4822 / 2622 1422</p>
                 <p>info@scuolaitaliana.edu.uy</p>
@@ -227,10 +247,10 @@ window.addEventListener('scroll', function() {
         
         <div class="footer-right">
             <div class="footer-section">
-                <h4>Enlaces útiles</h4>
-                <p>Política de privacidad</p>
-                <p>Requisitos técnicos</p>
-                <p>Accesibilidad</p>
+                <h4><?php echo $mp['links'][$cl]; ?></h4>
+                <p><?php echo $mp['link_items'][$cl][0]; ?></p>
+                <p><?php echo $mp['link_items'][$cl][1]; ?></p>
+                <p><?php echo $mp['link_items'][$cl][2]; ?></p>
             </div>
         </div>
     </div>

@@ -16,9 +16,11 @@
     // 🔥 FUNCIÓN SIMPLIFICADA: Cargar contenido guardado al iniciar
 async function loadSavedContent() {
     const currentUrl = window.location.pathname.split('/').pop() || 'index.php';
-    const pageId = 'existing_' + md5(currentUrl);
+    const lang = (document.documentElement && document.documentElement.lang) ? document.documentElement.lang : 'es';
+    const currentUrlKey = `${currentUrl}::${lang}`; // clave por idioma sin tocar el backend
+    const pageId = 'existing_' + md5(currentUrlKey);
     
-    console.log('🔍 Buscando contenido para:', currentUrl, 'con ID:', pageId);
+    console.log('🔍 Buscando contenido para:', currentUrlKey, 'con ID:', pageId);
     
     const originalContent = document.getElementById('original-content');
     const cmsRoot = document.getElementById('cms-root');
@@ -33,7 +35,7 @@ async function loadSavedContent() {
     
     try {
         // Intentar cargar del servidor primero
-        const response = await fetch('../../../CONTROLADOR/Cms/load_page_content.php?pageUrl=' + encodeURIComponent(currentUrl));
+        const response = await fetch('../../../CONTROLADOR/Cms/load_page_content.php?pageUrl=' + encodeURIComponent(currentUrlKey));
         
         if (response.ok) {
             const result = await response.json();
@@ -43,7 +45,12 @@ async function loadSavedContent() {
                 console.log('📝 Insertando contenido en cms-root:', result.content.length, 'caracteres');
                 cmsRoot.innerHTML = result.content;
                 cmsRoot.style.display = 'block';
+                // Ocultar completamente el contenido original para evitar duplicación bajo index
                 document.body.classList.add('loading-cms-content');
+                const originalWrapper = document.getElementById('original-content');
+                if (originalWrapper) {
+                    originalWrapper.style.display = 'none';
+                }
                 contentFound = true;
                 
                 // Prevenir navegación automática
@@ -131,6 +138,10 @@ function loadSpecificPage() {
             if (cmsRoot) {
                 cmsRoot.innerHTML = page.content;
                 document.title = (page.name || 'Página') + ' - Scuola Italiana di Montevideo';
+                // Asegurar que solo se muestre el contenido de la página cargada
+                cmsRoot.style.display = 'block';
+                const originalWrapper = document.getElementById('original-content');
+                if (originalWrapper) originalWrapper.style.display = 'none';
             }
         } else {
             document.body.classList.remove('loading-cms-content');
@@ -554,6 +565,8 @@ function loadSpecificPage() {
     const searchAreaForSave = cmsRoot && cmsRoot.innerHTML.trim() ? cmsRoot : (document.getElementById('original-content') || document.body);
     const currentContent = searchAreaForSave.innerHTML;
     const currentUrl = window.location.pathname.split('/').pop() || 'index.php';
+    const lang = (document.documentElement && document.documentElement.lang) ? document.documentElement.lang : 'es';
+    const currentUrlKey = `${currentUrl}::${lang}`; // guardar por idioma
     const pageTitle = document.title;
 
     console.log('💾 Guardando contenido para:', currentUrl);
@@ -586,7 +599,7 @@ function loadSpecificPage() {
     // 🔥 GUARDAR EN SERVIDOR
     try {
         const formData = new FormData();
-        formData.append('pageUrl', currentUrl);
+        formData.append('pageUrl', currentUrlKey);
         formData.append('content', cleanContent);
         formData.append('pageTitle', pageTitle);
 

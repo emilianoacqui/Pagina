@@ -17,4 +17,3 @@ if (!function_exists('model_path')) {
     }
 }
 
-

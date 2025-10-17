@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<?php if (session_status() === PHP_SESSION_NONE) { session_start(); } $cl = $_SESSION['lang'] ?? 'es'; ?>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
@@ -40,20 +41,50 @@
         </section>
         <div id="breadcrumbs" class="breadcrumbs-container"></div>
 
-            </div>
-        </section>
 
         <!-- Title Section -->
+        <?php 
+            $bs = [
+                'subtitle' => [
+                    'es' => '¡Benvenuto! Estás conociendo el espacio educativo de estimulación temprana más completo y moderno del país.<br/>Acompañamos el crecimiento entre los 3 y 24 meses en un ambiente cuidadosamente preparado para satisfacer todas las necesidades de desarrollo de esta etapa.<br/>BBSIM cuenta con un equipo de profesionales altamente calificado, brindando experiencias que favorecen independencia y autonomía.',
+                    'en' => 'Benvenuto! You are discovering one of the most complete and modern early‑stimulation educational spaces in the country.<br/>We accompany growth from 3 to 24 months in a carefully prepared environment that meets every developmental need of this stage.<br/>BBSIM has a highly qualified professional team, offering experiences that foster independence and autonomy.',
+                    'it' => 'Benvenuto! Stai scoprendo uno degli spazi educativi di stimolazione precoce più completi e moderni del paese.<br/>Accompagniamo la crescita dai 3 ai 24 mesi in un ambiente accuratamente preparato per soddisfare i bisogni di sviluppo di questa fase.<br/>BBSIM conta su un team altamente qualificato che offre esperienze che favoriscono indipendenza e autonomia.',
+                ],
+                'sec1' => [
+                    'es' => 'Una fortaleza del material Montessori es que todo tiene un propósito definido. Los niños aprenden con alegría explorando recursos que despiertan su curiosidad. Este material acompaña todos los procesos y les permite construir su propio aprendizaje, eligiendo libremente, desarrollando concentración y compartiendo la alegría de aprender. Los idiomas llegan de forma natural: italiano e inglés se asimilan como la lengua materna.',
+                    'en' => 'A strength of Montessori materials is that everything has a clear purpose. Children learn joyfully by exploring resources that spark curiosity. These materials support all processes and allow children to build their own learning, choosing freely, developing focus and sharing the joy of learning. Languages come naturally: Italian and English are absorbed like the mother tongue.',
+                    'it' => 'Un punto di forza dei materiali Montessori è che tutto ha uno scopo chiaro. I bambini imparano con gioia esplorando risorse che stimolano la curiosità. Questi materiali sostengono tutti i processi e consentono ai bambini di costruire il proprio apprendimento, scegliendo liberamente, sviluppando concentrazione e condividendo la gioia di imparare. Le lingue arrivano naturalmente: italiano e inglese si assimilano come la lingua madre.',
+                ],
+                'sec2' => [
+                    'es' => 'En los primeros años se adquieren destrezas fundamentales. Contamos con espacios de estimulación, coordinación y equilibrio donde la práctica y el descubrimiento se hacen presentes. En el horario escolar se dictan psicomotricidad, educación física, danza y música, con opción de ballet. Aprender disfrutando y generando vínculos es nuestra consigna.',
+                    'en' => 'Foundational skills are acquired in the early years. We offer spaces for stimulation, coordination and balance where practice and discovery are present. During school hours we include psychomotricity, physical education, dance and music, with optional ballet. Learning with joy and building bonds is our motto.',
+                    'it' => 'Nei primi anni si acquisiscono abilità fondamentali. Offriamo spazi di stimolazione, coordinazione ed equilibrio dove pratica e scoperta sono presenti. In orario scolastico includiamo psicomotricità, educazione fisica, danza e musica, con balletto opzionale. Imparare divertendosi e creando legami è il nostro motto.',
+                ],
+                'sec3' => [
+                    'es' => 'Comprender y comunicarse en más de una lengua es esencial desde temprana edad. La inmersión temprana en una segunda y tercera lengua replica el recorrido natural de la lengua materna y favorece un desarrollo comunicativo sólido.',
+                    'en' => 'Understanding and communicating in more than one language is essential from an early age. Early immersion in a second and third language mirrors the natural path of the mother tongue and supports solid communication development.',
+                    'it' => 'Comprendere e comunicare in più lingue è essenziale fin da piccoli. L’immersione precoce in una seconda e terza lingua ripercorre il percorso naturale della lingua madre e favorisce uno sviluppo comunicativo solido.',
+                ],
+                'sec4' => [
+                    'es' => 'Aprender italiano en la Scuola es mucho más que una lengua: es identidad y cultura. Italia significa arte, música, moda, gastronomía y tradiciones; el italiano permite cerrar el círculo académico con una Maturità internacional.',
+                    'en' => 'Learning Italian at the Scuola is more than a language: it is identity and culture. Italy means art, music, fashion, cuisine and traditions; Italian enables completing the academic journey with an international Maturità.',
+                    'it' => 'Imparare l’italiano alla Scuola è molto più di una lingua: è identità e cultura. L’Italia significa arte, musica, moda, cucina e tradizioni; l’italiano permette di completare il percorso accademico con una Maturità internazionale.',
+                ],
+                'contact' => ['es'=>'Contacto','en'=>'Contact','it'=>'Contatto'],
+                'links' => ['es'=>'Enlaces útiles','en'=>'Useful links','it'=>'Link utili'],
+                'link_items' => [
+                    'es' => ['Política de privacidad','Requisitos técnicos','Accesibilidad'],
+                    'en' => ['Privacy Policy','Technical Requirements','Accessibility'],
+                    'it' => ['Informativa sulla privacy','Requisiti tecnici','Accessibilità'],
+                ],
+            ];
+        ?>
         <section class="title-section">
             <h1 class="main-title">
                 <span class="blue-text">BBSIM</span>
                 
             </h1>
-            <p class="subtitle">
-                ¡Benvenuto! Estás conociendo el espacio educativo de estimulación temprana más completo y moderno del país.<br/>
-               Acompaña el creciemiento entre los 3 y 24 meses en un ambiente cuidadosamente preparado para satisfacer todas las necesidades de desarrollo propias de esta etapa.
-
-BBSIM cuenta con un equipo de profesionales altamente calificado dando a cada niño la posibilidad de vivir experiencias que favorecen su independencia y autonomía.   </p>
+            <p class="subtitle"><?php echo $bs['subtitle'][$cl]; ?></p>
         </section>
 
         <!-- Content Sections -->
@@ -61,8 +92,9 @@ BBSIM cuenta con un equipo de profesionales altamente calificado dando a cada ni
             <!-- Section 1 -->
             <div class="content-row">
                 <div class="text-content left">
-                    <p>Una de las grandes fortalezas del material Montessori es que todo tiene un propósito definido.<br/>Los niños aprenden con alegría, investigando a través de recursos didácticos que despiertan su interés y fomentan su curiosidad: aprenden, memorizan fijando ideas y conceptos naturalmente. Este material acompaña todos los procesos en "Casa dei Bambini" y les da la oportunidad de construir su propio aprendizaje.<br/>Basados en este principio como columna vertebral de la metodología, cada niño sigue sus propios intereses, elige libremente sus actividades, desarrolla su capacidad de concentración y genera vínculos compartiendo con sus pares la alegría de aprender.<br/>Así, naturalmente los idiomas llegan al aula. Los pequeños asimilan los códigos lingüísticos de italiano e inglés de la misma forma que incorporaron su lengua materna.<br/>Bienvenidos a Casa dei Bambini: aquí sus hijos crecerán felices...</p>
+                    <p><?php echo $bs['sec1'][$cl]; ?></p>
                 </div>
+
                 <div class="image-content right">
                     <img src="FOTOS/fotosClases/BBSIM1.jpg" alt="Actividades Montessori">
                 </div>
@@ -74,15 +106,17 @@ BBSIM cuenta con un equipo de profesionales altamente calificado dando a cada ni
                     <img src="FOTOS/fotosClases/BBSIM2.jpg" alt="Psicomotricidad">
                 </div>
                 <div class="text-content right">
-                    <p>Está comprobado que en los primeros años de vida, los niños adquieren destrezas fundamentales para su formación como personas.<br/>Para ello disponemos de espacios de estimulación, coordinación y equilibrio en los que la práctica y el descubrimiento se hacen presentes.<br/>Dentro del horario escolar se desarrollan las clases de psicomotricidad, educación física, danza y música, pudiendo optar también por clases de ballet.<br/>Aprender disfrutando y generando vínculos, esa es nuestra consigna.</p>
+                    <p><?php echo $bs['sec2'][$cl]; ?></p>
                 </div>
+
             </div>
 
             <!-- Section 3 -->
             <div class="content-row">
                 <div class="text-content left">
-                    <p>La habilidad de entender y comunicarse en más de una lengua es esencial en los primeros años de vida.<br/>Teniendo en cuenta que el ambiente condiciona los aprendizajes del niño, la inmersión temprana en una segunda y tercera lengua determina un aprendizaje de inglés e italiano que realiza el mismo recorrido que al aprender su lengua materna.<br/>Este es el momento de acercarlo a un ambiente multicultural para que adquiera las herramientas comunicativas que irán perfeccionándose a medida que crece.</p>
+                    <p><?php echo $bs['sec3'][$cl]; ?></p>
                 </div>
+
                 <div class="image-content right">
                     <img src="FOTOS/fotosClases/BBSIM3.jpg" alt="Idiomas">
                 </div>
@@ -94,8 +128,9 @@ BBSIM cuenta con un equipo de profesionales altamente calificado dando a cada ni
                     <img src="FOTOS/fotosClases/BBSIM4.jpg" alt="Italiano">
                 </div>
                 <div class="text-content right">
-                    <p>Aprender Italiano en la Scuola es mucho más que adquirir una lengua.<br/>Representa nuestra bandera institucional y la patria de gran parte de los inmigrantes de nuestro país.<br/>Italia significa arte, música, moda, gastronomía y tradiciones, siendo el país con mayor número de lugares declarados como Patrimonio de la Humanidad por la UNESCO del mundo.<br/>El aprendizaje del italiano le permitirá cerrar el círculo académico en la Scuola logrando un IB internacional (Maturità) en ese idioma.</p>
+                    <p><?php echo $bs['sec4'][$cl]; ?></p>
                 </div>
+
             </div>
         </section>
 
@@ -135,7 +170,7 @@ BBSIM cuenta con un equipo de profesionales altamente calificado dando a cada ni
             
             <div class="footer-center">
                 <div class="footer-section">
-                    <h4>Contacto</h4>
+                    <h4><?php echo $bs['contact'][$cl]; ?></h4>
                     <p>Av. Brasil 3149, Montevideo</p>
                     <p>(+598) 2621 4822 / 2622 1422</p>
                     <p>info@scuolaitaliana.edu.uy</p>
@@ -144,10 +179,10 @@ BBSIM cuenta con un equipo de profesionales altamente calificado dando a cada ni
             
             <div class="footer-right">
                 <div class="footer-section">
-                    <h4>Enlaces útiles</h4>
-                    <p>Política de privacidad</p>
-                    <p>Requisitos técnicos</p>
-                    <p>Accesibilidad</p>
+                    <h4><?php echo $bs['links'][$cl]; ?></h4>
+                    <p><?php echo $bs['link_items'][$cl][0]; ?></p>
+                    <p><?php echo $bs['link_items'][$cl][1]; ?></p>
+                    <p><?php echo $bs['link_items'][$cl][2]; ?></p>
                 </div>
             </div>
         </div>

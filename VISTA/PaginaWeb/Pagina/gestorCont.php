@@ -790,8 +790,8 @@ async function savePageToServer(pageData) {
 });
 
     function openInSite(pageId) {
-      // Abrir la página específica en modo visualización
-      window.open('index.php?cms_admin_token=true&page_id=' + pageId, '_blank');
+      // Abrir la página específica en modo visualización directa
+      window.open('../../../MODELO/Gestor/view_page.php?id=' + pageId, '_blank');
     }
 
     function openFullPageEditor() {
@@ -799,8 +799,8 @@ async function savePageToServer(pageData) {
         alert("Primero selecciona una página para editar.");
         return;
       }
-      // Abrir el index con los parámetros para editar
-      window.open('index.php?cms_admin_token=true&page_id=' + editingPageId, '_blank');
+      // Abrir el visor de página en modo edición dentro del sitio
+      window.open('../../../MODELO/Gestor/view_page.php?id=' + editingPageId + '&cms_admin_token=true', '_blank');
     }
 
     function setModo(modo) {

@@ -335,13 +335,13 @@
         // Enlaces Rápidos: mostrar páginas creadas
         submenu.innerHTML = savedPages.map(page => {
             const label = page.name || ('Página ' + page.id);
-            return `<li><a href=\"view_page.php?id=${page.id}\" style=\"text-decoration:none; color:#2c3e50; display:block; padding:8px 15px;\">${label}</a></li>`;
+            return `<li><a href=\"../../../MODELO/Gestor/view_page.php?id=${page.id}\" style=\"text-decoration:none; color:#2c3e50; display:block; padding:8px 15px;\">${label}</a></li>`;
         }).join('');
     }
 
     function viewPage(id) {
         // Navegación normal
-        window.location.href = `view_page.php?id=${id}`;
+        window.location.href = `../../../MODELO/Gestor/view_page.php?id=${id}`;
     }
 
     function toggleMenu(event) {

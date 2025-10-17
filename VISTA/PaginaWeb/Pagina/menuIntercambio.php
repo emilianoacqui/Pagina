@@ -1,9 +1,12 @@
 <!DOCTYPE html>
+<?php if (session_status() === PHP_SESSION_NONE) { session_start(); } $cl = $_SESSION['lang'] ?? 'es'; ?>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Intercambios - Scuola Italiana</title>
+    <title><?php $mi_meta=['es'=>'Intercambios - Scuola Italiana','en'=>'Exchanges - Scuola Italiana','it'=>'Scambi - Scuola Italiana']; echo $mi_meta[$cl]; ?></title>
+
     <link rel="stylesheet" href="breadcrumbs.css">
     <link rel="stylesheet" href="../css/menuIntercambio.css">
 </head>
@@ -25,14 +28,48 @@
     </nav>
 
     <!-- Hero Section -->
+    <?php 
+        $x = [
+            'hero_t' => ['es'=>'INTERCAMBIOS','en'=>'EXCHANGES','it'=>'SCAMBI'],
+            'hero_s' => ['es'=>'Programas de intercambio estudiantil','en'=>'Student exchange programs','it'=>'Programmi di scambio studenti'],
+            'it_t' => ['es'=>'Italia','en'=>'Italy','it'=>'Italia'],
+            'it_p' => [
+                'es'=>'Intercambio académico en colegios italianos. Duración de 6 meses con familias anfitrionas.',
+                'en'=>'Academic exchange in Italian schools. Six-month stay with host families.',
+                'it'=>'Scambio accademico in scuole italiane. Soggiorno di sei mesi con famiglie ospitanti.',
+            ],
+            'ar_t' => ['es'=>'Argentina','en'=>'Argentina','it'=>'Argentina'],
+            'ar_p' => [
+                'es'=>'Programa cultural y académico. Experiencia de 4 meses en Buenos Aires.',
+                'en'=>'Cultural and academic program. Four-month experience in Buenos Aires.',
+                'it'=>'Programma culturale e accademico. Esperienza di quattro mesi a Buenos Aires.',
+            ],
+            'us_t' => ['es'=>'Estados Unidos','en'=>'United States','it'=>'Stati Uniti'],
+            'us_p' => [
+                'es'=>'Intercambio en high schools americanas. Programa anual disponible.',
+                'en'=>'Exchange in American high schools. Full-year program available.',
+                'it'=>'Scambio in high school americane. Disponibile programma annuale.',
+            ],
+            'see_prog' => ['es'=>'Ver programa','en'=>'See program','it'=>'Vedi programma'],
+            'contact' => ['es'=>'Contacto','en'=>'Contact','it'=>'Contatto'],
+            'links' => ['es'=>'Enlaces útiles','en'=>'Useful links','it'=>'Link utili'],
+            'link_items' => [
+                'es' => ['Política de privacidad','Requisitos técnicos','Accesibilidad'],
+                'en' => ['Privacy Policy','Technical Requirements','Accessibility'],
+                'it' => ['Informativa sulla privacy','Requisiti tecnici','Accessibilità'],
+            ],
+        ];
+    ?>
     <section class="hero">
+
         <div class="hero-background"></div>
         <div class="hero-overlay"></div>
         <div class="hero-content">
-            <h1 class="hero-title">INTERCAMBIOS</h1>
-            <p class="hero-subtitle">Programas de intercambio estudiantil</p>
+            <h1 class="hero-title"><?php echo $x['hero_t'][$cl]; ?></h1>
+            <p class="hero-subtitle"><?php echo $x['hero_s'][$cl]; ?></p>
         </div>
-    </section
+    </section>
+
     <div id="breadcrumbs" class="breadcrumbs-container"></div>
     <!-- Main Content -->
     <main class="main-content">
@@ -44,11 +81,12 @@
                     <div class="card-icon">
                         <span class="country-icon">🇮🇹</span>
                     </div>
-                    <h3>Italia</h3>
-                    <p>Intercambio académico en colegios italianos. Duración de 6 meses con familias anfitrionas.</p>
+                    <h3><?php echo $x['it_t'][$cl]; ?></h3>
+                    <p><?php echo $x['it_p'][$cl]; ?></p>
                     <a href="IntercambioItalia.php" class="intercambio-btn" style="display: inline-block; text-decoration: none;">
-    Ver programa
+    <?php echo $x['see_prog'][$cl]; ?>
 </a>
+
                 </div>
 
                 <!-- Argentina -->
@@ -56,11 +94,12 @@
                     <div class="card-icon">
                         <span class="country-icon">🇦🇷</span>
                     </div>
-                    <h3>Argentina</h3>
-                    <p>Programa de intercambio cultural y académico. Experiencia de 4 meses en Buenos Aires.</p>
+                    <h3><?php echo $x['ar_t'][$cl]; ?></h3>
+                    <p><?php echo $x['ar_p'][$cl]; ?></p>
                     <a href="IntercambioArgentina.php" class="intercambio-btn" style="display: inline-block; text-decoration: none;">
-    Ver programa
+    <?php echo $x['see_prog'][$cl]; ?>
 </a>
+
                 </div>
 
                 <!-- Estados Unidos -->
@@ -68,11 +107,12 @@
                     <div class="card-icon">
                         <span class="country-icon">🇺🇸</span>
                     </div>
-                    <h3>Estados Unidos</h3>
-                    <p>Intercambio estudiantil en high schools americanas. Programa anual completo disponible.</p>
+                    <h3><?php echo $x['us_t'][$cl]; ?></h3>
+                    <p><?php echo $x['us_p'][$cl]; ?></p>
                     <a href="IntercambioEEUU.php" class="intercambio-btn" style="display: inline-block; text-decoration: none;">
-    Ver programa
+    <?php echo $x['see_prog'][$cl]; ?>
 </a>
+
                 </div>
 
             </div>
@@ -93,7 +133,8 @@
             
             <div class="footer-center">
                 <div class="footer-section">
-                    <h4>Contacto</h4>
+                    <h4><?php echo $x['contact'][$cl]; ?></h4>
+
                     <p>Av. Brasil 3149, Montevideo</p>
                     <p>(+598) 2621 4822 / 2622 1422</p>
                     <p>info@scuolaitaliana.edu.uy</p>
@@ -102,10 +143,11 @@
             
             <div class="footer-right">
                 <div class="footer-section">
-                    <h4>Enlaces útiles</h4>
-                    <p>Política de privacidad</p>
-                    <p>Requisitos técnicos</p>
-                    <p>Accesibilidad</p>
+                    <h4><?php echo $x['links'][$cl]; ?></h4>
+                    <p><?php echo $x['link_items'][$cl][0]; ?></p>
+                    <p><?php echo $x['link_items'][$cl][1]; ?></p>
+                    <p><?php echo $x['link_items'][$cl][2]; ?></p>
+
                 </div>
             </div>
         </div>

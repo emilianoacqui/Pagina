@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<?php if (session_status() === PHP_SESSION_NONE) { session_start(); } $cl = $_SESSION['lang'] ?? 'es'; ?>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
@@ -42,18 +43,48 @@
 
 
         <!-- Title Section -->
+        <?php 
+            $bb = [
+                'subtitle' => [
+                    'es' => '¡Bienvenidos al espacio mundialmente conocido de María Montessori!<br/>En nuestra "Casa dei Bambini" acompañamos el crecimiento de niños entre 2 y 5 años.<br/>Salas amplias y luminosas, rodeadas de un parque natural, guían la propuesta pedagógica.<br/>Centro modelo Montessori desde hace más de 90 años, atendemos autoestima, autonomía y respeto.<br/>El ambiente preparado facilita el autodesarrollo, con docentes y técnicos en formación constante.',
+                    'en' => 'Welcome to the world‑renowned space of Maria Montessori!<br/>At our "Casa dei Bambini" we accompany children from ages 2 to 5.<br/>Bright, spacious rooms surrounded by nature guide our pedagogy.<br/>A Montessori model center for over 90 years, we foster self‑esteem, autonomy and respect.<br/>The prepared environment enables self‑development, led by continuously trained educators.',
+                    'it' => 'Benvenuti nello spazio riconosciuto in tutto il mondo di Maria Montessori!<br/>Nella nostra "Casa dei Bambini" accompagniamo i bambini dai 2 ai 5 anni.<br/>Aule ampie e luminose immerse nel verde guidano la proposta pedagogica.<br/>Centro modello Montessori da oltre 90 anni, curiamo autostima, autonomia e rispetto.<br/>L’ambiente preparato favorisce l’auto‑sviluppo, con educatori in formazione continua.',
+                ],
+                'sec1' => [
+                    'es' => 'Una fortaleza del material Montessori es que todo tiene un propósito definido. Los niños aprenden con alegría investigando con recursos que despiertan su curiosidad. Este material acompaña todos los procesos en Casa dei Bambini y les permite construir su propio aprendizaje. Siguiendo sus intereses, eligen libremente, desarrollan concentración y comparten la alegría de aprender. Así, naturalmente, llegan los idiomas: italiano e inglés se asimilan como la lengua materna.',
+                    'en' => 'A strength of Montessori materials is that everything has a clear purpose. Children learn joyfully by exploring resources that spark curiosity. These materials support every process at Casa dei Bambini, enabling children to build their own learning. Following their interests, they choose freely, develop focus and share the joy of learning. Languages come naturally: Italian and English are absorbed like the mother tongue.',
+                    'it' => 'Un punto di forza dei materiali Montessori è che tutto ha uno scopo preciso. I bambini imparano con gioia esplorando risorse che stimolano la curiosità. Questi materiali sostengono ogni processo nella Casa dei Bambini, permettendo ai piccoli di costruire il proprio apprendimento. Seguendo i loro interessi, scelgono liberamente, sviluppano concentrazione e condividono la gioia di imparare. Le lingue arrivano naturalmente: italiano e inglese si assimilano come la lingua madre.',
+                ],
+                'sec2' => [
+                    'es' => 'En los primeros años se adquieren destrezas fundamentales. Contamos con espacios de estimulación, coordinación y equilibrio donde la práctica y el descubrimiento se hacen presentes. Dentro del horario escolar se dictan psicomotricidad, educación física, danza y música, con opción de ballet. Aprender disfrutando y generando vínculos es nuestra consigna.',
+                    'en' => 'In the early years, foundational skills are acquired. We offer spaces for stimulation, coordination and balance where practice and discovery are present. During school hours we include psychomotricity, physical education, dance and music, with optional ballet. Learning with joy and building bonds is our motto.',
+                    'it' => 'Nei primi anni si acquisiscono abilità fondamentali. Offriamo spazi di stimolazione, coordinazione ed equilibrio dove pratica e scoperta sono presenti. In orario scolastico includiamo psicomotricità, educazione fisica, danza e musica, con balletto opzionale. Imparare divertendosi e creando legami è il nostro motto.',
+                ],
+                'sec3' => [
+                    'es' => 'Comprender y comunicarse en más de una lengua es esencial desde temprana edad. La inmersión temprana en una segunda y tercera lengua replica el recorrido natural de la lengua materna. Este es el momento de acercarlos a un ambiente multicultural para adquirir herramientas comunicativas que se perfeccionarán con el tiempo.',
+                    'en' => 'Understanding and communicating in more than one language is essential from an early age. Early immersion in a second and third language mirrors the natural path of the mother tongue. This is the time to introduce a multicultural environment and build communication tools that will mature over time.',
+                    'it' => 'Comprendere e comunicare in più lingue è essenziale fin da piccoli. L’immersione precoce in una seconda e terza lingua ripercorre il percorso naturale della lingua madre. È il momento di introdurre un ambiente multiculturale e costruire strumenti comunicativi che si perfezioneranno nel tempo.',
+                ],
+                'sec4' => [
+                    'es' => 'Aprender italiano en la Scuola es mucho más que una lengua: es identidad. Italia significa arte, música, moda, gastronomía y tradiciones, con el mayor número de sitios UNESCO del mundo. El italiano permitirá cerrar el círculo académico con una Maturità internacional en ese idioma.',
+                    'en' => 'Learning Italian at the Scuola is more than a language: it is identity. Italy means art, music, fashion, cuisine and traditions, with the highest number of UNESCO sites in the world. Italian enables completing the academic journey with an international Maturità in that language.',
+                    'it' => 'Imparare l’italiano alla Scuola è molto più di una lingua: è identità. L’Italia significa arte, musica, moda, cucina e tradizioni, con il maggior numero di siti UNESCO al mondo. L’italiano permette di completare il percorso accademico con una Maturità internazionale in quella lingua.',
+                ],
+                'contact' => ['es'=>'Contacto','en'=>'Contact','it'=>'Contatto'],
+                'links' => ['es'=>'Enlaces útiles','en'=>'Useful links','it'=>'Link utili'],
+                'link_items' => [
+                    'es' => ['Política de privacidad','Requisitos técnicos','Accesibilidad'],
+                    'en' => ['Privacy Policy','Technical Requirements','Accessibility'],
+                    'it' => ['Informativa sulla privacy','Requisiti tecnici','Accessibilità'],
+                ],
+            ];
+        ?>
         <section class="title-section">
             <h1 class="main-title">
                 <span class="blue-text">Casa dei </span>
                 <span class="red-text">Bambini</span>
             </h1>
-            <p class="subtitle">
-                ¡Bienvenidos al espacio mundialmente conocido de María Montessori!<br/>
-                En nuestra "Casa dei Bambini" acompañamos el crecimiento de nuestros niños entre los 2 y 5 años.<br/>
-                Salas amplias, luminosas y rodeadas de un parque natural privilegiado guían la propuesta pedagógica del sector.<br/>
-                Centro modelo de la filosofía Montessori desde hace más de 90 años, atiende los aspectos psicoemocionales del niño fundamentales en esta etapa: autoestima, autonomía y el respeto por sí mismo y los demás.<br/>
-                El ambiente preparado - uno de los principios fundamentales del método Montessori - se convierte en un facilitador del autodesarrollo de la mano de docentes y técnicos capacitados de manera constante y comprometidos con su vocación de enseñar.
-            </p>
+            <p class="subtitle"><?php echo $bb['subtitle'][$cl]; ?></p>
         </section>
 
         <!-- Content Sections -->
@@ -61,8 +92,9 @@
             <!-- Section 1 -->
             <div class="content-row">
                 <div class="text-content left">
-                    <p>Una de las grandes fortalezas del material Montessori es que todo tiene un propósito definido.<br/>Los niños aprenden con alegría, investigando a través de recursos didácticos que despiertan su interés y fomentan su curiosidad: aprenden, memorizan fijando ideas y conceptos naturalmente. Este material acompaña todos los procesos en "Casa dei Bambini" y les da la oportunidad de construir su propio aprendizaje.<br/>Basados en este principio como columna vertebral de la metodología, cada niño sigue sus propios intereses, elige libremente sus actividades, desarrolla su capacidad de concentración y genera vínculos compartiendo con sus pares la alegría de aprender.<br/>Así, naturalmente los idiomas llegan al aula. Los pequeños asimilan los códigos lingüísticos de italiano e inglés de la misma forma que incorporaron su lengua materna.<br/>Bienvenidos a Casa dei Bambini: aquí sus hijos crecerán felices...</p>
+                    <p><?php echo $bb['sec1'][$cl]; ?></p>
                 </div>
+
                 <div class="image-content right">
                     <img src="FOTOS/fotosClases/bambini1.jpg" alt="Actividades Montessori">
                 </div>
@@ -74,15 +106,17 @@
                     <img src="FOTOS/fotosClases/bambini2.jpg" alt="Psicomotricidad">
                 </div>
                 <div class="text-content right">
-                    <p>Está comprobado que en los primeros años de vida, los niños adquieren destrezas fundamentales para su formación como personas.<br/>Para ello disponemos de espacios de estimulación, coordinación y equilibrio en los que la práctica y el descubrimiento se hacen presentes.<br/>Dentro del horario escolar se desarrollan las clases de psicomotricidad, educación física, danza y música, pudiendo optar también por clases de ballet.<br/>Aprender disfrutando y generando vínculos, esa es nuestra consigna.</p>
+                    <p><?php echo $bb['sec2'][$cl]; ?></p>
                 </div>
+
             </div>
 
             <!-- Section 3 -->
             <div class="content-row">
                 <div class="text-content left">
-                    <p>La habilidad de entender y comunicarse en más de una lengua es esencial en los primeros años de vida.<br/>Teniendo en cuenta que el ambiente condiciona los aprendizajes del niño, la inmersión temprana en una segunda y tercera lengua determina un aprendizaje de inglés e italiano que realiza el mismo recorrido que al aprender su lengua materna.<br/>Este es el momento de acercarlo a un ambiente multicultural para que adquiera las herramientas comunicativas que irán perfeccionándose a medida que crece.</p>
+                    <p><?php echo $bb['sec3'][$cl]; ?></p>
                 </div>
+
                 <div class="image-content right">
                     <img src="FOTOS/fotosClases/bambini3.jpg" alt="Idiomas">
                 </div>
@@ -94,8 +128,9 @@
                     <img src="FOTOS/fotosClases/bambini4.jpg" alt="Italiano">
                 </div>
                 <div class="text-content right">
-                    <p>Aprender Italiano en la Scuola es mucho más que adquirir una lengua.<br/>Representa nuestra bandera institucional y la patria de gran parte de los inmigrantes de nuestro país.<br/>Italia significa arte, música, moda, gastronomía y tradiciones, siendo el país con mayor número de lugares declarados como Patrimonio de la Humanidad por la UNESCO del mundo.<br/>El aprendizaje del italiano le permitirá cerrar el círculo académico en la Scuola logrando un IB internacional (Maturità) en ese idioma.</p>
+                    <p><?php echo $bb['sec4'][$cl]; ?></p>
                 </div>
+
             </div>
         </section>
 
@@ -136,7 +171,8 @@
             
             <div class="footer-center">
                 <div class="footer-section">
-                    <h4>Contacto</h4>
+                    <h4><?php echo $bb['contact'][$cl]; ?></h4>
+
                     <p>Av. Brasil 3149, Montevideo</p>
                     <p>(+598) 2621 4822 / 2622 1422</p>
                     <p>info@scuolaitaliana.edu.uy</p>
@@ -145,10 +181,11 @@
             
             <div class="footer-right">
                 <div class="footer-section">
-                    <h4>Enlaces útiles</h4>
-                    <p>Política de privacidad</p>
-                    <p>Requisitos técnicos</p>
-                    <p>Accesibilidad</p>
+                    <h4><?php echo $bb['links'][$cl]; ?></h4>
+                    <p><?php echo $bb['link_items'][$cl][0]; ?></p>
+                    <p><?php echo $bb['link_items'][$cl][1]; ?></p>
+                    <p><?php echo $bb['link_items'][$cl][2]; ?></p>
+
                 </div>
             </div>
         </div>

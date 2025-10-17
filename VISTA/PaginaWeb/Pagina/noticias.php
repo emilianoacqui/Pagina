@@ -1,9 +1,10 @@
 <!DOCTYPE html>
-<html lang="en">
+<?php if (session_status() === PHP_SESSION_NONE) { session_start(); } $cl = $_SESSION['lang'] ?? 'es'; ?>
+<html lang="<?php echo $cl; ?>">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Noticias</title>
+    <title><?php $nt_meta=['es'=>'Noticias - Scuola Italiana','en'=>'News - Scuola Italiana','it'=>'Notizie - Scuola Italiana']; echo $nt_meta[$cl]; ?></title>
     <link rel="stylesheet" href="breadcrumbs.css">
     <link rel="stylesheet" href="../css/noticias.css">
 </head>
@@ -25,13 +26,63 @@
           </nav>
 
           <!-- Hero Section -->
+          <?php 
+            $nt = [
+              'hero_t' => ['es'=>'Noticias Scuola Italiana','en'=>'Scuola Italiana News','it'=>'Notizie Scuola Italiana'],
+              'hero_s' => ['es'=>'Mantente informado sobre las últimas novedades de nuestra institución','en'=>'Stay informed about the latest updates from our institution','it'=>'Rimani informato sulle ultime novità della nostra istituzione'],
+              'intro_t' => ['es'=>'Últimas Noticias','en'=>'Latest News','it'=>'Ultime Notizie'],
+              'intro_p' => ['es'=>'Descubre actividades recientes, eventos y logros de nuestra comunidad educativa.','en'=>'Discover recent activities, events, and achievements from our educational community.','it'=>'Scopri attività recenti, eventi e traguardi della nostra comunità educativa.'],
+              'slides' => [
+                [
+                  'img' => 'FOTOS/fotosPrincipales/arcimboldo2.jpg',
+                  'date' => ['es'=>'15 Septiembre 2025','en'=>'15 September 2025','it'=>'15 Settembre 2025'],
+                  'title' => ['es'=>'Ceremonia de Graduación 2025','en'=>'Graduation Ceremony 2025','it'=>'Cerimonia di Laurea 2025'],
+                  'excerpt' => ['es'=>'Celebramos con orgullo a nuestros graduados en una emotiva ceremonia.','en'=>'We proudly celebrated our graduates in a moving ceremony.','it'=>'Abbiamo festeggiato con orgoglio i nostri diplomati in una cerimonia emozionante.'],
+                ],
+                [
+                  'img' => 'FOTOS/fotosPrincipales/arcimboldo3.jpg',
+                  'date' => ['es'=>'10 Septiembre 2025','en'=>'10 September 2025','it'=>'10 Settembre 2025'],
+                  'title' => ['es'=>'Intercambio Cultural con Italia','en'=>'Cultural Exchange with Italy','it'=>'Scambio Culturale con l’Italia'],
+                  'excerpt' => ['es'=>'Estudiantes participaron en un programa de intercambio con colegios de Roma y Milán.','en'=>'Students took part in an exchange program with schools in Rome and Milan.','it'=>'Gli studenti hanno partecipato a uno scambio con scuole di Roma e Milano.'],
+                ],
+                [
+                  'img' => 'FOTOS/fotosPrincipales/arcimboldo4.jpg',
+                  'date' => ['es'=>'5 Septiembre 2025','en'=>'5 September 2025','it'=>'5 Settembre 2025'],
+                  'title' => ['es'=>'Festival de Ciencias 2025','en'=>'Science Festival 2025','it'=>'Festival della Scienza 2025'],
+                  'excerpt' => ['es'=>'Los proyectos destacaron por innovación y creatividad.','en'=>'Projects stood out for innovation and creativity.','it'=>'I progetti si sono distinti per innovazione e creatività.'],
+                ],
+                [
+                  'img' => 'FOTOS/fotosPrincipales/arcimboldo5.jpg',
+                  'date' => ['es'=>'1 Septiembre 2025','en'=>'1 September 2025','it'=>'1 Settembre 2025'],
+                  'title' => ['es'=>'Torneo Deportivo Interescolar','en'=>'Inter-school Sports Tournament','it'=>'Torneo Sportivo Inter-scolastico'],
+                  'excerpt' => ['es'=>'Equipos obtuvieron destacadas posiciones en el campeonato regional.','en'=>'Teams achieved notable positions in the regional championship.','it'=>'Le squadre hanno ottenuto posizioni di rilievo nel campionato regionale.'],
+                ],
+                [
+                  'img' => 'FOTOS/fotosPrincipales/arcimboldo.jpg',
+                  'date' => ['es'=>'25 Agosto 2025','en'=>'25 August 2025','it'=>'25 Agosto 2025'],
+                  'title' => ['es'=>'Concurso de Arte y Literatura','en'=>'Art and Literature Contest','it'=>'Concorso di Arte e Letteratura'],
+                  'excerpt' => ['es'=>'Premiamos la creatividad en nuestro concurso anual.','en'=>'We awarded creativity in our annual contest.','it'=>'Abbiamo premiato la creatività nel nostro concorso annuale.'],
+                ],
+              ],
+              'stay_t' => ['es'=>'Mantente conectado','en'=>'Stay connected','it'=>'Rimani connesso'],
+              'stay_p' => ['es'=>'Sigue nuestras redes y suscríbete al boletín para no perderte novedades.','en'=>'Follow our social networks and subscribe to the newsletter to not miss updates.','it'=>'Segui i nostri social e iscriviti alla newsletter per non perdere aggiornamenti.'],
+              'contact' => ['es'=>'Contacto','en'=>'Contact','it'=>'Contatto'],
+              'links' => ['es'=>'Enlaces útiles','en'=>'Useful links','it'=>'Link utili'],
+              'link_items' => [
+                'es' => ['Política de privacidad','Requisitos técnicos','Accesibilidad'],
+                'en' => ['Privacy Policy','Technical Requirements','Accessibility'],
+                'it' => ['Informativa sulla privacy','Requisiti tecnici','Accessibilità'],
+              ],
+            ];
+          ?>
           <section class="hero-gallery editable-image" style="background-image: url('FOTOS/fotosPrincipales/heliopolis3.jpg'); background-size: cover; background-position: center;">
               <div class="hero-overlay"></div>
               <div class="hero-content-gallery">
-                  <h1 class="hero-title-gallery editable-text">Noticias Scuola Italiana</h1>
-                  <p class="hero-subtitle-gallery editable-text">Mantente informado sobre las últimas novedades de nuestra institución</p>
+                  <h1 class="hero-title-gallery editable-text"><?php echo $nt['hero_t'][$cl]; ?></h1>
+                  <p class="hero-subtitle-gallery editable-text"><?php echo $nt['hero_s'][$cl]; ?></p>
               </div>
           </section>
+
           <div id="breadcrumbs" class="breadcrumbs-container"></div>
 
           <!-- Main Content -->
@@ -39,78 +90,28 @@
               <div class="container">
                   <!-- Gallery Description -->
                   <section class="gallery-intro">
-                      <h2 class="gallery-title editable-text">Últimas Noticias</h2>
-                      <p class="gallery-description editable-text">Descubre las actividades más recientes, eventos destacados y logros de nuestra comunidad educativa. Cada noticia refleja el compromiso y la excelencia que caracteriza a la Scuola Italiana di Montevideo.</p>
+                      <h2 class="gallery-title editable-text"><?php echo $nt['intro_t'][$cl]; ?></h2>
+                      <p class="gallery-description editable-text"><?php echo $nt['intro_p'][$cl]; ?></p>
                   </section>
 
                   <!-- News Carousel -->
                   <section class="news-carousel">
                       <div class="carousel-container">
                           <div class="carousel-track" id="carouselTrack">
+                              <?php foreach ($nt['slides'] as $slide) { ?>
                               <div class="carousel-slide">
                                   <div class="news-card">
                                       <div class="news-image">
-                                          <img class="editable-image" src="FOTOS/fotosPrincipales/arcimboldo2.jpg" alt="Noticia 1">
+                                          <img class="editable-image" src="<?php echo $slide['img']; ?>" alt="Noticia">
                                       </div>
                                       <div class="news-content">
-                                          <span class="news-date">15 Septiembre 2025</span>
-                                          <h3 class="news-title editable-text">Ceremonia de Graduación 2025</h3>
-                                          <p class="news-excerpt editable-text">Celebramos con orgullo a nuestros graduados de bachillerato en una emotiva ceremonia que marcó el fin de su etapa escolar.</p>
+                                          <span class="news-date"><?php echo $slide['date'][$cl]; ?></span>
+                                          <h3 class="news-title editable-text"><?php echo $slide['title'][$cl]; ?></h3>
+                                          <p class="news-excerpt editable-text"><?php echo $slide['excerpt'][$cl]; ?></p>
                                       </div>
                                   </div>
                               </div>
-                              
-                              <div class="carousel-slide">
-                                  <div class="news-card">
-                                      <div class="news-image">
-                                          <img class="editable-image" src="FOTOS/fotosPrincipales/arcimboldo3.jpg" alt="Noticia 2">
-                                      </div>
-                                      <div class="news-content">
-                                          <span class="news-date">10 Septiembre 2025</span>
-                                          <h3 class="news-title editable-text">Intercambio Cultural con Italia</h3>
-                                          <p class="news-excerpt editable-text">Estudiantes de secundaria participaron en un enriquecedor programa de intercambio con colegios de Roma y Milán.</p>
-                                      </div>
-                                  </div>
-                              </div>
-                              
-                              <div class="carousel-slide">
-                                  <div class="news-card">
-                                      <div class="news-image">
-                                          <img class="editable-image" src="FOTOS/fotosPrincipales/arcimboldo4.jpg" alt="Noticia 3">
-                                      </div>
-                                      <div class="news-content">
-                                          <span class="news-date">5 Septiembre 2025</span>
-                                          <h3 class="news-title editable-text">Festival de Ciencias 2025</h3>
-                                          <p class="news-excerpt editable-text">Los proyectos científicos de nuestros alumnos destacaron por su innovación y creatividad en el festival anual.</p>
-                                      </div>
-                                  </div>
-                              </div>
-                              
-                              <div class="carousel-slide">
-                                  <div class="news-card">
-                                      <div class="news-image">
-                                          <img class="editable-image" src="FOTOS/fotosPrincipales/arcimboldo5.jpg" alt="Noticia 4">
-                                      </div>
-                                      <div class="news-content">
-                                          <span class="news-date">1 Septiembre 2025</span>
-                                          <h3 class="news-title editable-text">Torneo Deportivo Interescolar</h3>
-                                          <p class="news-excerpt editable-text">Nuestros equipos de fútbol y básquet obtuvieron destacadas posiciones en el campeonato regional.</p>
-                                      </div>
-                                  </div>
-                              </div>
-                              
-                              <div class="carousel-slide">
-                                  <div class="news-card">
-                                      <div class="news-image">
-                                          <img class="editable-image" src="FOTOS/fotosPrincipales/arcimboldo.jpg" alt="Noticia 5">
-                                      </div>
-                                      <div class="news-content">
-                                          <span class="news-date">25 Agosto 2025</span>
-                                          <h3 class="news-title editable-text">Concurso de Arte y Literatura</h3>
-                                          <p class="news-excerpt editable-text">Premiamos la creatividad de nuestros estudiantes en el concurso anual de expresión artística y literaria.</p>
-                                      </div>
-                                  </div>
-                              </div>
+                              <?php } ?>
                           </div>
                           
                           <button class="carousel-btn prev-btn" onclick="moveSlide(-1)">‹</button>
@@ -118,19 +119,17 @@
                       </div>
                       
                       <div class="carousel-dots">
-                          <span class="dot active" onclick="currentSlide(1)"></span>
-                          <span class="dot" onclick="currentSlide(2)"></span>
-                          <span class="dot" onclick="currentSlide(3)"></span>
-                          <span class="dot" onclick="currentSlide(4)"></span>
-                          <span class="dot" onclick="currentSlide(5)"></span>
+                          <?php for ($i = 0; $i < count($nt['slides']); $i++) { ?>
+                          <span class="dot <?php echo $i == 0 ? 'active' : ''; ?>" onclick="currentSlide(<?php echo $i + 1; ?>)"></span>
+                          <?php } ?>
                       </div>
                   </section>
 
                   <!-- Gallery Footer Text -->
                   <section class="gallery-footer-text">
                       <div class="footer-text-container">
-                          <h2 class="footer-text-title editable-text">Mantente conectado</h2>
-                          <p class="footer-text-content editable-text">Sigue nuestras redes sociales y suscríbete a nuestro boletín para no perderte ninguna novedad de la Scuola Italiana. Juntos construimos una comunidad educativa sólida y comprometida.</p>
+                          <h2 class="footer-text-title editable-text"><?php echo $nt['stay_t'][$cl]; ?></h2>
+                          <p class="footer-text-content editable-text"><?php echo $nt['stay_p'][$cl]; ?></p>
                       </div>
                   </section>
               </div>
@@ -151,7 +150,7 @@
         
         <div class="footer-center">
             <div class="footer-section">
-                <h4>Contacto</h4>
+                <h4><?php echo $nt['contact'][$cl]; ?></h4>
                 <p>Av. Brasil 3149, Montevideo</p>
                 <p>(+598) 2621 4822 / 2622 1422</p>
                 <p>info@scuolaitaliana.edu.uy</p>
@@ -160,10 +159,10 @@
         
         <div class="footer-right">
             <div class="footer-section">
-                <h4>Enlaces útiles</h4>
-                <p>Política de privacidad</p>
-                <p>Requisitos técnicos</p>
-                <p>Accesibilidad</p>
+                <h4><?php echo $nt['links'][$cl]; ?></h4>
+                <?php foreach ($nt['link_items'][$cl] as $link) { ?>
+                <p><?php echo $link; ?></p>
+                <?php } ?>
             </div>
         </div>
     </div>

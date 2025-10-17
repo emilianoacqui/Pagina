@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<?php if (session_status() === PHP_SESSION_NONE) { session_start(); } $cl = $_SESSION['lang'] ?? 'es'; ?>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
@@ -25,13 +26,34 @@
     </nav>
 
     <!-- Hero Section -->
+    <?php 
+        $pd = [
+            'crumb_sports' => ['es'=>'Deportes','en'=>'Sports','it'=>'Sport'],
+            'section_tag' => ['es'=>'DEPORTE DESTACADO','en'=>'FEATURED SPORT','it'=>'SPORT IN EVIDENZA'],
+            'enfoque_title' => ['es'=>'Nuestro enfoque deportivo','en'=>'Our sports approach','it'=>'Il nostro approccio sportivo'],
+            'feat1_h' => ['es'=>'Excelencia deportiva','en'=>'Sports excellence','it'=>'Eccellenza sportiva'],
+            'feat1_p' => ['es'=>'Fomentamos la mejora personal y el logro de metas.','en'=>'We foster personal improvement and goal achievement.','it'=>'Promuoviamo il miglioramento personale e il raggiungimento degli obiettivi.'],
+            'feat2_h' => ['es'=>'Trabajo en equipo','en'=>'Teamwork','it'=>'Lavoro di squadra'],
+            'feat2_p' => ['es'=>'Desarrollamos habilidades sociales y de colaboración.','en'=>'We develop social and collaboration skills.','it'=>'Sviluppiamo abilità sociali e di collaborazione.'],
+            'feat3_h' => ['es'=>'Bienestar integral','en'=>'Integral wellbeing','it'=>'Benessere integrale'],
+            'feat3_p' => ['es'=>'Impulsamos la salud física y mental de nuestros estudiantes.','en'=>'We promote students’ physical and mental health.','it'=>'Promuoviamo la salute fisica e mentale degli studenti.'],
+            'gallery_title' => ['es'=>'Momentos destacados','en'=>'Highlights','it'=>'Momenti salienti'],
+            'contact' => ['es'=>'Contacto','en'=>'Contact','it'=>'Contatto'],
+            'links' => ['es'=>'Enlaces útiles','en'=>'Useful links','it'=>'Link utili'],
+            'link_items' => [
+                'es' => ['Política de privacidad','Requisitos técnicos','Accesibilidad'],
+                'en' => ['Privacy Policy','Technical Requirements','Accessibility'],
+                'it' => ['Informativa sulla privacy','Requisiti tecnici','Accessibilità'],
+            ],
+        ];
+    ?>
     <section class="hero">
         <div class="hero-overlay"></div>
         <div class="hero-background">
             <img src="https://placehold.co/1920x800/E8E8E8/666?text=HERO+IMAGE" alt="Atletismo Hero" class="hero-image">
         </div>
         <div class="hero-content">
-                <span>Deportes</span>
+                <span><?php echo $pd['crumb_sports'][$cl]; ?></span>
                 <i class="fas fa-chevron-right"></i>
                 <span class="current">[SPORT_NAME]</span>
             </div>
@@ -48,7 +70,7 @@
                 <div class="intro-grid">
                     <div class="intro-text">
                         <div class="section-tag">
-                            <span>DEPORTE DESTACADO</span>
+                            <span><?php echo $pd['section_tag'][$cl]; ?></span>
                         </div>
                         <h2>[SPORT_INTRO_TITLE]</h2>
                         <p class="intro-description">
@@ -86,28 +108,28 @@
         <!-- Features Section -->
         <section class="features">
             <div class="container">
-                <h2 class="section-title">Nuestro enfoque deportivo</h2>
+                <h2 class="section-title"><?php echo $pd['enfoque_title'][$cl]; ?></h2>
                 <div class="features-grid">
                     <div class="feature-card">
                         <div class="feature-icon">
                             <i class="fas fa-trophy"></i>
                         </div>
-                        <h3>Excelencia deportiva</h3>
-                        <p>Fomentamos la búsqueda constante de la mejora personal y el logro de metas deportivas.</p>
+                        <h3><?php echo $pd['feat1_h'][$cl]; ?></h3>
+                        <p><?php echo $pd['feat1_p'][$cl]; ?></p>
                     </div>
                     <div class="feature-card">
                         <div class="feature-icon">
                             <i class="fas fa-users"></i>
                         </div>
-                        <h3>Trabajo en equipo</h3>
-                        <p>Desarrollamos habilidades sociales y de colaboración a través del deporte grupal.</p>
+                        <h3><?php echo $pd['feat2_h'][$cl]; ?></h3>
+                        <p><?php echo $pd['feat2_p'][$cl]; ?></p>
                     </div>
                     <div class="feature-card">
                         <div class="feature-icon">
                             <i class="fas fa-heart"></i>
                         </div>
-                        <h3>Bienestar integral</h3>
-                        <p>Promovemos una mejor calidad de vida física y mental en nuestros estudiantes.</p>
+                        <h3><?php echo $pd['feat3_h'][$cl]; ?></h3>
+                        <p><?php echo $pd['feat3_p'][$cl]; ?></p>
                     </div>
                 </div>
             </div>
@@ -116,7 +138,7 @@
         <!-- Gallery Section -->
         <section class="gallery">
             <div class="container">
-                <h2 class="section-title">Momentos destacados</h2>
+                <h2 class="section-title"><?php echo $pd['gallery_title'][$cl]; ?></h2>
                 <div class="gallery-grid">
                     <div class="gallery-item large">
                         <img src="[GALLERY_IMAGE_1]" alt="[SPORT_NAME] 1">
@@ -184,7 +206,7 @@
             
             <div class="footer-center">
                 <div class="footer-section">
-                    <h4>Contacto</h4>
+                    <h4><?php echo $pd['contact'][$cl]; ?></h4>
                     <p>Av. Brasil 3149, Montevideo</p>
                     <p>(+598) 2621 4822 / 2622 1422</p>
                     <p>info@scuolaitaliana.edu.uy</p>
@@ -193,10 +215,10 @@
             
             <div class="footer-right">
                 <div class="footer-section">
-                    <h4>Enlaces útiles</h4>
-                    <p>Política de privacidad</p>
-                    <p>Requisitos técnicos</p>
-                    <p>Accesibilidad</p>
+                    <h4><?php echo $pd['links'][$cl]; ?></h4>
+                    <p><?php echo $pd['link_items'][$cl][0]; ?></p>
+                    <p><?php echo $pd['link_items'][$cl][1]; ?></p>
+                    <p><?php echo $pd['link_items'][$cl][2]; ?></p>
                 </div>
             </div>
         </div>

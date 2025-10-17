@@ -1,9 +1,10 @@
 <!DOCTYPE html>
+<?php if (session_status() === PHP_SESSION_NONE) { session_start(); } $cl = $_SESSION['lang'] ?? 'es'; ?>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Convivencia</title>
+    <title><?php $cv_meta=['es'=>'Convivencia','en'=>'School Life & Coexistence','it'=>'Convivenza a Scuola']; echo $cv_meta[$cl]; ?></title>
     <link rel="stylesheet" href="breadcrumbs.css">
     <link href="https://fonts.googleapis.com/css2?family=Merriweather+Sans:wght@300;400;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../css/convivencia.css">
@@ -26,11 +27,34 @@
     
 
     <!-- Hero Section -->
+    <?php 
+        $cv = [
+            'hero_t' => ['es'=>'Convivencia en el Colegio','en'=>'School Life & Coexistence','it'=>'Convivenza a Scuola'],
+            'hero_s' => ['es'=>'Descubre todo lo que hace especial a la Scuola Italiana di Montevideo','en'=>'Discover what makes the Scuola Italiana di Montevideo special','it'=>'Scopri cosa rende speciale la Scuola Italiana di Montevideo'],
+            'campus_h' => ['es'=>'Nuestro Campus y Facilidades','en'=>'Our Campus and Facilities','it'=>'Il nostro Campus e le Strutture'],
+            'campus_p1' => ['es'=>'Bienvenidos ...','en'=>'Welcome ...','it'=>'Benvenuti ...'],
+            'campus_p2' => ['es'=>'En esta sección ...','en'=>'In this section ...','it'=>'In questa sezione ...'],
+            'protocol_h' => ['es'=>'Protocolo anti bullying','en'=>'Anti‑bullying Protocol','it'=>'Protocollo anti‑bullismo'],
+            'protocol_link' => ['es'=>'Abrir Protocolo en nueva pestaña','en'=>'Open Protocol in new tab','it'=>'Apri il Protocollo in una nuova scheda'],
+            'articles_h' => ['es'=>'Artículos','en'=>'Articles','it'=>'Articoli'],
+            'article_1' => ['es'=>'Artículo 1','en'=>'Article 1','it'=>'Articolo 1'],
+            'article_2' => ['es'=>'Artículo 2','en'=>'Article 2','it'=>'Articolo 2'],
+            'article_3' => ['es'=>'Artículo 3','en'=>'Article 3','it'=>'Articolo 3'],
+            'article_4' => ['es'=>'Artículo 4','en'=>'Article 4','it'=>'Articolo 4'],
+            'contact' => ['es'=>'Contacto','en'=>'Contact','it'=>'Contatto'],
+            'links' => ['es'=>'Enlaces útiles','en'=>'Useful links','it'=>'Link utili'],
+            'link_items' => [
+                'es' => ['Política de privacidad','Requisitos técnicos','Accesibilidad'],
+                'en' => ['Privacy Policy','Technical Requirements','Accessibility'],
+                'it' => ['Informativa sulla privacy','Requisiti tecnici','Accessibilità'],
+            ],
+        ];
+    ?>
     <section class="hero editable-image" style="background-image: url('FOTOS/fotosPrincipales/Convivencia1.jpg'); margin-top: 0px;">
         <div class="hero-overlay"></div>
         <div class="hero-content">
-            <h1 class="hero-title editable-text">Convivencia en el Colegio</h1>
-            <p class="hero-subtitle editable-text">Descubre todo lo que hace especial a la Scuola Italiana di Montevideo</p>
+            <h1 class="hero-title editable-text"><?php echo $cv['hero_t'][$cl]; ?></h1>
+            <p class="hero-subtitle editable-text"><?php echo $cv['hero_s'][$cl]; ?></p>
         </div>
     </section>
     <div id="breadcrumbs" class="breadcrumbs-container"></div>
@@ -38,9 +62,9 @@
         <section class="content-section">
     <div class="container">      
         <div class="content-text">
-            <h2 class="editable-text">Nuestro Campus y Facilidades</h2>
-            <p class="editable-text">Bienvenidos ...</p>
-            <p class="editable-text">En esta sección ...</p>
+            <h2 class="editable-text"><?php echo $cv['campus_h'][$cl]; ?></h2>
+            <p class="editable-text"><?php echo $cv['campus_p1'][$cl]; ?></p>
+            <p class="editable-text"><?php echo $cv['campus_p2'][$cl]; ?></p>
         </div>
     </div>
 </section>
@@ -53,8 +77,8 @@
             <section class="text-intro">
                 <div class="intro-grid">
                     <div class="intro-text">
-                        <h2 class="editable-text">Protocolo anti bullying</h2>
-                        <a href="PROTOCOLO_ANTI_BULLYING_SCUOLA_1_compressed.pdf" target="_blank">Abrir Protocolo en nueva pestaña</a>    
+                        <h2 class="editable-text"><?php echo $cv['protocol_h'][$cl]; ?></h2>
+                        <a href="PROTOCOLO_ANTI_BULLYING_SCUOLA_1_compressed.pdf" target="_blank"><?php echo $cv['protocol_link'][$cl]; ?></a>    
                     </div>
                     <div class="intro-visual">
                         <div class="visual-card">
@@ -69,12 +93,12 @@
                 <div class="container">
                     <div class="content-grid">
                         <div class="content-text">
-                            <h2 class="editable-text">Articulos</h2>
-                            <a href="PROTOCOLO_ANTI_BULLYING_SCUOLA_2.pdf" target="_blank">Articulo 1</a> <br>
-                            <a href="PROTOCOLO_ANTI_BULLYING_SCUOLA_3_compressed.pdf" target="_blank">Articulo 2</a><br>
-                            <a href="PR.IBA_WEB_compressed_compressed.pdf" target="_blank"> Articulo 3</a><br>
-                            <a href="Mensaje_Ana_Maria_bulliyng.pdf" target="_blank">Articulo 4</a>
-                            </div>
+                            <h2 class="editable-text"><?php echo $cv['articles_h'][$cl]; ?></h2>
+                            <a href="PROTOCOLO_ANTI_BULLYING_SCUOLA_2.pdf" target="_blank"><?php echo $cv['article_1'][$cl]; ?></a> <br>
+                            <a href="PROTOCOLO_ANTI_BULLYING_SCUOLA_3_compressed.pdf" target="_blank"><?php echo $cv['article_2'][$cl]; ?></a><br>
+                            <a href="PR.IBA_WEB_compressed_compressed.pdf" target="_blank"> <?php echo $cv['article_3'][$cl]; ?></a><br>
+                            <a href="Mensaje_Ana_Maria_bulliyng.pdf" target="_blank"><?php echo $cv['article_4'][$cl]; ?></a>
+                        </div>
                         <div class="content-image">
                             <img class="editable-image" src="FOTOS/fotosPrincipales/convivencia3.jpg" alt="Campus de la Scuola Italiana">
                         </div>
@@ -97,7 +121,7 @@
             
             <div class="footer-center">
                 <div class="footer-section">
-                    <h4>Contacto</h4>
+                    <h4><?php echo $cv['contact'][$cl]; ?></h4>
                     <p>Av. Brasil 3149, Montevideo</p>
                     <p>(+598) 2621 4822 / 2622 1422</p>
                     <p>info@scuolaitaliana.edu.uy</p>
@@ -106,10 +130,10 @@
             
             <div class="footer-right">
                 <div class="footer-section">
-                    <h4>Enlaces útiles</h4>
-                    <p>Política de privacidad</p>
-                    <p>Requisitos técnicos</p>
-                    <p>Accesibilidad</p>
+                    <h4><?php echo $cv['links'][$cl]; ?></h4>
+                    <p><?php echo $cv['link_items'][$cl][0]; ?></p>
+                    <p><?php echo $cv['link_items'][$cl][1]; ?></p>
+                    <p><?php echo $cv['link_items'][$cl][2]; ?></p>
                 </div>
             </div>
         </div>

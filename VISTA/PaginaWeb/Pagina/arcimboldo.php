@@ -1,9 +1,10 @@
 <!DOCTYPE html>
-<html lang="en">
+<?php if (session_status() === PHP_SESSION_NONE) { session_start(); } $cl = $_SESSION['lang'] ?? 'es'; ?>
+<html lang="<?php echo $cl; ?>">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Arcimboldo</title>
+    <title><?php $ar_meta=['es'=>'Arcimboldo','en'=>'Arcimboldo','it'=>'Arcimboldo']; echo $ar_meta[$cl]; ?></title>
     <link rel="stylesheet" href="breadcrumbs.css">
     <link rel="stylesheet" href="../css/arcimboldo.css">
 </head>
@@ -25,11 +26,35 @@
           </nav>
 
           <!-- Hero Section -->
+          <?php 
+            $ar = [
+              'hero_t' => ['es'=>'Arcimboldo','en'=>'Arcimboldo','it'=>'Arcimboldo'],
+              'hero_s' => ['es'=>'Una colección de imágenes organizadas visualmente','en'=>'A visually organized image collection','it'=>'Una raccolta di immagini organizzate visivamente'],
+              'gal_t' => ['es'=>'Nuestro evento de graduados','en'=>'Our Graduates Event','it'=>'Il nostro evento dei diplomati'],
+              'gal_d' => ['es'=>'Propuesta multidisciplinaria para 6º año de Ciencias Biológicas y Social-Económico, integrando italiano, matemática, literatura, biología y química mediante metodología CLIL y enfoque transversal en nutrición y salud.','en'=>'A multidisciplinary proposal for senior year Biological Sciences and Social-Economic, integrating Italian, math, literature, biology and chemistry via CLIL, with a transversal focus on nutrition and health.','it'=>'Proposta multidisciplinare per il sesto anno di Scienze Biologiche e Socio-Economico, integrando italiano, matematica, letteratura, biologia e chimica con metodologia CLIL e focus trasversale su nutrizione e salute.'],
+              'ph_main_t' => ['es'=>'Imagen destacada','en'=>'Featured image','it'=>'Immagine in evidenza'],
+              'ph_main_c' => ['es'=>'Descripción de la imagen principal','en'=>'Description of the main image','it'=>'Descrizione dell’immagine principale'],
+              'ph_1' => ['es'=>'Primera imagen','en'=>'First image','it'=>'Prima immagine'],
+              'ph_2' => ['es'=>'Segunda imagen','en'=>'Second image','it'=>'Seconda immagine'],
+              'ph_3' => ['es'=>'Tercera imagen','en'=>'Third image','it'=>'Terza immagine'],
+              'ph_4' => ['es'=>'Cuarta imagen','en'=>'Fourth image','it'=>'Quarta immagine'],
+              'ph_5' => ['es'=>'Quinta imagen','en'=>'Fifth image','it'=>'Quinta immagine'],
+              'info_t' => ['es'=>'Información adicional','en'=>'Additional information','it'=>'Informazioni aggiuntive'],
+              'info_p' => ['es'=>'Espacio para agregar información adicional, créditos de fotografía o contexto relevante.','en'=>'Space to add extra information, photo credits or relevant context.','it'=>'Spazio per aggiungere informazioni aggiuntive, crediti fotografici o contesto rilevante.'],
+              'contact' => ['es'=>'Contacto','en'=>'Contact','it'=>'Contatto'],
+              'links' => ['es'=>'Enlaces útiles','en'=>'Useful links','it'=>'Link utili'],
+              'link_items' => [
+                'es' => ['Política de privacidad','Requisitos técnicos','Accesibilidad'],
+                'en' => ['Privacy Policy','Technical Requirements','Accessibility'],
+                'it' => ['Informativa sulla privacy','Requisiti tecnici','Accessibilità'],
+              ],
+            ];
+          ?>
           <section class="hero-gallery editable-image" style="background-image: url('FOTOS/fotosPrincipales/arcimboldo.jpg'); background-size: cover; background-position: center;">
               <div class="hero-overlay"></div>
               <div class="hero-content-gallery">
-                  <h1 class="hero-title-gallery editable-text">Arcimboldo</h1>
-                  <p class="hero-subtitle-gallery editable-text">Una colección de imágenes organizadas visualmente</p>
+                  <h1 class="hero-title-gallery editable-text"><?php echo $ar['hero_t'][$cl]; ?></h1>
+                  <p class="hero-subtitle-gallery editable-text"><?php echo $ar['hero_s'][$cl]; ?></p>
               </div>
           </section>
           <div id="breadcrumbs" class="breadcrumbs-container"></div>
@@ -39,11 +64,8 @@
               <div class="container">
                   <!-- Gallery Description -->
                   <section class="gallery-intro">
-                      <h2 class="gallery-title editable-text">Nuestro evento de gradudados</h2>
-                      <p class="gallery-description editable-text">Se trata de una propuesta multidisciplinaria dirigida a estudiantes de 6o año de Ciencias Biológicas y Social-Económico, integrando contenidos de italiano,
-matemática, literatura, biología y química.
-Partiendo de la obra del artista renacentista Giuseppe Arcimboldo, mediante la metodología CLIL (Content and Language Integrated Learning) los alumnos
-trabajan contenidos curriculares con una miranda transversal sobre la nutrición, salud cardiovascular y hábitos alimentarios.</p>
+                      <h2 class="gallery-title editable-text"><?php echo $ar['gal_t'][$cl]; ?></h2>
+                      <p class="gallery-description editable-text"><?php echo $ar['gal_d'][$cl]; ?></p>
                   </section>
 
                   <!-- Photo Grid -->
@@ -52,43 +74,43 @@ trabajan contenidos curriculares con una miranda transversal sobre la nutrición
                           <div class="photo-item large">
                               <img class="editable-image" src="FOTOS/fotosPrincipales/arcimboldo2.jpg" alt="Imagen principal">
                               <div class="photo-overlay">
-                                  <h3 class="photo-title editable-text">Imagen destacada</h3>
-                                  <p class="photo-caption editable-text">Descripción de la imagen principal</p>
+                                  <h3 class="photo-title editable-text"><?php echo $ar['ph_main_t'][$cl]; ?></h3>
+                                  <p class="photo-caption editable-text"><?php echo $ar['ph_main_c'][$cl]; ?></p>
                               </div>
                           </div>
                           
                           <div class="photo-item">
                               <img class="editable-image" src="FOTOS/fotosPrincipales/arcimboldo3.jpg" alt="Imagen 1">
                               <div class="photo-overlay">
-                                  <h3 class="photo-title editable-text">Primera imagen</h3>
+                                  <h3 class="photo-title editable-text"><?php echo $ar['ph_1'][$cl]; ?></h3>
                               </div>
                           </div>
                           
                           <div class="photo-item">
                               <img class="editable-image" src="FOTOS/fotosPrincipales/arcimboldo4.jpg" alt="Imagen 2">
                               <div class="photo-overlay">
-                                  <h3 class="photo-title editable-text">Segunda imagen</h3>
+                                  <h3 class="photo-title editable-text"><?php echo $ar['ph_2'][$cl]; ?></h3>
                               </div>
                           </div>
                           
                           <div class="photo-item">
                               <img class="editable-image" src="FOTOS/fotosPrincipales/arcimboldo5.jpg" alt="Imagen 3">
                               <div class="photo-overlay">
-                                  <h3 class="photo-title editable-text">Tercera imagen</h3>
+                                  <h3 class="photo-title editable-text"><?php echo $ar['ph_3'][$cl]; ?></h3>
                               </div>
                           </div>
                           
                           <div class="photo-item">
                               <img class="editable-image" src="FOTOS/fotosPrincipales/arcimboldo.jpg" alt="Imagen 4">
                               <div class="photo-overlay">
-                                  <h3 class="photo-title editable-text">Cuarta imagen</h3>
+                                  <h3 class="photo-title editable-text"><?php echo $ar['ph_4'][$cl]; ?></h3>
                               </div>
                           </div>
                           
                           <div class="photo-item">
                               <img class="editable-image" src="FOTOS/fotosPrincipales/arcimboldo2.jpg" alt="Imagen 5">
                               <div class="photo-overlay">
-                                  <h3 class="photo-title editable-text">Quinta imagen</h3>
+                                  <h3 class="photo-title editable-text"><?php echo $ar['ph_5'][$cl]; ?></h3>
                               </div>
                           </div>
                       </div>
@@ -97,8 +119,8 @@ trabajan contenidos curriculares con una miranda transversal sobre la nutrición
                   <!-- Gallery Footer Text -->
                   <section class="gallery-footer-text">
                       <div class="footer-text-container">
-                          <h2 class="footer-text-title editable-text">Información adicional</h2>
-                          <p class="footer-text-content editable-text">Espacio para agregar información adicional sobre las imágenes, créditos de fotografía, o cualquier contexto relevante que complemente la galería visual.</p>
+                          <h2 class="footer-text-title editable-text"><?php echo $ar['info_t'][$cl]; ?></h2>
+                          <p class="footer-text-content editable-text"><?php echo $ar['info_p'][$cl]; ?></p>
                       </div>
                   </section>
               </div>
@@ -117,7 +139,7 @@ trabajan contenidos curriculares con una miranda transversal sobre la nutrición
         
         <div class="footer-center">
             <div class="footer-section">
-                <h4>Contacto</h4>
+                <h4><?php echo $ar['contact'][$cl]; ?></h4>
                 <p>Av. Brasil 3149, Montevideo</p>
                 <p>(+598) 2621 4822 / 2622 1422</p>
                 <p>info@scuolaitaliana.edu.uy</p>
@@ -126,10 +148,10 @@ trabajan contenidos curriculares con una miranda transversal sobre la nutrición
         
         <div class="footer-right">
             <div class="footer-section">
-                <h4>Enlaces útiles</h4>
-                <p>Política de privacidad</p>
-                <p>Requisitos técnicos</p>
-                <p>Accesibilidad</p>
+                <h4><?php echo $ar['links'][$cl]; ?></h4>
+                <p><?php echo $ar['link_items'][$cl][0]; ?></p>
+                <p><?php echo $ar['link_items'][$cl][1]; ?></p>
+                <p><?php echo $ar['link_items'][$cl][2]; ?></p>
             </div>
         </div>
     </div>

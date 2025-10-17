@@ -1,10 +1,11 @@
 <!DOCTYPE html>
-<html lang="en">
+<?php if (session_status() === PHP_SESSION_NONE) { session_start(); } $cl = $_SESSION['lang'] ?? 'es'; ?>
+<html lang="<?php echo $cl; ?>">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../css/scuola-club.css">
-    <title>Document</title>
+    <title><?php $sc_meta=['es'=>'Scuola Club - Heliopolis','en'=>'Scuola Club - Heliopolis','it'=>'Scuola Club - Heliopolis']; echo $sc_meta[$cl]; ?></title>
 </head>
 <body>
     <div id="original-content">
@@ -23,11 +24,35 @@
           </nav>
 
           <!-- Hero Section -->
+          <?php 
+            $sc = [
+              'hero_t' => ['es'=>'Heliopolis','en'=>'Heliopolis','it'=>'Heliopolis'],
+              'hero_s' => ['es'=>'Una colección de imágenes organizadas visualmente','en'=>'A visually organized image collection','it'=>'Una raccolta di immagini organizzate visivamente'],
+              'gal_t' => ['es'=>'heliopolis','en'=>'heliopolis','it'=>'heliopolis'],
+              'gal_d' => ['es'=>'En el marco del proyecto “Heliópolis” investigamos sobre Francisco Piria, la alquimia y la astronomía; los alumnos visitan Piriápolis.','en'=>'Within the “Heliópolis” project we explore Francisco Piria, alchemy and astronomy; students visit Piriápolis.','it'=>'Nel progetto “Heliopolis” esploriamo Francesco Piria, l’alchimia e l’astronomia; gli studenti visitano Piriápolis.'],
+              'ph_main_t' => ['es'=>'Imagen destacada','en'=>'Featured image','it'=>'Immagine in evidenza'],
+              'ph_main_c' => ['es'=>'Descripción de la imagen principal','en'=>'Description of the main image','it'=>'Descrizione dell’immagine principale'],
+              'ph_1' => ['es'=>'Primera imagen','en'=>'First image','it'=>'Prima immagine'],
+              'ph_2' => ['es'=>'Segunda imagen','en'=>'Second image','it'=>'Seconda immagine'],
+              'ph_3' => ['es'=>'Tercera imagen','en'=>'Third image','it'=>'Terza immagine'],
+              'ph_4' => ['es'=>'Cuarta imagen','en'=>'Fourth image','it'=>'Quarta immagine'],
+              'ph_5' => ['es'=>'Quinta imagen','en'=>'Fifth image','it'=>'Quinta immagine'],
+              'info_t' => ['es'=>'Información adicional','en'=>'Additional information','it'=>'Informazioni aggiuntive'],
+              'info_p' => ['es'=>'Espacio para agregar información adicional, créditos de fotografía o contexto relevante.','en'=>'Space to add extra information, photo credits, or relevant context.','it'=>'Spazio per aggiungere informazioni aggiuntive, crediti fotografici o contesto rilevante.'],
+              'contact' => ['es'=>'Contacto','en'=>'Contact','it'=>'Contatto'],
+              'links' => ['es'=>'Enlaces útiles','en'=>'Useful links','it'=>'Link utili'],
+              'link_items' => [
+                'es' => ['Política de privacidad','Requisitos técnicos','Accesibilidad'],
+                'en' => ['Privacy Policy','Technical Requirements','Accessibility'],
+                'it' => ['Informativa sulla privacy','Requisiti tecnici','Accessibilità'],
+              ],
+            ];
+          ?>
           <section class="hero-gallery editable-image" style="background-image: url('fotosPrincipales/heliopolis3.jpg'); background-size: cover; background-position: center;">
               <div class="hero-overlay"></div>
               <div class="hero-content-gallery">
-                  <h1 class="hero-title-gallery editable-text">Heliopolis</h1>
-                  <p class="hero-subtitle-gallery editable-text">Una colección de imágenes organizadas visualmente</p>
+                  <h1 class="hero-title-gallery editable-text"><?php echo $sc['hero_t'][$cl]; ?></h1>
+                  <p class="hero-subtitle-gallery editable-text"><?php echo $sc['hero_s'][$cl]; ?></p>
               </div>
           </section>
 
@@ -36,11 +61,8 @@
               <div class="container">
                   <!-- Gallery Description -->
                   <section class="gallery-intro">
-                      <h2 class="gallery-title editable-text">heliopolis</h2>
-                      <p class="gallery-description editable-text">En el marco del proyecto “Heliópolis” cuyo objetivo es investigar sobre la figura de Francisco Piria y sus conexiones con la alquimia y el estudio de la astronomía los alumnos visitan la ciudad de Piriápolis.
-
-
-Los estudiantes de 1ro.de Bachillerato, II de Liceo Italiano y 1ro. Bachillerato tecnológico acompañados por sus docentes exploran distintos puntos de la ciudad como el Castillo de Piria, serpentario, Iglesia de la Santísima Dormición de María, Gruta de los Patos, Virgen de los Pesacadores,Cerro San Antonio y Fuente de Venus.</p>
+                      <h2 class="gallery-title editable-text"><?php echo $sc['gal_t'][$cl]; ?></h2>
+                      <p class="gallery-description editable-text"><?php echo $sc['gal_d'][$cl]; ?></p>
                   </section>
 
                   <!-- Photo Grid -->
@@ -49,43 +71,43 @@ Los estudiantes de 1ro.de Bachillerato, II de Liceo Italiano y 1ro. Bachillerato
                           <div class="photo-item large">
                               <img class="editable-image" src="fotosPrincipales/arcimboldo2.jpg" alt="Imagen principal">
                               <div class="photo-overlay">
-                                  <h3 class="photo-title editable-text">Imagen destacada</h3>
-                                  <p class="photo-caption editable-text">Descripción de la imagen principal</p>
+                                  <h3 class="photo-title editable-text"><?php echo $sc['ph_main_t'][$cl]; ?></h3>
+                                  <p class="photo-caption editable-text"><?php echo $sc['ph_main_c'][$cl]; ?></p>
                               </div>
                           </div>
-                          
+
                           <div class="photo-item">
                               <img class="editable-image" src="fotosPrincipales/arcimboldo3.jpg" alt="Imagen 1">
                               <div class="photo-overlay">
-                                  <h3 class="photo-title editable-text">Primera imagen</h3>
+                                  <h3 class="photo-title editable-text"><?php echo $sc['ph_1'][$cl]; ?></h3>
                               </div>
                           </div>
-                          
+
                           <div class="photo-item">
                               <img class="editable-image" src="fotosPrincipales/arcimboldo4.jpg" alt="Imagen 2">
                               <div class="photo-overlay">
-                                  <h3 class="photo-title editable-text">Segunda imagen</h3>
+                                  <h3 class="photo-title editable-text"><?php echo $sc['ph_2'][$cl]; ?></h3>
                               </div>
                           </div>
-                          
+
                           <div class="photo-item">
                               <img class="editable-image" src="fotosPrincipales/arcimboldo5.jpg" alt="Imagen 3">
                               <div class="photo-overlay">
-                                  <h3 class="photo-title editable-text">Tercera imagen</h3>
+                                  <h3 class="photo-title editable-text"><?php echo $sc['ph_3'][$cl]; ?></h3>
                               </div>
                           </div>
-                          
+
                           <div class="photo-item">
                               <img class="editable-image" src="fotosPrincipales/arcimboldo.jpg" alt="Imagen 4">
                               <div class="photo-overlay">
-                                  <h3 class="photo-title editable-text">Cuarta imagen</h3>
+                                  <h3 class="photo-title editable-text"><?php echo $sc['ph_4'][$cl]; ?></h3>
                               </div>
                           </div>
-                          
+
                           <div class="photo-item">
                               <img class="editable-image" src="fotosPrincipales/arcimboldo2.jpg" alt="Imagen 5">
                               <div class="photo-overlay">
-                                  <h3 class="photo-title editable-text">Quinta imagen</h3>
+                                  <h3 class="photo-title editable-text"><?php echo $sc['ph_5'][$cl]; ?></h3>
                               </div>
                           </div>
                       </div>
@@ -94,8 +116,8 @@ Los estudiantes de 1ro.de Bachillerato, II de Liceo Italiano y 1ro. Bachillerato
                   <!-- Gallery Footer Text -->
                   <section class="gallery-footer-text">
                       <div class="footer-text-container">
-                          <h2 class="footer-text-title editable-text">Información adicional</h2>
-                          <p class="footer-text-content editable-text">Espacio para agregar información adicional sobre las imágenes, créditos de fotografía, o cualquier contexto relevante que complemente la galería visual.</p>
+                          <h2 class="footer-text-title editable-text"><?php echo $sc['info_t'][$cl]; ?></h2>
+                          <p class="footer-text-content editable-text"><?php echo $sc['info_p'][$cl]; ?></p>
                       </div>
                   </section>
               </div>
@@ -179,7 +201,7 @@ Los estudiantes de 1ro.de Bachillerato, II de Liceo Italiano y 1ro. Bachillerato
         
         <div class="footer-center">
             <div class="footer-section">
-                <h4>Contacto</h4>
+                <h4><?php echo $sc['contact'][$cl]; ?></h4>
                 <p>Av. Brasil 3149, Montevideo</p>
                 <p>(+598) 2621 4822 / 2622 1422</p>
                 <p>info@scuolaitaliana.edu.uy</p>
@@ -188,10 +210,10 @@ Los estudiantes de 1ro.de Bachillerato, II de Liceo Italiano y 1ro. Bachillerato
         
         <div class="footer-right">
             <div class="footer-section">
-                <h4>Enlaces útiles</h4>
-                <p>Política de privacidad</p>
-                <p>Requisitos técnicos</p>
-                <p>Accesibilidad</p>
+                <h4><?php echo $sc['links'][$cl]; ?></h4>
+                <p><?php echo $sc['link_items'][$cl][0]; ?></p>
+                <p><?php echo $sc['link_items'][$cl][1]; ?></p>
+                <p><?php echo $sc['link_items'][$cl][2]; ?></p>
             </div>
         </div>
     </div>

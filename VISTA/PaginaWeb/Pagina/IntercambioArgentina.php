@@ -1,9 +1,12 @@
 <!DOCTYPE html>
-<html lang="en">
+<?php if (session_status() === PHP_SESSION_NONE) { session_start(); } $cl = $_SESSION['lang'] ?? 'es'; ?>
+<html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Intercambio Argentina</title>
+    <title><?php $ia_meta=['es'=>'Intercambio Argentina','en'=>'Argentina Exchange','it'=>'Scambio Argentina']; echo $ia_meta[$cl]; ?></title>
+
     <link rel="stylesheet" href="breadcrumbs.css">
     <link rel="stylesheet" href="../css/IntercambioArgentina.css">
 </head>
@@ -25,11 +28,55 @@
           </nav>
 
           <!-- Hero Section -->
+          <?php 
+            $ia = [
+              'hero_t' => ['es'=>'Argentina','en'=>'Argentina','it'=>'Argentina'],
+              'hero_s' => ['es'=>'Intercambio a Argentina','en'=>'Exchange to Argentina','it'=>'Scambio in Argentina'],
+              'full_h' => ['es'=>'Encabezado Principal','en'=>'Main Heading','it'=>'Titolo principale'],
+              'full_p' => [
+                'es'=>'Programa de intercambio con instituciones argentinas. Experiencia académica y cultural en Buenos Aires.',
+                'en'=>'Exchange program with Argentine institutions. Academic and cultural experience in Buenos Aires.',
+                'it'=>'Programma di scambio con istituti argentini. Esperienza accademica e culturale a Buenos Aires.',
+              ],
+              'quote' => [
+                'es'=>'"Viajar para aprender, aprender para transformar."',
+                'en'=>'"Travel to learn, learn to transform."',
+                'it'=>'"Viaggiare per imparare, imparare per trasformare."',
+              ],
+              'quote_author' => ['es'=>'- Programa de Intercambio','en'=>'- Exchange Program','it'=>'- Programma di Scambio'],
+              'col1_h' => ['es'=>'Primera columna','en'=>'First column','it'=>'Prima colonna'],
+              'col1_p' => [
+                'es'=>'Plan de estudios, acompañamiento y actividades previstas durante el intercambio.',
+                'en'=>'Curriculum plan, mentoring, and activities planned during the exchange.',
+                'it'=>'Piano di studi, tutoraggio e attività previste durante lo scambio.',
+              ],
+              'col2_h' => ['es'=>'Segunda columna','en'=>'Second column','it'=>'Seconda colonna'],
+              'col2_p' => [
+                'es'=>'Alojamiento, logística y experiencias culturales en la ciudad.',
+                'en'=>'Lodging, logistics, and cultural experiences in the city.',
+                'it'=>'Alloggio, logistica ed esperienze culturali in città.',
+              ],
+              'final_h' => ['es'=>'Sección de cierre','en'=>'Closing section','it'=>'Sezione finale'],
+              'final_p' => [
+                'es'=>'Resumen de beneficios y próximos pasos para postularse.',
+                'en'=>'Summary of benefits and next steps to apply.',
+                'it'=>'Sintesi dei benefici e prossimi passi per candidarsi.',
+              ],
+              'see_photos' => ['es'=>'Ver Fotos','en'=>'See Photos','it'=>'Vedi foto'],
+              'contact' => ['es'=>'Contacto','en'=>'Contact','it'=>'Contatto'],
+              'links' => ['es'=>'Enlaces útiles','en'=>'Useful links','it'=>'Link utili'],
+              'link_items' => [
+                'es' => ['Política de privacidad','Requisitos técnicos','Accesibilidad'],
+                'en' => ['Privacy Policy','Technical Requirements','Accessibility'],
+                'it' => ['Informativa sulla privacy','Requisiti tecnici','Accessibilità'],
+              ],
+            ];
+          ?>
           <section class="hero-centered editable-image" style="background-image: url('FOTOS/fotosIntercambio/argentina.jpg'); background-size: cover; background-position: center;">
               <div class="hero-overlay"></div>
               <div class="hero-content-center">
-                  <h1 class="hero-title-center editable-text">Argentina</h1>
-                  <p class="hero-subtitle-center editable-text">Intercambio a argentina</p>
+                  <h1 class="hero-title-center editable-text"><?php echo $ia['hero_t'][$cl]; ?></h1>
+                  <p class="hero-subtitle-center editable-text"><?php echo $ia['hero_s'][$cl]; ?></p>
               </div>
           </section>
           <div id="breadcrumbs" class="breadcrumbs-container"></div>
@@ -40,16 +87,18 @@
                   <!-- Full Width Text -->
                   <section class="full-text">
                       <div class="text-container">
-                          <h2 class="centered-title editable-text">Encabezado Principal</h2>
-                          <p class="centered-text editable-text">Este es un párrafo centrado con contenido principal. Aquí puedes escribir información extensa sobre el tema que deseas presentar. El diseño centrado ayuda a enfocar la atención del lector en el contenido más importante.</p>
+                          <h2 class="centered-title editable-text"><?php echo $ia['full_h'][$cl]; ?></h2>
+                          <p class="centered-text editable-text"><?php echo $ia['full_p'][$cl]; ?></p>
+
                       </div>
                   </section>
 
                   <!-- Quote Section -->
                   <section class="quote-section">
                       <div class="quote-container">
-                          <blockquote class="main-quote editable-text">"Una cita o frase destacada que resuma la esencia del contenido que estás presentando en tu página web."</blockquote>
-                          <cite class="quote-author editable-text">- Autor de la cita</cite>
+                          <blockquote class="main-quote editable-text"><?php echo $ia['quote'][$cl]; ?></blockquote>
+                          <cite class="quote-author editable-text"><?php echo $ia['quote_author'][$cl]; ?></cite>
+
                       </div>
                   </section>
 
@@ -57,12 +106,14 @@
                   <section class="two-columns">
                       <div class="columns-container">
                           <div class="column">
-                              <h3 class="column-title editable-text">Primera columna</h3>
-                              <p class="column-text editable-text">Contenido de la primera columna. Puedes usar este espacio para desarrollar un aspecto específico del tema principal.</p>
+                              <h3 class="column-title editable-text"><?php echo $ia['col1_h'][$cl]; ?></h3>
+                              <p class="column-text editable-text"><?php echo $ia['col1_p'][$cl]; ?></p>
+
                           </div>
                           <div class="column">
-                              <h3 class="column-title editable-text">Segunda columna</h3>
-                              <p class="column-text editable-text">Contenido de la segunda columna. Este espacio es ideal para información complementaria o contrastante.</p>
+                              <h3 class="column-title editable-text"><?php echo $ia['col2_h'][$cl]; ?></h3>
+                              <p class="column-text editable-text"><?php echo $ia['col2_p'][$cl]; ?></p>
+
                           </div>
                       </div>
                   </section>
@@ -70,16 +121,18 @@
                   <!-- Final Text Section -->
                   <section class="final-text">
                       <div class="text-container">
-                          <h2 class="centered-title editable-text">Sección de cierre</h2>
-                          <p class="centered-text editable-text">Párrafo final donde puedes resumir los puntos clave o hacer un llamado a la acción para tus lectores.</p>
+                          <h2 class="centered-title editable-text"><?php echo $ia['final_h'][$cl]; ?></h2>
+                          <p class="centered-text editable-text"><?php echo $ia['final_p'][$cl]; ?></p>
+
                       </div>
                   </section>
 
                   <section>
   <div class="boton-imagenes">
   <a href="ArgentinaFotos.php" class="intercambio-btn">
-    Ver Fotos
+    <?php echo $ia['see_photos'][$cl]; ?>
   </a>
+
 </div>
 </section>
 

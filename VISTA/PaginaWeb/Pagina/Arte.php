@@ -1,9 +1,12 @@
 <!DOCTYPE html>
+<?php if (session_status() === PHP_SESSION_NONE) { session_start(); } $cl = $_SESSION['lang'] ?? 'es'; ?>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Arte</title>
+    <title><?php $ar_meta=['es'=>'Arte, Ciencia y tecnología','en'=>'Art, Science and Technology','it'=>'Arte, Scienza e Tecnologia']; echo $ar_meta[$cl]; ?></title>
+
     <link href="https://fonts.googleapis.com/css2?family=Merriweather+Sans:wght@300;400;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="breadcrumbs.css">
     <link rel="stylesheet" href="../css/Arte.css">
@@ -27,11 +30,55 @@
     </nav>
 
     <!-- Hero Section -->
+    <?php 
+        $ar = [
+            'hero_t' => [
+                'es' => 'Arte, Ciencia y tecnología',
+                'en' => 'Art, Science and Technology',
+                'it' => 'Arte, Scienza e Tecnologia',
+            ],
+            'hero_s' => [
+                'es' => 'Descubre todo lo que hace especial a la Scuola Italiana di Montevideo',
+                'en' => 'Discover what makes the Scuola Italiana di Montevideo special',
+                'it' => 'Scopri cosa rende speciale la Scuola Italiana di Montevideo',
+            ],
+            'sect_title' => [
+                'es' => 'Nuestras cualidades',
+                'en' => 'Our qualities',
+                'it' => 'Le nostre qualità',
+            ],
+            'f1_h' => ['es'=>'Arte','en'=>'Art','it'=>'Arte'],
+            'f1_p' => [
+                'es'=>'Desarrollamos todas las dimensiones del estudiante: intelectual, física, emocional y social.',
+                'en'=>'We develop all student dimensions: intellectual, physical, emotional and social.',
+                'it'=>'Sviluppiamo tutte le dimensioni dello studente: intellettuale, fisica, emotiva e sociale.',
+            ],
+            'f2_h' => ['es'=>'Ciencia','en'=>'Science','it'=>'Scienza'],
+            'f2_p' => [
+                'es'=>'Honramos la herencia italiana y la diversidad cultural en un ambiente de respeto.',
+                'en'=>'We honor Italian heritage and cultural diversity in a respectful environment.',
+                'it'=>'Onoriamo l’eredità italiana e la diversità culturale in un ambiente rispettoso.',
+            ],
+            'f3_h' => ['es'=>'Tecnología','en'=>'Technology','it'=>'Tecnologia'],
+            'f3_p' => [
+                'es'=>'Programas de calidad enfocados en pensamiento crítico e innovación.',
+                'en'=>'High‑quality programs focused on critical thinking and innovation.',
+                'it'=>'Programmi di qualità focalizzati sul pensiero critico e sull’innovazione.',
+            ],
+            'contact' => ['es'=>'Contacto','en'=>'Contact','it'=>'Contatto'],
+            'links' => ['es'=>'Enlaces útiles','en'=>'Useful links','it'=>'Link utili'],
+            'link_items' => [
+                'es' => ['Política de privacidad','Requisitos técnicos','Accesibilidad'],
+                'en' => ['Privacy Policy','Technical Requirements','Accessibility'],
+                'it' => ['Informativa sulla privacy','Requisiti tecnici','Accessibilità'],
+            ],
+        ];
+    ?>
     <section class="hero editable-image" style="background-image: url('FOTOS/fotosPrincipales/arte.jpg'); margin-top: 0px;">
         <div class="hero-overlay"></div>
         <div class="hero-content">
-            <h1 class="hero-title editable-text">Arte, Ciencia y tecnologia</h1>
-            <p class="hero-subtitle editable-text">Descubre todo lo que hace especial a la Scuola Italiana di Montevideo</p>
+            <h1 class="hero-title editable-text"><?php echo $ar['hero_t'][$cl]; ?></h1>
+            <p class="hero-subtitle editable-text"><?php echo $ar['hero_s'][$cl]; ?></p>
         </div>
     </section>
     <div id="breadcrumbs" class="breadcrumbs-container"></div>
@@ -40,19 +87,23 @@
     <main class="main-content">
             <section class="features">
                 <div class="container">
-                    <h2 class="section-title editable-text">Nuestras cualidades</h2>
+                    <h2 class="section-title editable-text"><?php echo $ar['sect_title'][$cl]; ?></h2>
+
                     <div class="features-grid">
                         <div class="feature-card">
-                            <h3 class="editable-text">Arte</h3>
-                            <p class="editable-text">Desarrollamos todas las dimensiones de nuestros estudiantes: intelectual, física, emocional y social, preparándolos para enfrentar los desafíos del futuro con confianza y determinación.</p>
+                            <h3 class="editable-text"><?php echo $ar['f1_h'][$cl]; ?></h3>
+                            <p class="editable-text"><?php echo $ar['f1_p'][$cl]; ?></p>
+
                         </div>
                         <div class="feature-card">
-                            <h3 class="editable-text">Ciencia</h3>
-                            <p class="editable-text">Mantenemos viva la herencia italiana mientras abrazamos la diversidad cultural, creando un ambiente donde todas las tradiciones son valoradas y respetadas.</p>
+                            <h3 class="editable-text"><?php echo $ar['f2_h'][$cl]; ?></h3>
+                            <p class="editable-text"><?php echo $ar['f2_p'][$cl]; ?></p>
+
                         </div>
                         <div class="feature-card">
-                            <h3 class="editable-text">Tecnologia</h3>
-                            <p class="editable-text">Nuestros programas académicos de alta calidad preparan a los estudiantes para ingresar a las mejores universidades del mundo, con un enfoque en el pensamiento crítico y la innovación.</p>
+                            <h3 class="editable-text"><?php echo $ar['f3_h'][$cl]; ?></h3>
+                            <p class="editable-text"><?php echo $ar['f3_p'][$cl]; ?></p>
+
                         </div>
                     </div>
                 </div>
@@ -73,7 +124,8 @@
             
             <div class="footer-center">
                 <div class="footer-section">
-                    <h4>Contacto</h4>
+                    <h4><?php echo $ar['contact'][$cl]; ?></h4>
+
                     <p>Av. Brasil 3149, Montevideo</p>
                     <p>(+598) 2621 4822 / 2622 1422</p>
                     <p>info@scuolaitaliana.edu.uy</p>
@@ -82,10 +134,11 @@
             
             <div class="footer-right">
                 <div class="footer-section">
-                    <h4>Enlaces útiles</h4>
-                    <p>Política de privacidad</p>
-                    <p>Requisitos técnicos</p>
-                    <p>Accesibilidad</p>
+                    <h4><?php echo $ar['links'][$cl]; ?></h4>
+                    <p><?php echo $ar['link_items'][$cl][0]; ?></p>
+                    <p><?php echo $ar['link_items'][$cl][1]; ?></p>
+                    <p><?php echo $ar['link_items'][$cl][2]; ?></p>
+
                 </div>
             </div>
         </div>
