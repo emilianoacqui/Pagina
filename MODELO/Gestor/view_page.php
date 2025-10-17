@@ -10,6 +10,7 @@ if (!$pageId) {
 
 $manager = new PagesManager();
 $page = $manager->getPage($pageId);
+$isExistingTemplate = isset($page['template']) && $page['template'] === 'existing_page';
 
 if (!$page) {
     header('HTTP/1.0 404 Not Found');
@@ -65,15 +66,69 @@ $isEditMode = isset($_GET['cms_admin_token']) && $_GET['cms_admin_token'] === 't
             background: rgba(52, 152, 219, 0.1);
         }
         <?php endif; ?>
+        
+        <?php if ($isExistingTemplate): ?>
+        .cms-existing-wrapper {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .cms-existing-header {
+            background: linear-gradient(135deg, #0A2452, #1B2F6F);
+            color: white;
+            padding: 20px;
+        }
+        .cms-existing-title {
+            margin: 0;
+            font-size: 24px;
+            font-weight: 600;
+        }
+        .cms-existing-subtitle {
+            margin-top: 6px;
+            opacity: 0.9;
+            font-size: 14px;
+        }
+        .cms-existing-content {
+            background: #fff;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+            border-radius: 12px;
+            margin-top: -20px;
+            padding: 24px;
+        }
+        .cms-existing-footer {
+            margin-top: 30px;
+            padding: 16px;
+            text-align: center;
+            color: #667;
+            font-size: 13px;
+        }
+        <?php endif; ?>
     </style>
 </head>
 <body>
     <a href="index.php" class="back-button">← Volver al Inicio</a>
     
     <!-- 🔥 CONTENIDO DE LA PÁGINA -->
-    <div style="width: 100%; max-width: 100vw; overflow-x: hidden;">
-        <?= $page['content'] ?>
-    </div>
+    <?php if ($isExistingTemplate): ?>
+        <div class="cms-existing-header">
+            <div class="cms-existing-wrapper">
+                <h1 class="cms-existing-title"><?= htmlspecialchars($page['name']) ?></h1>
+                <div class="cms-existing-subtitle">Contenido editado desde el sitio</div>
+            </div>
+        </div>
+        <div class="cms-existing-wrapper">
+            <div class="cms-existing-content template-frame">
+                <?= $page['content'] ?>
+            </div>
+            <div class="cms-existing-footer">
+                AMC Scuola Italiana di Montevideo • Vista de contenido guardado
+            </div>
+        </div>
+    <?php else: ?>
+        <div style="width: 100%; max-width: 100vw; overflow-x: hidden;">
+            <?= $page['content'] ?>
+        </div>
+    <?php endif; ?>
     
     <?php if ($isEditMode): ?>
     <script>
