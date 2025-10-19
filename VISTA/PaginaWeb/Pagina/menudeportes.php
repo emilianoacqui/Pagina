@@ -1,91 +1,274 @@
 <!DOCTYPE html>
-<?php if (session_status() === PHP_SESSION_NONE) { session_start(); } $cl = $_SESSION['lang'] ?? 'es'; ?>
+<?php if (session_status() === PHP_SESSION_NONE) { session_start(); } if (isset($_GET['lang']) && in_array($_GET['lang'], ['es','en','it'])) { $_SESSION['lang'] = $_GET['lang']; } $cl = $_SESSION['lang'] ?? 'es'; ?>
 <html lang="es">
 
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="../css/menudeportes.css">
-  <title><?php $md_meta=['es'=>'Scuola Italiana - Deportes','en'=>'Scuola Italiana - Sports','it'=>'Scuola Italiana - Sport']; echo $md_meta[$cl]; ?></title>
+    <title><?php $md_meta=['es'=>'Deportes - Scuola Italiana','en'=>'Sports - Scuola Italiana','it'=>'Sport - Scuola Italiana']; echo $md_meta[$cl]; ?></title>
 
-  
+    <link rel="stylesheet" href="breadcrumbs.css">
+    <link rel="stylesheet" href="../css/menudeportes.css">
 </head>
 <div id="cms-root"></div>
-
 <body>
-  <div class="main-container">
-    <img class="bg-image" src="https://placehold.co/1410x2262" />
-    <div class="overlay"></div>
-    
-    <div class="header">
-      <img class="logo" src="https://placehold.co/294x104" />
-      <img class="menu-icon" src="https://placehold.co/72x75" />
+    <div id="original-content">
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <img src="FOTOS/fotosPrincipales/logo2.png" alt="Scuola Italiana di Montevideo">
+            </div>
+            <div class="nav-menu-button" onclick="window.location.href='menuScuola.php'">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
     </div>
+    </nav>
 
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Hero Section -->
     <?php 
       $md = [
-        'futbol' => ['es'=>'Fútbol','en'=>'Football','it'=>'Calcio'],
-        'handball' => ['es'=>'Handball','en'=>'Handball','it'=>'Pallamano'],
-        'hockey' => ['es'=>'Hockey','en'=>'Hockey','it'=>'Hockey'],
-        'voley' => ['es'=>'Vóley','en'=>'Volleyball','it'=>'Pallavolo'],
-        'gimnasia' => ['es'=>'Gimnasia Artística','en'=>'Artistic Gymnastics','it'=>'Ginnastica Artistica'],
-        'atletismo' => ['es'=>'Atletismo','en'=>'Athletics','it'=>'Atletica'],
-      ];
-    ?>
-    <div class="content">
+                'hero' => ['es' => 'Deportes', 'en' => 'Sports', 'it' => 'Sport'],
+                'futbol_h' => ['es' => 'Fútbol', 'en' => 'Football', 'it' => 'Calcio'],
+                'futbol_p1' => [
+                    'es' => 'El fútbol es uno de los deportes más populares y emocionantes que practicamos en nuestra institución. Este deporte no solo desarrolla las habilidades físicas de nuestros estudiantes, sino que también fomenta valores fundamentales como el trabajo en equipo, la disciplina y el respeto.',
+                    'en' => 'Football is one of the most popular and exciting sports we practice at our institution. This sport not only develops our students\' physical skills, but also fosters fundamental values such as teamwork, discipline and respect.',
+                    'it' => 'Il calcio è uno degli sport più popolari ed emozionanti che pratichiamo nella nostra istituzione. Questo sport non solo sviluppa le abilità fisiche dei nostri studenti, ma promuove anche valori fondamentali come il lavoro di squadra, la disciplina e il rispetto.'
+                ],
+                'futbol_p2' => [
+                    'es' => 'Nuestros equipos participan activamente en competencias locales e regionales, representando con orgullo los colores de la Scuola Italiana. Los entrenamientos se realizan en nuestras modernas instalaciones deportivas.',
+                    'en' => 'Our teams actively participate in local and regional competitions, proudly representing the colors of Scuola Italiana. Training sessions are held in our modern sports facilities.',
+                    'it' => 'Le nostre squadre partecipano attivamente a competizioni locali e regionali, rappresentando con orgoglio i colori della Scuola Italiana. Gli allenamenti si svolgono nelle nostre moderne strutture sportive.'
+                ],
+                'handball_h' => ['es' => 'Handball', 'en' => 'Handball', 'it' => 'Pallamano'],
+                'handball_p1' => [
+                    'es' => 'El handball es un deporte dinámico y emocionante que combina velocidad, estrategia y coordinación. En nuestra institución, este deporte ha ganado popularidad debido a su naturaleza rápida y la importancia del trabajo en equipo.',
+                    'en' => 'Handball is a dynamic and exciting sport that combines speed, strategy and coordination. At our institution, this sport has gained popularity due to its fast nature and the importance of teamwork.',
+                    'it' => 'La pallamano è uno sport dinamico ed emozionante che combina velocità, strategia e coordinazione. Nella nostra istituzione, questo sport ha guadagnato popolarità per la sua natura veloce e l\'importanza del lavoro di squadra.'
+                ],
+                'handball_p2' => [
+                    'es' => 'Nuestros equipos de handball participan en competencias escolares y regionales, destacándose por su técnica depurada y espíritu competitivo.',
+                    'en' => 'Our handball teams participate in school and regional competitions, standing out for their refined technique and competitive spirit.',
+                    'it' => 'Le nostre squadre di pallamano partecipano a competizioni scolastiche e regionali, distinguendosi per la loro tecnica raffinata e lo spirito competitivo.'
+                ],
+                'hockey_h' => ['es' => 'Hockey', 'en' => 'Hockey', 'it' => 'Hockey'],
+                'hockey_p1' => [
+                    'es' => 'El hockey sobre césped es un deporte de precisión y habilidad técnica que requiere coordinación, velocidad y estrategia. En nuestra institución, este deporte ha demostrado ser excelente para desarrollar la concentración y el trabajo en equipo.',
+                    'en' => 'Field hockey is a precision and technical skill sport that requires coordination, speed and strategy. At our institution, this sport has proven excellent for developing concentration and teamwork.',
+                    'it' => 'L\'hockey su prato è uno sport di precisione e abilità tecnica che richiede coordinazione, velocità e strategia. Nella nostra istituzione, questo sport si è dimostrato eccellente per sviluppare concentrazione e lavoro di squadra.'
+                ],
+                'hockey_p2' => [
+                    'es' => 'Nuestros equipos de hockey participan en competencias locales y regionales, destacándose por su técnica depurada y disciplina táctica.',
+                    'en' => 'Our hockey teams participate in local and regional competitions, standing out for their refined technique and tactical discipline.',
+                    'it' => 'Le nostre squadre di hockey partecipano a competizioni locali e regionali, distinguendosi per la loro tecnica raffinata e disciplina tattica.'
+                ],
+                'voley_h' => ['es' => 'Vóley', 'en' => 'Volleyball', 'it' => 'Pallavolo'],
+                'voley_p1' => [
+                    'es' => 'El voleibol es un deporte que combina fuerza, agilidad y trabajo en equipo. En nuestra institución, este deporte ha demostrado ser excelente para desarrollar la coordinación y la comunicación entre jugadores.',
+                    'en' => 'Volleyball is a sport that combines strength, agility and teamwork. At our institution, this sport has proven excellent for developing coordination and communication between players.',
+                    'it' => 'La pallavolo è uno sport che combina forza, agilità e lavoro di squadra. Nella nostra istituzione, questo sport si è dimostrato eccellente per sviluppare coordinazione e comunicazione tra i giocatori.'
+                ],
+                'voley_p2' => [
+                    'es' => 'Nuestros equipos de voleibol participan en competencias escolares y regionales, destacándose por su técnica depurada y espíritu competitivo.',
+                    'en' => 'Our volleyball teams participate in school and regional competitions, standing out for their refined technique and competitive spirit.',
+                    'it' => 'Le nostre squadre di pallavolo partecipano a competizioni scolastiche e regionali, distinguendosi per la loro tecnica raffinata e lo spirito competitivo.'
+                ],
+                'gimnasia_h' => ['es' => 'Gimnasia Artística', 'en' => 'Artistic Gymnastics', 'it' => 'Ginnastica Artistica'],
+                'gimnasia_p1' => [
+                    'es' => 'La gimnasia artística es un deporte que combina expresión corporal, flexibilidad y elegancia en movimiento. En nuestra institución, este deporte ha demostrado ser excelente para desarrollar la coordinación y la disciplina.',
+                    'en' => 'Artistic gymnastics is a sport that combines body expression, flexibility and elegance in movement. At our institution, this sport has proven excellent for developing coordination and discipline.',
+                    'it' => 'La ginnastica artistica è uno sport che combina espressione corporea, flessibilità ed eleganza nel movimento. Nella nostra istituzione, questo sport si è dimostrato eccellente per sviluppare coordinazione e disciplina.'
+                ],
+                'gimnasia_p2' => [
+                    'es' => 'Nuestros equipos de gimnasia participan en competencias escolares y regionales, destacándose por su técnica depurada y elegancia en los movimientos.',
+                    'en' => 'Our gymnastics teams participate in school and regional competitions, standing out for their refined technique and elegance in movements.',
+                    'it' => 'Le nostre squadre di ginnastica partecipano a competizioni scolastiche e regionali, distinguendosi per la loro tecnica raffinata ed eleganza nei movimenti.'
+                ],
+                'atletismo_h' => ['es' => 'Atletismo', 'en' => 'Athletics', 'it' => 'Atletica'],
+                'atletismo_p1' => [
+                    'es' => 'El atletismo es un deporte base que desarrolla velocidad, resistencia y fuerza. En nuestra institución, este deporte ha demostrado ser excelente para desarrollar la disciplina y la perseverancia.',
+                    'en' => 'Athletics is a base sport that develops speed, endurance and strength. At our institution, this sport has proven excellent for developing discipline and perseverance.',
+                    'it' => 'L\'atletica è uno sport di base che sviluppa velocità, resistenza e forza. Nella nostra istituzione, questo sport si è dimostrato eccellente per sviluppare disciplina e perseveranza.'
+                ],
+                'atletismo_p2' => [
+                    'es' => 'Nuestros equipos de atletismo participan en competencias escolares y regionales, destacándose por su técnica depurada y espíritu competitivo.',
+                    'en' => 'Our athletics teams participate in school and regional competitions, standing out for their refined technique and competitive spirit.',
+                    'it' => 'Le nostre squadre di atletica partecipano a competizioni scolastiche e regionali, distinguendosi per la loro tecnica raffinata e lo spirito competitivo.'
+                ],
+                'ver_programa' => ['es' => 'Ver programa', 'en' => 'See program', 'it' => 'Vedi programma'],
+            ];
+        ?>
+        <section class="hero-inicial">
+            <div class="hero-content">
+                <h1 class="hero-title"><?php echo $md['hero'][$cl]; ?></h1>
+            </div>
+        </section>
+        <div id="breadcrumbs" class="breadcrumbs-container"></div>
+        <!-- Programs Section -->
+        <section class="programs-section">
+            <div class="programs-container">
+                <!-- Fútbol -->
+                <div class="program-section">
+                    <div class="program-image">
+                        <img src="FOTOS/fotosDeportes/futbol1.jpg" alt="Fútbol">
+                    </div>
+                    <div class="program-info">
+                        <h3><?php echo $md['futbol_h'][$cl]; ?></h3>
+                        <p><?php echo $md['futbol_p1'][$cl]; ?></p>
+                        <p><?php echo $md['futbol_p2'][$cl]; ?></p>
+                        <a href="futbol.php" class="program-button" style="display: inline-block; text-decoration: none;">
+                            <?php echo $md['ver_programa'][$cl]; ?>
+                        </a>
+                    </div>
+                </div>
 
-      <a href="IntercambioArgentina.php" class="sport-card futbol left">
-        <img class="sport-bg" src="https://placehold.co/800x148" />
-        <div class="sport-overlay">
-          <div class="sport-title"><?php echo $md['futbol'][$cl]; ?></div>
-
+                <!-- Handball -->
+                <div class="program-section">
+                    <div class="program-image">
+                        <img src="FOTOS/fotosDeportes/handball1.jpg" alt="Handball">
         </div>
-      </a>
+                    <div class="program-info">
+                        <h3><?php echo $md['handball_h'][$cl]; ?></h3>
+                        <p><?php echo $md['handball_p1'][$cl]; ?></p>
+                        <p><?php echo $md['handball_p2'][$cl]; ?></p>
+                        <a href="handball.php" class="program-button" style="display: inline-block; text-decoration: none;">
+                            <?php echo $md['ver_programa'][$cl]; ?>
+                        </a>
+                    </div>
+                </div>
 
-      <a href="handball.php" class="sport-card handball right">
-        <img class="sport-bg" src="https://placehold.co/800x150" />
-        <div class="sport-overlay">
-          <div class="sport-title"><?php echo $md['handball'][$cl]; ?></div>
+                <!-- Hockey -->
+                <div class="program-section">
+                    <div class="program-image">
+                        <img src="FOTOS/fotosDeportes/hockey1.jpg" alt="Hockey">
+                    </div>
+                    <div class="program-info">
+                        <h3><?php echo $md['hockey_h'][$cl]; ?></h3>
+                        <p><?php echo $md['hockey_p1'][$cl]; ?></p>
+                        <p><?php echo $md['hockey_p2'][$cl]; ?></p>
+                        <a href="hockey.php" class="program-button" style="display: inline-block; text-decoration: none;">
+                            <?php echo $md['ver_programa'][$cl]; ?>
+                        </a>
+                    </div>
+                </div>
 
+                <!-- Vóley -->
+                <div class="program-section">
+                    <div class="program-image">
+                        <img src="FOTOS/fotosDeportes/volley1.jpg" alt="Vóley">
         </div>
-      </a>
+                    <div class="program-info">
+                        <h3><?php echo $md['voley_h'][$cl]; ?></h3>
+                        <p><?php echo $md['voley_p1'][$cl]; ?></p>
+                        <p><?php echo $md['voley_p2'][$cl]; ?></p>
+                        <a href="voley.php" class="program-button" style="display: inline-block; text-decoration: none;">
+                            <?php echo $md['ver_programa'][$cl]; ?>
+                        </a>
+                    </div>
+                </div>
 
-      <a href="hockey.php" class="sport-card hockey left">
-        <img class="sport-bg" src="https://placehold.co/800x150" />
-        <div class="sport-overlay">
-          <div class="sport-title"><?php echo $md['hockey'][$cl]; ?></div>
+                <!-- Gimnasia Artística -->
+                <div class="program-section">
+                    <div class="program-image">
+                        <img src="FOTOS/fotosDeportes/gimnacia.jpg" alt="Gimnasia Artística">
+                    </div>
+                    <div class="program-info">
+                        <h3><?php echo $md['gimnasia_h'][$cl]; ?></h3>
+                        <p><?php echo $md['gimnasia_p1'][$cl]; ?></p>
+                        <p><?php echo $md['gimnasia_p2'][$cl]; ?></p>
+                        <a href="gimnasia.php" class="program-button" style="display: inline-block; text-decoration: none;">
+                            <?php echo $md['ver_programa'][$cl]; ?>
+                        </a>
+                    </div>
+                </div>
 
+                <!-- Atletismo -->
+                <div class="program-section">
+                    <div class="program-image">
+                        <img src="FOTOS/fotosDeportes/atletismo1.jpg" alt="Atletismo">
         </div>
-      </a>
+                    <div class="program-info">
+                        <h3><?php echo $md['atletismo_h'][$cl]; ?></h3>
+                        <p><?php echo $md['atletismo_p1'][$cl]; ?></p>
+                        <p><?php echo $md['atletismo_p2'][$cl]; ?></p>
+                        <a href="atletismo.php" class="program-button" style="display: inline-block; text-decoration: none;">
+                            <?php echo $md['ver_programa'][$cl]; ?>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
 
-      <a href="voley.php" class="sport-card voley right">
-        <img class="sport-bg" src="https://placehold.co/800x150" />
-        <div class="sport-overlay">
-          <div class="sport-title"><?php echo $md['voley'][$cl]; ?></div>
-
+    <!-- Footer -->
+    <footer class="footer-bottom-new">
+        <div class="footer-container">
+            <div class="footer-Aleft">
+                <div class="footer-logo">
+                    <img src="FOTOS/fotosPrincipales/logotipo.png" alt="Scuola Italiana di Montevideo" style="height: 60px;">
+                </div>
+                <div class="footer-subtitle">
+                    <p>Scuola Italiana di Montevideo</p>
+                </div>
+            </div>
+            
+            <div class="footer-center">
+                <div class="footer-section">
+                    <?php $md_contact = ['es' => 'Contacto','en' => 'Contact','it' => 'Contatto']; ?>
+                    <h4><?php echo $md_contact[$cl]; ?></h4>
+                    <p>Av. Brasil 3149, Montevideo</p>
+                    <p>(+598) 2621 4822 / 2622 1422</p>
+                    <p>info@scuolaitaliana.edu.uy</p>
+                </div>
         </div>
-      </a>
-
-      <a href="gimnasia.php" class="sport-card gimnasia left">
-        <img class="sport-bg" src="https://placehold.co/800x150" />
-        <div class="sport-overlay">
-          <div class="sport-title"><?php echo $md['gimnasia'][$cl]; ?></div>
-
+            
+            <div class="footer-right">
+                <div class="footer-section">
+                    <?php 
+                        $md_linksTitle = ['es' => 'Enlaces útiles','en' => 'Useful links','it' => 'Link utili'];
+                        $md_links = [
+                            'es' => ['Política de privacidad','Requisitos técnicos','Accesibilidad'],
+                            'en' => ['Privacy Policy','Technical Requirements','Accessibility'],
+                            'it' => ['Informativa sulla privacy','Requisiti tecnici','Accessibilità'],
+                        ];
+                    ?>
+                    <h4><?php echo $md_linksTitle[$cl]; ?></h4>
+                    <p><?php echo $md_links[$cl][0]; ?></p>
+                    <p><?php echo $md_links[$cl][1]; ?></p>
+                    <p><?php echo $md_links[$cl][2]; ?></p>
+                </div>
+            </div>
         </div>
-      </a>
-
-      <a href="atletismo.php" class="sport-card atletismo right">
-        <img class="sport-bg" src="https://placehold.co/800x150" />
-        <div class="sport-overlay">
-          <div class="sport-title"><?php echo $md['atletismo'][$cl]; ?></div>
-
+        <div class="footer-info-bar">
+            <p>Desarrollado por el equipo SGE | Proyecto de apoyo 2002 - EE Informática</p>
         </div>
-      </a>
+    </footer>
     </div>
 
-    <img class="footer" src="https://placehold.co/1379x391" />
-  </div>
+    <script>
+        let lastScrollTop = 0;
 
+        window.addEventListener('scroll', function() {
+            const navbar = document.querySelector('.navbar');
+            let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+            
+            if (scrollTop > lastScrollTop && scrollTop > 100) {
+                // Scrolling down y ya bajó más de 100px
+                navbar.style.transform = 'translateY(-100%)';
+                navbar.style.opacity = '0';
+            } else {
+                // Scrolling up o está en el top
+                navbar.style.transform = 'translateY(0)';
+                navbar.style.opacity = '1';
+            }
+            
+            lastScrollTop = scrollTop;
+        });
+    </script>
 <script src="breadcrumbs.js"></script>
   <script src="cms-admin.js"></script>
   <script src="analytics.js"></script>
