@@ -75,9 +75,9 @@
                     <p>
                         <?php 
                             $gimnasia_descriptions = [
-                                'es' => 'La gimnasia artística es un deporte que combina expresión corporal, flexibilidad y elegancia en movimiento. En nuestra institución, este deporte ha demostrado ser excelente para desarrollar la coordinación y la disciplina.',
-                                'en' => 'Artistic gymnastics is a sport that combines body expression, flexibility and elegance in movement. At our institution, this sport has proven excellent for developing coordination and discipline.',
-                                'it' => 'La ginnastica artistica è uno sport che combina espressione corporea, flessibilità ed eleganza nel movimento. Nella nostra istituzione, questo sport si è dimostrato eccellente per sviluppare coordinazione e disciplina.'
+                                'es' => 'La gimnasia artística combina expresión corporal, flexibilidad y elegancia en movimiento. En nuestra institución fortalece la coordinación, la disciplina y el control postural.',
+                                'en' => 'Artistic gymnastics combines body expression, flexibility and elegance in movement. At our school it strengthens coordination, discipline and postural control.',
+                                'it' => 'La ginnastica artistica combina espressione corporea, flessibilità ed eleganza nel movimento. Nella nostra scuola rafforza coordinazione, disciplina e controllo posturale.'
                             ];
                             echo $gimnasia_descriptions[$cl]; 
                         ?>

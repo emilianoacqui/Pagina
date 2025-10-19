@@ -20,7 +20,8 @@
             <div class="nav-logo">
                 <img src="FOTOS/fotosPrincipales/logo2.png" alt="Scuola Italiana di Montevideo">
             </div>
-            <div class="nav-menu-button" onclick="window.location.href='menuScuola.html'">
+            <div class="nav-menu-button" onclick="window.location.href='menuScuola.php'">
+
                 <span></span>
                 <span></span>
                 <span></span>
@@ -37,12 +38,12 @@
             'hist_p1' => ['es'=>'Décadas de excelencia académica y compromiso comunitario.','en'=>'Decades of academic excellence and community engagement.','it'=>'Decenni di eccellenza accademica e impegno nella comunità.'],
             'hist_p2' => ['es'=>'Promovemos valores humanos y ciudadanía activa junto a lazos con la cultura italiana.','en'=>'We promote human values and active citizenship while keeping ties to Italian culture.','it'=>'Promuoviamo valori umani e cittadinanza attiva, mantenendo i legami con la cultura italiana.'],
             'feat_h' => ['es'=>'Lo que nos distingue','en'=>'What sets us apart','it'=>'Cosa ci distingue'],
-            'f1_h' => ['es'=>'Educación Integral','en'=>'Integral Education','it'=>'Educazione Integrale'],
-            'f1_p' => ['es'=>'Desarrollamos dimensiones intelectual, física, emocional y social.','en'=>'We develop intellectual, physical, emotional and social dimensions.','it'=>'Sviluppiamo le dimensioni intellettuale, fisica, emotiva e sociale.'],
-            'f2_h' => ['es'=>'Tradición Cultural','en'=>'Cultural Tradition','it'=>'Tradizione Culturale'],
-            'f2_p' => ['es'=>'Herencia italiana y diversidad cultural en un ambiente de respeto.','en'=>'Italian heritage and cultural diversity in a respectful environment.','it'=>'Eredità italiana e diversità culturale in un ambiente rispettoso.'],
-            'f3_h' => ['es'=>'Excelencia Académica','en'=>'Academic Excellence','it'=>'Eccellenza Accademica'],
-            'f3_p' => ['es'=>'Programas de calidad centrados en pensamiento crítico e innovación.','en'=>'Quality programs focused on critical thinking and innovation.','it'=>'Programmi di qualità focalizzati sul pensiero critico e sull’innovazione.'],
+            'f1_h' => ['es'=>'Participación Estudiantil','en'=>'Student Participation','it'=>'Partecipazione degli studenti'],
+            'f1_p' => ['es'=>'Promovemos proyectos de voluntariado con impacto real en la comunidad educativa y el entorno.','en'=>'We promote volunteering projects with real impact on the school community and its environment.','it'=>'Promuoviamo progetti di volontariato con impatto reale sulla comunità scolastica e sul territorio.'],
+            'f2_h' => ['es'=>'Ciudadanía Activa','en'=>'Active Citizenship','it'=>'Cittadinanza attiva'],
+            'f2_p' => ['es'=>'Desarrollamos liderazgo, trabajo en equipo y responsabilidad social a través de acciones solidarias.','en'=>'We develop leadership, teamwork and social responsibility through solidarity actions.','it'=>'Sviluppiamo leadership, lavoro di squadra e responsabilità sociale attraverso azioni solidali.'],
+            'f3_h' => ['es'=>'Aprendizaje con Sentido','en'=>'Purposeful Learning','it'=>'Apprendimento con senso'],
+            'f3_p' => ['es'=>'El voluntariado integra contenidos curriculares con experiencias de servicio y reflexión.','en'=>'Volunteering integrates curricular content with service experiences and reflection.','it'=>'Il volontariato integra i contenuti curricolari con esperienze di servizio e riflessione.'],
             'contact' => ['es'=>'Contacto','en'=>'Contact','it'=>'Contatto'],
             'links' => ['es'=>'Enlaces útiles','en'=>'Useful links','it'=>'Link utili'],
             'link_items' => [

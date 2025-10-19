@@ -32,23 +32,28 @@
         $x = [
             'hero_t' => ['es'=>'INTERCAMBIOS','en'=>'EXCHANGES','it'=>'SCAMBI'],
             'hero_s' => ['es'=>'Programas de intercambio estudiantil','en'=>'Student exchange programs','it'=>'Programmi di scambio studenti'],
+            'intro' => [
+                'es' => 'Fortalecemos competencias interculturales, convivencia e idioma a través de experiencias en otros contextos educativos.',
+                'en' => 'We strengthen intercultural competencies, coexistence and language through experiences in other educational contexts.',
+                'it' => 'Rafforziamo le competenze interculturali, la convivenza e la lingua attraverso esperienze in altri contesti educativi.'
+            ],
             'it_t' => ['es'=>'Italia','en'=>'Italy','it'=>'Italia'],
             'it_p' => [
-                'es'=>'Intercambio académico en colegios italianos. Duración de 6 meses con familias anfitrionas.',
-                'en'=>'Academic exchange in Italian schools. Six-month stay with host families.',
-                'it'=>'Scambio accademico in scuole italiane. Soggiorno di sei mesi con famiglie ospitanti.',
+                'es'=>'Intercambio en 4.º de liceo por 3 semanas con estudiantes de dos colegios italianos; al año siguiente ellos visitan nuestra escuela.',
+                'en'=>'Exchange in 4th year of high school for 3 weeks with students from two Italian schools; the following year they visit our school.',
+                'it'=>'Scambio in quarta liceo per 3 settimane con studenti di due scuole italiane; l’anno successivo visitano la nostra scuola.',
             ],
             'ar_t' => ['es'=>'Argentina','en'=>'Argentina','it'=>'Argentina'],
             'ar_p' => [
-                'es'=>'Programa cultural y académico. Experiencia de 4 meses en Buenos Aires.',
-                'en'=>'Cultural and academic program. Four-month experience in Buenos Aires.',
-                'it'=>'Programma culturale e accademico. Esperienza di quattro mesi a Buenos Aires.',
+                'es'=>'Intercambio en 6.º de escuela con una institución de Argentina; los estudiantes asisten allí y al año siguiente los pares argentinos visitan Uruguay.',
+                'en'=>'Exchange in 6th grade with a partner school in Argentina; students attend there and the following year the Argentine peers visit Uruguay.',
+                'it'=>'Scambio in sesta classe con una scuola partner in Argentina; gli studenti frequentano lì e l’anno successivo i pari argentini visitano l’Uruguay.',
             ],
             'us_t' => ['es'=>'Estados Unidos','en'=>'United States','it'=>'Stati Uniti'],
             'us_p' => [
-                'es'=>'Intercambio en high schools americanas. Programa anual disponible.',
-                'en'=>'Exchange in American high schools. Full-year program available.',
-                'it'=>'Scambio in high school americane. Disponibile programma annuale.',
+                'es'=>'Intercambio en 6.º de escuela; los estudiantes asisten a una escuela en Estados Unidos y, al año siguiente, los anfitriones viajan a Uruguay.',
+                'en'=>'Exchange in 6th grade; students attend a school in the United States and, the following year, the hosts travel to Uruguay.',
+                'it'=>'Scambio in sesta classe; gli studenti frequentano una scuola negli Stati Uniti e, l’anno successivo, i partner vengono in Uruguay.',
             ],
             'see_prog' => ['es'=>'Ver programa','en'=>'See program','it'=>'Vedi programma'],
             'contact' => ['es'=>'Contacto','en'=>'Contact','it'=>'Contatto'],
@@ -67,6 +72,9 @@
         <div class="hero-content">
             <h1 class="hero-title"><?php echo $x['hero_t'][$cl]; ?></h1>
             <p class="hero-subtitle"><?php echo $x['hero_s'][$cl]; ?></p>
+            <p class="hero-intro" style="margin-top:10px; color:#f7f7f7; font-size:1rem; max-width:900px;">
+                <?php echo $x['intro'][$cl]; ?>
+            </p>
         </div>
     </section>
 

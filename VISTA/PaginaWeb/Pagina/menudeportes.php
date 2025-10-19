@@ -8,7 +8,7 @@
     <title><?php $md_meta=['es'=>'Deportes - Scuola Italiana','en'=>'Sports - Scuola Italiana','it'=>'Sport - Scuola Italiana']; echo $md_meta[$cl]; ?></title>
 
     <link rel="stylesheet" href="breadcrumbs.css">
-    <link rel="stylesheet" href="../css/menudeportes.css">
+  <link rel="stylesheet" href="../css/menudeportes.css">
 </head>
 <div id="cms-root"></div>
 <body>
@@ -33,6 +33,11 @@
     <?php 
       $md = [
                 'hero' => ['es' => 'Deportes', 'en' => 'Sports', 'it' => 'Sport'],
+                'intro' => [
+                    'es' => 'La práctica deportiva fomenta hábitos saludables, el trabajo en equipo y valores como el respeto y la constancia.',
+                    'en' => 'Sports practice encourages healthy habits, teamwork and values such as respect and consistency.',
+                    'it' => 'La pratica sportiva promuove abitudini salutari, il lavoro di squadra e valori come il rispetto e la costanza.'
+                ],
                 'futbol_h' => ['es' => 'Fútbol', 'en' => 'Football', 'it' => 'Calcio'],
                 'futbol_p1' => [
                     'es' => 'El fútbol es uno de los deportes más populares y emocionantes que practicamos en nuestra institución. Este deporte no solo desarrolla las habilidades físicas de nuestros estudiantes, sino que también fomenta valores fundamentales como el trabajo en equipo, la disciplina y el respeto.',
@@ -105,6 +110,7 @@
         <section class="hero-inicial">
             <div class="hero-content">
                 <h1 class="hero-title"><?php echo $md['hero'][$cl]; ?></h1>
+                <p class="hero-subtitle" style="margin-top:10px; color:#555; font-size:1rem;"><?php echo $md['intro'][$cl]; ?></p>
             </div>
         </section>
         <div id="breadcrumbs" class="breadcrumbs-container"></div>
@@ -115,7 +121,7 @@
                 <div class="program-section">
                     <div class="program-image">
                         <img src="FOTOS/fotosDeportes/futbol1.jpg" alt="Fútbol">
-                    </div>
+        </div>
                     <div class="program-info">
                         <h3><?php echo $md['futbol_h'][$cl]; ?></h3>
                         <p><?php echo $md['futbol_p1'][$cl]; ?></p>
@@ -145,7 +151,7 @@
                 <div class="program-section">
                     <div class="program-image">
                         <img src="FOTOS/fotosDeportes/hockey1.jpg" alt="Hockey">
-                    </div>
+        </div>
                     <div class="program-info">
                         <h3><?php echo $md['hockey_h'][$cl]; ?></h3>
                         <p><?php echo $md['hockey_p1'][$cl]; ?></p>
@@ -175,7 +181,7 @@
                 <div class="program-section">
                     <div class="program-image">
                         <img src="FOTOS/fotosDeportes/gimnacia.jpg" alt="Gimnasia Artística">
-                    </div>
+        </div>
                     <div class="program-info">
                         <h3><?php echo $md['gimnasia_h'][$cl]; ?></h3>
                         <p><?php echo $md['gimnasia_p1'][$cl]; ?></p>
@@ -224,8 +230,8 @@
                     <p>(+598) 2621 4822 / 2622 1422</p>
                     <p>info@scuolaitaliana.edu.uy</p>
                 </div>
-        </div>
-            
+    </div>
+
             <div class="footer-right">
                 <div class="footer-section">
                     <?php 
@@ -247,7 +253,7 @@
             <p>Desarrollado por el equipo SGE | Proyecto de apoyo 2002 - EE Informática</p>
         </div>
     </footer>
-    </div>
+  </div>
 
     <script>
         let lastScrollTop = 0;

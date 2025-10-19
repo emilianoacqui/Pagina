@@ -75,9 +75,9 @@
                     <p>
                         <?php 
                             $atletismo_descriptions = [
-                                'es' => 'El atletismo es un deporte base que desarrolla velocidad, resistencia y fuerza. En nuestra institución, este deporte ha demostrado ser excelente para desarrollar la disciplina y la perseverancia.',
-                                'en' => 'Athletics is a base sport that develops speed, endurance and strength. At our institution, this sport has proven excellent for developing discipline and perseverance.',
-                                'it' => 'L\'atletica è uno sport di base che sviluppa velocità, resistenza e forza. Nella nostra istituzione, questo sport si è dimostrato eccellente per sviluppare disciplina e perseveranza.'
+                                'es' => 'El atletismo es un deporte base que desarrolla velocidad, resistencia y fuerza. En nuestra institución favorece la disciplina, la constancia y el esfuerzo personal.',
+                                'en' => 'Athletics is a base sport that develops speed, endurance and strength. At our school it fosters discipline, consistency and personal effort.',
+                                'it' => 'L\'atletica è uno sport di base che sviluppa velocità, resistenza e forza. Nella nostra scuola favorisce disciplina, costanza e impegno personale.'
                             ];
                             echo $atletismo_descriptions[$cl]; 
                         ?>

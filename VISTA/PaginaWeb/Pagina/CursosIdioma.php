@@ -84,21 +84,21 @@
                 ],
                 'f1_h' => ['es' => 'Tiempo dedicado','en' => 'Dedicated time','it' => 'Tempo dedicato'],
                 'f1_p' => [
-                    'es' => 'Desarrollamos todas las dimensiones del estudiante: intelectual, física, emocional y social.',
-                    'en' => 'We develop all student dimensions: intellectual, physical, emotional and social.',
-                    'it' => 'Sviluppiamo tutte le dimensioni dello studente: intellettuale, fisica, emotiva e sociale.',
+                    'es' => 'Carga horaria adecuada por nivel con práctica equilibrada de comprensión y producción.',
+                    'en' => 'Level‑appropriate workload with a balanced practice of comprehension and production.',
+                    'it' => 'Carico orario adeguato al livello con pratica equilibrata di comprensione e produzione.',
                 ],
                 'f2_h' => ['es' => 'Atención particular','en' => 'Personal attention','it' => 'Attenzione personale'],
                 'f2_p' => [
-                    'es' => 'Honramos la herencia italiana y la diversidad cultural en un ambiente de respeto.',
-                    'en' => 'We honor Italian heritage and cultural diversity in a respectful environment.',
-                    'it' => 'Onoriamo l’eredità italiana e la diversità culturale in un ambiente rispettoso.',
+                    'es' => 'Grupos reducidos y seguimiento docente para alcanzar objetivos individuales.',
+                    'en' => 'Small groups and teacher follow‑up to achieve individual goals.',
+                    'it' => 'Gruppi ridotti e monitoraggio docente per raggiungere obiettivi individuali.',
                 ],
                 'f3_h' => ['es' => 'Profesores bien capacitados','en' => 'Well‑trained teachers','it' => 'Docenti ben qualificati'],
                 'f3_p' => [
-                    'es' => 'Programas de alta calidad con foco en pensamiento crítico e innovación.',
-                    'en' => 'High‑quality programs focused on critical thinking and innovation.',
-                    'it' => 'Programmi di alta qualità focalizzati sul pensiero critico e sull’innovazione.',
+                    'es' => 'Docentes certificados y preparación para exámenes internacionales (según nivel).',
+                    'en' => 'Certified teachers and preparation for international exams (by level).',
+                    'it' => 'Docenti certificati e preparazione agli esami internazionali (in base al livello).',
                 ],
             ];
         ?>

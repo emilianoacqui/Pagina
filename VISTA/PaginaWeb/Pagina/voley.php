@@ -75,9 +75,9 @@
                     <p>
                         <?php 
                             $voley_descriptions = [
-                                'es' => 'El voleibol es un deporte que combina fuerza, agilidad y trabajo en equipo. En nuestra institución, este deporte ha demostrado ser excelente para desarrollar la coordinación y la comunicación entre jugadores.',
-                                'en' => 'Volleyball is a sport that combines strength, agility and teamwork. At our institution, this sport has proven excellent for developing coordination and communication between players.',
-                                'it' => 'La pallavolo è uno sport che combina forza, agilità e lavoro di squadra. Nella nostra istituzione, questo sport si è dimostrato eccellente per sviluppare coordinazione e comunicazione tra i giocatori.'
+                                'es' => 'El voleibol es un deporte que combina fuerza, agilidad y trabajo en equipo. En nuestra institución favorece la coordinación y la comunicación entre jugadores.',
+                                'en' => 'Volleyball is a sport that combines strength, agility and teamwork. At our school it fosters coordination and communication between players.',
+                                'it' => 'La pallavolo è uno sport che combina forza, agilità e lavoro di squadra. Nella nostra scuola favorisce coordinazione e comunicazione tra i giocatori.'
                             ];
                             echo $voley_descriptions[$cl]; 
                         ?>
