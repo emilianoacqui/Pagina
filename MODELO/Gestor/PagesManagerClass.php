@@ -10,6 +10,17 @@ class PagesManager {
         $this->ensureTables();
     }
     
+    private static function normalizeUrl($url) {
+        $url = trim($url);
+        // Quitar fragmentos y querystring para clave lógica
+        $url = preg_replace('/[#?].*$/', '', $url);
+        // Quitar trailing slash excepto si es solo '/'
+        if ($url !== '/' ) { $url = rtrim($url, '/'); }
+        // Normalizar espacios y minúsculas si no es absoluto con esquema
+        // (mantener mayúsculas si fuese necesario para rutas específicas)
+        return $url;
+    }
+    
     private function ensureTables() {
         $sql = "CREATE TABLE IF NOT EXISTS cms_pages (
             id VARCHAR(255) PRIMARY KEY,
@@ -41,8 +52,17 @@ class PagesManager {
     }
     
     public function getAllPages() {
+        // Devolver solo la versión más reciente por URL para evitar duplicados visuales
         $pages = [];
-        $sql = "SELECT id, url, name, content, template, DATE_FORMAT(last_modified, '%Y-%m-%d %H:%i:%s') as lastModified FROM cms_pages ORDER BY last_modified DESC";
+        $sql = "SELECT p.id, p.url, p.name, p.content, p.template,
+                       DATE_FORMAT(p.last_modified, '%Y-%m-%d %H:%i:%s') as lastModified
+                FROM cms_pages p
+                INNER JOIN (
+                    SELECT url, MAX(last_modified) AS max_lm
+                    FROM cms_pages
+                    GROUP BY url
+                ) t ON t.url = p.url AND p.last_modified = t.max_lm
+                ORDER BY p.last_modified DESC";
         if ($result = $this->conn->query($sql)) {
             while ($row = $result->fetch_assoc()) {
                 $pages[] = $row;
@@ -62,6 +82,9 @@ class PagesManager {
         if (!$id || !$url || $content === '') {
             return false;
         }
+        
+        // Normalizar URL para evitar variantes que generen duplicados
+        $url = self::normalizeUrl($url);
         
         // Upsert
         $sql = "INSERT INTO cms_pages (id, url, name, content, template)

@@ -431,6 +431,83 @@ require_once('auth_check.php');
       background: #2c3e50;
       color: white;
     }
+
+    /* Estilos para Gestión CMS */
+    .cms-pages-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+      gap: 20px;
+      margin-top: 20px;
+    }
+
+    .cms-page-card {
+      background: white;
+      border: 1px solid #e0e0e0;
+      border-radius: 8px;
+      padding: 20px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .cms-page-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+    }
+
+    .cms-page-header {
+      border-bottom: 1px solid #f0f0f0;
+      padding-bottom: 15px;
+      margin-bottom: 15px;
+    }
+
+    .cms-page-header h3 {
+      margin: 0 0 5px 0;
+      color: #2c3e50;
+      font-size: 18px;
+    }
+
+    .cms-page-url {
+      color: #7f8c8d;
+      font-size: 14px;
+      font-family: monospace;
+      background: #f8f9fa;
+      padding: 2px 6px;
+      border-radius: 3px;
+    }
+
+    .cms-page-content {
+      margin-bottom: 20px;
+    }
+
+    .cms-page-content p {
+      margin: 8px 0;
+      color: #555;
+      line-height: 1.5;
+    }
+
+    .cms-page-actions {
+      display: flex;
+      gap: 10px;
+      justify-content: flex-end;
+    }
+
+    .alert {
+      padding: 15px;
+      border-radius: 5px;
+      margin: 10px 0;
+    }
+
+    .alert-info {
+      background-color: #d1ecf1;
+      border: 1px solid #bee5eb;
+      color: #0c5460;
+    }
+
+    .alert-danger {
+      background-color: #f8d7da;
+      border: 1px solid #f5c6cb;
+      color: #721c24;
+    }
   </style>
 </head>
 <body>
@@ -461,6 +538,10 @@ require_once('auth_check.php');
       <li class="nav-item" data-section="pagina" onclick="showSection('pagina', event)">
         <span class="nav-icon"></span>
         <span>Página</span>
+      </li>
+      <li class="nav-item" data-section="cms" onclick="showSection('cms', event)">
+        <span class="nav-icon"></span>
+        <span>Gestión CMS</span>
       </li>
     </ul>
     
@@ -680,6 +761,26 @@ require_once('auth_check.php');
                 style="border: 1px solid #ddd; border-radius: 8px;"></iframe>
     </div>
 </section>
+
+<!-- Gestión CMS Section -->
+<section id="cms" class="content-area" style="display: none;">
+    <div class="page-header">
+        <h1 class="page-title">Gestión CMS</h1>
+        <p class="page-subtitle">Administra las páginas guardadas en el sistema CMS</p>
+    </div>
+    
+    <div style="margin-bottom: 20px;">
+        <button class="btn btn-primary" onclick="loadCMSPages()"> Actualizar Lista</button>
+        <button class="btn btn-danger" onclick="confirmDeleteAllCMS()"> Eliminar Todo</button>
+    </div>
+    
+    <div id="cms-pages-container">
+        <div class="loading" id="cms-loading" style="text-align: center; padding: 40px;">
+            <p>Cargando páginas CMS...</p>
+        </div>
+    </div>
+</section>
+
   </main>
 
   <!-- Image URL Modal -->
@@ -2680,6 +2781,175 @@ document.addEventListener('DOMContentLoaded', function() {
     });
     
     observer.observe(visitasSection, { attributes: true });
+});
+
+// ========== FUNCIONES DE GESTIÓN CMS ==========
+
+// Cargar páginas CMS desde la base de datos
+async function loadCMSPages() {
+    const container = document.getElementById('cms-pages-container');
+    const loading = document.getElementById('cms-loading');
+    
+    loading.style.display = 'block';
+    
+    try {
+        const response = await fetch('../../../CONTROLADOR/Cms/pages_manager.php?action=getAll');
+        const result = await response.json();
+        
+        loading.style.display = 'none';
+        
+        if (result.success) {
+            displayCMSPages(result.data);
+        } else {
+            container.innerHTML = '<div class="alert alert-danger">Error al cargar las páginas: ' + result.message + '</div>';
+        }
+    } catch (error) {
+        loading.style.display = 'none';
+        container.innerHTML = '<div class="alert alert-danger">Error de conexión: ' + error.message + '</div>';
+    }
+}
+
+// Mostrar las páginas CMS en el contenedor
+function displayCMSPages(pages) {
+    const container = document.getElementById('cms-pages-container');
+    
+    if (!pages || pages.length === 0) {
+        container.innerHTML = '<div class="alert alert-info">No hay páginas guardadas en el CMS.</div>';
+        return;
+    }
+    
+    let html = '<div class="cms-pages-grid">';
+    
+    pages.forEach(page => {
+        html += `
+            <div class="cms-page-card">
+                <div class="cms-page-header">
+                    <h3>${escapeHtml(page.title || 'Sin título')}</h3>
+                    <span class="cms-page-url">/${page.url}</span>
+                </div>
+                <div class="cms-page-content">
+                    <p><strong>Contenido:</strong> ${escapeHtml(page.content || '').substring(0, 200)}${page.content && page.content.length > 200 ? '...' : ''}</p>
+                    <p><strong>Última actualización:</strong> ${new Date(page.updated_at).toLocaleString()}</p>
+                </div>
+                <div class="cms-page-actions">
+                    <button class="btn btn-primary btn-small" onclick="viewCMSPage('${page.url}')">Ver Página</button>
+                    <button class="btn btn-danger btn-small" onclick="confirmDeleteCMSPage('${page.id}', '${page.title || page.url}')">Eliminar</button>
+                </div>
+            </div>
+        `;
+    });
+    
+    html += '</div>';
+    container.innerHTML = html;
+}
+
+// Ver una página CMS
+function viewCMSPage(url) {
+    window.open(`../../${url}`, '_blank');
+}
+
+// Confirmar eliminación de página CMS individual
+function confirmDeleteCMSPage(id, title) {
+    if (confirm(`¿Estás seguro de que quieres eliminar la página "${title}"?\n\nEsta acción no se puede deshacer.`)) {
+        deleteCMSPage(id);
+    }
+}
+
+// Eliminar página CMS individual
+async function deleteCMSPage(id) {
+    try {
+        const response = await fetch('../../../CONTROLADOR/Cms/pages_manager.php', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                action: 'delete',
+                id: id
+            })
+        });
+        
+        const result = await response.json();
+        
+        if (result.success) {
+            addToHistory('Página CMS eliminada', `Se eliminó la página: ${result.message}`);
+            loadCMSPages(); // Recargar la lista
+        } else {
+            alert('Error al eliminar la página: ' + result.message);
+        }
+    } catch (error) {
+        alert('Error de conexión: ' + error.message);
+    }
+}
+
+// Confirmar eliminación de todas las páginas CMS
+function confirmDeleteAllCMS() {
+    if (confirm('¿Estás seguro de que quieres eliminar TODAS las páginas del CMS?\n\nEsta acción no se puede deshacer.')) {
+        if (confirm('Esta es tu última oportunidad. ¿Realmente quieres eliminar todo el contenido CMS?')) {
+            deleteAllCMSPages();
+        }
+    }
+}
+
+// Eliminar todas las páginas CMS
+async function deleteAllCMSPages() {
+    try {
+        const response = await fetch('../../../CONTROLADOR/Cms/pages_manager.php?action=getAll');
+        const result = await response.json();
+        
+        if (result.success && result.data.length > 0) {
+            let deletedCount = 0;
+            
+            for (const page of result.data) {
+                const deleteResponse = await fetch('../../../CONTROLADOR/Cms/pages_manager.php', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        action: 'delete',
+                        id: page.id
+                    })
+                });
+                
+                const deleteResult = await deleteResponse.json();
+                if (deleteResult.success) {
+                    deletedCount++;
+                }
+            }
+            
+            addToHistory('CMS limpiado', `Se eliminaron ${deletedCount} páginas del CMS`);
+            loadCMSPages(); // Recargar la lista
+        } else {
+            alert('No hay páginas para eliminar.');
+        }
+    } catch (error) {
+        alert('Error al eliminar las páginas: ' + error.message);
+    }
+}
+
+// Escapar HTML para evitar XSS
+function escapeHtml(text) {
+    const div = document.createElement('div');
+    div.textContent = text;
+    return div.innerHTML;
+}
+
+// Cargar páginas CMS automáticamente cuando se muestre la sección
+document.addEventListener('DOMContentLoaded', function() {
+    const cmsSection = document.getElementById('cms');
+    
+    const observer = new MutationObserver(function(mutations) {
+        mutations.forEach(function(mutation) {
+            if (mutation.type === 'attributes' && mutation.attributeName === 'style') {
+                if (cmsSection.style.display !== 'none') {
+                    loadCMSPages();
+                }
+            }
+        });
+    });
+    
+    observer.observe(cmsSection, { attributes: true });
 });
   </script>
 </body>

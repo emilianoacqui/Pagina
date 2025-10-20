@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<?php if (session_status() === PHP_SESSION_NONE) { session_start(); } if (isset($_GET['lang']) && in_array($_GET['lang'], ['es','en','it'])) { $_SESSION['lang'] = $_GET['lang']; } ?>
-<html lang="en">
+<?php if (session_status() === PHP_SESSION_NONE) { session_start(); } if (isset($_GET['lang']) && in_array($_GET['lang'], ['es','en','it'])) { $_SESSION['lang'] = $_GET['lang']; } $cl = $_SESSION['lang'] ?? 'es'; ?>
+<html lang="<?php echo $cl; ?>">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../css/index.css">
-    <title>Inicio</title>
+    <title><?php $idx_meta=['es'=>'Inicio','en'=>'Home','it'=>'Home']; echo $idx_meta[$cl]; ?></title>
      
     <style>
         * {
@@ -1245,7 +1245,7 @@ body:not(.loading-cms-content) #cms-root {
                 ];
                 $ages = [
                     'es' => ['3 meses a 5 años','6 a 12 años','12 a 18 años'],
-                    'en' => ['3 months to 5 years','6 to 12 years','12 to 18 years'],
+                    'en' => ['3 months to 5 years old','6 to 12 years old','12 to 18 years old'],
                     'it' => ['3 mesi a 5 anni','6 a 12 anni','12 a 18 anni'],
                 ];
             ?>
@@ -1503,19 +1503,19 @@ body:not(.loading-cms-content) #cms-root {
                 ];
                 $newsTexts = [
                     'es' => [
+                        'Día de la Familia: evento organizado por la generación que se gradúa para recaudar fondos para su viaje. Habrá comida, actividades, sorteos y muchas sorpresas.',
                         'Estudiantes desarrollan iniciativas ambientales y proyectos de reforestación en el campus.',
-                        'Regreso a clases con jornadas de integración y actividades en equipo.',
                         'La comunidad de exalumnos comparte experiencias y oportunidades profesionales.',
                     ],
                     'en' => [
+                        'Family Day: an event organized by the graduating class to raise funds for their trip, with food, activities, raffles and more.',
                         'Students lead environmental initiatives and reforestation projects on campus.',
-                        'Back to school with integration days and team-building activities.',
                         'The alumni community shares experiences and career opportunities.',
                     ],
                     'it' => [
+                        'Giornata della Famiglia: evento organizzato dalla classe diplomanda per raccogliere fondi per il viaggio, con cibo, attività, lotterie e molto altro.',
                         'Gli studenti guidano iniziative ambientali e progetti di riforestazione nel campus.',
-                        'Ritorno a scuola con giornate di integrazione e attività di team building.',
-                        'La comunità degli ex-alunni condivide esperienze e opportunità professionali.',
+                        "La comunità degli ex‑alunni condivide esperienze e opportunità professionali.",
                     ],
                 ];
                 $seeMoreNews = [ 'es' => 'Ver mas', 'en' => 'See more', 'it' => 'Vedi di più' ];
@@ -1611,8 +1611,9 @@ body:not(.loading-cms-content) #cms-root {
                     <div class="footer-section">
                         <?php $footerTitles = ['es' => 'Contacto','en' => 'Contact','it' => 'Contatto']; ?>
                         <h4><?php echo $footerTitles[$cl]; ?></h4>
-                        <p>Av. Brasil 3149, Montevideo</p>
-                        <p>(+598) 2621 4822 / 2622 1422</p>
+                        <p>Gral. French 2380</p>
+                        <p>CP 11500 - Montevideo, Uruguay</p>
+                        <p>(+598) 2600 1527</p>
                         <p>info@scuolaitaliana.edu.uy</p>
                     </div>
                 </div>

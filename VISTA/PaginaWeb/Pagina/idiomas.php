@@ -1,6 +1,6 @@
 <!DOCTYPE html>
-<?php if (session_status() === PHP_SESSION_NONE) { session_start(); } $cl = $_SESSION['lang'] ?? 'es'; ?>
-<html lang="es">
+<?php if (session_status() === PHP_SESSION_NONE) { session_start(); } if (isset($_GET['lang']) && in_array($_GET['lang'], ['es','en','it'])) { $_SESSION['lang'] = $_GET['lang']; } $cl = $_SESSION['lang'] ?? 'es'; ?>
+<html lang="<?php echo $cl; ?>">
 
 <head>
     <meta charset="UTF-8">
@@ -36,11 +36,11 @@
             'hero_s' => ['es'=>'Descubre todo lo que hace especial a la Scuola Italiana di Montevideo','en'=>'Discover what makes the Scuola Italiana di Montevideo special','it'=>'Scopri cosa rende speciale la Scuola Italiana di Montevideo'],
             'sect_t' => ['es'=>'Nuestros idiomas','en'=>'Our Languages','it'=>'Le nostre lingue'],
             'en_h' => ['es'=>'Inglés','en'=>'English','it'=>'Inglese'],
-            'en_p' => ['es'=>'Desarrollamos todas las dimensiones del estudiante: intelectual, física, emocional y social.','en'=>'We develop all student dimensions: intellectual, physical, emotional and social.','it'=>'Sviluppiamo tutte le dimensioni dello studente: intellettuale, fisica, emotiva e sociale.'],
+            'en_p' => ['es'=>'Programa de inglés con enfoque comunicativo y progresión por niveles; fortalecemos comprensión auditiva, producción oral, lectura y escritura.','en'=>'English program with a communicative approach and level progression; we strengthen listening, speaking, reading and writing.','it'=>'Programma di inglese con approccio comunicativo e progressione per livelli; potenziamo ascolto, produzione orale, lettura e scrittura.'],
             'it_h' => ['es'=>'Italiano','en'=>'Italian','it'=>'Italiano'],
-            'it_p' => ['es'=>'Honramos la herencia italiana y la diversidad cultural en un ambiente de respeto.','en'=>'We honor Italian heritage and cultural diversity in a respectful environment.','it'=>'Onoriamo l’eredità italiana e la diversità culturale in un ambiente rispettoso.'],
+            'it_p' => ['es'=>'Italiano como lengua de identidad y cultura; aprendizaje integrado con proyectos bilingües y preparación para certificaciones.','en'=>'Italian as a language of identity and culture; integrated learning with bilingual projects and preparation for certifications.','it'=>'L’italiano come lingua di identità e cultura; apprendimento integrato con progetti bilingui e preparazione alle certificazioni.'],
             'pt_h' => ['es'=>'Portugués','en'=>'Portuguese','it'=>'Portoghese'],
-            'pt_p' => ['es'=>'Programas de calidad enfocados en pensamiento crítico e innovación.','en'=>'High‑quality programs focused on critical thinking and innovation.','it'=>'Programmi di qualità focalizzati sul pensiero critico e sull’innovazione.'],
+            'pt_p' => ['es'=>'Portugués orientado a contextos cotidianos y académicos, con práctica oral constante y actividades culturales.','en'=>'Portuguese oriented to everyday and academic contexts, with steady speaking practice and cultural activities.','it'=>'Portoghese orientato a contesti quotidiani e accademici, con pratica orale costante e attività culturali.'],
             'contact' => ['es'=>'Contacto','en'=>'Contact','it'=>'Contatto'],
             'links' => ['es'=>'Enlaces útiles','en'=>'Useful links','it'=>'Link utili'],
             'link_items' => [
@@ -103,8 +103,9 @@
                 <div class="footer-section">
                     <h4><?php echo $id['contact'][$cl]; ?></h4>
 
-                    <p>Av. Brasil 3149, Montevideo</p>
-                    <p>(+598) 2621 4822 / 2622 1422</p>
+                    <p>Gral. French 2380</p>
+                    <p>CP 11500 - Montevideo, Uruguay</p>
+                    <p>(+598) 2600 1527</p>
                     <p>info@scuolaitaliana.edu.uy</p>
                 </div>
             </div>

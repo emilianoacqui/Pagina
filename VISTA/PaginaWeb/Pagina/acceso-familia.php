@@ -30,25 +30,27 @@
         $af = [
             'hero_t' => ['es'=>'Acceso a familia','en'=>'Family Access','it'=>'Accesso Famiglia'],
             'hero_s' => ['es'=>'Una colección organizada de elementos o información','en'=>'An organized collection of items or information','it'=>'Una raccolta organizzata di elementi o informazioni'],
-            'intro_t' => ['es'=>'Introducción','en'=>'Introduction','it'=>'Introduzione'],
-            'intro_p' => ['es'=>'Este párrafo introductorio explica el propósito de la lista que se presenta a continuación. Puedes usar este espacio para dar contexto o explicar la importancia de los elementos listados.','en'=>'This introductory paragraph explains the purpose of the list below. Use this space to provide context or explain the importance of the listed items.','it'=>'Questo paragrafo introduttivo spiega lo scopo dell’elenco seguente. Usa questo spazio per dare contesto o spiegare l’importanza degli elementi elencati.'],
-            'info_h' => ['es'=>'Información adicional','en'=>'Additional information','it'=>'Informazioni aggiuntive'],
-            'info_p' => ['es'=>'Aquí puedes agregar información específica para este elemento.','en'=>'Here you can add specific information for this item.','it'=>'Qui puoi aggiungere informazioni specifiche per questo elemento.'],
-            'spec_h' => ['es'=>'Detalles específicos','en'=>'Specific details','it'=>'Dettagli specifici'],
-            'more_h' => ['es'=>'Más información','en'=>'More information','it'=>'Maggiori informazioni'],
-            'last_h' => ['es'=>'Última información','en'=>'Last information','it'=>'Ultime informazioni'],
+            'intro_t' => ['es'=>'Servicios para familias','en'=>'Family services','it'=>'Servizi per le famiglie'],
+            'intro_p' => ['es'=>'Acceso directo a herramientas y recursos frecuentes: calificaciones, calendario, pagos, comunicaciones y materiales.','en'=>'Direct access to frequent tools and resources: grades, calendar, payments, communications and materials.','it'=>'Accesso diretto a strumenti e risorse frequenti: voti, calendario, pagamenti, comunicazioni e materiali.'],
+            'info_h' => ['es'=>'Acceso rápido','en'=>'Quick access','it'=>'Accesso rapido'],
+            'info_p' => ['es'=>'Disponible con usuario institucional. Ante dudas, contacte secretaría.','en'=>'Available with institutional account. For questions, contact the office.','it'=>'Disponibile con account istituzionale. Per dubbi, contattare la segreteria.'],
+            'spec_h' => ['es'=>'Detalle','en'=>'Detail','it'=>'Dettaglio'],
+            'more_h' => ['es'=>'Enlaces relacionados','en'=>'Related links','it'=>'Link correlati'],
+            'last_h' => ['es'=>'Soporte','en'=>'Support','it'=>'Supporto'],
+
             'items' => [
-                't1' => ['es'=>'Primer elemento','en'=>'First item','it'=>'Primo elemento'],
-                'd1' => ['es'=>'Descripción detallada del primer elemento de la lista. Aquí puedes explicar características, beneficios o detalles relevantes.','en'=>'Detailed description of the first list item. Explain features, benefits or relevant details here.','it'=>'Descrizione dettagliata del primo elemento. Spiega qui caratteristiche, benefici o dettagli rilevanti.'],
-                't2' => ['es'=>'Segundo elemento','en'=>'Second item','it'=>'Secondo elemento'],
-                'd2' => ['es'=>'Información sobre el segundo elemento, manteniendo consistencia de longitud y estilo.','en'=>'Information about the second item, keeping consistent length and style.','it'=>'Informazioni sul secondo elemento, mantenendo lunghezza e stile coerenti.'],
-                't3' => ['es'=>'Tercer elemento','en'=>'Third item','it'=>'Terzo elemento'],
-                'd3' => ['es'=>'Detalles del tercer elemento. Puedes agregar más elementos siguiendo la misma estructura.','en'=>'Details of the third item. You can add more items following the same structure.','it'=>'Dettagli del terzo elemento. Puoi aggiungere altri elementi seguendo la stessa struttura.'],
-                't4' => ['es'=>'Cuarto elemento','en'=>'Fourth item','it'=>'Quarto elemento'],
-                'd4' => ['es'=>'Descripción del cuarto elemento. La numeración mantiene el orden visual claro.','en'=>'Description of the fourth item. Numbering keeps visual order clear.','it'=>'Descrizione del quarto elemento. La numerazione mantiene chiaro l’ordine visivo.'],
-                't5' => ['es'=>'Quinto elemento','en'=>'Fifth item','it'=>'Quinto elemento'],
-                'd5' => ['es'=>'Información sobre el quinto elemento de esta lista de ejemplo.','en'=>'Information about the fifth item in this example list.','it'=>'Informazioni sul quinto elemento di questo elenco di esempio.'],
+                't1' => ['es'=>'Boletines y calificaciones','en'=>'Report cards and grades','it'=>'Pagelle e voti'],
+                'd1' => ['es'=>'Consulta de calificaciones por período, histórico y observaciones de los docentes.','en'=>'Check term grades, history and teacher comments.','it'=>'Consulta voti per periodo, storico e osservazioni dei docenti.'],
+                't2' => ['es'=>'Calendario escolar','en'=>'School calendar','it'=>'Calendario scolastico'],
+                'd2' => ['es'=>'Fechas de evaluaciones, reuniones, eventos y actividades institucionales.','en'=>'Dates for exams, meetings, events and institutional activities.','it'=>'Date di verifiche, riunioni, eventi e attività istituzionali.'],
+                't3' => ['es'=>'Pagos y aranceles','en'=>'Payments and fees','it'=>'Pagamenti e tasse'],
+                'd3' => ['es'=>'Información de facturación, medios de pago habilitados y comprobantes.','en'=>'Billing information, accepted payment methods and receipts.','it'=>'Informazioni di fatturazione, metodi di pagamento accettati e ricevute.'],
+                't4' => ['es'=>'Comunicaciones','en'=>'Communications','it'=>'Comunicazioni'],
+                'd4' => ['es'=>'Circulares, avisos del colegio y mensajes de coordinación y docentes.','en'=>'Circulars, school notices and messages from coordination and teachers.','it'=>'Circolari, avvisi della scuola e messaggi di coordinamento e docenti.'],
+                't5' => ['es'=>'Recursos pedagógicos','en'=>'Learning resources','it'=>'Risorse didattiche'],
+                'd5' => ['es'=>'Materiales de estudio, bibliografía, plataformas y tutoriales de apoyo.','en'=>'Study materials, bibliography, platforms and support tutorials.','it'=>'Materiali di studio, bibliografia, piattaforme e tutorial di supporto.'],
             ],
+
             'conclusion_t' => ['es'=>'Conclusión','en'=>'Conclusion','it'=>'Conclusione'],
             'conclusion_p' => ['es'=>'Párrafo de cierre que resume los puntos clave de la lista o brinda una reflexión final.','en'=>'Closing paragraph summarizing key points of the list or providing a final reflection.','it'=>'Paragrafo conclusivo che riassume i punti chiave dell’elenco o offre una riflessione finale.'],
             'contact' => ['es'=>'Contacto','en'=>'Contact','it'=>'Contatto'],
@@ -269,8 +271,9 @@
             <div class="footer-center">
                 <div class="footer-section">
                     <h4><?php echo $af['contact'][$cl]; ?></h4>
-                    <p>Av. Brasil 3149, Montevideo</p>
-                    <p>(+598) 2621 4822 / 2622 1422</p>
+                    <p>Gral. French 2380</p>
+                    <p>CP 11500 - Montevideo, Uruguay</p>
+                    <p>(+598) 2600 1527</p>
                     <p>info@scuolaitaliana.edu.uy</p>
                 </div>
             </div>

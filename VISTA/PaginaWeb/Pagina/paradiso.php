@@ -31,7 +31,7 @@
               'hero_t' => ['es'=>'Paradiso','en'=>'Paradiso','it'=>'Paradiso'],
               'hero_s' => ['es'=>'Una colección de imágenes organizadas visualmente','en'=>'A visually organized image collection','it'=>'Una raccolta di immagini organizzate visivamente'],
               'gal_t' => ['es'=>'Paradiso','en'=>'Paradiso','it'=>'Paradiso'],
-              'gal_d' => ['es'=>'En el marco del proyecto “Heliópolis”, los estudiantes investigan la figura de Francisco Piria y sus conexiones con la alquimia y la astronomía, visitando Piriápolis y puntos emblemáticos de la ciudad.','en'=>'Within the “Heliópolis” project, students explore Francisco Piria and his connections to alchemy and astronomy, visiting Piriápolis and key city landmarks.','it'=>'Nel progetto “Heliopolis”, gli studenti esplorano la figura di Francesco Piria e i suoi legami con l’alchimia e l’astronomia, visitando Piriápolis e luoghi simbolo della città.'],
+              'gal_d' => ['es'=>'Proyecto ecológico escolar para crear y recuperar espacios con criterios de sustentabilidad: huertas, compost, biodiversidad y hábitos responsables en el campus.','en'=>'School ecological project to create and restore spaces with sustainability criteria: gardens, composting, biodiversity and responsible habits on campus.','it'=>'Progetto ecologico scolastico per creare e recuperare spazi con criteri di sostenibilità: orti, compostaggio, biodiversità e abitudini responsabili nel campus.'],
               'ph_main_t' => ['es'=>'Imagen destacada','en'=>'Featured image','it'=>'Immagine in evidenza'],
               'ph_main_c' => ['es'=>'Descripción de la imagen principal','en'=>'Description of the main image','it'=>'Descrizione dell’immagine principale'],
               'ph_1' => ['es'=>'Primera imagen','en'=>'First image','it'=>'Prima immagine'],
@@ -140,8 +140,9 @@
         <div class="footer-center">
             <div class="footer-section">
                 <h4><?php echo $pa['contact'][$cl]; ?></h4>
-                <p>Av. Brasil 3149, Montevideo</p>
-                <p>(+598) 2621 4822 / 2622 1422</p>
+                <p>Gral. French 2380</p>
+                <p>CP 11500 - Montevideo, Uruguay</p>
+                <p>(+598) 2600 1527</p>
                 <p>info@scuolaitaliana.edu.uy</p>
             </div>
         </div>
