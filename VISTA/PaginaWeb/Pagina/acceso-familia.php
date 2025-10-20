@@ -11,6 +11,7 @@
 </head>
 <div id="cms-root"></div>
 <body>
+    
     <div id="original-content"> 
     <!-- Navigation -->
     <nav class="navbar">
