@@ -32,9 +32,9 @@
               'hero_s' => ['es'=>'Intercambio scuola italiana','en'=>'Scuola Italiana exchange','it'=>'Scambio della Scuola Italiana'],
               'full_h' => ['es'=>'Encabezado Principal','en'=>'Main Heading','it'=>'Titolo principale'],
               'full_p' => [
-                'es'=>'Programa de intercambio en high schools de Estados Unidos. Enfoque académico y cultural de inmersión.',
-                'en'=>'Exchange program in US high schools. Immersive academic and cultural focus.',
-                'it'=>'Programma di scambio nelle high school degli Stati Uniti. Focus accademico e culturale immersivo.',
+                'es'=>'Intercambio en 6.º de escuela; los estudiantes asisten a una escuela en Estados Unidos y, al año siguiente, los anfitriones viajan a Uruguay. Experiencia académica y cultural con familias anfitrionas.',
+                'en'=>'Exchange in 6th grade; students attend a school in the United States and, the following year, the hosts travel to Uruguay. Academic and cultural experience with host families.',
+                'it'=>'Scambio in sesta classe; gli studenti frequentano una scuola negli Stati Uniti e, l’anno successivo, i partner vengono in Uruguay. Esperienza accademica e culturale con famiglie ospitanti.',
               ],
               'quote' => [
                 'es'=>'"La mejor forma de aprender un idioma es vivirlo."',
@@ -42,19 +42,19 @@
                 'it'=>'"Il modo migliore per imparare una lingua è viverla."',
               ],
               'quote_author' => ['es'=>'- Programa de Intercambio','en'=>'- Exchange Program','it'=>'- Programma di Scambio'],
-              'col1_h' => ['es'=>'Primera columna','en'=>'First column','it'=>'Prima colonna'],
+              'col1_h' => ['es'=>'Programa académico','en'=>'Academic program','it'=>'Programma accademico'],
               'col1_p' => [
                 'es'=>'Plan académico, tutorías y actividades durante el año escolar.',
                 'en'=>'Academic plan, mentoring and activities during the school year.',
                 'it'=>'Piano accademico, tutoraggio e attività durante l’anno scolastico.',
               ],
-              'col2_h' => ['es'=>'Segunda columna','en'=>'Second column','it'=>'Seconda colonna'],
+              'col2_h' => ['es'=>'Alojamiento y cultura','en'=>'Lodging and culture','it'=>'Alloggio e cultura'],
               'col2_p' => [
                 'es'=>'Alojamiento con familias anfitrionas y experiencias comunitarias.',
                 'en'=>'Lodging with host families and community experiences.',
                 'it'=>'Alloggio presso famiglie ospitanti ed esperienze comunitarie.',
               ],
-              'final_h' => ['es'=>'Sección de cierre','en'=>'Closing section','it'=>'Sezione finale'],
+              'final_h' => ['es'=>'Próximos pasos','en'=>'Next steps','it'=>'Prossimi passi'],
               'final_p' => [
                 'es'=>'Beneficios del intercambio y pasos para la postulación.',
                 'en'=>'Exchange benefits and application steps.',
@@ -230,8 +230,9 @@
         <div class="footer-center">
             <div class="footer-section">
                 <h4><?php echo $ie['contact'][$cl]; ?></h4>
-                <p>Av. Brasil 3149, Montevideo</p>
-                <p>(+598) 2621 4822 / 2622 1422</p>
+                <p>Gral. French 2380</p>
+                <p>CP 11500 - Montevideo, Uruguay</p>
+                <p>(+598) 2600 1527</p>
                 <p>info@scuolaitaliana.edu.uy</p>
             </div>
         </div>

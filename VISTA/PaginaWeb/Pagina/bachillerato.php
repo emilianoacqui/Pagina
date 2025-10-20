@@ -46,9 +46,9 @@
             $ba = [
                 'title' => ['es'=>'Bachillerato','en'=>'Upper Secondary','it'=>'Liceo'],
                 'subtitle' => [
-                    'es' => 'En los primeros años de Secundaria continuamos el trabajo iniciado en Primaria con prácticas reflexivas, autonomía y creciente rigor académico, preparando el camino hacia los estudios superiores. La estructura actual comprende un tercer ciclo de Educación Básica Integral (EBI) de tres años y tres años de Educación Media Superior: el primero es común y los dos siguientes, diversificados según orientación.',
-                    'en' => 'In the first years of Secondary we continue the work started in Primary with reflective practices, autonomy and increasing academic rigor, paving the way to higher education. The current structure includes a three‑year Integrated Basic Education (EBI) third cycle and three years of Upper Secondary: the first is common and the next two are diversified by orientation.',
-                    'it' => 'Nei primi anni della Secondaria proseguiamo il lavoro iniziato nella Primaria con pratiche riflessive, autonomia e crescente rigore accademico, preparando il percorso verso gli studi superiori. L’attuale struttura prevede un terzo ciclo EBI di tre anni e tre anni di Scuola Superiore: il primo è comune e i due successivi sono differenziati per orientamento.',
+                    'es' => 'En Bachillerato (Educación Media Superior) profundizamos el trabajo académico con mayores niveles de especialización por orientación y proyectos interdisciplinarios. Acompañamos la preparación para estudios terciarios y certificaciones internacionales, fortaleciendo autonomía, pensamiento crítico y competencias comunicativas en español, italiano e inglés.',
+                    'en' => 'In Upper Secondary we deepen academic work with increasing specialization by track and interdisciplinary projects. We support preparation for tertiary studies and international certifications, strengthening autonomy, critical thinking and communication skills in Spanish, Italian and English.',
+                    'it' => 'Nel Liceo approfondiamo il lavoro accademico con maggiore specializzazione per indirizzo e progetti interdisciplinari. Accompagniamo la preparazione agli studi terziari e alle certificazioni internazionali, rafforzando autonomia, pensiero critico e competenze comunicative in spagnolo, italiano e inglese.',
                 ],
                 'sec1' => [
                     'es' => 'Promovemos el trabajo cooperativo, la interdisciplinariedad, la reflexión, estrategias metacognitivas y la autonomía en el estudio, para que el alumno sea independiente en la adquisición de nuevos saberes.',
@@ -208,8 +208,9 @@
                 <div class="footer-section">
                     <h4><?php echo $ba['contact'][$cl]; ?></h4>
 
-                    <p>Av. Brasil 3149, Montevideo</p>
-                    <p>(+598) 2621 4822 / 2622 1422</p>
+                    <p>Gral. French 2380</p>
+                    <p>CP 11500 - Montevideo, Uruguay</p>
+                    <p>(+598) 2600 1527</p>
                     <p>info@scuolaitaliana.edu.uy</p>
                 </div>
             </div>

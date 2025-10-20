@@ -1,6 +1,6 @@
 <!DOCTYPE html>
-<?php if (session_status() === PHP_SESSION_NONE) { session_start(); } if (isset($_GET['lang']) && in_array($_GET['lang'], ['es','en','it'])) { $_SESSION['lang'] = $_GET['lang']; } ?>
-<html lang="es">
+<?php if (session_status() === PHP_SESSION_NONE) { session_start(); } if (isset($_GET['lang']) && in_array($_GET['lang'], ['es','en','it'])) { $_SESSION['lang'] = $_GET['lang']; } $cl = $_SESSION['lang'] ?? 'es'; ?>
+<html lang="<?php echo $cl; ?>">
 
 <head>
     <meta charset="UTF-8">
@@ -33,7 +33,7 @@
             'hero_t' => ['es'=>'HANDBALL','en'=>'HANDBALL','it'=>'PALLAMANO'],
             'hero_s' => ['es'=>'Velocidad, estrategia y coordinación en movimiento','en'=>'Speed, strategy and coordination in motion','it'=>'Velocità, strategia e coordinazione in movimento'],
             'info_t' => ['es'=>'Sobre el Handball en Scuola Italiana','en'=>'About Handball at Scuola Italiana','it'=>'Sulla Pallamano alla Scuola Italiana'],
-            'info_p1' => ['es'=>'El handball es un deporte dinámico y emocionante que combina velocidad, estrategia y coordinación. En nuestra institución, este deporte ha ganado popularidad debido a su naturaleza rápida y la importancia del trabajo en equipo.','en'=>'Handball is a dynamic and exciting sport that combines speed, strategy and coordination. At our institution, this sport has gained popularity due to its fast nature and the importance of teamwork.','it'=>'La pallamano è uno sport dinamico ed emozionante che combina velocità, strategia e coordinazione. Nella nostra istituzione, questo sport ha guadagnato popolarità per la sua natura veloce e l\'importanza del lavoro di squadra.'],
+            'info_p1' => ['es'=>'El handball es un deporte dinámico que combina velocidad, estrategia y coordinación. En nuestra institución favorece la toma de decisiones rápidas, la coordinación y el trabajo en equipo.','en'=>'Handball is a dynamic sport that combines speed, strategy and coordination. At our school it fosters quick decision‑making, coordination and teamwork.','it'=>'La pallamano è uno sport dinamico che combina velocità, strategia e coordinazione. Nella nostra scuola favorisce decisioni rapide, coordinazione e lavoro di squadra.'],
             'info_p2' => ['es'=>'Nuestros equipos de handball participan en competencias escolares y regionales, destacándose por su técnica depurada y espíritu competitivo. Los entrenamientos se enfocan en el desarrollo de habilidades técnicas, tácticas y físicas específicas del deporte.','en'=>'Our handball teams participate in school and regional competitions, standing out for their refined technique and competitive spirit. Training focuses on developing technical, tactical and physical skills specific to the sport.','it'=>'Le nostre squadre di pallamano partecipano a competizioni scolastiche e regionali, distinguendosi per la loro tecnica raffinata e lo spirito competitivo. L\'allenamento si concentra sullo sviluppo di abilità tecniche, tattiche e fisiche specifiche dello sport.'],
             'feature1_t' => ['es'=>'Velocidad y Agilidad','en'=>'Speed and Agility','it'=>'Velocità e Agilità'],
             'feature1_d' => ['es'=>'Desarrollamos la rapidez de movimiento y la capacidad de cambio de dirección.','en'=>'We develop movement speed and the ability to change direction.','it'=>'Sviluppiamo la velocità di movimento e la capacità di cambiare direzione.'],
@@ -145,8 +145,9 @@
             <div class="footer-center">
                 <div class="footer-section">
                     <h4><?php echo $handball['contact'][$cl]; ?></h4>
-                    <p>Av. Brasil 3149, Montevideo</p>
-                    <p>(+598) 2621 4822 / 2622 1422</p>
+                    <p>Gral. French 2380</p>
+                    <p>CP 11500 - Montevideo, Uruguay</p>
+                    <p>(+598) 2600 1527</p>
                     <p>info@scuolaitaliana.edu.uy</p>
                 </div>
             </div>

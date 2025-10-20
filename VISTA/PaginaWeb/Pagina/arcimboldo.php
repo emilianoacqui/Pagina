@@ -40,7 +40,7 @@
               'ph_4' => ['es'=>'Cuarta imagen','en'=>'Fourth image','it'=>'Quarta immagine'],
               'ph_5' => ['es'=>'Quinta imagen','en'=>'Fifth image','it'=>'Quinta immagine'],
               'info_t' => ['es'=>'Información adicional','en'=>'Additional information','it'=>'Informazioni aggiuntive'],
-              'info_p' => ['es'=>'Espacio para agregar información adicional, créditos de fotografía o contexto relevante.','en'=>'Space to add extra information, photo credits or relevant context.','it'=>'Spazio per aggiungere informazioni aggiuntive, crediti fotografici o contesto rilevante.'],
+              'info_p' => ['es'=>'Proyecto interdisciplinario (CLIL) con trabajos de estudiantes y docentes de Biología, Química, Matemática, Literatura e Italiano. Créditos: equipo docente y estudiantes de 6.º año.','en'=>'Interdisciplinary (CLIL) project with student and teacher work from Biology, Chemistry, Math, Literature and Italian. Credits: teaching staff and senior students.','it'=>'Progetto interdisciplinare (CLIL) con lavori di studenti e docenti di Biologia, Chimica, Matematica, Letteratura e Italiano. Crediti: docenti e studenti dell’ultimo anno.'],
               'contact' => ['es'=>'Contacto','en'=>'Contact','it'=>'Contatto'],
               'links' => ['es'=>'Enlaces útiles','en'=>'Useful links','it'=>'Link utili'],
               'link_items' => [
@@ -140,8 +140,9 @@
         <div class="footer-center">
             <div class="footer-section">
                 <h4><?php echo $ar['contact'][$cl]; ?></h4>
-                <p>Av. Brasil 3149, Montevideo</p>
-                <p>(+598) 2621 4822 / 2622 1422</p>
+                <p>Gral. French 2380</p>
+                <p>CP 11500 - Montevideo, Uruguay</p>
+                <p>(+598) 2600 1527</p>
                 <p>info@scuolaitaliana.edu.uy</p>
             </div>
         </div>

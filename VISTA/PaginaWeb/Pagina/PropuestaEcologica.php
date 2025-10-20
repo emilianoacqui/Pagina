@@ -1,6 +1,6 @@
 <!DOCTYPE html>
-<?php if (session_status() === PHP_SESSION_NONE) { session_start(); } $cl = $_SESSION['lang'] ?? 'es'; ?>
-<html lang="es">
+<?php if (session_status() === PHP_SESSION_NONE) { session_start(); } if (isset($_GET['lang']) && in_array($_GET['lang'], ['es','en','it'])) { $_SESSION['lang'] = $_GET['lang']; } $cl = $_SESSION['lang'] ?? 'es'; ?>
+<html lang="<?php echo $cl; ?>">
 
 <head>
     <meta charset="UTF-8">
@@ -33,10 +33,10 @@
     <?php 
         $pe = [
             'hero_t' => ['es'=>'Nuestra Propuesta Ecológica','en'=>'Our Ecological Initiative','it'=>'La nostra Proposta Ecologica'],
-            'hero_s' => ['es'=>'Descubre todo lo que hace especial a la Scuola Italiana di Montevideo','en'=>'Discover what makes the Scuola Italiana di Montevideo special','it'=>'Scopri cosa rende speciale la Scuola Italiana di Montevideo'],
-            'hist_h' => ['es'=>'Nuestra Historia y Tradición','en'=>'Our History and Tradition','it'=>'La nostra Storia e Tradizione'],
-            'hist_p1' => ['es'=>'La Scuola Italiana di Montevideo tiene una rica tradición educativa con décadas de excelencia académica. Pioneros en educación bilingüe y multicultural en Uruguay.','en'=>'The Scuola Italiana di Montevideo has a rich educational tradition with decades of academic excellence. Pioneers in bilingual and multicultural education in Uruguay.','it'=>'La Scuola Italiana di Montevideo ha una ricca tradizione educativa con decenni di eccellenza accademica. Pionieri dell’educazione bilingue e multiculturale in Uruguay.'],
-            'hist_p2' => ['es'=>'Formamos estudiantes con sólida preparación académica, valores humanos y compromiso comunitario, manteniendo vivos los lazos con la cultura italiana.','en'=>'We educate students with strong academics, human values and community engagement, keeping ties with Italian culture alive.','it'=>'Formiamo studenti con solida preparazione accademica, valori umani e impegno nella comunità, mantenendo vivi i legami con la cultura italiana.'],
+            'hero_s' => ['es'=>'Educación ambiental, hábitos sostenibles y proyectos con impacto real','en'=>'Environmental education, sustainable habits and projects with real impact','it'=>'Educazione ambientale, abitudini sostenibili e progetti con impatto reale'],
+            'hist_h' => ['es'=>'Educación ambiental en la Scuola','en'=>'Environmental education at the Scuola','it'=>'Educazione ambientale alla Scuola'],
+            'hist_p1' => ['es'=>'Integramos la sostenibilidad en la vida escolar mediante experiencias concretas: separación y reducción de residuos, compostaje, huertas y cuidado de la biodiversidad en el campus.','en'=>'We integrate sustainability into school life through concrete experiences: sorting and reducing waste, composting, school gardens and biodiversity care on campus.','it'=>'Integriamo la sostenibilità nella vita scolastica con esperienze concrete: raccolta differenziata e riduzione dei rifiuti, compostaggio, orti scolastici e cura della biodiversità nel campus.'],
+            'hist_p2' => ['es'=>'Los proyectos ambientales se trabajan en equipo, articulando áreas curriculares y alianzas con la comunidad para generar aprendizajes significativos y cambios de hábito sostenidos.','en'=>'Environmental projects are team‑based, connecting curricular areas and community partnerships to generate meaningful learning and sustained habit changes.','it'=>'I progetti ambientali sono di squadra, collegano le aree curricolari e le partnership con la comunità per generare apprendimenti significativi e cambiamenti di abitudini duraturi.'],
             'feat_h' => ['es'=>'Lo que nos distingue','en'=>'What sets us apart','it'=>'Cosa ci distingue'],
             'f1_h' => ['es'=>'Educación Ambiental','en'=>'Environmental Education','it'=>'Educazione ambientale'],
             'f1_p' => ['es'=>'Integramos sostenibilidad en el currículo con proyectos sobre reciclaje, uso responsable del agua y biodiversidad.','en'=>'We integrate sustainability across the curriculum with projects on recycling, responsible water use and biodiversity.','it'=>'Integriamo la sostenibilità nel curriculum con progetti su riciclo, uso responsabile dell’acqua e biodiversità.'],
@@ -143,8 +143,9 @@
                 <div class="footer-section">
                     <h4><?php echo $pe['contact'][$cl]; ?></h4>
 
-                    <p>Av. Brasil 3149, Montevideo</p>
-                    <p>(+598) 2621 4822 / 2622 1422</p>
+                    <p>Gral. French 2380</p>
+                    <p>CP 11500 - Montevideo, Uruguay</p>
+                    <p>(+598) 2600 1527</p>
                     <p>info@scuolaitaliana.edu.uy</p>
                 </div>
             </div>

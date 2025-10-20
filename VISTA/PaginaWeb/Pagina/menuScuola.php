@@ -1,8 +1,9 @@
 <!DOCTYPE html>
-<html lang="es">
+<?php if (session_status() === PHP_SESSION_NONE) { session_start(); } if (isset($_GET['lang']) && in_array($_GET['lang'], ['es','en','it'])) { $_SESSION['lang'] = $_GET['lang']; } $cl = $_SESSION['lang'] ?? 'es'; ?>
+<html lang="<?php echo $cl; ?>">
 <head>
   <meta charset="UTF-8" />
-  <title>Scuola Italiana</title>
+  <title><?php $ms_meta=['es'=>'Menú Scuola Italiana','en'=>'Scuola Italiana Menu','it'=>'Menu Scuola Italiana']; echo $ms_meta[$cl]; ?></title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <!-- Fuente Merriweather Sans para el dropdown -->
   <link href="https://fonts.googleapis.com/css2?family=Merriweather+Sans:wght@400;600&display=swap" rel="stylesheet">

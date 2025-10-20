@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <?php if (session_status() === PHP_SESSION_NONE) { session_start(); } $cl = $_SESSION['lang'] ?? 'es'; ?>
-<html lang="es">
+<html lang="<?php echo $cl; ?>">
 
 <head>
     <meta charset="UTF-8">
@@ -34,9 +34,9 @@
               'hero_s' => ['es'=>'Intercambio a Argentina','en'=>'Exchange to Argentina','it'=>'Scambio in Argentina'],
               'full_h' => ['es'=>'Encabezado Principal','en'=>'Main Heading','it'=>'Titolo principale'],
               'full_p' => [
-                'es'=>'Programa de intercambio con instituciones argentinas. Experiencia académica y cultural en Buenos Aires.',
-                'en'=>'Exchange program with Argentine institutions. Academic and cultural experience in Buenos Aires.',
-                'it'=>'Programma di scambio con istituti argentini. Esperienza accademica e culturale a Buenos Aires.',
+                'es'=>'Intercambio en 6.º de escuela; los estudiantes asisten a una institución en Argentina y, al año siguiente, los pares argentinos visitan Uruguay. Experiencia académica y cultural con familias anfitrionas.',
+                'en'=>'Exchange in 6th grade; students attend a partner school in Argentina and, the following year, the Argentine peers visit Uruguay. Academic and cultural experience with host families.',
+                'it'=>'Scambio in sesta classe; gli studenti frequentano una scuola partner in Argentina e, l’anno successivo, i pari argentini visitano l’Uruguay. Esperienza accademica e culturale con famiglie ospitanti.',
               ],
               'quote' => [
                 'es'=>'"Viajar para aprender, aprender para transformar."',
@@ -231,15 +231,21 @@
         
         <div class="footer-center">
             <div class="footer-section">
-                <h4>Contacto</h4>
-                <p>Av. Brasil 3149, Montevideo</p>
-                <p>(+598) 2621 4822 / 2622 1422</p>
+                <h4><?php echo $ia['contact'][$cl]; ?></h4>
+
+                <p>Gral. French 2380</p>
+                <p>CP 11500 - Montevideo, Uruguay</p>
+                <p>(+598) 2600 1527</p>
                 <p>info@scuolaitaliana.edu.uy</p>
             </div>
         </div>
         
         <div class="footer-right">
             <div class="footer-section">
+                <h4><?php echo $ia['links'][$cl]; ?></h4>
+                <p><?php echo $ia['link_items'][$cl][0]; ?></p>
+                <p><?php echo $ia['link_items'][$cl][1]; ?></p>
+                <p><?php echo $ia['link_items'][$cl][2]; ?></p>
                 <h4>Enlaces útiles</h4>
                 <p>Política de privacidad</p>
                 <p>Requisitos técnicos</p>

@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <?php if (session_status() === PHP_SESSION_NONE) { session_start(); } if (isset($_GET['lang']) && in_array($_GET['lang'], ['es','en','it'])) { $_SESSION['lang'] = $_GET['lang']; } $cl = $_SESSION['lang'] ?? 'es'; ?>
-<html lang="es">
+<html lang="<?php echo $cl; ?>">
 
 <head>
   <meta charset="UTF-8">
@@ -45,15 +45,15 @@
                     'it' => 'Il calcio è uno degli sport più popolari ed emozionanti che pratichiamo nella nostra istituzione. Questo sport non solo sviluppa le abilità fisiche dei nostri studenti, ma promuove anche valori fondamentali come il lavoro di squadra, la disciplina e il rispetto.'
                 ],
                 'futbol_p2' => [
-                    'es' => 'Nuestros equipos participan activamente en competencias locales e regionales, representando con orgullo los colores de la Scuola Italiana. Los entrenamientos se realizan en nuestras modernas instalaciones deportivas.',
-                    'en' => 'Our teams actively participate in local and regional competitions, proudly representing the colors of Scuola Italiana. Training sessions are held in our modern sports facilities.',
-                    'it' => 'Le nostre squadre partecipano attivamente a competizioni locali e regionali, rappresentando con orgoglio i colori della Scuola Italiana. Gli allenamenti si svolgono nelle nostre moderne strutture sportive.'
+                    'es' => 'Nuestros equipos participan activamente en competencias locales y regionales, representando con orgullo los colores de la Scuola Italiana. Los entrenamientos se realizan en nuestras modernas instalaciones deportivas. El equipo del colegio, Palermo, compite en la Liga Universitaria en categorías formativas (desde Sub 14).',
+                    'en' => 'Our teams actively participate in local and regional competitions, proudly representing the colors of Scuola Italiana. Training takes place in our modern sports facilities. The school team, Palermo, competes in the University League in youth divisions (from U14).',
+                    'it' => 'Le nostre squadre partecipano attivamente a competizioni locali e regionali, rappresentando con orgoglio i colori della Scuola Italiana. Gli allenamenti si svolgono nelle nostre moderne strutture sportive. La squadra della scuola, Palermo, compete nella Liga Universitaria nelle categorie giovanili (dalla Under 14).'
                 ],
                 'handball_h' => ['es' => 'Handball', 'en' => 'Handball', 'it' => 'Pallamano'],
                 'handball_p1' => [
-                    'es' => 'El handball es un deporte dinámico y emocionante que combina velocidad, estrategia y coordinación. En nuestra institución, este deporte ha ganado popularidad debido a su naturaleza rápida y la importancia del trabajo en equipo.',
-                    'en' => 'Handball is a dynamic and exciting sport that combines speed, strategy and coordination. At our institution, this sport has gained popularity due to its fast nature and the importance of teamwork.',
-                    'it' => 'La pallamano è uno sport dinamico ed emozionante che combina velocità, strategia e coordinazione. Nella nostra istituzione, questo sport ha guadagnato popolarità per la sua natura veloce e l\'importanza del lavoro di squadra.'
+                    'es' => 'El handball es un deporte dinámico que combina velocidad, estrategia y coordinación. En nuestra institución favorece la toma de decisiones rápidas, la coordinación y el trabajo en equipo.',
+                    'en' => 'Handball is a dynamic sport that combines speed, strategy and coordination. At our school it fosters quick decision‑making, coordination and teamwork.',
+                    'it' => 'La pallamano è uno sport dinamico che combina velocità, strategia e coordinazione. Nella nostra scuola favorisce decisioni rapide, coordinazione e lavoro di squadra.'
                 ],
                 'handball_p2' => [
                     'es' => 'Nuestros equipos de handball participan en competencias escolares y regionales, destacándose por su técnica depurada y espíritu competitivo.',
@@ -62,9 +62,9 @@
                 ],
                 'hockey_h' => ['es' => 'Hockey', 'en' => 'Hockey', 'it' => 'Hockey'],
                 'hockey_p1' => [
-                    'es' => 'El hockey sobre césped es un deporte de precisión y habilidad técnica que requiere coordinación, velocidad y estrategia. En nuestra institución, este deporte ha demostrado ser excelente para desarrollar la concentración y el trabajo en equipo.',
-                    'en' => 'Field hockey is a precision and technical skill sport that requires coordination, speed and strategy. At our institution, this sport has proven excellent for developing concentration and teamwork.',
-                    'it' => 'L\'hockey su prato è uno sport di precisione e abilità tecnica che richiede coordinazione, velocità e strategia. Nella nostra istituzione, questo sport si è dimostrato eccellente per sviluppare concentrazione e lavoro di squadra.'
+                    'es' => 'El hockey sobre césped es un deporte de precisión y habilidad técnica que requiere coordinación, velocidad y estrategia. En nuestra institución favorece la concentración y el trabajo en equipo.',
+                    'en' => 'Field hockey is a precision and technical skill sport that requires coordination, speed and strategy. At our school it fosters concentration and teamwork.',
+                    'it' => 'L\'hockey su prato è uno sport di precisione e abilità tecnica che richiede coordinazione, velocità e strategia. Nella nostra scuola favorisce concentrazione e lavoro di squadra.'
                 ],
                 'hockey_p2' => [
                     'es' => 'Nuestros equipos de hockey participan en competencias locales y regionales, destacándose por su técnica depurada y disciplina táctica.',
@@ -73,9 +73,9 @@
                 ],
                 'voley_h' => ['es' => 'Vóley', 'en' => 'Volleyball', 'it' => 'Pallavolo'],
                 'voley_p1' => [
-                    'es' => 'El voleibol es un deporte que combina fuerza, agilidad y trabajo en equipo. En nuestra institución, este deporte ha demostrado ser excelente para desarrollar la coordinación y la comunicación entre jugadores.',
-                    'en' => 'Volleyball is a sport that combines strength, agility and teamwork. At our institution, this sport has proven excellent for developing coordination and communication between players.',
-                    'it' => 'La pallavolo è uno sport che combina forza, agilità e lavoro di squadra. Nella nostra istituzione, questo sport si è dimostrato eccellente per sviluppare coordinazione e comunicazione tra i giocatori.'
+                    'es' => 'El voleibol es un deporte que combina fuerza, agilidad y trabajo en equipo. En nuestra institución favorece la coordinación y la comunicación entre jugadores.',
+                    'en' => 'Volleyball is a sport that combines strength, agility and teamwork. At our school it fosters coordination and communication between players.',
+                    'it' => 'La pallavolo è uno sport che combina forza, agilità e lavoro di squadra. Nella nostra scuola favorisce coordinazione e comunicazione tra i giocatori.'
                 ],
                 'voley_p2' => [
                     'es' => 'Nuestros equipos de voleibol participan en competencias escolares y regionales, destacándose por su técnica depurada y espíritu competitivo.',
@@ -84,9 +84,9 @@
                 ],
                 'gimnasia_h' => ['es' => 'Gimnasia Artística', 'en' => 'Artistic Gymnastics', 'it' => 'Ginnastica Artistica'],
                 'gimnasia_p1' => [
-                    'es' => 'La gimnasia artística es un deporte que combina expresión corporal, flexibilidad y elegancia en movimiento. En nuestra institución, este deporte ha demostrado ser excelente para desarrollar la coordinación y la disciplina.',
-                    'en' => 'Artistic gymnastics is a sport that combines body expression, flexibility and elegance in movement. At our institution, this sport has proven excellent for developing coordination and discipline.',
-                    'it' => 'La ginnastica artistica è uno sport che combina espressione corporea, flessibilità ed eleganza nel movimento. Nella nostra istituzione, questo sport si è dimostrato eccellente per sviluppare coordinazione e disciplina.'
+                    'es' => 'La gimnasia artística es un deporte que combina expresión corporal, flexibilidad y elegancia en movimiento. En nuestra institución fortalece la coordinación y la disciplina.',
+                    'en' => 'Artistic gymnastics is a sport that combines body expression, flexibility and elegance in movement. At our school it strengthens coordination and discipline.',
+                    'it' => 'La ginnastica artistica è uno sport che combina espressione corporea, flessibilità ed eleganza nel movimento. Nella nostra scuola rafforza coordinazione e disciplina.'
                 ],
                 'gimnasia_p2' => [
                     'es' => 'Nuestros equipos de gimnasia participan en competencias escolares y regionales, destacándose por su técnica depurada y elegancia en los movimientos.',
@@ -95,9 +95,9 @@
                 ],
                 'atletismo_h' => ['es' => 'Atletismo', 'en' => 'Athletics', 'it' => 'Atletica'],
                 'atletismo_p1' => [
-                    'es' => 'El atletismo es un deporte base que desarrolla velocidad, resistencia y fuerza. En nuestra institución, este deporte ha demostrado ser excelente para desarrollar la disciplina y la perseverancia.',
-                    'en' => 'Athletics is a base sport that develops speed, endurance and strength. At our institution, this sport has proven excellent for developing discipline and perseverance.',
-                    'it' => 'L\'atletica è uno sport di base che sviluppa velocità, resistenza e forza. Nella nostra istituzione, questo sport si è dimostrato eccellente per sviluppare disciplina e perseveranza.'
+                    'es' => 'El atletismo es un deporte base que desarrolla velocidad, resistencia y fuerza. En nuestra institución favorece la disciplina, la constancia y el esfuerzo personal.',
+                    'en' => 'Athletics is a base sport that develops speed, endurance and strength. At our school it fosters discipline, consistency and personal effort.',
+                    'it' => 'L\'atletica è uno sport di base che sviluppa velocità, resistenza e forza. Nella nostra scuola favorisce disciplina, costanza e impegno personale.'
                 ],
                 'atletismo_p2' => [
                     'es' => 'Nuestros equipos de atletismo participan en competencias escolares y regionales, destacándose por su técnica depurada y espíritu competitivo.',
@@ -226,8 +226,9 @@
                 <div class="footer-section">
                     <?php $md_contact = ['es' => 'Contacto','en' => 'Contact','it' => 'Contatto']; ?>
                     <h4><?php echo $md_contact[$cl]; ?></h4>
-                    <p>Av. Brasil 3149, Montevideo</p>
-                    <p>(+598) 2621 4822 / 2622 1422</p>
+                    <p>Gral. French 2380</p>
+                    <p>CP 11500 - Montevideo, Uruguay</p>
+                    <p>(+598) 2600 1527</p>
                     <p>info@scuolaitaliana.edu.uy</p>
                 </div>
     </div>

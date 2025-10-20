@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <?php if (session_status() === PHP_SESSION_NONE) { session_start(); } if (isset($_GET['lang']) && in_array($_GET['lang'], ['es','en','it'])) { $_SESSION['lang'] = $_GET['lang']; } $cl = $_SESSION['lang'] ?? 'es'; ?>
-<html lang="es">
+<html lang="<?php echo $cl; ?>">
 
 <head>
     <meta charset="UTF-8">
@@ -85,9 +85,9 @@
                     <p>
                         <?php 
                             $voley_descriptions2 = [
-                                'es' => 'Nuestros equipos de voleibol participan en competencias escolares y regionales, destacándose por su técnica depurada y espíritu competitivo.',
-                                'en' => 'Our volleyball teams participate in school and regional competitions, standing out for their refined technique and competitive spirit.',
-                                'it' => 'Le nostre squadre di pallavolo partecipano a competizioni scolastiche e regionali, distinguendosi per la loro tecnica raffinata e lo spirito competitivo.'
+                                'es' => 'Nuestros equipos de voleibol compiten a nivel escolar y regional, con énfasis en recepción, armado y definición en equipo.',
+                                'en' => 'Our volleyball teams compete at school and regional level, with emphasis on reception, setting and team finishing.',
+                                'it' => 'Le nostre squadre di pallavolo competono a livello scolastico e regionale, con enfasi su ricezione, alzata e finalizzazione di squadra.'
                             ];
                             echo $voley_descriptions2[$cl]; 
                         ?>
@@ -230,8 +230,9 @@
                 <div class="footer-section">
                     <?php $footer_contact = ['es' => 'Contacto','en' => 'Contact','it' => 'Contatto']; ?>
                     <h4><?php echo $footer_contact[$cl]; ?></h4>
-                    <p>Av. Brasil 3149, Montevideo</p>
-                    <p>(+598) 2621 4822 / 2622 1422</p>
+                    <p>Gral. French 2380</p>
+                    <p>CP 11500 - Montevideo, Uruguay</p>
+                    <p>(+598) 2600 1527</p>
                     <p>info@scuolaitaliana.edu.uy</p>
                 </div>
             </div>
