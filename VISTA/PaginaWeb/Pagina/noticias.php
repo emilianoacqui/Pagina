@@ -151,8 +151,9 @@
         <div class="footer-center">
             <div class="footer-section">
                 <h4><?php echo $nt['contact'][$cl]; ?></h4>
-                <p>Av. Brasil 3149, Montevideo</p>
-                <p>(+598) 2621 4822 / 2622 1422</p>
+                <p>Gral. French 2380</p>
+                <p>CP 11500 - Montevideo, Uruguay</p>
+                <p>(+598) 2600 1527</p>
                 <p>info@scuolaitaliana.edu.uy</p>
             </div>
         </div>

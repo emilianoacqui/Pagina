@@ -40,9 +40,9 @@
                     'it' => 'I nostri corsi di lingua',
                 ],
                 'hero_sub' => [
-                    'es' => 'Descubre todo lo que hace especial a la Scuola Italiana di Montevideo',
-                    'en' => 'Discover what makes the Scuola Italiana di Montevideo special',
-                    'it' => 'Scopri cosa rende speciale la Scuola Italiana di Montevideo',
+                    'es' => 'Cursos de italiano, inglés y portugués con foco comunicativo y certificaciones internacionales',
+                    'en' => 'Italian, English and Portuguese courses focused on communication and international certifications',
+                    'it' => 'Corsi di italiano, inglese e portoghese con focus comunicativo e certificazioni internazionali',
                 ],
                 'it_h' => ['es' => 'Italiano','en' => 'Italian','it' => 'Italiano'],
                 'it_p1' => [
@@ -57,14 +57,14 @@
                 ],
                 'en_h' => ['es' => 'Inglés','en' => 'English','it' => 'Inglese'],
                 'en_p1' => [
-                    'es' => 'Instalaciones modernas con tecnología de punta y espacios dedicados al aprendizaje.',
-                    'en' => 'Modern facilities with cutting‑edge technology and spaces dedicated to learning.',
-                    'it' => 'Strutture moderne con tecnologia all’avanguardia e spazi dedicati all’apprendimento.',
+                    'es' => 'Programa orientado a la comunicación real, comprensión auditiva y producción oral/escrita según niveles.',
+                    'en' => 'Program focused on real‑world communication, listening comprehension and spoken/written production by levels.',
+                    'it' => 'Programma orientato alla comunicazione reale, comprensione orale e produzione orale/scritta per livelli.',
                 ],
                 'en_p2' => [
-                    'es' => 'Un campus de 13 hectáreas de áreas verdes que favorecen el aprendizaje al aire libre.',
-                    'en' => 'A 13‑hectare green campus that encourages outdoor learning.',
-                    'it' => 'Un campus di 13 ettari di aree verdi che favoriscono l’apprendimento all’aperto.',
+                    'es' => 'Preparación para certificaciones internacionales (según nivel) y trabajo por proyectos.',
+                    'en' => 'Preparation for international certifications (by level) and project‑based work.',
+                    'it' => 'Preparazione alle certificazioni internazionali (per livello) e lavoro per progetti.',
                 ],
                 'pt_h' => ['es' => 'Portugués','en' => 'Portuguese','it' => 'Portoghese'],
                 'pt_p1' => [
@@ -84,21 +84,21 @@
                 ],
                 'f1_h' => ['es' => 'Tiempo dedicado','en' => 'Dedicated time','it' => 'Tempo dedicato'],
                 'f1_p' => [
-                    'es' => 'Desarrollamos todas las dimensiones del estudiante: intelectual, física, emocional y social.',
-                    'en' => 'We develop all student dimensions: intellectual, physical, emotional and social.',
-                    'it' => 'Sviluppiamo tutte le dimensioni dello studente: intellettuale, fisica, emotiva e sociale.',
+                    'es' => 'Carga horaria adecuada por nivel con práctica equilibrada de comprensión y producción.',
+                    'en' => 'Level‑appropriate workload with a balanced practice of comprehension and production.',
+                    'it' => 'Carico orario adeguato al livello con pratica equilibrata di comprensione e produzione.',
                 ],
                 'f2_h' => ['es' => 'Atención particular','en' => 'Personal attention','it' => 'Attenzione personale'],
                 'f2_p' => [
-                    'es' => 'Honramos la herencia italiana y la diversidad cultural en un ambiente de respeto.',
-                    'en' => 'We honor Italian heritage and cultural diversity in a respectful environment.',
-                    'it' => 'Onoriamo l’eredità italiana e la diversità culturale in un ambiente rispettoso.',
+                    'es' => 'Grupos reducidos y seguimiento docente para alcanzar objetivos individuales.',
+                    'en' => 'Small groups and teacher follow‑up to achieve individual goals.',
+                    'it' => 'Gruppi ridotti e monitoraggio docente per raggiungere obiettivi individuali.',
                 ],
                 'f3_h' => ['es' => 'Profesores bien capacitados','en' => 'Well‑trained teachers','it' => 'Docenti ben qualificati'],
                 'f3_p' => [
-                    'es' => 'Programas de alta calidad con foco en pensamiento crítico e innovación.',
-                    'en' => 'High‑quality programs focused on critical thinking and innovation.',
-                    'it' => 'Programmi di alta qualità focalizzati sul pensiero critico e sull’innovazione.',
+                    'es' => 'Docentes certificados y preparación para exámenes internacionales (según nivel).',
+                    'en' => 'Certified teachers and preparation for international exams (by level).',
+                    'it' => 'Docenti certificati e preparazione agli esami internazionali (in base al livello).',
                 ],
             ];
         ?>
@@ -208,8 +208,9 @@
                         <?php $ci_contact = ['es' => 'Contacto','en' => 'Contact','it' => 'Contatto']; ?>
                         <h4><?php echo $ci_contact[$cl]; ?></h4>
 
-                        <p>Av. Brasil 3149, Montevideo</p>
-                        <p>(+598) 2621 4822 / 2622 1422</p>
+                        <p>Gral. French 2380</p>
+                        <p>CP 11500 - Montevideo, Uruguay</p>
+                        <p>(+598) 2600 1527</p>
                         <p>info@scuolaitaliana.edu.uy</p>
                     </div>
                 </div>

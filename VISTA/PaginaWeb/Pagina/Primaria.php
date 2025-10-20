@@ -3,7 +3,7 @@
 if (session_status() === PHP_SESSION_NONE) { session_start(); }
 $cl = $_SESSION['lang'] ?? 'es'; // 'es' | 'en' | 'it'
 ?>
-<html lang="es">
+<html lang="<?php echo $cl; ?>">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -170,8 +170,9 @@ $cl = $_SESSION['lang'] ?? 'es'; // 'es' | 'en' | 'it'
                     <?php $p_contact = ['es' => 'Contacto','en' => 'Contact','it' => 'Contatto']; ?>
                     <h4><?php echo $p_contact[$cl]; ?></h4>
 
-                    <p>Av. Brasil 3149, Montevideo</p>
-                    <p>(+598) 2621 4822 / 2622 1422</p>
+                    <p>Gral. French 2380</p>
+                    <p>CP 11500 - Montevideo, Uruguay</p>
+                    <p>(+598) 2600 1527</p>
                     <p>info@scuolaitaliana.edu.uy</p>
                 </div>
             </div>

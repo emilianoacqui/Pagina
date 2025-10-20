@@ -1,6 +1,6 @@
 <!DOCTYPE html>
-<?php if (session_status() === PHP_SESSION_NONE) { session_start(); } $cl = $_SESSION['lang'] ?? 'es'; ?>
-<html lang="es">
+<?php if (session_status() === PHP_SESSION_NONE) { session_start(); } if (isset($_GET['lang']) && in_array($_GET['lang'], ['es','en','it'])) { $_SESSION['lang'] = $_GET['lang']; } $cl = $_SESSION['lang'] ?? 'es'; ?>
+<html lang="<?php echo $cl; ?>">
 
 <head>
     <meta charset="UTF-8">
@@ -49,21 +49,21 @@
             ],
             'f1_h' => ['es'=>'Arte','en'=>'Art','it'=>'Arte'],
             'f1_p' => [
-                'es'=>'Desarrollamos todas las dimensiones del estudiante: intelectual, física, emocional y social.',
-                'en'=>'We develop all student dimensions: intellectual, physical, emotional and social.',
-                'it'=>'Sviluppiamo tutte le dimensioni dello studente: intellettuale, fisica, emotiva e sociale.',
+                'es'=>'Fomentamos la expresión artística desde edades tempranas, integrando plástica, música y teatro en proyectos interdisciplinarios.',
+                'en'=>'We foster artistic expression from early ages, integrating visual arts, music and theatre in interdisciplinary projects.',
+                'it'=>'Promuoviamo l’espressione artistica fin dalla tenera età, integrando arti visive, musica e teatro in progetti interdisciplinari.',
             ],
             'f2_h' => ['es'=>'Ciencia','en'=>'Science','it'=>'Scienza'],
             'f2_p' => [
-                'es'=>'Honramos la herencia italiana y la diversidad cultural en un ambiente de respeto.',
-                'en'=>'We honor Italian heritage and cultural diversity in a respectful environment.',
-                'it'=>'Onoriamo l’eredità italiana e la diversità culturale in un ambiente rispettoso.',
+                'es'=>'Promovemos el pensamiento científico mediante experiencias de laboratorio y proyectos de investigación escolar.',
+                'en'=>'We promote scientific thinking through lab experiences and school research projects.',
+                'it'=>'Promuoviamo il pensiero scientifico con esperienze di laboratorio e progetti di ricerca scolastica.',
             ],
             'f3_h' => ['es'=>'Tecnología','en'=>'Technology','it'=>'Tecnologia'],
             'f3_p' => [
-                'es'=>'Programas de calidad enfocados en pensamiento crítico e innovación.',
-                'en'=>'High‑quality programs focused on critical thinking and innovation.',
-                'it'=>'Programmi di qualità focalizzati sul pensiero critico e sull’innovazione.',
+                'es'=>'Incorporamos herramientas digitales y robótica educativa para desarrollar competencias del siglo XXI.',
+                'en'=>'We integrate digital tools and educational robotics to develop 21st‑century skills.',
+                'it'=>'Integriamo strumenti digitali e robotica educativa per sviluppare competenze del XXI secolo.',
             ],
             'contact' => ['es'=>'Contacto','en'=>'Contact','it'=>'Contatto'],
             'links' => ['es'=>'Enlaces útiles','en'=>'Useful links','it'=>'Link utili'],
@@ -126,8 +126,9 @@
                 <div class="footer-section">
                     <h4><?php echo $ar['contact'][$cl]; ?></h4>
 
-                    <p>Av. Brasil 3149, Montevideo</p>
-                    <p>(+598) 2621 4822 / 2622 1422</p>
+                    <p>Gral. French 2380</p>
+                    <p>CP 11500 - Montevideo, Uruguay</p>
+                    <p>(+598) 2600 1527</p>
                     <p>info@scuolaitaliana.edu.uy</p>
                 </div>
             </div>
