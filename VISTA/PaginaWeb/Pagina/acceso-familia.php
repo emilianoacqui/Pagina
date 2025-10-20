@@ -38,7 +38,7 @@
             'spec_h' => ['es'=>'Detalle','en'=>'Detail','it'=>'Dettaglio'],
             'more_h' => ['es'=>'Enlaces relacionados','en'=>'Related links','it'=>'Link correlati'],
             'last_h' => ['es'=>'Soporte','en'=>'Support','it'=>'Supporto'],
-
+        }
             'items' => [
                 't1' => ['es'=>'Boletines y calificaciones','en'=>'Report cards and grades','it'=>'Pagelle e voti'],
                 'd1' => ['es'=>'Consulta de calificaciones por período, histórico y observaciones de los docentes.','en'=>'Check term grades, history and teacher comments.','it'=>'Consulta voti per periodo, storico e osservazioni dei docenti.'],
