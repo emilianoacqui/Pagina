@@ -9,6 +9,11 @@
 
     <link rel="stylesheet" href="breadcrumbs.css">
     <link rel="stylesheet" href="../css/voley.css">
+    <link rel="icon" type="image/png" href="/Pagina/VISTA/PaginaWeb/Pagina/FOTOS/fotosPrincipales/logotipo.png">
+    <link rel="apple-touch-icon" href="/Pagina/VISTA/PaginaWeb/Pagina/FOTOS/fotosPrincipales/logotipo.png">
+    <style>
+        .navbar { background: rgba(10, 36, 82, 0.5) !important; }
+    </style>
 </head>
 <div id="cms-root"></div>
 <body>

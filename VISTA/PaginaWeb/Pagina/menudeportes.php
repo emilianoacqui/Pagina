@@ -9,7 +9,11 @@
 
     <link rel="stylesheet" href="breadcrumbs.css">
   <link rel="stylesheet" href="../css/menudeportes.css">
+  <style>
+    .navbar { background: rgba(10, 36, 82, 0.5); }
+  </style>
 </head>
+
 <div id="cms-root"></div>
 <body>
     <div id="original-content">

@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <?php if (session_status() === PHP_SESSION_NONE) { session_start(); } if (isset($_GET['lang']) && in_array($_GET['lang'], ['es','en','it'])) { $_SESSION['lang'] = $_GET['lang']; } $cl = $_SESSION['lang'] ?? 'es'; ?>
 <html lang="<?php echo $cl; ?>">
 
@@ -9,6 +9,9 @@
 
     <link rel="stylesheet" href="breadcrumbs.css">
     <link rel="stylesheet" href="../css/hockey.css">
+    <style>
+        .navbar { background: rgba(10, 36, 82, 0.5) !important; }
+    </style>
 </head>
 <div id="cms-root"></div>
 <body>
