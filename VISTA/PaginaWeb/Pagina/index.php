@@ -6,6 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../css/index.css">
     <title><?php $idx_meta=['es'=>'Inicio','en'=>'Home','it'=>'Home']; echo $idx_meta[$cl]; ?></title>
+    <link rel="icon" type="image/png" href="/Pagina/VISTA/PaginaWeb/Pagina/FOTOS/fotosPrincipales/logotipo.png">
+    <link rel="apple-touch-icon" href="/Pagina/VISTA/PaginaWeb/Pagina/FOTOS/fotosPrincipales/logotipo.png">
      
     <style>
         * {
