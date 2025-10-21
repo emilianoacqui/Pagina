@@ -23,7 +23,7 @@
         <div class="nav-container">
             <div class="nav-logo">
                 <a href="index.php">
-                    <img src="FOTOS/fotosPrincipales/logotipo.png" alt="Scuola Italiana">
+                    <img src="FOTOS/fotosPrincipales/logo2.png" alt="Scuola Italiana">
                 </a>
             </div>
             <div class="nav-menu-button">
@@ -224,7 +224,7 @@
         <div class="footer-container">
             <div class="footer-left">
                 <div class="footer-logo">
-                    <img src="FOTOS/fotosPrincipales/logotipo.png" alt="Scuola Italiana di Montevideo" style="height: 60px;">
+                    <img src="FOTOS/fotosPrincipales/logo2.png" alt="Scuola Italiana di Montevideo" style="height: 60px;">
                 </div>
                 <div class="footer-subtitle">
                     <p>Scuola Italiana di Montevideo</p>

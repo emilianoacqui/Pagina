@@ -5,6 +5,8 @@
   <meta charset="UTF-8" />
   <title><?php $ms_meta=['es'=>'Menú Scuola Italiana','en'=>'Scuola Italiana Menu','it'=>'Menu Scuola Italiana']; echo $ms_meta[$cl]; ?></title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="icon" type="image/png" href="/Pagina/VISTA/PaginaWeb/Pagina/FOTOS/fotosPrincipales/logotipo.png">
+  <link rel="shortcut icon" href="/Pagina/favicon.ico">
   <!-- Fuente Merriweather Sans para el dropdown -->
   <link href="https://fonts.googleapis.com/css2?family=Merriweather+Sans:wght@400;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../css/menuScuola.css">
@@ -228,7 +230,7 @@
 </head>
 <div id="cms-root"></div>
 <body>
-  <div class="left" style="background-image: url('FOTOS/Principales/ejemplo1.jpg');">
+  <div class="left" style="background-image: url('FOTOS/fotosPrincipales/ejemplo1.jpg');">
     <div class="curve"></div>
   </div>
 
@@ -355,7 +357,7 @@
     document.querySelector('.close-button').addEventListener('click', () => {
         document.body.style.animation = 'slideOutToRight 0.5s ease-in forwards';
         setTimeout(() => {
-            history.back();
+            window.location.href = 'index.php';
         }, 500);
     });
 

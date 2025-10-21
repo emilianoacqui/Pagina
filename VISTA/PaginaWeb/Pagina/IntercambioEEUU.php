@@ -5,9 +5,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?php $ie_meta=['es'=>'Intercambio EEUU','en'=>'USA Exchange','it'=>'Scambio USA']; echo $ie_meta[$cl]; ?></title>
+    <link rel="icon" type="image/png" href="/Pagina/VISTA/PaginaWeb/Pagina/FOTOS/fotosPrincipales/logotipo.png">
+    <link rel="shortcut icon" href="/Pagina/favicon.ico">
     <link rel="stylesheet" href="breadcrumbs.css">
     <link rel="stylesheet" href="../css/IntercambioEEUU.css">
 </head>
+
 <div id="cms-root"></div>
 <body>
 <div id="original-content">
@@ -220,7 +223,7 @@
     <div class="footer-container">
         <div class="footer-left">
             <div class="footer-logo">
-                <img src="FOTOS/fotosPrincipales/logo.png" alt="Scuola Italiana di Montevideo" style="height: 60px;">
+                <img src="FOTOS/fotosPrincipales/logo2.png" alt="Scuola Italiana di Montevideo" style="height: 60px;">
             </div>
             <div class="footer-subtitle">
                 <p>AMC Scuola Italiana di Montevideo</p>

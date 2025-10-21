@@ -25,8 +25,11 @@ $isEditMode = isset($_GET['cms_admin_token']) && $_GET['cms_admin_token'] === 't
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?= htmlspecialchars($page['name']) ?> - Scuola Italiana</title>
+    <link rel="icon" type="image/png" href="/Pagina/VISTA/PaginaWeb/Pagina/FOTOS/fotosPrincipales/logotipo.png">
+    <link rel="shortcut icon" href="/Pagina/favicon.ico">
     
     <!-- 🔥 INCLUIR ESTILOS GLOBALES DEL SITIO -->
+    <link rel="stylesheet" href="../../VISTA/PaginaWeb/Pagina/breadcrumbs.css">
     <style>
         /* Estilos base consistentes con el sitio principal */
         body { 
@@ -34,23 +37,6 @@ $isEditMode = isset($_GET['cms_admin_token']) && $_GET['cms_admin_token'] === 't
             padding: 0; 
             font-family: 'Arial', sans-serif;
             background: white;
-        }
-        
-        .back-button {
-            position: fixed;
-            top: 20px;
-            left: 20px;
-            background: #0A2452;
-            color: white;
-            padding: 10px 15px;
-            text-decoration: none;
-            border-radius: 5px;
-            z-index: 1000;
-            font-size: 14px;
-        }
-        
-        .back-button:hover {
-            background: #1B2F6F;
         }
         
         /* 🔥 Asegurar que el contenido de la página se vea bien */
@@ -106,7 +92,6 @@ $isEditMode = isset($_GET['cms_admin_token']) && $_GET['cms_admin_token'] === 't
     </style>
 </head>
 <body>
-    <a href="index.php" class="back-button">← Volver al Inicio</a>
     
     <!-- 🔥 CONTENIDO DE LA PÁGINA -->
     <?php if ($isExistingTemplate): ?>
@@ -125,17 +110,39 @@ $isEditMode = isset($_GET['cms_admin_token']) && $_GET['cms_admin_token'] === 't
             </div>
         </div>
     <?php else: ?>
-        <div style="width: 100%; max-width: 100vw; overflow-x: hidden;">
-            <?= $page['content'] ?>
-        </div>
+        <?= $page['content'] ?>
     <?php endif; ?>
-    
-    <?php if ($isEditMode): ?>
+
     <script>
-        console.log('🔧 Modo edición activado para página ID: <?= $pageId ?>');
-        
-        // Aquí irá la lógica de edición cuando la implementemos
+      (function(){
+        function injectBreadcrumbs(){
+          try {
+            var hero = document.querySelector('.header, .hero, .hero-centered');
+            var container = document.createElement('div');
+            container.className = 'breadcrumbs-container';
+            var inner = document.createElement('div');
+            inner.id = 'breadcrumbs';
+            container.appendChild(inner);
+            if (hero && hero.parentNode) {
+              if (hero.nextSibling) hero.parentNode.insertBefore(container, hero.nextSibling);
+              else hero.parentNode.appendChild(container);
+            } else {
+              document.body.insertBefore(container, document.body.firstChild);
+            }
+          } catch(e) { console.error(e); }
+        }
+        if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', injectBreadcrumbs);
+        else injectBreadcrumbs();
+      })();
     </script>
+    <script src="../../VISTA/PaginaWeb/Pagina/breadcrumbs.js"></script>
+
+    <?php if ($isEditMode): ?>
+        <script>
+            console.log('🔧 Modo edición activado para página ID: <?= $pageId ?>');
+            
+            // Aquí irá la lógica de edición cuando la implementemos
+        </script>
     <?php endif; ?>
 </body>
 </html>

@@ -52,7 +52,19 @@
     }
   }
 
-  const html = trail.map((entry, idx) => {
+  // Intentar agregar un enlace de "Volver" usando referrer si es mismo origen
+  let backHtml = '';
+  try {
+    if (document.referrer) {
+      const refUrl = new URL(document.referrer);
+      if (refUrl.origin === window.location.origin) {
+        const href = refUrl.pathname + refUrl.search;
+        backHtml = `<a class=\"crumb-link\" href=\"${href}\">Volver</a> <span class=\"crumb-sep\">›</span> `;
+      }
+    }
+  } catch(e) { /* noop */ }
+
+  const html = backHtml + trail.map((entry, idx) => {
     const isLast = idx === trail.length - 1;
     if (isLast) return `<span class=\"crumb-current\">${entry.label}</span>`;
     return `<a class=\"crumb-link\" href=\"${baseDir}${entry.file}\">${entry.label}</a> <span class=\"crumb-sep\">›</span> `;
