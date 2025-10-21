@@ -6,6 +6,9 @@
     <title>Argentina Fotos</title>
     <link rel="stylesheet" href="breadcrumbs.css">
     <link rel="stylesheet" href="../css/ArgentinaFotos.css">
+<link rel="icon" type="image/png" href="/Pagina/favicon.png">
+<link rel="shortcut icon" href="/Pagina/favicon.ico">
+<link rel="apple-touch-icon" sizes="180x180" href="/Pagina/favicon.png">
 </head>
 <div id="cms-root"></div>
 <body>

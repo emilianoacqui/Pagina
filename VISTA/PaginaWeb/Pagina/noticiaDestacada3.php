@@ -9,6 +9,8 @@
     <link rel="stylesheet" href="../css/noticiaDestacada3.css">
     
     <title><?php $nd3_meta=['es'=>'Noticia: Diplomati','en'=>'News: Graduates','it'=>'Notizia: Diplomati']; echo $nd3_meta[$cl]; ?></title>
+<link rel="icon" type="image/png" href="/Pagina/favicon.png">
+<link rel="shortcut icon" href="/Pagina/favicon.ico">
 </head>
 <div id="cms-root"></div>
 <body>

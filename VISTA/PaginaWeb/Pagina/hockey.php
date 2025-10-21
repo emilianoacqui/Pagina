@@ -12,6 +12,8 @@
     <style>
         .navbar { background: rgba(10, 36, 82, 0.5) !important; }
     </style>
+<link rel="icon" type="image/png" href="/Pagina/favicon.png">
+<link rel="shortcut icon" href="/Pagina/favicon.ico">
 </head>
 <div id="cms-root"></div>
 <body>

@@ -9,6 +9,8 @@
 
     <link rel="stylesheet" href="breadcrumbs.css">
     <link rel="stylesheet" href="../css/gimnasia.css">
+<link rel="icon" type="image/png" href="/Pagina/favicon.png">
+<link rel="shortcut icon" href="/Pagina/favicon.ico">
 </head>
 <div id="cms-root"></div>
 <body>

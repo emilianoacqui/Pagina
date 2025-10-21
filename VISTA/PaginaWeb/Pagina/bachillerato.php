@@ -9,6 +9,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Merriweather+Sans:wght@400;700&family=Crimson+Pro:wght@400;600;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="breadcrumbs.css">
     <link rel="stylesheet" href="../css/bachillerato.css">
+    <link rel="icon" type="image/png" href="/Pagina/favicon.png">
+    <link rel="shortcut icon" href="/Pagina/favicon.ico">
 </head>
 <div id="cms-root"></div>
 <body>

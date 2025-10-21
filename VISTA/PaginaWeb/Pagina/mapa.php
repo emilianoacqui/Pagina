@@ -9,6 +9,8 @@
 
   <link rel="stylesheet" href="breadcrumbs.css">
   <link rel="stylesheet" href="../css/mapa.css">
+  <link rel="icon" type="image/png" href="/Pagina/favicon.png">
+  <link rel="shortcut icon" href="/Pagina/favicon.ico">
 
 
   <!-- Navigation -->

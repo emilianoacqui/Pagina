@@ -7,6 +7,8 @@
     <title><?php $itf_meta=['es'=>'Italia - Galería','en'=>'Italy - Gallery','it'=>'Italia - Galleria']; echo $itf_meta[$cl]; ?></title>
     <link rel="stylesheet" href="breadcrumbs.css">
     <link rel="stylesheet" href="../css/ItaliaFotos.css">
+<link rel="icon" type="image/png" href="/Pagina/favicon.png">
+<link rel="shortcut icon" href="/Pagina/favicon.ico">
 </head>
 <div id="cms-root"></div>
 <body>

@@ -6,6 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../css/scuola-club.css">
     <title><?php $sc_meta=['es'=>'Scuola Club - Heliopolis','en'=>'Scuola Club - Heliopolis','it'=>'Scuola Club - Heliopolis']; echo $sc_meta[$cl]; ?></title>
+<link rel="icon" type="image/png" href="/Pagina/favicon.png">
+<link rel="shortcut icon" href="/Pagina/favicon.ico">
 </head>
 <body>
     <div id="original-content">

@@ -7,6 +7,8 @@
     <title><?php $pa_meta=['es'=>'Paradiso','en'=>'Paradiso','it'=>'Paradiso']; echo $pa_meta[$cl]; ?></title>
     <link rel="stylesheet" href="breadcrumbs.css">
     <link rel="stylesheet" href="../css/paradiso.css">
+    <link rel="icon" type="image/png" href="/Pagina/favicon.png">
+    <link rel="shortcut icon" href="/Pagina/favicon.ico">
 </head>
 <div id="cms-root"></div>
 <body>

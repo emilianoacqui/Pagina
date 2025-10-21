@@ -7,6 +7,8 @@
     <title><?php $ar_meta=['es'=>'Arcimboldo','en'=>'Arcimboldo','it'=>'Arcimboldo']; echo $ar_meta[$cl]; ?></title>
     <link rel="stylesheet" href="breadcrumbs.css">
     <link rel="stylesheet" href="../css/arcimboldo.css">
+    <link rel="icon" type="image/png" href="/Pagina/favicon.png">
+    <link rel="shortcut icon" href="/Pagina/favicon.ico">
 </head>
 
 <div id="cms-root"></div>

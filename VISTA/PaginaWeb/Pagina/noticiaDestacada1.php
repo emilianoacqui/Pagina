@@ -8,6 +8,8 @@
     <title><?php $nd1_meta=['es'=>'Noticia: Primer día','en'=>'News: First Day','it'=>'Notizia: Primo Giorno']; echo $nd1_meta[$cl]; ?></title>
     <link rel="stylesheet" href="breadcrumbs.css">
     <link rel="stylesheet" href="../css/noticiaDestacada1.css">
+<link rel="icon" type="image/png" href="/Pagina/favicon.png">
+<link rel="shortcut icon" href="/Pagina/favicon.ico">
 </head>
 <div id="cms-root"></div>
 <body>
