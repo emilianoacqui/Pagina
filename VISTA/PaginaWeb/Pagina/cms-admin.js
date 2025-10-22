@@ -248,6 +248,101 @@ function loadSpecificPage() {
                 content.style.display = 'none';
             }
         });
+
+        // ===== DRAGGABLE on index.php =====
+        try {
+            const path = window.location.pathname || '';
+            const isIndex = /(?:^|\/)index\.php$/i.test(path) || /\/$/.test(path);
+            if (isIndex) {
+                const posKey = 'cmsAdminPos::' + (path || 'index.php');
+
+                // Restore saved position
+                const saved = JSON.parse(localStorage.getItem(posKey) || 'null');
+                if (saved && typeof saved.top === 'number' && typeof saved.left === 'number') {
+                    adminMenu.style.right = 'auto';
+                    adminMenu.style.top = saved.top + 'px';
+                    adminMenu.style.left = saved.left + 'px';
+                }
+
+                let dragging = false;
+                let startX = 0, startY = 0, startLeft = 0, startTop = 0;
+
+                const getPoint = (ev) => {
+                    if (ev.touches && ev.touches[0]) return { x: ev.touches[0].clientX, y: ev.touches[0].clientY };
+                    return { x: ev.clientX, y: ev.clientY };
+                };
+
+                const clamp = (val, min, max) => Math.min(Math.max(val, min), max);
+
+                const onMove = (ev) => {
+                    if (!dragging) return;
+                    ev.preventDefault();
+                    const { x, y } = getPoint(ev);
+                    let newLeft = startLeft + (x - startX);
+                    let newTop = startTop + (y - startY);
+
+                    // Constrain into viewport
+                    const rect = adminMenu.getBoundingClientRect();
+                    const maxLeft = window.innerWidth - rect.width;
+                    const maxTop = window.innerHeight - rect.height;
+                    newLeft = clamp(newLeft, 0, Math.max(0, maxLeft));
+                    newTop = clamp(newTop, 0, Math.max(0, maxTop));
+
+                    adminMenu.style.right = 'auto';
+                    adminMenu.style.left = newLeft + 'px';
+                    adminMenu.style.top = newTop + 'px';
+                };
+
+                const onEnd = () => {
+                    if (!dragging) return;
+                    dragging = false;
+                    document.removeEventListener('mousemove', onMove, { passive: false });
+                    document.removeEventListener('mouseup', onEnd);
+                    document.removeEventListener('touchmove', onMove, { passive: false });
+                    document.removeEventListener('touchend', onEnd);
+
+                    // Save position
+                    const rect = adminMenu.getBoundingClientRect();
+                    const top = Math.round(rect.top);
+                    const left = Math.round(rect.left);
+                    localStorage.setItem(posKey, JSON.stringify({ top, left }));
+                };
+
+                const onStart = (ev) => {
+                    // Only drag using the header toggle bar
+                    if (!ev.target || !toggle.contains(ev.target)) return;
+                    const { x, y } = getPoint(ev);
+                    const rect = adminMenu.getBoundingClientRect();
+                    startX = x; startY = y;
+                    startLeft = rect.left; startTop = rect.top;
+                    dragging = true;
+                    // Ensure absolute coordinates from left
+                    adminMenu.style.right = 'auto';
+                    document.addEventListener('mousemove', onMove, { passive: false });
+                    document.addEventListener('mouseup', onEnd);
+                    document.addEventListener('touchmove', onMove, { passive: false });
+                    document.addEventListener('touchend', onEnd);
+                };
+
+                // Attach listeners
+                toggle.style.cursor = 'move';
+                toggle.addEventListener('mousedown', onStart);
+                toggle.addEventListener('touchstart', onStart, { passive: false });
+
+                // Re-clamp on resize
+                window.addEventListener('resize', () => {
+                    const rect = adminMenu.getBoundingClientRect();
+                    const maxLeft = Math.max(0, window.innerWidth - rect.width);
+                    const maxTop = Math.max(0, window.innerHeight - rect.height);
+                    const left = clamp(rect.left, 0, maxLeft);
+                    const top = clamp(rect.top, 0, maxTop);
+                    adminMenu.style.left = left + 'px';
+                    adminMenu.style.top = top + 'px';
+                });
+            }
+        } catch (e) {
+            console.warn('Draggable admin menu error:', e);
+        }
     }
     
     // Sistema de edición
