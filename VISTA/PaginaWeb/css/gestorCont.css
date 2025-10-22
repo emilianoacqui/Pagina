@@ -447,6 +447,21 @@
     .sidebar,
     .main-content { transition: margin-left .3s ease, transform .3s ease; }
 
+    /* Backdrop overlay for mobile sidebar */
+    .sidebar-backdrop {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.4);
+      z-index: 1050;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity .2s ease;
+    }
+    body.sidebar-backdrop-visible .sidebar-backdrop {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
     /* Desktop compact mode (optional width when not fully collapsed) */
     @media (min-width: 993px) {
       body.sidebar-compact .sidebar { width: 60px; }
@@ -454,14 +469,18 @@
     }
 
     @media (max-width: 992px) {
+      /* Off-canvas sidebar */
       .sidebar {
-        position: relative;
-        width: 100%;
-        height: auto;
+        position: fixed;
+        left: 0;
+        top: 0;
+        width: 260px;
+        height: 100vh;
+        transform: translateX(-100%);
       }
-      .main-content {
-        margin-left: 0;
-      }
+      body.sidebar-collapsed .sidebar { transform: translateX(-100%); }
+      body:not(.sidebar-collapsed) .sidebar { transform: translateX(0); }
+      .main-content { margin-left: 0; }
       .content-area {
         padding: 20px;
       }
@@ -475,6 +494,12 @@
       .template-frame {
         height: 70vh;
       }
+      .template-actions { flex-wrap: wrap; }
+      .template-actions .btn { flex: 1 1 48%; }
+      .page-header {
+        margin: -20px -20px 20px -20px;
+      }
+      .page-title { font-size: 22px; }
       .page-header {
         margin: -20px -20px 20px -20px;
       }
@@ -488,6 +513,8 @@
       .stats-summary { grid-template-columns: 1fr !important; }
       .content-area [style*="grid-template-columns: 1fr 1fr"] { grid-template-columns: 1fr !important; }
       .site-view-container iframe { height: 60vh !important; }
+      /* Ensure lists and tables fit */
+      #pages-list.template-grid { grid-template-columns: 1fr; }
     }
 
     @media (max-width: 600px) {
@@ -496,7 +523,14 @@
       .btn-success { padding: 10px 16px; font-size: 14px; }
       .modal-content { width: 90%; margin: 20% auto; padding: 20px; }
       .content-area { padding: 16px; }
-      .page-title { font-size: 22px; }
+      .page-title { font-size: 20px; }
       .sidebar-toggle { top: 8px; left: 8px; padding: 6px 10px; }
       .template-frame { height: 65vh; }
     }
+
+    /* Responsive canvases for charts */
+    canvas { width: 100% !important; height: auto !important; }
+    .chart-container { overflow: hidden; }
+
+    /* Wrap long URLs/text in CMS */
+    .cms-page-url { word-break: break-all; }
