@@ -8,6 +8,7 @@ $manager = new PagesManager();
 // Manejar tanto GET como POST
 $action = $_GET['action'] ?? $_POST['action'] ?? '';
 
+
 switch ($action) {
     case 'getAll':
         try {
