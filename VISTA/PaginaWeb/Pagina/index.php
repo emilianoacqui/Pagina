@@ -1176,7 +1176,7 @@ body:not(.loading-cms-content) #cms-root {
                     <img src="FOTOS/fotosPrincipales/logo2.png" alt="Scuola Italiana di Montevideo">
                 </div>
                 <div style="display:flex; align-items:center; gap:12px;">
-                    <a href="../../../VISTA/Auth/index.php" class="nav-login-btn">Ingresar</a>
+                    <a href="../../Auth/index.php" class="nav-login-btn">Ingresar</a>
                     <?php 
                         $currentLang = $_SESSION['lang'] ?? 'es';
                         // Use CDN flags to avoid emoji fallback to letters
