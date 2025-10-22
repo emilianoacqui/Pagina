@@ -165,6 +165,11 @@
             transform: translateX(3px);
         }
 
+        /* Make sure buttons are always tappable */
+        .program-section { position: relative; }
+        .program-button { position: relative; z-index: 2; }
+        .program-image, .program-image img { pointer-events: none; }
+
         /* Footer Styles */
         .footer-bottom-new {
             background: #1B4F72;
@@ -282,4 +287,6 @@
             .footer-section {
                 margin-bottom: 20px;
             }
+            /* Extra safety on mobile: keep buttons above any inner content */
+            .program-button { z-index: 3; }
         }

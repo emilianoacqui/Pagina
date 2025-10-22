@@ -1,8 +1,8 @@
 <?php
 // conexion.php
 $host = "localhost";  // Servidor de la base de datos
-$usuario = "root";    // Usuario de MySQL (por defecto es root)
-$password = "";       // Contraseña de MySQL (por defecto vacía en XAMPP)
+$usuario = "sigie_user";    // Usuario de MySQL (por defecto es root)
+$password = "sigie2025";       // Contraseña de MySQL (por defecto vacía en XAMPP)
 $basedatos = "sigie";  // Nombre de la base de datos
 
 // Crear conexión

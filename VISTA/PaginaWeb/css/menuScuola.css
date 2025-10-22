@@ -102,6 +102,7 @@
 /* Mobile */
 @media (max-width: 640px) {
   .top-menu { gap: 12px; }
+  .top-menu > span, .menu-dropdown { font-size: 15px; }
   .close-button {
     top: 10px !important;
     right: 16px !important;
@@ -112,13 +113,42 @@
     box-shadow: 0 4px 12px rgba(0,0,0,0.18);
   }
 
-  .right { padding: 16px !important; }
+  /* Hide photos on mobile */
+  .left { display: none !important; }
+  .curve { display: none !important; }
 
-  .menu-item { font-size: 15px; }
+  .right {
+    padding: 18px 16px !important;
+    min-height: 100vh;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+    box-shadow: none;
+  }
 
-  .submenu-content { padding: 10px 12px; }
+  /* Two-column layout: left menu, right content */
+  .menu-container {
+    padding-top: 12px !important;
+    gap: 12px;
+    display: flex !important;
+    flex-direction: row !important;
+    align-items: flex-start;
+  }
 
-  .left { min-height: 32vh; }
+  .menu { width: 48% !important; }
+  .submenu-panel { width: 52% !important; }
+
+  /* Larger tap targets and readable sizes */
+  .menu-item {
+    font-size: 17px;
+    padding: 14px 16px;
+    border-radius: 14px;
+  }
+
+  .submenu-content { padding: 12px 14px; font-size: 15px; }
+  .submenu-content li { padding: 8px 0; }
+
+  /* Remove mobile overlay since the image is hidden */
+  .left { min-height: 0; }
 
   /* Slightly larger tap targets for submenu trigger */
   .menu-dropdown { padding: 6px 8px; border-radius: 8px; background: #f7f7f7; }

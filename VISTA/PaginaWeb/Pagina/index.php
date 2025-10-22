@@ -695,6 +695,7 @@ body:not(.loading-cms-content) #cms-root {
             width: 100%;
             height: 100%;
             object-fit: cover;
+            pointer-events: none; /* ensure image overlay does not block taps */
         }
 
         .footer-card::before {
@@ -705,6 +706,7 @@ body:not(.loading-cms-content) #cms-root {
             right: 0;
             bottom: 0;
             opacity: 0.25;
+            pointer-events: none; /* decorative overlay should not intercept clicks */
         }
 
         .footer-card-content {
