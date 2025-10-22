@@ -2,6 +2,9 @@
     // Detectar si es administrador
     const urlParams = new URLSearchParams(window.location.search);
     const isAdmin = urlParams.get('cms_admin_token') === 'true';
+    const ADMIN_PERSIST_KEY = 'cms_admin_enabled';
+    if (isAdmin) { try { localStorage.setItem(ADMIN_PERSIST_KEY, '1'); } catch (e) {} }
+    const isAdminActive = isAdmin || (function(){ try { return localStorage.getItem(ADMIN_PERSIST_KEY) === '1'; } catch(e){ return false; } })();
     const pageId = urlParams.get('page_id');
     
 
@@ -214,6 +217,17 @@ function loadSpecificPage() {
                     border-radius: 4px;
                     cursor: pointer;
                 ">✏️ Editar esta página</button>
+                <button id="cms-exit-btn" class="cms-btn" style="
+                    display: block;
+                    width: 100%;
+                    padding: 8px 12px;
+                    margin-top: 8px;
+                    background: #7f8c8d;
+                    color: white;
+                    border: none;
+                    border-radius: 4px;
+                    cursor: pointer;
+                ">🚪 Salir admin</button>
             </div>
         `;
         
@@ -225,6 +239,7 @@ function loadSpecificPage() {
         const gestorBtn = document.getElementById('cms-gestor-btn');
         const indexBtn = document.getElementById('cms-index-btn');
         const editBtn = document.getElementById('cms-edit-btn');
+        const exitBtn = document.getElementById('cms-exit-btn');
         
         toggle.addEventListener('click', () => {
             content.style.display = content.style.display === 'none' ? 'block' : 'none';
@@ -241,6 +256,11 @@ function loadSpecificPage() {
         editBtn.addEventListener('click', () => {
             enableEditMode();
         });
+        exitBtn.addEventListener('click', () => {
+            try { localStorage.removeItem(ADMIN_PERSIST_KEY); } catch(e) {}
+            alert('Modo admin desactivado');
+            window.location.href = window.location.pathname + window.location.search.replace(/\??cms_admin_token=true&?|&cms_admin_token=true/g,'');
+        });
         
         // Cerrar menú al hacer click fuera
         document.addEventListener('click', (e) => {
@@ -249,12 +269,10 @@ function loadSpecificPage() {
             }
         });
 
-        // ===== DRAGGABLE on index.php =====
+        // ===== DRAGGABLE on all pages (persist per path) =====
         try {
-            const path = window.location.pathname || '';
-            const isIndex = /(?:^|\/)index\.php$/i.test(path) || /\/$/.test(path);
-            if (isIndex) {
-                const posKey = 'cmsAdminPos::' + (path || 'index.php');
+            const path = window.location.pathname || 'index.php';
+            const posKey = 'cmsAdminPos::' + path;
 
                 // Restore saved position
                 const saved = JSON.parse(localStorage.getItem(posKey) || 'null');
@@ -339,7 +357,6 @@ function loadSpecificPage() {
                     adminMenu.style.left = left + 'px';
                     adminMenu.style.top = top + 'px';
                 });
-            }
         } catch (e) {
             console.warn('Draggable admin menu error:', e);
         }
@@ -875,13 +892,13 @@ if (document.readyState === 'loading') {
         if (pageId) {
             loadSpecificPage();
         } 
-        // 🔥 SEGUNDO: Para páginas existentes (index.php, acerca.php, etc.)
+        // SEGUNDO: Para páginas existentes (index.php, acerca.php, etc.)
         else {
             await loadSavedContent();
         }
         
-        // 🔥 LUEGO: Inicializar CMS si es admin
-        if (isAdmin) {
+        // LUEGO: Inicializar CMS si es admin (persistente)
+        if (isAdminActive) {
             createAdminMenu();
             updateLinksWithToken();
         }
@@ -889,17 +906,17 @@ if (document.readyState === 'loading') {
 } else {
     // Para cuando el DOM ya está cargado
     (async function() {
-        // 🔥 PRIMERO: Para páginas específicas (creadas desde gestor)
+        // PRIMERO: Para páginas específicas (creadas desde gestor)
         if (pageId) {
             loadSpecificPage();
         } 
-        // 🔥 SEGUNDO: Para páginas existentes (index.php, acerca.php, etc.)
+        // SEGUNDO: Para páginas existentes (index.php, acerca.php, etc.)
         else {
             await loadSavedContent();
         }
         
-        // 🔥 LUEGO: Inicializar CMS si es admin
-                if (isAdmin) {
+        // LUEGO: Inicializar CMS si es admin (persistente)
+                if (isAdminActive) {
             createAdminMenu();
             updateLinksWithToken();
         }
