@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="refresh" content="0;url=VISTA/PaginaWeb/Pagina/index.php">
+  <title>Redireccionando…</title>
+  <script>
+    // Redirige directamente a la vista pública preservando parámetros
+    (function(){
+      var qs = window.location.search || '';
+      var target = 'VISTA/PaginaWeb/Pagina/index.php' + qs;
+      try { window.location.replace(target); } catch(e) { window.location.href = target; }
+    })();
+  </script>
+  <noscript>
+    <meta http-equiv="refresh" content="0;url=VISTA/PaginaWeb/Pagina/index.php">
+  </noscript>
+</head>
+<body>
+  <p>Redirigiendo… Si no ocurre automáticamente, haga clic en 
+    <a href="VISTA/PaginaWeb/Pagina/index.php">la página principal</a>.
+  </p>
+</body>
+</html>

@@ -1,0 +1,12 @@
+# Forzar archivo de índice por defecto (priorizar HTML)
+DirectoryIndex index.html index.php index.htm
+
+# Desactivar listado de directorios
+Options -Indexes
+
+# Asegurar que PHP maneje las rutas y mantener parámetros en redirecciones
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  # Si se solicita la carpeta sin archivo, Apache usará DirectoryIndex
+  # No es necesario reescribir nada más aquí por ahora
+</IfModule>
