@@ -406,4 +406,15 @@
             .content-row {
                 gap: 30px;
             }
+
+            /* Header stack reductions to avoid overflow */
+            .color-bands { height: 320px; }
+            .green-band, .red-band { height: 160px; }
+            .hero-image { max-width: 95vw; }
+            .tabs-navigation { margin-top: 240px; }
+
+            /* Footer responsive layout */
+            .footer-container { flex-direction: column; gap: 25px; text-align: center; }
+            .footer-Aleft { flex-direction: column; gap: 10px; }
+            .footer-center, .footer-right { padding: 0; width: 100%; }
         }
