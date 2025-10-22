@@ -269,94 +269,114 @@ function loadSpecificPage() {
             }
         });
 
-        // ===== DRAGGABLE on all pages (persist per path) =====
         try {
+            const globalKey = 'cmsAdminPos::global';
             const path = window.location.pathname || 'index.php';
-            const posKey = 'cmsAdminPos::' + path;
+            const legacyKey = 'cmsAdminPos::' + path;
 
-                // Restore saved position
-                const saved = JSON.parse(localStorage.getItem(posKey) || 'null');
-                if (saved && typeof saved.top === 'number' && typeof saved.left === 'number') {
-                    adminMenu.style.right = 'auto';
-                    adminMenu.style.top = saved.top + 'px';
-                    adminMenu.style.left = saved.left + 'px';
-                }
+            const clamp = (val, min, max) => Math.min(Math.max(val, min), max);
 
-                let dragging = false;
-                let startX = 0, startY = 0, startLeft = 0, startTop = 0;
+            const applyFromPct = (pos) => {
+                if (!pos || typeof pos.leftPct !== 'number' || typeof pos.topPct !== 'number') return;
+                const rect = adminMenu.getBoundingClientRect();
+                const maxLeft = Math.max(0, window.innerWidth - rect.width);
+                const maxTop = Math.max(0, window.innerHeight - rect.height);
+                const left = clamp(Math.round(pos.leftPct * maxLeft), 0, maxLeft);
+                const top = clamp(Math.round(pos.topPct * maxTop), 0, maxTop);
+                adminMenu.style.right = 'auto';
+                adminMenu.style.left = left + 'px';
+                adminMenu.style.top = top + 'px';
+            };
 
-                const getPoint = (ev) => {
-                    if (ev.touches && ev.touches[0]) return { x: ev.touches[0].clientX, y: ev.touches[0].clientY };
-                    return { x: ev.clientX, y: ev.clientY };
-                };
+            const saveAsPct = () => {
+                const rect = adminMenu.getBoundingClientRect();
+                const maxLeft = Math.max(0, window.innerWidth - rect.width);
+                const maxTop = Math.max(0, window.innerHeight - rect.height);
+                const leftPct = maxLeft > 0 ? rect.left / maxLeft : 0;
+                const topPct = maxTop > 0 ? rect.top / maxTop : 0;
+                localStorage.setItem(globalKey, JSON.stringify({ leftPct, topPct }));
+            };
 
-                const clamp = (val, min, max) => Math.min(Math.max(val, min), max);
+            const migrateLegacy = () => {
+                try {
+                    const legacy = JSON.parse(localStorage.getItem(legacyKey) || 'null');
+                    if (legacy && typeof legacy.left === 'number' && typeof legacy.top === 'number') {
+                        const rect = adminMenu.getBoundingClientRect();
+                        const maxLeft = Math.max(0, window.innerWidth - rect.width);
+                        const maxTop = Math.max(0, window.innerHeight - rect.height);
+                        const leftPct = maxLeft > 0 ? clamp(legacy.left, 0, maxLeft) / maxLeft : 0;
+                        const topPct = maxTop > 0 ? clamp(legacy.top, 0, maxTop) / maxTop : 0;
+                        localStorage.setItem(globalKey, JSON.stringify({ leftPct, topPct }));
+                        try { localStorage.removeItem(legacyKey); } catch(_) {}
+                    }
+                } catch(_) {}
+            };
 
-                const onMove = (ev) => {
-                    if (!dragging) return;
-                    ev.preventDefault();
-                    const { x, y } = getPoint(ev);
-                    let newLeft = startLeft + (x - startX);
-                    let newTop = startTop + (y - startY);
+            const savedGlobal = (function(){ try { return JSON.parse(localStorage.getItem(globalKey) || 'null'); } catch(_) { return null; } })();
+            if (savedGlobal) {
+                applyFromPct(savedGlobal);
+            } else {
+                migrateLegacy();
+                const afterMig = (function(){ try { return JSON.parse(localStorage.getItem(globalKey) || 'null'); } catch(_) { return null; } })();
+                if (afterMig) applyFromPct(afterMig);
+            }
 
-                    // Constrain into viewport
-                    const rect = adminMenu.getBoundingClientRect();
-                    const maxLeft = window.innerWidth - rect.width;
-                    const maxTop = window.innerHeight - rect.height;
-                    newLeft = clamp(newLeft, 0, Math.max(0, maxLeft));
-                    newTop = clamp(newTop, 0, Math.max(0, maxTop));
+            let dragging = false;
+            let startX = 0, startY = 0, startLeft = 0, startTop = 0;
 
-                    adminMenu.style.right = 'auto';
-                    adminMenu.style.left = newLeft + 'px';
-                    adminMenu.style.top = newTop + 'px';
-                };
+            const getPoint = (ev) => {
+                if (ev.touches && ev.touches[0]) return { x: ev.touches[0].clientX, y: ev.touches[0].clientY };
+                return { x: ev.clientX, y: ev.clientY };
+            };
 
-                const onEnd = () => {
-                    if (!dragging) return;
-                    dragging = false;
-                    document.removeEventListener('mousemove', onMove, { passive: false });
-                    document.removeEventListener('mouseup', onEnd);
-                    document.removeEventListener('touchmove', onMove, { passive: false });
-                    document.removeEventListener('touchend', onEnd);
+            const onMove = (ev) => {
+                if (!dragging) return;
+                ev.preventDefault();
+                const { x, y } = getPoint(ev);
+                let newLeft = startLeft + (x - startX);
+                let newTop = startTop + (y - startY);
+                const rect = adminMenu.getBoundingClientRect();
+                const maxLeft = window.innerWidth - rect.width;
+                const maxTop = window.innerHeight - rect.height;
+                newLeft = clamp(newLeft, 0, Math.max(0, maxLeft));
+                newTop = clamp(newTop, 0, Math.max(0, maxTop));
+                adminMenu.style.right = 'auto';
+                adminMenu.style.left = newLeft + 'px';
+                adminMenu.style.top = newTop + 'px';
+            };
 
-                    // Save position
-                    const rect = adminMenu.getBoundingClientRect();
-                    const top = Math.round(rect.top);
-                    const left = Math.round(rect.left);
-                    localStorage.setItem(posKey, JSON.stringify({ top, left }));
-                };
+            const onEnd = () => {
+                if (!dragging) return;
+                dragging = false;
+                document.removeEventListener('mousemove', onMove, { passive: false });
+                document.removeEventListener('mouseup', onEnd);
+                document.removeEventListener('touchmove', onMove, { passive: false });
+                document.removeEventListener('touchend', onEnd);
+                saveAsPct();
+            };
 
-                const onStart = (ev) => {
-                    // Only drag using the header toggle bar
-                    if (!ev.target || !toggle.contains(ev.target)) return;
-                    const { x, y } = getPoint(ev);
-                    const rect = adminMenu.getBoundingClientRect();
-                    startX = x; startY = y;
-                    startLeft = rect.left; startTop = rect.top;
-                    dragging = true;
-                    // Ensure absolute coordinates from left
-                    adminMenu.style.right = 'auto';
-                    document.addEventListener('mousemove', onMove, { passive: false });
-                    document.addEventListener('mouseup', onEnd);
-                    document.addEventListener('touchmove', onMove, { passive: false });
-                    document.addEventListener('touchend', onEnd);
-                };
+            const onStart = (ev) => {
+                if (!ev.target || !toggle.contains(ev.target)) return;
+                const { x, y } = getPoint(ev);
+                const rect = adminMenu.getBoundingClientRect();
+                startX = x; startY = y;
+                startLeft = rect.left; startTop = rect.top;
+                dragging = true;
+                adminMenu.style.right = 'auto';
+                document.addEventListener('mousemove', onMove, { passive: false });
+                document.addEventListener('mouseup', onEnd);
+                document.addEventListener('touchmove', onMove, { passive: false });
+                document.addEventListener('touchend', onEnd);
+            };
 
-                // Attach listeners
-                toggle.style.cursor = 'move';
-                toggle.addEventListener('mousedown', onStart);
-                toggle.addEventListener('touchstart', onStart, { passive: false });
+            toggle.style.cursor = 'move';
+            toggle.addEventListener('mousedown', onStart);
+            toggle.addEventListener('touchstart', onStart, { passive: false });
 
-                // Re-clamp on resize
-                window.addEventListener('resize', () => {
-                    const rect = adminMenu.getBoundingClientRect();
-                    const maxLeft = Math.max(0, window.innerWidth - rect.width);
-                    const maxTop = Math.max(0, window.innerHeight - rect.height);
-                    const left = clamp(rect.left, 0, maxLeft);
-                    const top = clamp(rect.top, 0, maxTop);
-                    adminMenu.style.left = left + 'px';
-                    adminMenu.style.top = top + 'px';
-                });
+            window.addEventListener('resize', () => {
+                const pos = (function(){ try { return JSON.parse(localStorage.getItem(globalKey) || 'null'); } catch(_) { return null; } })();
+                if (pos) applyFromPct(pos);
+            });
         } catch (e) {
             console.warn('Draggable admin menu error:', e);
         }
