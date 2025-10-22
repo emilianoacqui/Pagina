@@ -803,6 +803,19 @@ body:not(.loading-cms-content) #cms-root {
 
     .nav-container {
         padding: 0 4%;
+        position: relative; /* allow centering the middle group */
+    }
+
+    /* Center the Ingresar + language buttons group */
+    .nav-container > div:nth-child(2) {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        z-index: 2;
     }
 
     .nav-logo img {
