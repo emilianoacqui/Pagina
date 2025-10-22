@@ -281,23 +281,52 @@
       <div class="submenu-panel">
         <div id="submenu1" class="submenu-content active">
           <ul>
-            <li>Bienvenido a Scuola Italiana</li>
-            <li>Nuestra Misión e Historia</li>
-            <li>Liderazgo y visión estratégica</li>
-            <li>Nuestro personal docente y administrativo</li>
-            <li>Carreras</li>
-            <li>Explora nuestro campus</li>
-            <li>Voces de la comunidad</li>
-            <li>Equidad y participación comunitaria</li>
-            <li>Calendario escolar</li>
+            <li><a href="acerca-bienvenido.php">Bienvenido a Scuola Italiana</a></li>
+            <li><a href="acerca-mision-historia.php">Nuestra Misión e Historia</a></li>
+            <li><a href="acerca-liderazgo-vision.php">Liderazgo y visión estratégica</a></li>
+            <li><a href="acerca-personal.php">Nuestro personal docente y administrativo</a></li>
+            <li><a href="acerca-carreras.php">Carreras</a></li>
+            <li><a href="acerca-campus.php">Explora nuestro campus</a></li>
+            <li><a href="acerca-comunidad.php">Voces de la comunidad</a></li>
+            <li><a href="acerca-equidad-participacion.php">Equidad y participación comunitaria</a></li>
+            <li><a href="calendario-escolar.php">Calendario escolar</a></li>
           </ul>
         </div>
 
-        <div id="submenu2" class="submenu-content"><p>Información sobre admisiones, requisitos y fechas clave.</p></div>
-        <div id="submenu3" class="submenu-content"><p>Plan académico, niveles y contenidos educativos.</p></div>
-        <div id="submenu4" class="submenu-content"><p>Área de humanidades, literatura y proyectos artísticos.</p></div>
-        <div id="submenu5" class="submenu-content"><p>Actividades deportivas, competencias y talleres físicos.</p></div>
-        <div id="submenu6" class="submenu-content"><p>Historia y legado institucional de la escuela.</p></div>
+        <div id="submenu2" class="submenu-content">
+          <ul>
+            <li><a href="admision-requisitos.php">Requisitos de admisión</a></li>
+            <li><a href="admision-fechas.php">Fechas clave</a></li>
+            <li><a href="admision-contacto.php">Contacto de admisiones</a></li>
+          </ul>
+        </div>
+        <div id="submenu3" class="submenu-content">
+          <ul>
+            <li><a href="propuesta-niveles.php">Niveles y áreas</a></li>
+            <li><a href="propuesta-plan-academico.php">Plan académico</a></li>
+            <li><a href="propuesta-proyectos.php">Proyectos destacados</a></li>
+          </ul>
+        </div>
+        <div id="submenu4" class="submenu-content">
+          <ul>
+            <li><a href="mapa-campus.php">Mapa del campus</a></li>
+            <li><a href="ubicaciones.php">Ubicaciones principales</a></li>
+          </ul>
+        </div>
+        <div id="submenu5" class="submenu-content">
+          <ul>
+            <li><a href="deportes-actividades.php">Actividades deportivas</a></li>
+            <li><a href="deportes-competencias.php">Competencias</a></li>
+            <li><a href="deportes-talleres.php">Talleres</a></li>
+          </ul>
+        </div>
+        <div id="submenu6" class="submenu-content">
+          <ul>
+            <li><a href="otra-historia.php">Historia institucional</a></li>
+            <li><a href="otra-legado.php">Legado y valores</a></li>
+            <li><a href="otra-documentos.php">Documentos y recursos</a></li>
+          </ul>
+        </div>
       </div>
     </div>
   </div>
