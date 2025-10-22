@@ -21,21 +21,23 @@ if (isset($_POST['ajax']) && $_POST['ajax'] === '1') {
            🔌 GESTIÓN DE USUARIOS
         ========================== */
         if (isset($_POST['crear_usuario'])) {
+            $nombre = trim($_POST['nombre'] ?? '');
             $email = trim($_POST['email']);
             $password = trim($_POST['password']);
             $rol = trim($_POST['rol']);
 
-            if ($email === "" || $password === "" || !in_array($rol, ['alumno', 'profesor'])) {
-                $response['message'] = "⚠️ Complete email, contraseña y rol (alumno/profesor).";
+            if ($nombre === "" || $email === "" || $password === "" || !in_array($rol, ['alumno', 'profesor'])) {
+                $response['message'] = "⚠️ Complete nombre, email, contraseña y rol (alumno/profesor).";
             } else {
                 $passwordHash = password_hash($password, PASSWORD_DEFAULT);
-                $stmt = $conn->prepare("INSERT INTO usuarios (email, password, rol) VALUES (?, ?, ?)");
-                $stmt->bind_param("sss", $email, $passwordHash, $rol);
+                $stmt = $conn->prepare("INSERT INTO usuarios (nombre, email, password, rol) VALUES (?, ?, ?, ?)");
+                $stmt->bind_param("ssss", $nombre, $email, $passwordHash, $rol);
                 if ($stmt->execute()) {
                     $response['success'] = true;
                     $response['message'] = "✅ Usuario creado correctamente.";
                     $response['data'] = [
                         'id_usuario' => $conn->insert_id,
+                        'nombre' => $nombre,
                         'email' => $email,
                         'rol' => $rol
                     ];
@@ -48,20 +50,21 @@ if (isset($_POST['ajax']) && $_POST['ajax'] === '1') {
 
         if (isset($_POST['editar_usuario'])) {
             $id_usuario = intval($_POST['id_usuario']);
+            $nombre = trim($_POST['nombre'] ?? '');
             $email = trim($_POST['email']);
             $rol = trim($_POST['rol']);
             $password = trim($_POST['password']);
 
-            if ($id_usuario <= 0 || $email === "" || !in_array($rol, ['alumno','profesor'])) {
-                $response['message'] = "⚠️ Datos inválidos para editar.";
+            if ($id_usuario <= 0 || $nombre === '' || $email === "" || !in_array($rol, ['alumno','profesor'])) {
+                $response['message'] = "⚠️ Datos inválidos para editar (nombre, email y rol obligatorios).";
             } else {
                 if ($password !== "") {
                     $passwordHash = password_hash($password, PASSWORD_DEFAULT);
-                    $stmt = $conn->prepare("UPDATE usuarios SET email=?, password=?, rol=? WHERE id_usuario=?");
-                    $stmt->bind_param("sssi", $email, $passwordHash, $rol, $id_usuario);
+                    $stmt = $conn->prepare("UPDATE usuarios SET nombre=?, email=?, password=?, rol=? WHERE id_usuario=?");
+                    $stmt->bind_param("ssssi", $nombre, $email, $passwordHash, $rol, $id_usuario);
                 } else {
-                    $stmt = $conn->prepare("UPDATE usuarios SET email=?, rol=? WHERE id_usuario=?");
-                    $stmt->bind_param("ssi", $email, $rol, $id_usuario);
+                    $stmt = $conn->prepare("UPDATE usuarios SET nombre=?, email=?, rol=? WHERE id_usuario=?");
+                    $stmt->bind_param("sssi", $nombre, $email, $rol, $id_usuario);
                 }
                 if ($stmt->execute()) {
                     $response['success'] = true;
@@ -265,7 +268,7 @@ if (isset($_POST['ajax']) && $_POST['ajax'] === '1') {
    🔌 CONSULTAS (arrays) - Solo para carga inicial
 ========================== */
 $usuarios_arr = [];
-$res = $conn->query("SELECT id_usuario, email, rol FROM usuarios WHERE rol IN ('alumno','profesor') ORDER BY rol, email");
+$res = $conn->query("SELECT id_usuario, nombre, email, rol FROM usuarios WHERE rol IN ('alumno','profesor') ORDER BY rol, email");
 while ($row = $res->fetch_assoc()) { $usuarios_arr[] = $row; }
 
 $clases_arr = [];
@@ -275,7 +278,7 @@ while ($row = $res->fetch_assoc()) { $clases_arr[] = $row; }
 $usuarios_por_clase = [];
 $res = $conn->query("
     SELECT c.id_clase, c.nombre AS clase, c.`año` AS anio,
-           u.id_usuario, u.email AS usuario, uc.rol_en_clase
+           u.id_usuario, u.nombre AS usuario_nombre, u.email AS usuario, uc.rol_en_clase
     FROM usuarios_clases uc
     JOIN clases c ON uc.id_clase = c.id_clase
     JOIN usuarios u ON uc.id_usuario = u.id_usuario
@@ -319,6 +322,7 @@ while ($row = $res->fetch_assoc()) { $eventos_arr[] = $row; }
     <section id="seccionUsuarios" class="card" style="display:block;">
       <h1>Gestión de Usuarios</h1>
       <form id="formCrearUsuario" class="form-row" autocomplete="off">
+        <input type="text" name="nombre" placeholder="Nombre" required>
         <input type="email" name="email" placeholder="Correo electrónico" required>
         <input type="password" name="password" placeholder="Contraseña" required>
         <select name="rol" required>
@@ -335,15 +339,17 @@ while ($row = $res->fetch_assoc()) { $eventos_arr[] = $row; }
       <div class="table-wrap" style="margin-top:12px;">
         <table id="tablaUsuarios">
           <thead>
-            <tr><th>Email</th><th>Rol</th><th style="width:420px">Editar</th><th>Eliminar</th></tr>
+            <tr><th>Nombre</th><th>Email</th><th>Rol</th><th style="width:520px">Editar</th><th>Eliminar</th></tr>
           </thead>
           <tbody>
             <?php foreach ($usuarios_arr as $u): ?>
               <tr data-id="<?php echo $u['id_usuario']; ?>">
+                <td><?php echo htmlspecialchars($u['nombre'] ?? ''); ?></td>
                 <td><?php echo htmlspecialchars($u['email']); ?></td>
                 <td><?php echo htmlspecialchars($u['rol']); ?></td>
                 <td>
                   <form class="form-editar-usuario form-row" style="gap:8px;" data-id="<?php echo $u['id_usuario']; ?>">
+                    <input type="text" name="nombre" value="<?php echo htmlspecialchars($u['nombre'] ?? ''); ?>" placeholder="Nombre">
                     <input type="email" name="email" value="<?php echo htmlspecialchars($u['email']); ?>">
                     <select name="rol">
                       <option value="alumno" <?php echo $u['rol']=='alumno'?'selected':''; ?>>Alumno</option>
@@ -411,7 +417,7 @@ while ($row = $res->fetch_assoc()) { $eventos_arr[] = $row; }
           <option value="">-- Usuario --</option>
           <?php foreach ($usuarios_arr as $u): ?>
             <option value="<?php echo $u['id_usuario']; ?>">
-              <?php echo ucfirst($u['rol'])." - ".$u['email']; ?>
+              <?php echo ucfirst($u['rol'])." - ".$u['nombre']." ".$u['email']; ?>
             </option>
           <?php endforeach; ?>
         </select>
@@ -452,7 +458,7 @@ while ($row = $res->fetch_assoc()) { $eventos_arr[] = $row; }
             <tr data-usuario="<?php echo $row['id_usuario']; ?>" data-clase="<?php echo $row['id_clase']; ?>">
               <td><?php echo htmlspecialchars($row['clase']); ?></td>
               <td><?php echo htmlspecialchars($row['anio']); ?></td>
-              <td><?php echo htmlspecialchars($row['usuario']); ?></td>
+              <td><?php echo htmlspecialchars($row['usuario_nombre']." ".$row['usuario']); ?></td>
               <td><?php echo htmlspecialchars($row['rol_en_clase']); ?></td>
               <td>
                 <button class="btn btn-danger btn-quitar-usuario" 
@@ -872,10 +878,12 @@ while ($row = $res->fetch_assoc()) { $eventos_arr[] = $row; }
       const row = document.createElement('tr');
       row.dataset.id = usuario.id_usuario;
       row.innerHTML = `
+        <td>${usuario.nombre ?? ''}</td>
         <td>${usuario.email}</td>
         <td>${usuario.rol}</td>
         <td>
           <form class="form-editar-usuario form-row" style="gap:8px;" data-id="${usuario.id_usuario}">
+            <input type="text" name="nombre" value="${usuario.nombre ?? ''}" placeholder="Nombre">
             <input type="email" name="email" value="${usuario.email}">
             <select name="rol">
               <option value="alumno" ${usuario.rol === 'alumno' ? 'selected' : ''}>Alumno</option>
@@ -897,10 +905,12 @@ while ($row = $res->fetch_assoc()) { $eventos_arr[] = $row; }
     function updateUsuarioInTable(userId, formData) {
       const row = document.querySelector(`#tablaUsuarios tr[data-id="${userId}"]`);
       if (row) {
+        const nombre = formData.get('nombre') || '';
         const email = formData.get('email');
         const rol = formData.get('rol');
-        row.cells[0].textContent = email;
-        row.cells[1].textContent = rol;
+        row.cells[0].textContent = nombre;
+        row.cells[1].textContent = email;
+        row.cells[2].textContent = rol;
       }
     }
 
