@@ -511,6 +511,7 @@ require_once('auth_check.php');
   </style>
 </head>
 <body>
+  <button class="sidebar-toggle" aria-label="Alternar menú" title="Alternar menú" onclick="toggleSidebar()">☰</button>
   <!-- Sidebar -->
   <nav class="sidebar">
     <div class="logo-section">
