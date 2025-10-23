@@ -43,7 +43,17 @@ async function loadSavedContent() {
                 console.log(' Contenido cargado del servidor');
                 if (cmsRoot) {
                 console.log(' Insertando contenido en cms-root:', result.content.length, 'caracteres');
-                cmsRoot.innerHTML = result.content;
+                let sanitized = result.content;
+                if (!isAdminActive) {
+                    try {
+                        // Remover cms_admin_token de cualquier enlace para visitantes
+                        sanitized = sanitized.replace(/([?&])cms_admin_token=true(&)?/gi, (m, p1, p2) => {
+                            return p2 === '&' ? p1 : '';
+                        });
+                        sanitized = sanitized.replace(/\?(?:\s*|[&#]*)"/gi, '"');
+                    } catch(e) { /* noop */ }
+                }
+                cmsRoot.innerHTML = sanitized;
                 cmsRoot.style.display = 'block';
                 // Ocultar completamente el contenido original para evitar duplicación bajo index
                 document.body.classList.add('loading-cms-content');

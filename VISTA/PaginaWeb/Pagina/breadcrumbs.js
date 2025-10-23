@@ -58,16 +58,23 @@
     if (document.referrer) {
       const refUrl = new URL(document.referrer);
       if (refUrl.origin === window.location.origin) {
-        const href = refUrl.pathname + refUrl.search;
-        backHtml = `<a class=\"crumb-link\" href=\"${href}\">Volver</a> <span class=\"crumb-sep\">›</span> `;
+        // Remover cms_admin_token del referrer para no propagar modo admin
+        let href = refUrl.pathname;
+        try {
+          const params = new URLSearchParams(refUrl.search);
+          params.delete('cms_admin_token');
+          const qs = params.toString();
+          if (qs) href += '?' + qs;
+        } catch(e) { href = refUrl.pathname; }
+        backHtml = `<a class="crumb-link" href="${href}">Volver</a> <span class="crumb-sep">›</span> `;
       }
     }
   } catch(e) { /* noop */ }
 
   const html = backHtml + trail.map((entry, idx) => {
     const isLast = idx === trail.length - 1;
-    if (isLast) return `<span class=\"crumb-current\">${entry.label}</span>`;
-    return `<a class=\"crumb-link\" href=\"${baseDir}${entry.file}\">${entry.label}</a> <span class=\"crumb-sep\">›</span> `;
+    if (isLast) return `<span class="crumb-current">${entry.label}</span>`;
+    return `<a class="crumb-link" href="${baseDir}${entry.file}">${entry.label}</a> <span class="crumb-sep">›</span> `;
   }).join('');
 
   container.innerHTML = html;
