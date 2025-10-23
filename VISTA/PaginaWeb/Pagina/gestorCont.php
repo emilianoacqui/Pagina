@@ -32,30 +32,32 @@ require_once('auth_check.php');
       top: 0;
       width: 250px;
       height: 100vh;
-      background: linear-gradient(135deg, #2c3e50, #34495e);
-      color: white;
+      background: #1F2937; /* slate-800 */
+      color: #F9FAFB; /* slate-50 */
       z-index: 1000;
       transition: all 0.3s ease;
+      border-right: 1px solid #111827; /* subtle edge */
     }
 
     .logo-section {
       padding: 20px;
       text-align: center;
-      border-bottom: 1px solid rgba(255,255,255,0.1);
+      border-bottom: 1px solid rgba(255,255,255,0.08);
     }
 
     .logo-circle {
-      width: 60px;
-      height: 60px;
-      background: white;
-      border-radius: 50%;
+      width: 56px;
+      height: 56px;
+      background: #E5E7EB; /* slate-200 */
+      border-radius: 8px;
       display: flex;
       align-items: center;
       justify-content: center;
       margin: 0 auto 10px;
-      font-size: 24px;
-      font-weight: bold;
-      color: #2c3e50;
+      font-size: 20px;
+      font-weight: 700;
+      color: #374151; /* slate-700 */
+      border: 1px solid #D1D5DB;
     }
 
     .nav-menu {
@@ -73,8 +75,9 @@ require_once('auth_check.php');
     }
 
     .nav-item:hover, .nav-item.active {
-      background: rgba(255,255,255,0.1);
-      transform: translateX(5px);
+      background: rgba(255,255,255,0.06);
+      transform: translateX(3px);
+      border-left: 3px solid #9CA3AF; /* slate-400 */
     }
 
     .nav-icon {
@@ -85,7 +88,7 @@ require_once('auth_check.php');
     .main-content {
       margin-left: 250px;
       min-height: 100vh;
-      background: white;
+      background: #F9FAFB; /* slate-50 */
     }
 
     .content-area {
@@ -94,10 +97,11 @@ require_once('auth_check.php');
     }
 
     .page-header {
-      background: linear-gradient(135deg, #3498db, #2980b9);
-      color: white;
+      background: #111827; /* slate-900 */
+      color: #F3F4F6;
       padding: 20px 30px;
       margin: -30px -30px 30px -30px;
+      border-bottom: 1px solid #1F2937;
     }
 
     .page-title {
@@ -119,32 +123,36 @@ require_once('auth_check.php');
     }
 
     .template-card {
-      background: white;
-      border-radius: 12px;
+      background: #FFFFFF;
+      border-radius: 8px;
       overflow: hidden;
-      box-shadow: 0 4px 20px rgba(0,0,0,0.1);
-      transition: all 0.3s ease;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.05);
+      transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
       cursor: pointer;
-      border: 2px solid transparent;
+      border: 1px solid #E5E7EB;
     }
 
     .template-card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 8px 30px rgba(0,0,0,0.15);
+      transform: translateY(-3px);
+      box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+      border-color: #D1D5DB;
     }
 
     .template-card.selected {
-      border-color: #3498db;
-      box-shadow: 0 8px 30px rgba(52, 152, 219, 0.3);
+      border-color: #9CA3AF; /* slate-400 */
+      box-shadow: 0 8px 24px rgba(0,0,0,0.08);
     }
 
     .template-preview {
       width: 100%;
       height: 200px;
-      background: #f8f9fa;
+      background: #F3F4F6; /* slate-100 */
       position: relative;
       overflow: hidden;
+      border-bottom: 1px solid #E5E7EB;
     }
+    /* Neutralizar previews con colores fuertes embebidos */
+    .template-preview > div { background: #E5E7EB !important; color: #4B5563 !important; }
 
     .template-preview img {
       width: 100%;
@@ -153,73 +161,84 @@ require_once('auth_check.php');
     }
 
     .template-info {
-      padding: 20px;
+      padding: 16px 20px;
     }
 
     .template-name {
-      font-size: 18px;
+      font-size: 16px;
       font-weight: 600;
-      margin-bottom: 10px;
-      color: #2c3e50;
+      margin-bottom: 6px;
+      color: #111827;
     }
 
     .template-description {
-      color: #7f8c8d;
+      color: #4B5563;
       font-size: 14px;
       line-height: 1.5;
     }
 
     .template-actions {
-      padding: 15px 20px;
-      background: #f8f9fa;
+      padding: 12px 16px;
+      background: #F9FAFB;
       display: flex;
       gap: 10px;
+      border-top: 1px solid #E5E7EB;
     }
 
     .btn {
-      padding: 8px 16px;
-      border: none;
+      padding: 8px 14px;
+      border: 1px solid #D1D5DB;
       border-radius: 6px;
       cursor: pointer;
       font-size: 14px;
-      transition: all 0.3s ease;
+      transition: background 0.2s ease, border-color 0.2s ease, color 0.2s ease;
       text-decoration: none;
       display: inline-block;
       text-align: center;
+      background: #FFFFFF;
+      color: #111827;
     }
 
     .btn-primary {
-      background: #3498db;
-      color: white;
+      background: #374151; /* slate-700 */
+      color: #F9FAFB;
+      border-color: #4B5563;
     }
 
     .btn-primary:hover {
-      background: #2980b9;
+      background: #1F2937; /* slate-800 */
+      border-color: #374151;
     }
 
     .btn-secondary {
-      background: #95a5a6;
-      color: white;
+      background: #E5E7EB;
+      color: #111827;
+      border-color: #D1D5DB;
     }
 
     .btn-secondary:hover {
-      background: #7f8c8d;
+      background: #D1D5DB;
+      border-color: #9CA3AF;
     }
 
     .btn-success {
-      background: #27ae60;
-      color: white;
-      font-size: 16px;
-      padding: 12px 30px;
+      background: #374151;
+      color: #F9FAFB;
+      font-size: 15px;
+      padding: 10px 24px;
+      border-color: #4B5563;
     }
 
     .btn-danger {
-      background: #e74c3c;
-      color: white;
+      background: #F3F4F6;
+      color: #991B1B; /* muted red text */
+      border-color: #E5E7EB;
     }
 
     .btn-danger:hover {
-      background: #c0392b;
+      background: #E5E7EB;
+      color: #7F1D1D;
+      border-color: #D1D5DB;
     }
 
     .btn-small {
@@ -234,19 +253,21 @@ require_once('auth_check.php');
     /* Editor Area */
     .editor-container {
       display: none;
-      background: white;
-      border-radius: 12px;
-      box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+      background: #FFFFFF;
+      border-radius: 8px;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.06);
       overflow: hidden;
+      border: 1px solid #E5E7EB;
     }
 
     .editor-header {
-      background: #34495e;
-      color: white;
-      padding: 15px 20px;
+      background: #F3F4F6;
+      color: #111827;
+      padding: 14px 16px;
       display: flex;
-      justify-content: between;
+      justify-content: space-between;
       align-items: center;
+      border-bottom: 1px solid #E5E7EB;
     }
 
     .editor-title {
@@ -441,38 +462,41 @@ require_once('auth_check.php');
     }
 
     .cms-page-card {
-      background: white;
-      border: 1px solid #e0e0e0;
+      background: #FFFFFF;
+      border: 1px solid #E5E7EB;
       border-radius: 8px;
-      padding: 20px;
-      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      padding: 16px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+      transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
     }
 
     .cms-page-card:hover {
       transform: translateY(-2px);
-      box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+      box-shadow: 0 6px 16px rgba(0,0,0,0.08);
+      border-color: #D1D5DB;
     }
 
     .cms-page-header {
-      border-bottom: 1px solid #f0f0f0;
-      padding-bottom: 15px;
-      margin-bottom: 15px;
+      border-bottom: 1px solid #E5E7EB;
+      padding-bottom: 12px;
+      margin-bottom: 12px;
     }
 
     .cms-page-header h3 {
-      margin: 0 0 5px 0;
-      color: #2c3e50;
-      font-size: 18px;
+      margin: 0 0 4px 0;
+      color: #111827;
+      font-size: 16px;
+      font-weight: 600;
     }
 
     .cms-page-url {
-      color: #7f8c8d;
-      font-size: 14px;
-      font-family: monospace;
-      background: #f8f9fa;
+      color: #4B5563;
+      font-size: 13px;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      background: #F3F4F6;
       padding: 2px 6px;
-      border-radius: 3px;
+      border-radius: 4px;
+      border: 1px solid #E5E7EB;
     }
 
     .cms-page-content {
