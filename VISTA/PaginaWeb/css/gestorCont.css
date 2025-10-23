@@ -1,0 +1,90 @@
+/* Gestor de Contenidos - estilos responsive complementarios
+   Nota: gestorCont.php incluye estilos inline base. Aquí agregamos
+   reglas responsive con mayor especificidad/!important para móviles. */
+
+/* Utilidades */
+body.sidebar-open .sidebar-backdrop { display: block !important; }
+.sidebar-backdrop { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.35); z-index: 900; }
+
+/* Botón hamburguesa visible solo en pantallas pequeñas */
+.sidebar-toggle { position: fixed; top: 12px; left: 12px; z-index: 1100; background: #2c3e50; color: #fff; border: none; border-radius: 6px; padding: 8px 10px; cursor: pointer; display: none; box-shadow: 0 2px 8px rgba(0,0,0,0.2); }
+.sidebar-toggle:active { transform: scale(0.98); }
+
+/* Ajustes generales en desktop grande */
+@media (max-width: 1400px) {
+  .content-area { max-width: 100% !important; }
+}
+
+/* Tablets y abajo: colapsar sidebar, expandir contenido */
+@media (max-width: 992px) {
+  /* Mostrar botón */
+  .sidebar-toggle { display: block; }
+
+  /* Sidebar como off-canvas */
+  body .sidebar { transform: translateX(-100%); transition: transform 0.3s ease; width: 260px !important; }
+  body.sidebar-open .sidebar { transform: translateX(0); box-shadow: 4px 0 16px rgba(0,0,0,0.2); }
+
+  /* El contenido ocupa todo el ancho */
+  body .main-content { margin-left: 0 !important; }
+
+  /* Área de contenido con padding reducido */
+  .content-area { padding: 20px !important; }
+
+  /* Encabezado de página compacto */
+  .page-header { padding: 16px 20px !important; margin: -20px -20px 20px -20px !important; }
+  .page-title { font-size: 22px !important; }
+  .page-subtitle { font-size: 13px !important; }
+
+  /* Grillas adaptables */
+  .template-grid { grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)) !important; gap: 16px !important; }
+  .cms-pages-grid { grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)) !important; gap: 16px !important; }
+
+  /* Editor - que priorice espacio para vista y permita desplazamiento vertical */
+  .editor-container { display: block; }
+  .template-container { height: auto !important; max-height: none !important; padding: 12px 0 0 0 !important; }
+  .template-frame { height: 70vh !important; max-height: 75vh !important; }
+
+  /* Vista sitio y charts a una columna */
+  .site-view-container iframe { height: 70vh !important; }
+  .stats-summary { grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)) !important; }
+}
+
+/* Móviles medianos */
+@media (max-width: 768px) {
+  .content-area { padding: 16px !important; }
+  .template-grid { grid-template-columns: 1fr !important; }
+  .cms-pages-grid { grid-template-columns: 1fr !important; }
+  .template-preview { height: 160px !important; }
+  .template-frame { height: 68vh !important; }
+
+  /* Botones más accesibles */
+  .btn { padding: 10px 14px !important; font-size: 14px !important; }
+  .btn-success { width: 100% !important; }
+
+  /* Tablas y contenedores con scroll horizontal seguro */
+  .chart-container, #pages-table-container, .site-view-container { overflow: auto; }
+}
+
+/* Móviles pequeños: máxima densidad, panel derecho desplazable */
+@media (max-width: 576px) {
+  /* Garantizar que cualquier panel lateral en el gestor sea desplazable y no reduzca el área útil de edición */
+  .template-container, .template-frame, .content-area { overflow-y: auto; -webkit-overflow-scrolling: touch; }
+
+  /* Encabezados compactos */
+  .page-header { padding: 12px 14px !important; margin: -16px -16px 16px -16px !important; }
+  .page-title { font-size: 20px !important; }
+  .page-subtitle { font-size: 12px !important; }
+
+  /* Tarjetas con menos padding */
+  .template-info { padding: 14px !important; }
+  .template-actions { padding: 12px 14px !important; gap: 8px !important; }
+
+  /* Alturas para maximizar el espacio de trabajo */
+  .template-frame { height: 65vh !important; }
+}
+
+/* Preferencias de usuario: reducir motion */
+@media (prefers-reduced-motion: reduce) {
+  .sidebar, .template-card, .btn, .page-header, .template-frame { transition: none !important; animation: none !important; }
+}
+

@@ -508,6 +508,85 @@ require_once('auth_check.php');
       border: 1px solid #f5c6cb;
       color: #721c24;
     }
+
+    /* ================= Responsive (inline) ================= */
+    /* Backdrop for sidebar in mobile */
+    .sidebar-backdrop { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.35); z-index: 900; }
+    body.sidebar-open .sidebar-backdrop { display: block !important; }
+
+    /* Toggle button */
+    .sidebar-toggle { position: fixed; top: 12px; left: 12px; z-index: 1100; background: #2c3e50; color: #fff; border: none; border-radius: 6px; padding: 8px 10px; cursor: pointer; display: none; box-shadow: 0 2px 8px rgba(0,0,0,0.2); }
+    .sidebar-toggle:active { transform: scale(0.98); }
+
+    /* Large screens */
+    @media (max-width: 1400px) {
+      .content-area { max-width: 100% !important; }
+    }
+
+    /* Tablets and below */
+    @media (max-width: 992px) {
+      .sidebar-toggle { display: block; }
+      /* Off-canvas sidebar */
+      body .sidebar { transform: translateX(-100%); transition: transform 0.3s ease; width: 260px !important; }
+      body.sidebar-open .sidebar { transform: translateX(0); box-shadow: 4px 0 16px rgba(0,0,0,0.2); }
+
+      /* Expand main content */
+      body .main-content { margin-left: 0 !important; }
+
+      /* Compact paddings */
+      .content-area { padding: 20px !important; }
+      .page-header { padding: 16px 20px !important; margin: -20px -20px 20px -20px !important; }
+      .page-title { font-size: 22px !important; }
+      .page-subtitle { font-size: 13px !important; }
+
+      /* Adaptive grids */
+      .template-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)) !important; gap: 16px !important; }
+      .cms-pages-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)) !important; gap: 16px !important; }
+
+      /* Editor viewport prioritization */
+      .editor-container { display: block; }
+      .template-container { height: auto !important; max-height: none !important; padding: 12px 0 0 0 !important; }
+      .template-frame { height: 70vh !important; max-height: 75vh !important; }
+
+      /* Charts/site view */
+      .site-view-container iframe { height: 70vh !important; }
+      .stats-summary { grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)) !important; }
+    }
+
+    /* Medium phones */
+    @media (max-width: 768px) {
+      .content-area { padding: 16px !important; }
+      .template-grid { grid-template-columns: 1fr !important; }
+      .cms-pages-grid { grid-template-columns: 1fr !important; }
+      .template-preview { height: 160px !important; }
+      .template-frame { height: 68vh !important; }
+      .btn { padding: 10px 14px !important; font-size: 14px !important; }
+      .btn-success { width: 100% !important; }
+      .chart-container, #pages-table-container, .site-view-container { overflow: auto; }
+    }
+
+    /* Small phones */
+    @media (max-width: 576px) {
+      .template-container, .template-frame, .content-area { overflow-y: auto; -webkit-overflow-scrolling: touch; }
+      .page-header { padding: 12px 14px !important; margin: -16px -16px 16px -16px !important; }
+      .page-title { font-size: 20px !important; }
+      .page-subtitle { font-size: 12px !important; }
+      .template-info { padding: 14px !important; }
+      .template-actions { padding: 12px 14px !important; gap: 8px !important; }
+      .template-frame { height: 65vh !important; }
+    }
+
+    /* Ultra small */
+    @media (max-width: 420px) {
+      .page-title { font-size: 18px !important; }
+      .btn { padding: 9px 12px !important; font-size: 13px !important; }
+      .template-card { border-radius: 10px !important; }
+    }
+
+    /* Reduced motion */
+    @media (prefers-reduced-motion: reduce) {
+      .sidebar, .template-card, .btn, .page-header, .template-frame { transition: none !important; animation: none !important; }
+    }
   </style>
 </head>
 <body>
@@ -798,6 +877,12 @@ require_once('auth_check.php');
     </div>
   </div>
   <script>
+    function toggleSidebar() {
+      document.body.classList.toggle('sidebar-open');
+    }
+    function closeSidebar() {
+      document.body.classList.remove('sidebar-open');
+    }
     let modoActual = "editar"; 
     let currentTemplate = null;
     let historyLog = [];
