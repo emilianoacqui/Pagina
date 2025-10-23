@@ -1,34 +1,32 @@
 (function() {
     // Detectar si es administrador
     const urlParams = new URLSearchParams(window.location.search);
-    const isAdmin = urlParams.get('cms_admin_token') === 'true';
-    const ADMIN_PERSIST_KEY = 'cms_admin_enabled';
-    if (isAdmin) { try { localStorage.setItem(ADMIN_PERSIST_KEY, '1'); } catch (e) {} }
-    const isAdminActive = isAdmin || (function(){ try { return localStorage.getItem(ADMIN_PERSIST_KEY) === '1'; } catch(e){ return false; } })();
     const pageId = urlParams.get('page_id');
+    const path = (window.location.pathname || '').toLowerCase();
+    const isAdminActive = path.endsWith('/gestorcont.php') || path.endsWith('gestorcont.php');
     
 
     // Permitir que visitantes también carguen contenido guardado
     
     // Prevenir redirecciones automáticas - VERSIÓN CORREGIDA
     window.addEventListener('beforeunload', function(e) {
-        console.log('🚫 Intentando prevenir redirección automática');
+        console.log(' Intentando prevenir redirección automática');
         // NO prevenir la redirección, solo loggear
     });
     
-    // 🔥 FUNCIÓN SIMPLIFICADA: Cargar contenido guardado al iniciar
+    // FUNCIÓN SIMPLIFICADA: Cargar contenido guardado al iniciar
 async function loadSavedContent() {
     const currentUrl = window.location.pathname.split('/').pop() || 'index.php';
     const lang = (document.documentElement && document.documentElement.lang) ? document.documentElement.lang : 'es';
     const currentUrlKey = `${currentUrl}::${lang}`; // clave por idioma sin tocar el backend
     const pageId = 'existing_' + md5(currentUrlKey);
     
-    console.log('🔍 Buscando contenido para:', currentUrlKey, 'con ID:', pageId);
+    console.log(' Buscando contenido para:', currentUrlKey, 'con ID:', pageId);
     
     const originalContent = document.getElementById('original-content');
     const cmsRoot = document.getElementById('cms-root');
     
-    console.log('🔍 Elementos encontrados:', {
+    console.log(' Elementos encontrados:', {
         originalContent: !!originalContent,
         cmsRoot: !!cmsRoot,
         cmsRootDisplay: cmsRoot ? cmsRoot.style.display : 'N/A'
@@ -43,9 +41,9 @@ async function loadSavedContent() {
         if (response.ok) {
             const result = await response.json();
             if (result.success && result.content && result.content.trim()) {
-                console.log('✅ Contenido cargado del servidor');
+                console.log(' Contenido cargado del servidor');
                 if (cmsRoot) {
-                console.log('📝 Insertando contenido en cms-root:', result.content.length, 'caracteres');
+                console.log(' Insertando contenido en cms-root:', result.content.length, 'caracteres');
                 cmsRoot.innerHTML = result.content;
                 cmsRoot.style.display = 'block';
                 // Ocultar completamente el contenido original para evitar duplicación bajo index
@@ -58,16 +56,16 @@ async function loadSavedContent() {
                 
                 // Prevenir navegación automática
                 setTimeout(() => {
-                    console.log('🔍 Verificación - cms-root innerHTML length:', cmsRoot.innerHTML.length);
+                    console.log(' Verificación - cms-root innerHTML length:', cmsRoot.innerHTML.length);
                     
                     // NO prevenir clics en enlaces - permitir navegación normal
-                    console.log('✅ Contenido cargado correctamente');
+                    console.log(' Contenido cargado correctamente');
                 }, 100);
                 }
             }
         }
     } catch (error) {
-        console.log('ℹ️ No se pudo cargar del servidor, intentando localStorage...');
+        console.log(' No se pudo cargar del servidor, intentando localStorage...');
     }
     
     // Sin fallback a localStorage: mostrar contenido original si no hay en servidor
@@ -79,7 +77,7 @@ async function loadSavedContent() {
     
     // Si no hay contenido guardado, mostrar contenido original
     if (!contentFound) {
-        console.log('ℹ️ No se encontró contenido guardado, mostrando contenido original');
+        console.log(' No se encontró contenido guardado, mostrando contenido original');
         document.body.classList.remove('loading-cms-content');
         
         if (cmsRoot) {
@@ -89,7 +87,7 @@ async function loadSavedContent() {
             originalContent.style.display = 'block';
         }
         
-        // 🔥 FORZAR VISIBILIDAD DEL CONTENIDO ORIGINAL
+        // FORZAR VISIBILIDAD DEL CONTENIDO ORIGINAL
         setTimeout(() => {
             if (originalContent) {
                 originalContent.style.display = 'block';
@@ -100,7 +98,7 @@ async function loadSavedContent() {
                 cmsRoot.style.display = 'none';
             }
             document.body.classList.remove('loading-cms-content');
-            console.log('✅ Contenido original forzado a ser visible');
+            console.log(' Contenido original forzado a ser visible');
         }, 100);
     } else {
         // Si hay contenido guardado, asegurar que se muestre correctamente
@@ -113,7 +111,7 @@ async function loadSavedContent() {
     }
 }
 
-// 🔥 FUNCIÓN MD5 simple para generar ID único - VERSIÓN CORREGIDA
+// FUNCIÓN MD5 simple para generar ID único - VERSIÓN CORREGIDA
 function md5(str) {
     // Usar el mismo algoritmo que PHP para consistencia
     let hash = 0;
@@ -250,16 +248,15 @@ function loadSpecificPage() {
         });
         
         indexBtn.addEventListener('click', () => {
-            window.open('index.php?cms_admin_token=true', '_blank');
+            window.open('index.php', '_blank');
         });
         
         editBtn.addEventListener('click', () => {
             enableEditMode();
         });
         exitBtn.addEventListener('click', () => {
-            try { localStorage.removeItem(ADMIN_PERSIST_KEY); } catch(e) {}
             alert('Modo admin desactivado');
-            window.location.href = window.location.pathname + window.location.search.replace(/\??cms_admin_token=true&?|&cms_admin_token=true/g,'');
+            window.location.href = window.location.pathname;
         });
         
         // Cerrar menú al hacer click fuera
@@ -414,9 +411,9 @@ function loadSpecificPage() {
         let editableTexts = searchArea.querySelectorAll('.editable-text');
         let editableImages = searchArea.querySelectorAll('.editable-image');
         
-        // 🔥 MEJORADO: Si no hay elementos con clases editables, hacer editables elementos comunes
+        // MEJORADO: Si no hay elementos con clases editables, hacer editables elementos comunes
         if (editableTexts.length === 0 && editableImages.length === 0) {
-            // 🎯 SELECTORES EXPANDIDOS para incluir todas las secciones importantes
+            // SELECTORES EXPANDIDOS para incluir todas las secciones importantes
             const textSelectors = [
                 // Títulos generales
                 'h1:not(a h1):not(a)', 'h2:not(a h2):not(a)', 'h3:not(a h3):not(a)', 
@@ -429,14 +426,14 @@ function loadSpecificPage() {
                 // Secciones específicas
                 '.main-title', '.section-title-small',
                 
-                // 🔥 SOBRE NOSOTROS - Nuevos selectores
+                // SOBRE NOSOTROS - Nuevos selectores
                 '.about-text', '.about-content h2', '.about-content p',
                 
-                // 🔥 PROYECTOS - Nuevos selectores
+                // PROYECTOS - Nuevos selectores
                 '.projects-title', '.project-title', '.project-description',
                 '.projects-section h2', '.projects-section h3', '.projects-section p',
                 
-                // 🔥 NOTICIAS - Nuevos selectores
+                // NOTICIAS - Nuevos selectores
                 '.news-title', '.news-subtitle', '.news-card-text',
                 '.news-header h2', '.news-header p', '.news-card p',
                 
@@ -456,18 +453,18 @@ function loadSpecificPage() {
                 });
             });
             
-            // 🔥 IMÁGENES EXPANDIDAS - Hacer editables imágenes de todas las secciones
+            // IMÁGENES EXPANDIDAS - Hacer editables imágenes de todas las secciones
             const imageSelectors = [
                 // Imágenes generales
                 'img', '.bg-image', '.logo', '.menu-icon', '.sport-bg',
                 
-                // 🔥 SOBRE NOSOTROS - Imágenes específicas
+                // SOBRE NOSOTROS - Imágenes específicas
                 '.about-image img', '.about-section img',
                 
-                // 🔥 PROYECTOS - Imágenes específicas  
+                // PROYECTOS - Imágenes específicas  
                 '.project-image img', '.projects-section img',
                 
-                // 🔥 NOTICIAS - Imágenes específicas
+                // NOTICIAS - Imágenes específicas
                 '.news-card img', '.news-section img', '.news-grid img',
                 
                 // Elementos existentes
@@ -485,7 +482,7 @@ function loadSpecificPage() {
                 });
             });
             
-            // 🔥 BOTONES Y ENLACES EDITABLES (solo el texto, no la funcionalidad)
+            // BOTONES Y ENLACES EDITABLES (solo el texto, no la funcionalidad)
             const buttonSelectors = [
                 '.admissions-btn', '.level-btn', '.read-more-btn', 
                 '.project-btn', '.news-card-btn', '.footer-card-content'
@@ -685,7 +682,7 @@ function loadSpecificPage() {
         document.getElementById('cms-cancel').addEventListener('click', cancelEdit);
     }
     
-    // 🔥 FUNCIÓN saveChanges MEJORADA - REEMPLAZAR LA ACTUAL
+    // FUNCIÓN saveChanges MEJORADA - REEMPLAZAR LA ACTUAL
     async function saveChanges() {
     const cmsRoot = document.getElementById('cms-root');
     if (!cmsRoot) {
@@ -704,7 +701,7 @@ function loadSpecificPage() {
     console.log('💾 Guardando contenido para:', currentUrl);
     console.log('Longitud del contenido:', currentContent.length);
 
-    // 🔥 LIMPIAR contenido antes de guardar
+    // LIMPIAR contenido antes de guardar
     const tempDiv = document.createElement('div');
     tempDiv.innerHTML = currentContent;
     
@@ -728,7 +725,7 @@ function loadSpecificPage() {
     // Asegurar que el cms-root tenga el contenido limpio
     try { if (cmsRoot) { cmsRoot.innerHTML = cleanContent; } } catch (e) {}
 
-    // 🔥 GUARDAR EN SERVIDOR
+    // GUARDAR EN SERVIDOR
     try {
         const formData = new FormData();
         formData.append('pageUrl', currentUrlKey);
@@ -886,7 +883,7 @@ function loadSpecificPage() {
             }
         });
     }
-    // 🔥 AGREGAR ESTA FUNCIÓN NUEVA
+    // AGREGAR ESTA FUNCIÓN NUEVA
 function validateAndFixDOMOrder(htmlContent) {
     const tempDiv = document.createElement('div');
     tempDiv.innerHTML = htmlContent;
@@ -904,11 +901,11 @@ function validateAndFixDOMOrder(htmlContent) {
     
     
    
-// 🔥 INICIALIZACIÓN CORREGIDA - REEMPLAZAR TODO ESTO:
+// INICIALIZACIÓN CORREGIDA - REEMPLAZAR TODO ESTO:
 // Inicializar cuando el DOM esté listo
 if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', async function() {
-        // 🔥 PRIMERO: Para páginas específicas (creadas desde gestor)
+        // PRIMERO: Para páginas específicas (creadas desde gestor)
         if (pageId) {
             loadSpecificPage();
         } 
@@ -917,10 +914,9 @@ if (document.readyState === 'loading') {
             await loadSavedContent();
         }
         
-        // LUEGO: Inicializar CMS si es admin (persistente)
+        // LUEGO: Inicializar CMS si es admin (solo dentro de gestorCont)
         if (isAdminActive) {
             createAdminMenu();
-            updateLinksWithToken();
         }
     });
 } else {
@@ -935,10 +931,9 @@ if (document.readyState === 'loading') {
             await loadSavedContent();
         }
         
-        // LUEGO: Inicializar CMS si es admin (persistente)
+        // LUEGO: Inicializar CMS si es admin (solo dentro de gestorCont)
                 if (isAdminActive) {
             createAdminMenu();
-            updateLinksWithToken();
         }
     })();
  }
