@@ -93,15 +93,15 @@ require_once('auth_check.php');
 
     .content-area {
       padding: 30px;
-      max-width: 1200px;
+      max-width: none; /* allow header to span full width */
     }
 
     .page-header {
-      background: #111827; /* slate-900 */
-      color: #F3F4F6;
+      background: #0B5ED7; /* professional blue */
+      color: #FFFFFF;
       padding: 20px 30px;
-      margin: -30px -30px 30px -30px;
-      border-bottom: 1px solid #1F2937;
+      margin: 0 0 20px 0; /* full-width bar, no side gaps */
+      border-bottom: 1px solid rgba(0,0,0,0.08);
     }
 
     .page-title {
