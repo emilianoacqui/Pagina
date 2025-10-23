@@ -230,6 +230,7 @@
 </head>
 <div id="cms-root"></div>
 <body>
+  <div id="original-content">
   <div class="left" style="background-image: url('FOTOS/fotosPrincipales/ejemplo1.jpg');">
     <div class="curve"></div>
   </div>
@@ -490,5 +491,6 @@
 
   <script src="cms-admin.js"></script>
   <script src="analytics.js"></script>
+</div>
 </body>
 </html>

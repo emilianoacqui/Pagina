@@ -11,7 +11,9 @@
     <link rel="icon" type="image/png" href="/Pagina/VISTA/PaginaWeb/Pagina/FOTOS/fotosPrincipales/logotipo.png">
     <link rel="shortcut icon" href="/Pagina/favicon.ico">
 </head>
+<div id="cms-root"></div>
 <body>
+
     <div id="original-content">
     <!-- Navigation -->
     <nav class="navbar">
@@ -19,11 +21,12 @@
             <div class="nav-logo">
                 <img src="FOTOS/fotosPrincipales/logo2.png" alt="Scuola Italiana di Montevideo">
             </div>
-            <div class="nav-menu-button" onclick="window.location.href='menuScuola.html'">
+            <div class="nav-menu-button" onclick="window.location.href='menuScuola.php'">
                 <span></span>
                 <span></span>
                 <span></span>
             </div>
+
         </div>
     </nav>
     <div id="breadcrumbs" class="breadcrumbs-container"></div>
