@@ -93,14 +93,14 @@ require_once('auth_check.php');
 
     .content-area {
       padding: 30px;
-      max-width: none; /* allow header to span full width */
+      max-width: 1200px;
     }
 
     .page-header {
-      background: #0B5ED7; /* professional blue */
+      background: #0A2E6E; /* dark blue */
       color: #FFFFFF;
       padding: 20px 30px;
-      margin: 0 0 20px 0; /* full-width bar, no side gaps */
+      margin: -30px -30px 30px -30px; /* pegado a sidebar y al techo dentro del main */
       border-bottom: 1px solid rgba(0,0,0,0.08);
     }
 
