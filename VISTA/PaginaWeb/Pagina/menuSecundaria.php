@@ -94,7 +94,7 @@
                         <h3><?php echo $ms['bach_h'][$cl]; ?></h3>
                         <p><?php echo $ms['bach_p'][$cl]; ?></p>
                         
-                            <a href="/Pagina/VISTA/PaginaWeb/Pagina/bachillerato.php" class="program-button" style="display: inline-block; text-decoration: none;">
+                            <a href="bachillerato.php" class="program-button" style="display: inline-block; text-decoration: none;">
     <?php echo $ms['see_program'][$cl]; ?>
 </a>
 
