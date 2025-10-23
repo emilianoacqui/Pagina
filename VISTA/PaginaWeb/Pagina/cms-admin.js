@@ -2,8 +2,7 @@
     // Detectar si es administrador
     const urlParams = new URLSearchParams(window.location.search);
     const pageId = urlParams.get('page_id');
-    const path = (window.location.pathname || '').toLowerCase();
-    const isAdminActive = path.endsWith('/gestorcont.php') || path.endsWith('gestorcont.php');
+    const isAdminActive = urlParams.get('cms_admin_token') === 'true';
     
 
     // Permitir que visitantes también carguen contenido guardado
@@ -248,7 +247,7 @@ function loadSpecificPage() {
         });
         
         indexBtn.addEventListener('click', () => {
-            window.open('index.php', '_blank');
+            window.open('index.php?cms_admin_token=true', '_blank');
         });
         
         editBtn.addEventListener('click', () => {
@@ -256,7 +255,9 @@ function loadSpecificPage() {
         });
         exitBtn.addEventListener('click', () => {
             alert('Modo admin desactivado');
-            window.location.href = window.location.pathname;
+            // Quitar el token de la URL para salir del modo admin
+            const newUrl = window.location.pathname + window.location.search.replace(/\??cms_admin_token=true&?|&cms_admin_token=true/g,'');
+            window.location.href = newUrl.includes('?') && newUrl.endsWith('?') ? newUrl.slice(0, -1) : newUrl;
         });
         
         // Cerrar menú al hacer click fuera
@@ -914,9 +915,10 @@ if (document.readyState === 'loading') {
             await loadSavedContent();
         }
         
-        // LUEGO: Inicializar CMS si es admin (solo dentro de gestorCont)
+        // LUEGO: Inicializar CMS si es admin (solo cuando hay token activo)
         if (isAdminActive) {
             createAdminMenu();
+            updateLinksWithToken();
         }
     });
 } else {
@@ -931,9 +933,10 @@ if (document.readyState === 'loading') {
             await loadSavedContent();
         }
         
-        // LUEGO: Inicializar CMS si es admin (solo dentro de gestorCont)
-                if (isAdminActive) {
+        // LUEGO: Inicializar CMS si es admin (solo cuando hay token activo)
+        if (isAdminActive) {
             createAdminMenu();
+            updateLinksWithToken();
         }
     })();
  }
