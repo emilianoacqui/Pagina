@@ -658,7 +658,7 @@ require_once('auth_check.php');
       </li>
       <li class="nav-item" data-section="editar" onclick="showSection('editar', event)">
         <span class="nav-icon"></span>
-        <span>Editar</span>
+        <span>Editar páginas</span>
       </li>
       <li class="nav-item" data-section="visitas" onclick="showSection('visitas', event)">
         <span class="nav-icon"></span>
@@ -785,8 +785,8 @@ require_once('auth_check.php');
     <!-- Other Sections -->
     <section id="editar" class="content-area" style="display: none;">
       <div class="page-header">
-        <h1 class="page-title">Editar Contenido</h1>
-        <p class="page-subtitle">Modifica o elimina el contenido existente de tus páginas</p>
+        <h1 class="page-title">Editar páginas creadas</h1>
+        <p class="page-subtitle">Modifica o elimina el contenido existente de tus páginas creadas</p>
       </div>
       
       <div id="pages-list-container">
@@ -794,11 +794,6 @@ require_once('auth_check.php');
         <div style="margin-bottom: 20px;">
           <button class="btn btn-primary btn-small" onclick="setModo('editar')"> Editar</button>
           <button class="btn btn-danger btn-small" onclick="setModo('eliminar')"> Eliminar</button>
-          <div id="edit-page-btn-container" style="margin: 40px 0 20px 0; display: none;">
-            <button class="btn btn-success" style="width: 100%; font-size: 16px;" onclick="goToIndexDirectly()">
-               Ir a Sitio Principal
-            </button>
-          </div>
         </div>
 
         <div id="pages-list" class="template-grid">
@@ -890,7 +885,7 @@ require_once('auth_check.php');
     </div>
     
     <div class="site-view-container">
-        <iframe id="site-frame" src="index.php" width="100%" height="600" 
+        <iframe id="site-frame" src="index.php?cms_admin_token=true" width="100%" height="700" 
                 style="border: 1px solid #ddd; border-radius: 8px;"></iframe>
     </div>
 </section>
