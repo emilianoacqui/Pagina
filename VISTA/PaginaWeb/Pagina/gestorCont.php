@@ -659,7 +659,11 @@ require_once('auth_check.php');
     </div>
     
     <ul class="nav-menu">
-      <li class="nav-item active" data-section="agregar" onclick="showSection('agregar', event)">
+      <li class="nav-item" data-section="pagina" onclick="showSection('pagina', event)">
+        <span class="nav-icon"></span>
+        <span>Página</span>
+      </li>
+      <li class="nav-item" data-section="agregar" onclick="showSection('agregar', event)">
         <span class="nav-icon"></span>
         <span>Agregar</span>
       </li>
@@ -674,10 +678,6 @@ require_once('auth_check.php');
       <li class="nav-item" data-section="historial" onclick="showSection('historial', event)">
         <span class="nav-icon"></span>
         <span>Historial</span>
-      </li>
-      <li class="nav-item" data-section="pagina" onclick="showSection('pagina', event)">
-        <span class="nav-icon"></span>
-        <span>Página</span>
       </li>
       <li class="nav-item" data-section="cms" onclick="showSection('cms', event)">
         <span class="nav-icon"></span>
@@ -700,7 +700,7 @@ require_once('auth_check.php');
   <!-- Main Content -->
   <main class="main-content">
     <!-- Agregar Contenido Section -->
-    <section id="agregar" class="content-area">
+    <section id="agregar" class="content-area" style="display: none;">
       <div class="page-header">
         <h1 class="page-title">Agregar Contenido</h1>
         <p class="page-subtitle">Selecciona una plantilla y personalízala para tu página</p>
@@ -891,9 +891,9 @@ require_once('auth_check.php');
         <button class="btn btn-secondary" onclick="openSiteInNewTab()"> Abrir en Nueva Pestaña</button>
     </div>
     
-    <div id="welcome-banner" style="background:#0A2E6E; color:#fff; border-radius:8px; padding:16px 18px; margin:0 0 16px 0; border:1px solid rgba(0,0,0,.08);">
-      <div style="font-size:18px; font-weight:600; margin-bottom:6px;">Bienvenido al Gestor</div>
-      <div style="opacity:.95">Usa el panel izquierdo para navegar. Aquí verás tu sitio en modo edición sin salir del gestor.</div>
+    <div id="welcome-banner" style="background:#f8f9fa; color:#2c3e50; border-radius:8px; padding:14px 16px; margin:0 0 16px 0; border:1px solid #e5e7eb;">
+      <div style="font-weight:600; margin-bottom:4px;">Bienvenido</div>
+      <div style="opacity:.9">Usa el menú izquierdo para navegar. Aquí se previsualiza tu sitio en modo edición.</div>
     </div>
 
     <div class="site-view-container">
