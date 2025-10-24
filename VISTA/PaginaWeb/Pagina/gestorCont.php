@@ -2274,7 +2274,20 @@ if (editingPageId) {
       });
     }
 
-    function editImage(element) { currentEditingImage = element; document.getElementById('imageUrl').value = element.src; document.getElementById('imageModal').style.display = 'block'; }
+    function editImage(element) {
+      currentEditingImage = element;
+      let val = '';
+      if (element) {
+        if (element.tagName && element.tagName.toLowerCase() === 'img' && element.src) {
+          val = element.src;
+        } else if (element.style && element.style.backgroundImage) {
+          const m = element.style.backgroundImage.match(/url\(["']?(.+?)["']?\)/);
+          if (m) val = m[1];
+        }
+      }
+      document.getElementById('imageUrl').value = val || '';
+      document.getElementById('imageModal').style.display = 'block';
+    }
 
     function updateImage() {
       const newUrl = document.getElementById('imageUrl').value;

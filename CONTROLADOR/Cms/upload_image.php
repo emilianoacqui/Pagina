@@ -31,9 +31,13 @@ try {
 
     // Target directory relative to this script
     $targetDir = __DIR__ . '/../../VISTA/PaginaWeb/uploads/';
+    $parentDir = dirname($targetDir);
+    if (!is_dir($parentDir)) {
+        throw new Exception('Directorio base inexistente: ' . $parentDir);
+    }
     if (!is_dir($targetDir)) {
-        if (!mkdir($targetDir, 0775, true)) {
-            throw new Exception('No se pudo crear el directorio de destino');
+        if (!mkdir($targetDir, 0777, true)) {
+            throw new Exception('No se pudo crear el directorio de destino: ' . $targetDir);
         }
     }
 
