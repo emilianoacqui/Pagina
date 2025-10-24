@@ -1022,6 +1022,17 @@ async function savePageToServer(pageData) {
         try { injectCmsTokenPersistence(siteFrame); } catch(e) { console.error('No se pudo inyectar token en iframe', e); }
       });
     }
+
+    // Parent listener: adjust iframe height based on child report
+    window.addEventListener('message', function(e){
+      if (!e || !e.data || e.data.type !== 'cms_iframe_height') return;
+      const h = Math.max(0, parseInt(e.data.height || 0, 10));
+      const frame = document.getElementById('site-frame');
+      if (frame && h) {
+        const minH = Math.max(window.innerHeight * 0.8, 600);
+        frame.style.height = Math.max(h, minH) + 'px';
+      }
+    });
     
     // Inicializar modo activo
     setModo('editar');
