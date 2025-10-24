@@ -216,40 +216,54 @@ if (count($clases_alumno) > 0) {
         <p class="small">No tienes clases asignadas.</p>
       <?php else: ?>
         
-        <?php foreach($clases_alumno as $c): ?>
-          <div class="calendar-section">
-            <div class="calendar-header">
-              <h3 style="margin:0; color: var(--accent);"><?php echo htmlspecialchars($c['año'].' • '.$c['nombre']); ?></h3>
-            </div>
-            
-            <?php if(empty($calendario_por_clase[$c['id_clase']])): ?>
-              <p class="small" style="padding: 16px; background: #f8f9fa; border-radius: 8px;">No hay fechas registradas para esta clase.</p>
-            <?php else: ?>
-              <div class="calendar-items">
-                <?php 
-                // Ordenar fechas por fecha ascendente
-                $fechas = $calendario_por_clase[$c['id_clase']];
-                usort($fechas, function($a, $b) { return strtotime($a['fecha']) - strtotime($b['fecha']); });
-                
-                foreach($fechas as $f): 
-                  $fecha_formateada = date('d/m/Y', strtotime($f['fecha']));
-                  $es_pasado = strtotime($f['fecha']) < strtotime(date('Y-m-d'));
-                ?>
-                  <div class="calendar-item <?php echo $f['tipo']; ?>" style="<?php echo $es_pasado ? 'opacity: 0.6;' : ''; ?>">
-                    <div class="calendar-date"><?php echo $fecha_formateada; ?></div>
-                    <div style="flex: 1;">
-                      <div style="font-weight: 500;"><?php echo ucfirst($f['tipo']); ?></div>
-                      <?php if ($es_pasado): ?>
-                        <div class="small">Fecha pasada</div>
-                      <?php endif; ?>
-                    </div>
-                    <div class="calendar-type <?php echo $f['tipo']; ?>"><?php echo $f['tipo']; ?></div>
-                  </div>
-                <?php endforeach; ?>
+        <!-- Vista de Calendario Visual -->
+        <div class="calendar-view-controls" style="margin-bottom: 20px;">
+          <button id="btnVistaCalendario" class="btn active" onclick="cambiarVista('calendario')">📅 Vista Calendario</button>
+          <button id="btnVistaLista" class="btn" onclick="cambiarVista('lista')">📋 Vista Lista</button>
+        </div>
+
+        <!-- Calendario Visual -->
+        <div id="calendar-container" class="calendar-container">
+          <div id="calendar"></div>
+        </div>
+
+        <!-- Vista de Lista (original) -->
+        <div id="lista-container" class="lista-container" style="display: none;">
+          <?php foreach($clases_alumno as $c): ?>
+            <div class="calendar-section">
+              <div class="calendar-header">
+                <h3 style="margin:0; color: var(--accent);"><?php echo htmlspecialchars($c['año'].' • '.$c['nombre']); ?></h3>
               </div>
-            <?php endif; ?>
-          </div>
-        <?php endforeach; ?>
+              
+              <?php if(empty($calendario_por_clase[$c['id_clase']])): ?>
+                <p class="small" style="padding: 16px; background: #f8f9fa; border-radius: 8px;">No hay fechas registradas para esta clase.</p>
+              <?php else: ?>
+                <div class="calendar-items">
+                  <?php 
+                  // Ordenar fechas por fecha ascendente
+                  $fechas = $calendario_por_clase[$c['id_clase']];
+                  usort($fechas, function($a, $b) { return strtotime($a['fecha']) - strtotime($b['fecha']); });
+                  
+                  foreach($fechas as $f): 
+                    $fecha_formateada = date('d/m/Y', strtotime($f['fecha']));
+                    $es_pasado = strtotime($f['fecha']) < strtotime(date('Y-m-d'));
+                  ?>
+                    <div class="calendar-item <?php echo $f['tipo']; ?>" style="<?php echo $es_pasado ? 'opacity: 0.6;' : ''; ?>">
+                      <div class="calendar-date"><?php echo $fecha_formateada; ?></div>
+                      <div style="flex: 1;">
+                        <div style="font-weight: 500;"><?php echo ucfirst($f['tipo']); ?></div>
+                        <?php if ($es_pasado): ?>
+                          <div class="small">Fecha pasada</div>
+                        <?php endif; ?>
+                      </div>
+                      <div class="calendar-type <?php echo $f['tipo']; ?>"><?php echo $f['tipo']; ?></div>
+                    </div>
+                  <?php endforeach; ?>
+                </div>
+              <?php endif; ?>
+            </div>
+          <?php endforeach; ?>
+        </div>
 
       <?php endif; ?>
     </section>
@@ -300,9 +314,13 @@ if (count($clases_alumno) > 0) {
 
   </main>
 
+  <!-- FullCalendar CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.10/index.global.min.css" rel="stylesheet">
+  
   <script>
     // Global variables
     const id_alumno = <?php echo $id_alumno; ?>;
+    let calendar = null;
 
     // Utility functions
     function mostrarSeccion(id, link = null) {
@@ -312,6 +330,94 @@ if (count($clases_alumno) > 0) {
         document.querySelectorAll(".nav a").forEach(a => a.classList.remove("active"));
         link.classList.add("active");
       }
+      
+      // Inicializar calendario cuando se muestre la sección
+      if (id === 'seccionCalendario' && calendar) {
+        setTimeout(() => calendar.render(), 100);
+      }
+    }
+
+    // Cambiar entre vista calendario y lista
+    function cambiarVista(vista) {
+      const btnCalendario = document.getElementById('btnVistaCalendario');
+      const btnLista = document.getElementById('btnVistaLista');
+      const containerCalendario = document.getElementById('calendar-container');
+      const containerLista = document.getElementById('lista-container');
+      
+      if (vista === 'calendario') {
+        btnCalendario.classList.add('active');
+        btnLista.classList.remove('active');
+        containerCalendario.style.display = 'block';
+        containerLista.style.display = 'none';
+        
+        // Renderizar calendario si no está inicializado
+        if (!calendar) {
+          inicializarCalendario();
+        } else {
+          calendar.render();
+        }
+      } else {
+        btnCalendario.classList.remove('active');
+        btnLista.classList.add('active');
+        containerCalendario.style.display = 'none';
+        containerLista.style.display = 'block';
+      }
+    }
+
+    // Inicializar FullCalendar
+    function inicializarCalendario() {
+      const calendarEl = document.getElementById('calendar');
+      if (!calendarEl) return;
+
+      calendar = new FullCalendar.Calendar(calendarEl, {
+        initialView: 'dayGridMonth',
+        locale: 'es',
+        headerToolbar: {
+          left: 'prev,next today',
+          center: 'title',
+          right: 'dayGridMonth,listWeek'
+        },
+        buttonText: {
+          today: 'Hoy',
+          month: 'Mes',
+          week: 'Semana',
+          list: 'Lista'
+        },
+        events: function(info, successCallback, failureCallback) {
+          fetch('../../../CONTROLADOR/Calendario/get_calendar_events.php')
+            .then(response => response.json())
+            .then(data => {
+              if (data.error) {
+                console.error('Error:', data.error);
+                failureCallback(data.error);
+              } else {
+                successCallback(data);
+              }
+            })
+            .catch(error => {
+              console.error('Error:', error);
+              failureCallback(error);
+            });
+        },
+        eventClick: function(info) {
+          const event = info.event;
+          const props = event.extendedProps;
+          
+          let mensaje = `📅 ${event.title}\n`;
+          mensaje += `📚 Clase: ${props.clase}\n`;
+          if (props.descripcion) {
+            mensaje += `📝 Descripción: ${props.descripcion}`;
+          }
+          
+          alert(mensaje);
+        },
+        eventDisplay: 'block',
+        height: 'auto',
+        dayMaxEvents: 3,
+        moreLinkClick: 'popover'
+      });
+
+      calendar.render();
     }
 
     // ===== Links en localStorage =====
@@ -409,6 +515,13 @@ if (count($clases_alumno) > 0) {
           });
         }
       });
+      
+      // Inicializar calendario por defecto en vista calendario
+      setTimeout(() => {
+        if (document.getElementById('calendar-container').style.display !== 'none') {
+          inicializarCalendario();
+        }
+      }, 500);
     });
 
     // Actualizar fechas próximas cada minuto (para el contador de días)
@@ -442,5 +555,8 @@ if (count($clases_alumno) > 0) {
       });
     });
   </script>
+  
+  <!-- FullCalendar JS -->
+  <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.10/index.global.min.js"></script>
 </body>
 </html>

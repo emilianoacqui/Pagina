@@ -85,5 +85,58 @@
     .upcoming-details { flex: 1; margin-left: 12px; }
     .upcoming-class { font-size: 12px; color: var(--muted); }
     
+    /* Controles de vista del calendario */
+    .calendar-view-controls { 
+        display: flex; gap: 8px; margin-bottom: 20px; 
+    }
+    .calendar-view-controls .btn { 
+        padding: 8px 16px; font-size: 14px; border-radius: 8px;
+        background: var(--light); color: var(--text); border: 1px solid var(--border);
+    }
+    .calendar-view-controls .btn.active { 
+        background: var(--accent); color: white; border-color: var(--accent);
+    }
+    
+    /* Contenedor del calendario */
+    .calendar-container { 
+        background: white; border-radius: 16px; padding: 20px; 
+        box-shadow: 0 8px 24px rgba(0,0,0,0.06); border: 1px solid var(--border);
+    }
+    
+    /* Estilos para FullCalendar */
+    .fc { 
+        font-family: 'Poppins', sans-serif !important; 
+    }
+    .fc-toolbar-title { 
+        font-size: 1.5rem !important; font-weight: 600 !important; color: var(--text) !important;
+    }
+    .fc-button { 
+        background: var(--accent) !important; border-color: var(--accent) !important; 
+        border-radius: 8px !important; font-weight: 500 !important;
+    }
+    .fc-button:hover { 
+        background: var(--accent-dark) !important; border-color: var(--accent-dark) !important;
+    }
+    .fc-button:focus { 
+        box-shadow: 0 0 0 3px rgba(59,130,246,0.15) !important;
+    }
+    .fc-daygrid-day { 
+        background: white !important; border-color: var(--border) !important;
+    }
+    .fc-daygrid-day:hover { 
+        background: var(--light) !important;
+    }
+    .fc-day-today { 
+        background: rgba(59,130,246,0.05) !important; 
+    }
+    .fc-event { 
+        border-radius: 6px !important; border: none !important; 
+        font-size: 12px !important; font-weight: 500 !important;
+        padding: 2px 6px !important;
+    }
+    .fc-event:hover { 
+        opacity: 0.8 !important; 
+    }
+    
     @media (max-width: 900px) { .sidebar{width:210px} }
     @media (max-width: 720px) { .sidebar{display:none} .main{padding:16px} .dashboard-grid{grid-template-columns:1fr} }

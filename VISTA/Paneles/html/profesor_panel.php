@@ -218,53 +218,78 @@ $clases_select = $clases_prof;
       <p class="small">No tenés clases. No podés agregar fechas hasta que coordinación te asigne.</p>
     <?php else: ?>
 
-      <form method="post" class="form-row card" style="padding:12px;margin-bottom:12px">
-        <select name="id_clase" required>
+      <!-- Controles de vista -->
+      <div class="calendar-view-controls" style="margin-bottom: 20px;">
+        <button id="btnVistaCalendario" class="btn active" onclick="cambiarVista('calendario')">📅 Vista Calendario</button>
+        <button id="btnVistaLista" class="btn" onclick="cambiarVista('lista')">📋 Vista Lista</button>
+      </div>
+
+      <!-- Selector de clase para calendario -->
+      <div id="clase-selector" class="card" style="padding: 12px; margin-bottom: 12px;">
+        <label for="selectClaseCalendario" style="display: block; margin-bottom: 8px; font-weight: 600;">Seleccionar clase para ver calendario:</label>
+        <select id="selectClaseCalendario" onchange="cargarCalendarioGrupo()">
           <option value="">-- Seleccionar clase --</option>
           <?php foreach($clases_select as $cs): ?>
             <option value="<?php echo $cs['id_clase']; ?>"><?php echo htmlspecialchars($cs['año'].' · '.$cs['nombre']); ?></option>
           <?php endforeach; ?>
         </select>
-        <input type="date" name="fecha" required>
-        <select name="tipo" required>
-          <option value="tarea">Tarea (visible solo como fecha para alumnos)</option>
-          <option value="examen">Examen</option>
-          <option value="otro">Otro</option>
-        </select>
-        <input type="text" name="descripcion" placeholder="Descripción (solo visible para profesores)">
-        <button type="submit" name="crear_fecha" class="btn">Agregar fecha</button>
-      </form>
+      </div>
 
-      <h3>Fechas por clase</h3>
-      <?php foreach($clases_prof as $c): ?>
-        <div style="margin-bottom:10px;">
-          <h4 style="margin:6px 0"><?php echo htmlspecialchars($c['año'].' · '.$c['nombre']); ?></h4>
-          <?php if(empty($calendario_por_clase[$c['id_clase']])): ?>
-            <div class="small">No hay fechas registradas.</div>
-          <?php else: ?>
-            <div class="table-wrap">
-              <table>
-                <thead><tr><th>Fecha</th><th>Tipo</th><th>Descripción (privada)</th><th>Acción</th></tr></thead>
-                <tbody>
-                  <?php foreach($calendario_por_clase[$c['id_clase']] as $f): ?>
-                    <tr>
-                      <td><?php echo htmlspecialchars($f['fecha']); ?></td>
-                      <td><?php echo htmlspecialchars(ucfirst($f['tipo'])); ?></td>
-                      <td><?php echo htmlspecialchars($f['descripcion']); ?></td>
-                      <td>
-                        <form method="post" onsubmit="return confirm('¿Eliminar esta fecha?');" style="display:inline">
-                          <input type="hidden" name="id_fecha" value="<?php echo $f['id']; ?>">
-                          <button type="submit" name="eliminar_fecha" class="danger">Eliminar</button>
-                        </form>
-                      </td>
-                    </tr>
-                  <?php endforeach; ?>
-                </tbody>
-              </table>
-            </div>
-          <?php endif; ?>
-        </div>
-      <?php endforeach; ?>
+      <!-- Calendario Visual -->
+      <div id="calendar-container" class="calendar-container">
+        <div id="calendar"></div>
+      </div>
+
+      <!-- Vista de Lista (original) -->
+      <div id="lista-container" class="lista-container" style="display: none;">
+        <form method="post" class="form-row card" style="padding:12px;margin-bottom:12px">
+          <select name="id_clase" required>
+            <option value="">-- Seleccionar clase --</option>
+            <?php foreach($clases_select as $cs): ?>
+              <option value="<?php echo $cs['id_clase']; ?>"><?php echo htmlspecialchars($cs['año'].' · '.$cs['nombre']); ?></option>
+            <?php endforeach; ?>
+          </select>
+          <input type="date" name="fecha" required>
+          <select name="tipo" required>
+            <option value="tarea">Tarea (visible solo como fecha para alumnos)</option>
+            <option value="examen">Examen</option>
+            <option value="otro">Otro</option>
+          </select>
+          <input type="text" name="descripcion" placeholder="Descripción (solo visible para profesores)">
+          <button type="submit" name="crear_fecha" class="btn">Agregar fecha</button>
+        </form>
+
+        <h3>Fechas por clase</h3>
+        <?php foreach($clases_prof as $c): ?>
+          <div style="margin-bottom:10px;">
+            <h4 style="margin:6px 0"><?php echo htmlspecialchars($c['año'].' · '.$c['nombre']); ?></h4>
+            <?php if(empty($calendario_por_clase[$c['id_clase']])): ?>
+              <div class="small">No hay fechas registradas.</div>
+            <?php else: ?>
+              <div class="table-wrap">
+                <table>
+                  <thead><tr><th>Fecha</th><th>Tipo</th><th>Descripción (privada)</th><th>Acción</th></tr></thead>
+                  <tbody>
+                    <?php foreach($calendario_por_clase[$c['id_clase']] as $f): ?>
+                      <tr>
+                        <td><?php echo htmlspecialchars($f['fecha']); ?></td>
+                        <td><?php echo htmlspecialchars(ucfirst($f['tipo'])); ?></td>
+                        <td><?php echo htmlspecialchars($f['descripcion']); ?></td>
+                        <td>
+                          <form method="post" onsubmit="return confirm('¿Eliminar esta fecha?');" style="display:inline">
+                            <input type="hidden" name="id_fecha" value="<?php echo $f['id']; ?>">
+                            <button type="submit" name="eliminar_fecha" class="danger">Eliminar</button>
+                          </form>
+                        </td>
+                      </tr>
+                    <?php endforeach; ?>
+                  </tbody>
+                </table>
+              </div>
+            <?php endif; ?>
+          </div>
+        <?php endforeach; ?>
+      </div>
 
     <?php endif; ?>
   </section>
@@ -307,7 +332,14 @@ $clases_select = $clases_prof;
 
 </main>
 
+<!-- FullCalendar CSS -->
+<link href="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.10/index.global.min.css" rel="stylesheet">
+
 <script>
+/* Variables globales */
+let calendar = null;
+let claseActual = null;
+
 /* Navegación entre secciones */
 function mostrarSeccion(id, el) {
   document.querySelectorAll("main section").forEach(s => s.style.display = "none");
@@ -316,6 +348,117 @@ function mostrarSeccion(id, el) {
     document.querySelectorAll(".nav a").forEach(a => a.classList.remove("active"));
     el.classList.add("active");
   }
+  
+  // Inicializar calendario cuando se muestre la sección
+  if (id === 'seccionCalendario' && calendar) {
+    setTimeout(() => calendar.render(), 100);
+  }
+}
+
+/* Cambiar entre vista calendario y lista */
+function cambiarVista(vista) {
+  const btnCalendario = document.getElementById('btnVistaCalendario');
+  const btnLista = document.getElementById('btnVistaLista');
+  const containerCalendario = document.getElementById('calendar-container');
+  const containerLista = document.getElementById('lista-container');
+  const selectorClase = document.getElementById('clase-selector');
+  
+  if (vista === 'calendario') {
+    btnCalendario.classList.add('active');
+    btnLista.classList.remove('active');
+    containerCalendario.style.display = 'block';
+    containerLista.style.display = 'none';
+    selectorClase.style.display = 'block';
+    
+    // Renderizar calendario si no está inicializado
+    if (!calendar) {
+      inicializarCalendario();
+    } else {
+      calendar.render();
+    }
+  } else {
+    btnCalendario.classList.remove('active');
+    btnLista.classList.add('active');
+    containerCalendario.style.display = 'none';
+    containerLista.style.display = 'block';
+    selectorClase.style.display = 'none';
+  }
+}
+
+/* Cargar calendario de un grupo específico */
+function cargarCalendarioGrupo() {
+  const selectClase = document.getElementById('selectClaseCalendario');
+  const idClase = selectClase.value;
+  
+  if (!idClase) {
+    if (calendar) {
+      calendar.removeAllEvents();
+      calendar.render();
+    }
+    return;
+  }
+  
+  claseActual = idClase;
+  
+  fetch(`../../../CONTROLADOR/Calendario/get_group_calendar.php?id_clase=${idClase}`)
+    .then(response => response.json())
+    .then(data => {
+      if (data.error) {
+        console.error('Error:', data.error);
+        alert('Error al cargar el calendario: ' + data.error);
+      } else {
+        if (calendar) {
+          calendar.removeAllEvents();
+          calendar.addEventSource(data.eventos);
+          calendar.render();
+        }
+      }
+    })
+    .catch(error => {
+      console.error('Error:', error);
+      alert('Error al cargar el calendario');
+    });
+}
+
+/* Inicializar FullCalendar */
+function inicializarCalendario() {
+  const calendarEl = document.getElementById('calendar');
+  if (!calendarEl) return;
+
+  calendar = new FullCalendar.Calendar(calendarEl, {
+    initialView: 'dayGridMonth',
+    locale: 'es',
+    headerToolbar: {
+      left: 'prev,next today',
+      center: 'title',
+      right: 'dayGridMonth,listWeek'
+    },
+    buttonText: {
+      today: 'Hoy',
+      month: 'Mes',
+      week: 'Semana',
+      list: 'Lista'
+    },
+    events: [], // Se cargarán dinámicamente
+    eventClick: function(info) {
+      const event = info.event;
+      const props = event.extendedProps;
+      
+      let mensaje = `📅 ${event.title}\n`;
+      mensaje += `👨‍🏫 Profesor: ${props.profesor}\n`;
+      if (props.descripcion) {
+        mensaje += `📝 Descripción: ${props.descripcion}`;
+      }
+      
+      alert(mensaje);
+    },
+    eventDisplay: 'block',
+    height: 'auto',
+    dayMaxEvents: 3,
+    moreLinkClick: 'popover'
+  });
+
+  calendar.render();
 }
 
 /* ===== Links en localStorage ===== */
@@ -369,5 +512,8 @@ mostrarSeccion('seccionClases');
 /* pequeños helpers */
 function q(sel){ return document.querySelector(sel); }
 </script>
+
+<!-- FullCalendar JS -->
+<script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.10/index.global.min.js"></script>
 </body>
 </html>
