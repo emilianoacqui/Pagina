@@ -924,7 +924,13 @@ require_once('auth_check.php');
       <h3>Cambiar Imagen</h3>
       <p>Ingresa la URL de la nueva imagen:</p>
       <input type="text" id="imageUrl" class="url-input" placeholder="https://ejemplo.com/imagen.jpg">
-      <div style="margin-top: 20px;">
+      <div style="margin: 12px 0; text-align:center; color:#6b7280;">o</div>
+      <div>
+        <label for="imageFile" style="display:block; text-align:left; font-size:13px; color:#374151; margin-bottom:6px;">Subir archivo (JPG, PNG, WEBP · máx 5MB)</label>
+        <input type="file" id="imageFile" accept="image/*" onchange="handleImageFileChange(event)">
+        <div id="uploadStatus" style="font-size:12px; color:#6b7280; margin-top:6px;"></div>
+      </div>
+      <div style="margin-top: 20px; display:flex; gap:10px; justify-content:center;">
         <button class="btn btn-primary" onclick="updateImage()">Actualizar</button>
         <button class="btn btn-secondary" onclick="closeImageModal()">Cancelar</button>
       </div>
@@ -2281,7 +2287,28 @@ if (editingPageId) {
       }
     }
 
-    function closeImageModal() { document.getElementById('imageModal').style.display = 'none'; currentEditingImage = null; }
+    async function handleImageFileChange(evt) {
+      const file = evt.target.files && evt.target.files[0];
+      const status = document.getElementById('uploadStatus');
+      if (!file) { status.textContent = ''; return; }
+      if (file.size > 5 * 1024 * 1024) { status.textContent = 'Archivo demasiado grande (máx 5MB)'; evt.target.value=''; return; }
+      status.textContent = 'Subiendo imagen...';
+      try {
+        const fd = new FormData();
+        fd.append('image', file);
+        const resp = await fetch('../../../CONTROLADOR/Cms/upload_image.php', { method: 'POST', body: fd });
+        const json = await resp.json();
+        if (!json.success) throw new Error(json.message || 'Error al subir');
+        // Construir URL pública relativa desde esta página
+        const url = '../uploads/' + json.filename;
+        document.getElementById('imageUrl').value = url;
+        status.textContent = 'Subida exitosa. URL aplicada.';
+      } catch (e) {
+        status.textContent = 'Error: ' + e.message;
+      }
+    }
+
+    function closeImageModal() { document.getElementById('imageModal').style.display = 'none'; currentEditingImage = null; const f=document.getElementById('imageFile'); if (f) f.value=''; const s=document.getElementById('uploadStatus'); if (s) s.textContent=''; }
     function cancelEdit() { document.getElementById('template-selection').style.display = 'block'; document.getElementById('editor-container').style.display = 'none'; currentTemplate = null; document.querySelectorAll('.template-card').forEach(card => card.classList.remove('selected')); }
 
     // Resto de funciones...
