@@ -173,7 +173,7 @@ require_once('auth_check.php');
 
     .template-preview {
       width: 100%;
-      height: 320px;
+      height: 200px;
       background: #F3F4F6; /* slate-100 */
       position: relative;
       overflow: hidden;
@@ -610,7 +610,7 @@ require_once('auth_check.php');
       .content-area { padding: 16px !important; }
       .template-grid { grid-template-columns: 1fr !important; }
       .cms-pages-grid { grid-template-columns: 1fr !important; }
-      .template-preview { height: 220px !important; }
+      .template-preview { height: 160px !important; }
       .template-frame { height: 68vh !important; }
       .btn { padding: 10px 14px !important; font-size: 14px !important; }
       .btn-success { width: 100% !important; }
