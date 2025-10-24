@@ -891,8 +891,8 @@ require_once('auth_check.php');
     </div>
     
     <div class="site-view-container">
-        <iframe id="site-frame" src="index.php?cms_admin_token=true" width="100%" height="85vh" 
-                style="border: 1px solid #ddd; border-radius: 8px;"></iframe>
+        <iframe id="site-frame" src="index.php?cms_admin_token=true" width="100%" 
+        style="border: 1px solid #ddd; border-radius: 8px; min-height: 85vh; height: auto;"></iframe>
     </div>
 </section>
 
