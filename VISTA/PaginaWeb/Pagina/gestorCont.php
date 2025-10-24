@@ -880,7 +880,7 @@ require_once('auth_check.php');
       </ul>
     </section>
 
-    <section id="pagina" class="content-area" style="display: none;">
+    <section id="pagina" class="content-area">
     <div class="page-header">
         <h1 class="page-title">Vista del Sitio Web</h1>
         <p class="page-subtitle">Navega por tu sitio web principal</p>
@@ -891,6 +891,11 @@ require_once('auth_check.php');
         <button class="btn btn-secondary" onclick="openSiteInNewTab()"> Abrir en Nueva Pestaña</button>
     </div>
     
+    <div id="welcome-banner" style="background:#0A2E6E; color:#fff; border-radius:8px; padding:16px 18px; margin:0 0 16px 0; border:1px solid rgba(0,0,0,.08);">
+      <div style="font-size:18px; font-weight:600; margin-bottom:6px;">Bienvenido al Gestor</div>
+      <div style="opacity:.95">Usa el panel izquierdo para navegar. Aquí verás tu sitio en modo edición sin salir del gestor.</div>
+    </div>
+
     <div class="site-view-container">
         <iframe id="site-frame" src="index.php?cms_admin_token=true" width="100%" 
         style="border: 1px solid #ddd; border-radius: 8px; min-height: 85vh; height: auto;"></iframe>
@@ -1041,8 +1046,14 @@ async function savePageToServer(pageData) {
       }
     });
     
-    // Inicializar modo activo
-    setModo('editar');
+    // Sección por defecto: Página (vista del sitio)
+    showSection('pagina');
+    
+    // Limpiar selección automática de plantillas al iniciar
+    try {
+      document.querySelectorAll('.template-card.selected').forEach(el=>el.classList.remove('selected'));
+    } catch(e) {}
+    if (typeof currentTemplate !== 'undefined') { currentTemplate = null; }
     
     // Si estamos en la sección de editar, actualizar la lista
     if (document.getElementById('editar').style.display !== 'none') {
