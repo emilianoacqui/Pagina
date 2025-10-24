@@ -225,14 +225,23 @@ $clases_select = $clases_prof;
       </div>
 
       <!-- Selector de clase para calendario -->
-      <div id="clase-selector" class="card" style="padding: 12px; margin-bottom: 12px;">
-        <label for="selectClaseCalendario" style="display: block; margin-bottom: 8px; font-weight: 600;">Seleccionar clase para ver calendario:</label>
-        <select id="selectClaseCalendario" onchange="cargarCalendarioGrupo()">
-          <option value="">-- Seleccionar clase --</option>
-          <?php foreach($clases_select as $cs): ?>
-            <option value="<?php echo $cs['id_clase']; ?>"><?php echo htmlspecialchars($cs['año'].' · '.$cs['nombre']); ?></option>
-          <?php endforeach; ?>
-        </select>
+      <div id="clase-selector" class="card" style="padding: 16px; margin-bottom: 16px;">
+        <div style="display: flex; gap: 12px; align-items: end;">
+          <div style="flex: 1;">
+            <label for="selectClaseCalendario" style="display: block; margin-bottom: 8px; font-weight: 600; font-size: 14px;">Seleccionar clase para ver calendario:</label>
+            <select id="selectClaseCalendario" onchange="cargarCalendarioGrupo()">
+              <option value="">-- Seleccionar clase --</option>
+              <?php foreach($clases_select as $cs): ?>
+                <option value="<?php echo $cs['id_clase']; ?>"><?php echo htmlspecialchars($cs['año'].' · '.$cs['nombre']); ?></option>
+              <?php endforeach; ?>
+            </select>
+          </div>
+          <div>
+            <button id="btnAgregarTarea" class="btn" onclick="mostrarModalAgregarTarea()" disabled>
+              ➕ Agregar Tarea
+            </button>
+          </div>
+        </div>
       </div>
 
       <!-- Calendario Visual -->
@@ -297,6 +306,44 @@ $clases_select = $clases_prof;
 
     <?php endif; ?>
   </section>
+
+  <!-- Modal para agregar tarea -->
+  <div id="modalAgregarTarea" class="modal" style="display: none;">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3>Agregar Nueva Tarea</h3>
+        <button class="modal-close" onclick="cerrarModalAgregarTarea()">&times;</button>
+      </div>
+      <div class="modal-body">
+        <form id="formAgregarTarea">
+          <div class="form-group">
+            <label for="modalTipo">Tipo de tarea:</label>
+            <select id="modalTipo" required>
+              <option value="tarea">Tarea</option>
+              <option value="examen">Examen</option>
+              <option value="prueba">Prueba</option>
+              <option value="oral">Presentación Oral</option>
+              <option value="proyecto">Proyecto</option>
+              <option value="entrega">Entrega</option>
+              <option value="otro">Otro</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="modalFecha">Fecha:</label>
+            <input type="date" id="modalFecha" required>
+          </div>
+          <div class="form-group">
+            <label for="modalDescripcion">Descripción (opcional):</label>
+            <textarea id="modalDescripcion" rows="3" placeholder="Descripción de la tarea..."></textarea>
+          </div>
+          <div class="modal-actions">
+            <button type="button" class="btn" onclick="cerrarModalAgregarTarea()">Cancelar</button>
+            <button type="submit" class="btn" style="background: var(--primary);">Agregar Tarea</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
 
   <!-- SECCIÓN: Eventos (coord) -->
   <section id="seccionEventos" class="card" style="display:none">
@@ -392,6 +439,7 @@ function cambiarVista(vista) {
 /* Cargar calendario de un grupo específico */
 function cargarCalendarioGrupo() {
   const selectClase = document.getElementById('selectClaseCalendario');
+  const btnAgregar = document.getElementById('btnAgregarTarea');
   const idClase = selectClase.value;
   
   if (!idClase) {
@@ -399,10 +447,12 @@ function cargarCalendarioGrupo() {
       calendar.removeAllEvents();
       calendar.render();
     }
+    btnAgregar.disabled = true;
     return;
   }
   
   claseActual = idClase;
+  btnAgregar.disabled = false;
   
   fetch(`../../../CONTROLADOR/Calendario/get_group_calendar.php?id_clase=${idClase}`)
     .then(response => response.json())
@@ -422,6 +472,64 @@ function cargarCalendarioGrupo() {
       console.error('Error:', error);
       alert('Error al cargar el calendario');
     });
+}
+
+/* Modal para agregar tarea */
+function mostrarModalAgregarTarea() {
+  if (!claseActual) {
+    alert('Primero selecciona una clase');
+    return;
+  }
+  
+  // Establecer fecha de hoy por defecto
+  const hoy = new Date().toISOString().split('T')[0];
+  document.getElementById('modalFecha').value = hoy;
+  
+  document.getElementById('modalAgregarTarea').style.display = 'flex';
+}
+
+function cerrarModalAgregarTarea() {
+  document.getElementById('modalAgregarTarea').style.display = 'none';
+  document.getElementById('formAgregarTarea').reset();
+}
+
+/* Agregar tarea desde el modal */
+function agregarTareaDesdeModal(event) {
+  event.preventDefault();
+  
+  const formData = {
+    id_clase: claseActual,
+    tipo: document.getElementById('modalTipo').value,
+    fecha: document.getElementById('modalFecha').value,
+    descripcion: document.getElementById('modalDescripcion').value
+  };
+  
+  fetch('../../../CONTROLADOR/Calendario/add_calendar_event.php', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(formData)
+  })
+  .then(response => response.json())
+  .then(data => {
+    if (data.success) {
+      // Agregar el evento al calendario
+      if (calendar) {
+        calendar.addEvent(data.evento);
+        calendar.render();
+      }
+      
+      cerrarModalAgregarTarea();
+      alert('✅ Tarea agregada correctamente');
+    } else {
+      alert('❌ Error: ' + data.error);
+    }
+  })
+  .catch(error => {
+    console.error('Error:', error);
+    alert('❌ Error al agregar la tarea');
+  });
 }
 
 /* Inicializar FullCalendar */
@@ -515,6 +623,19 @@ document.querySelectorAll('.nav a').forEach(a => {
 
 /* Por defecto mostrar Clases */
 mostrarSeccion('seccionClases');
+
+/* Event listeners */
+document.addEventListener('DOMContentLoaded', function() {
+  // Formulario del modal
+  document.getElementById('formAgregarTarea').addEventListener('submit', agregarTareaDesdeModal);
+  
+  // Cerrar modal al hacer click fuera
+  document.getElementById('modalAgregarTarea').addEventListener('click', function(e) {
+    if (e.target === this) {
+      cerrarModalAgregarTarea();
+    }
+  });
+});
 
 /* pequeños helpers */
 function q(sel){ return document.querySelector(sel); }
