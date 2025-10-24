@@ -113,6 +113,10 @@ require_once('auth_check.php');
       margin-right: auto;
     }
 
+    /* Make the site editor area full-width like the header to get desktop breakpoints inside iframe */
+    .site-view-container { max-width: none !important; padding: 0 30px; }
+    .site-view-container iframe { display: block; width: calc(100vw - 250px - 60px) !important; max-width: 100%; }
+
     /* Full-bleed header when sidebar is off-canvas (mobile) */
     @media (max-width: 992px) {
       .main-content { margin-left: 0 !important; }
@@ -122,6 +126,8 @@ require_once('auth_check.php');
         margin-right: calc(50% - 50vw);
       }
       .content-area > *:not(.page-header) { padding: 20px; }
+      .site-view-container { padding: 0 16px; }
+      .site-view-container iframe { width: 100vw !important; margin-left: calc(50% - 50vw); margin-right: calc(50% - 50vw); }
     }
 
     /* Tone down strong gradients in 'Visitas' summary cards */
