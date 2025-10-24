@@ -885,7 +885,7 @@ require_once('auth_check.php');
     </div>
     
     <div class="site-view-container">
-        <iframe id="site-frame" src="index.php?cms_admin_token=true" width="100%" height="700" 
+        <iframe id="site-frame" src="index.php?cms_admin_token=true" width="100%" height="85vh" 
                 style="border: 1px solid #ddd; border-radius: 8px;"></iframe>
     </div>
 </section>
@@ -1014,6 +1014,14 @@ async function savePageToServer(pageData) {
     } catch (e) {}
 
     addToHistory('Sistema iniciado', 'Gestor de contenido cargado correctamente');
+
+    // Activar persistencia de token dentro del iframe de sitio
+    const siteFrame = document.getElementById('site-frame');
+    if (siteFrame) {
+      siteFrame.addEventListener('load', function(){
+        try { injectCmsTokenPersistence(siteFrame); } catch(e) { console.error('No se pudo inyectar token en iframe', e); }
+      });
+    }
     
     // Inicializar modo activo
     setModo('editar');
@@ -1026,7 +1034,7 @@ async function savePageToServer(pageData) {
 
     function openInSite(pageId) {
       // Abrir la página específica en modo visualización directa
-      window.open('../../../MODELO/Gestor/view_page.php?id=' + pageId, '_blank');
+      window.open('../../../MODELO/Gestor/view_page.php?id=' + pageId + '&cms_admin_token=true', '_blank');
     }
 
     function openFullPageEditor() {
