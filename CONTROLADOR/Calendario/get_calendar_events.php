@@ -89,6 +89,7 @@ try {
             
             $result = $conn->query($sql);
             while ($row = $result->fetch_assoc()) {
+                $es_mi_tarea = ($row['profesor_nombre'] === $_SESSION['nombre']);
                 $eventos[] = [
                     'id' => $row['id'],
                     'title' => ucfirst($row['tipo']) . ' - ' . $row['año'] . '° ' . $row['clase_nombre'],
@@ -99,7 +100,8 @@ try {
                         'tipo' => $row['tipo'],
                         'clase' => $row['año'] . '° ' . $row['clase_nombre'],
                         'descripcion' => $row['descripcion'],
-                        'profesor' => $row['profesor_nombre']
+                        'profesor' => $row['profesor_nombre'],
+                        'es_mi_tarea' => $es_mi_tarea
                     ]
                 ];
             }
@@ -119,8 +121,16 @@ function getEventColor($tipo) {
             return '#3498db'; // Azul
         case 'examen':
             return '#e74c3c'; // Rojo
-        case 'otro':
+        case 'prueba':
+            return '#9b59b6'; // Púrpura
+        case 'oral':
+            return '#e67e22'; // Naranja oscuro
+        case 'proyecto':
+            return '#27ae60'; // Verde
+        case 'entrega':
             return '#f39c12'; // Naranja
+        case 'otro':
+            return '#95a5a6'; // Gris
         default:
             return '#95a5a6'; // Gris
     }

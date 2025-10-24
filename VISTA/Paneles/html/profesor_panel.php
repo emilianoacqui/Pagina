@@ -20,7 +20,7 @@ $id_profesor = intval($_SESSION['id_usuario']);
 if (isset($_POST['crear_fecha'])) {
     $id_clase = intval($_POST['id_clase']);
     $fecha = $_POST['fecha'] ?? '';
-    $tipo = in_array($_POST['tipo'] ?? '', ['tarea','examen','otro']) ? $_POST['tipo'] : 'otro';
+    $tipo = in_array($_POST['tipo'] ?? '', ['tarea','examen','prueba','oral','proyecto','entrega','otro']) ? $_POST['tipo'] : 'otro';
     $descripcion = trim($_POST['descripcion'] ?? '');
 
     // Validar: el profesor debe pertenecer a la clase
@@ -250,11 +250,15 @@ $clases_select = $clases_prof;
             <?php endforeach; ?>
           </select>
           <input type="date" name="fecha" required>
-          <select name="tipo" required>
-            <option value="tarea">Tarea (visible solo como fecha para alumnos)</option>
-            <option value="examen">Examen</option>
-            <option value="otro">Otro</option>
-          </select>
+        <select name="tipo" required>
+          <option value="tarea">Tarea (visible solo como fecha para alumnos)</option>
+          <option value="examen">Examen</option>
+          <option value="prueba">Prueba</option>
+          <option value="oral">Presentación Oral</option>
+          <option value="proyecto">Proyecto</option>
+          <option value="entrega">Entrega</option>
+          <option value="otro">Otro</option>
+        </select>
           <input type="text" name="descripcion" placeholder="Descripción (solo visible para profesores)">
           <button type="submit" name="crear_fecha" class="btn">Agregar fecha</button>
         </form>
@@ -446,6 +450,9 @@ function inicializarCalendario() {
       
       let mensaje = `📅 ${event.title}\n`;
       mensaje += `👨‍🏫 Profesor: ${props.profesor}\n`;
+      if (props.es_mi_tarea) {
+        mensaje += `✅ Esta es tu tarea\n`;
+      }
       if (props.descripcion) {
         mensaje += `📝 Descripción: ${props.descripcion}`;
       }

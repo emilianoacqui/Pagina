@@ -89,8 +89,16 @@ function getEventColor($tipo) {
             return '#3498db'; // Azul
         case 'examen':
             return '#e74c3c'; // Rojo
-        case 'otro':
+        case 'prueba':
+            return '#9b59b6'; // Púrpura
+        case 'oral':
+            return '#e67e22'; // Naranja oscuro
+        case 'proyecto':
+            return '#27ae60'; // Verde
+        case 'entrega':
             return '#f39c12'; // Naranja
+        case 'otro':
+            return '#95a5a6'; // Gris
         default:
             return '#95a5a6'; // Gris
     }
