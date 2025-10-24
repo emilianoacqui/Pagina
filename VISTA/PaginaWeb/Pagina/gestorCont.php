@@ -115,7 +115,12 @@ require_once('auth_check.php');
 
     /* Full-bleed header when sidebar is off-canvas (mobile) */
     @media (max-width: 992px) {
-      .page-header { width: 100%; }
+      .main-content { margin-left: 0 !important; }
+      .page-header {
+        width: 100vw;
+        margin-left: calc(50% - 50vw);
+        margin-right: calc(50% - 50vw);
+      }
       .content-area > *:not(.page-header) { padding: 20px; }
     }
 
