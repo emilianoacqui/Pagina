@@ -127,7 +127,8 @@ require_once('auth_check.php');
       }
       .content-area > *:not(.page-header) { padding: 20px; }
       .site-view-container { padding: 0 16px; }
-      .site-view-container iframe { width: 100vw !important; margin-left: calc(50% - 50vw); margin-right: calc(50% - 50vw); }
+      /* Mobile: keep iframe aligned within padding (no full-bleed) */
+      .site-view-container iframe { width: 100% !important; margin: 0 !important; }
     }
 
     /* Tone down strong gradients in 'Visitas' summary cards */
@@ -604,7 +605,7 @@ require_once('auth_check.php');
       /* Editor viewport prioritization */
       .editor-container { display: block; }
       .template-container { height: auto !important; max-height: none !important; padding: 12px 0 0 0 !important; }
-      .template-frame { height: 70vh !important; max-height: 75vh !important; }
+      .template-frame { height: 80vh !important; min-height: 600px !important; }
 
       /* Charts/site view */
       .site-view-container iframe { height: 70vh !important; }
