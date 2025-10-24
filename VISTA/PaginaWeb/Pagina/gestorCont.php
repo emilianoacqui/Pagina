@@ -92,33 +92,31 @@ require_once('auth_check.php');
     }
 
     .content-area {
-      padding: 30px;
-      max-width: 1200px;
+      padding: 0;              /* header controla su propio padding */
+      max-width: none;         /* permitir header a todo el ancho del main */
     }
 
     .page-header {
       background: #0A2E6E; /* dark blue */
       color: #FFFFFF;
       padding: 20px 30px;
-      /* Full-bleed inside a capped container */
-      position: relative;
-      left: 50%;
-      right: 50%;
-      width: calc(100vw - 250px); /* viewport width minus sidebar */
-      margin-left: calc(-50vw + 250px);
-      margin-right: calc(-50vw + 250px);
-      margin-top: -30px;
-      margin-bottom: 30px;
+      margin: 0;              /* pegado al borde del main y a la sidebar */
+      width: 100%;
       border-bottom: 1px solid rgba(0,0,0,0.08);
+    }
+
+    /* Cuerpo: todos los hermanos posteriores al header quedan centrados y con ancho máximo */
+    .content-area > *:not(.page-header) {
+      padding: 30px;
+      max-width: 1200px;
+      margin-left: auto;
+      margin-right: auto;
     }
 
     /* Full-bleed header when sidebar is off-canvas (mobile) */
     @media (max-width: 992px) {
-      .page-header {
-        width: 100vw;
-        margin-left: -50vw;
-        margin-right: -50vw;
-      }
+      .page-header { width: 100%; }
+      .content-area > *:not(.page-header) { padding: 20px; }
     }
 
     /* Tone down strong gradients in 'Visitas' summary cards */
