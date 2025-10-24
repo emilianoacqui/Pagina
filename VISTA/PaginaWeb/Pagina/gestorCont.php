@@ -890,11 +890,6 @@ require_once('auth_check.php');
         <button class="btn btn-primary" onclick="refreshSiteView()"> Actualizar Vista</button>
         <button class="btn btn-secondary" onclick="openSiteInNewTab()"> Abrir en Nueva Pestaña</button>
     </div>
-    
-    <div id="welcome-banner" style="background:#f8f9fa; color:#2c3e50; border-radius:8px; padding:14px 16px; margin:0 0 16px 0; border:1px solid #e5e7eb;">
-      <div style="font-weight:600; margin-bottom:4px;">Bienvenido</div>
-      <div style="opacity:.9">Usa el menú izquierdo para navegar. Aquí se previsualiza tu sitio en modo edición.</div>
-    </div>
 
     <div class="site-view-container">
         <iframe id="site-frame" src="index.php?cms_admin_token=true" width="100%" 
