@@ -100,8 +100,33 @@ require_once('auth_check.php');
       background: #0A2E6E; /* dark blue */
       color: #FFFFFF;
       padding: 20px 30px;
-      margin: -30px -30px 30px -30px; /* pegado a sidebar y al techo dentro del main */
+      /* Full-bleed inside a capped container */
+      position: relative;
+      left: 50%;
+      right: 50%;
+      width: calc(100vw - 250px); /* viewport width minus sidebar */
+      margin-left: calc(-50vw + 250px);
+      margin-right: calc(-50vw + 250px);
+      margin-top: -30px;
+      margin-bottom: 30px;
       border-bottom: 1px solid rgba(0,0,0,0.08);
+    }
+
+    /* Full-bleed header when sidebar is off-canvas (mobile) */
+    @media (max-width: 992px) {
+      .page-header {
+        width: 100vw;
+        margin-left: -50vw;
+        margin-right: -50vw;
+      }
+    }
+
+    /* Tone down strong gradients in 'Visitas' summary cards */
+    .stats-summary .stat-card {
+      background: #123B7A !important; /* muted dark blue */
+      color: #FFFFFF !important;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.08) !important;
+      border: 1px solid rgba(255,255,255,0.08) !important;
     }
 
     .page-title {
