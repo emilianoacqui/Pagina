@@ -5,6 +5,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="../css/popap.css">
   <title>Admisiones 2026 - Scuola Italiana di Montevideo</title>
+  <style>
+    .breadcrumb-mini { max-width: 980px; margin: 8px auto 16px; padding: 0 16px; font-size: 13px; }
+    .breadcrumb-mini a { color: #0A2452; text-decoration: none; }
+    .breadcrumb-mini a:hover { text-decoration: underline; }
+    .breadcrumb-mini .sep { margin: 0 6px; color: #9aa0a6; }
+    @media (max-width: 640px){ .breadcrumb-mini { font-size: 12px; margin: 6px auto 12px; } }
+  </style>
 </head>
 <div id="cms-root"></div>
 <body>
@@ -16,6 +23,11 @@
 
     <!-- Título -->
     <h1>Admisiones 2026</h1>
+    <nav class="breadcrumb-mini" aria-label="breadcrumb">
+      <a href="index.php">Inicio</a>
+      <span class="sep">/</span>
+      <span>Admisiones 2026</span>
+    </nav>
 
     <!-- Descripción -->
     <p class="description">
