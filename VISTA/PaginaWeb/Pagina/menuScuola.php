@@ -255,7 +255,7 @@
       Acerca Scuola Italiana
     </div>
 
-    <div class="menu-item" onclick="window.location.href='admision.php'" data-target="submenu2" data-img="FOTOS/fotosPrincipales/ejemplo2.jpg">
+    <div class="menu-item" onclick="window.location.href='admisiones.php'" data-target="submenu2" data-img="FOTOS/fotosPrincipales/ejemplo2.jpg">
       Admisión
     </div>
 
@@ -493,5 +493,7 @@
 
   <script src="cms-admin.js"></script>
   <script src="analytics.js"></script>
+  <link rel="stylesheet" href="../css/announcement.css">
+  <script src="announcement.js"></script>
 </body>
 </html>

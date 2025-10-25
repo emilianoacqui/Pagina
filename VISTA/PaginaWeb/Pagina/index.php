@@ -1235,7 +1235,7 @@ body:not(.loading-cms-content) #cms-root {
                     ];
                 ?>
                 <h1 class="hero-title"><?php echo $hero[$cl][0]; ?><br><?php echo $hero[$cl][1]; ?></h1>
-                <a href="popap.php" class="admissions-btn"><?php echo $admissions[$cl]; ?></a>
+                <a href="admisiones.php" class="admissions-btn"><?php echo $admissions[$cl]; ?></a>
             </div>
         </header>
 
@@ -1753,6 +1753,8 @@ body:not(.loading-cms-content) #cms-root {
     
 <script src="cms-admin.js"></script>
 <script src="analytics.js"></script>
+<link rel="stylesheet" href="../css/announcement.css">
+<script src="announcement.js"></script>
 
     </body>
     </html>
