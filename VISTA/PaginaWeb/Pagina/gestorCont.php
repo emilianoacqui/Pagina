@@ -538,6 +538,64 @@ require_once('auth_check.php');
       margin-bottom: 20px;
     }
 
+    .cms-preview {
+      margin-bottom: 15px;
+    }
+
+    .cms-preview p {
+      margin: 0;
+      color: #4b5563;
+      line-height: 1.5;
+      font-size: 14px;
+    }
+
+    .cms-edited-elements {
+      margin-bottom: 15px;
+      padding: 12px;
+      background: #f8fafc;
+      border-radius: 6px;
+      border-left: 4px solid #3b82f6;
+    }
+
+    .cms-edited-elements p {
+      margin: 0 0 8px 0;
+      font-weight: 600;
+      color: #374151;
+      font-size: 13px;
+    }
+
+    .cms-edited-elements ul {
+      margin: 0;
+      padding-left: 20px;
+    }
+
+    .cms-edited-elements li {
+      margin-bottom: 4px;
+      color: #6b7280;
+      font-size: 13px;
+    }
+
+    .cms-page-content p {
+      margin: 8px 0;
+      font-size: 13px;
+      color: #6b7280;
+    }
+
+    .cms-page-actions {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .cms-page-actions .btn {
+      margin: 0;
+      flex: 1;
+      min-width: 80px;
+      text-align: center;
+      font-size: 13px;
+      padding: 8px 12px;
+    }
+
     .cms-page-content p {
       margin: 8px 0;
       color: #555;
@@ -617,6 +675,15 @@ require_once('auth_check.php');
       .content-area { padding: 16px !important; }
       .template-grid { grid-template-columns: 1fr !important; }
       .cms-pages-grid { grid-template-columns: 1fr !important; }
+      
+      .cms-page-actions {
+        flex-direction: column;
+      }
+      
+      .cms-page-actions .btn {
+        flex: none;
+        width: 100%;
+      }
       .template-preview { height: 160px !important; }
       .template-frame { height: 68vh !important; }
       .btn { padding: 10px 14px !important; font-size: 14px !important; }
@@ -3027,19 +3094,41 @@ function displayCMSPages(pages) {
     let html = '<div class="cms-pages-grid">';
     
     pages.forEach(page => {
+        // Extraer texto legible del contenido HTML
+        const textContent = extractTextFromHTML(page.content || '');
+        const preview = textContent.substring(0, 150);
+        
+        // Extraer título de la página si existe
+        const titleMatch = page.content.match(/<title[^>]*>(.*?)<\/title>/i);
+        const pageTitle = titleMatch ? titleMatch[1] : (page.name || 'Sin título');
+        
+        // Extraer elementos editables para mostrar qué se editó
+        const editableElements = extractEditableElements(page.content || '');
+        
         html += `
             <div class="cms-page-card">
                 <div class="cms-page-header">
-                    <h3>${escapeHtml(page.title || 'Sin título')}</h3>
+                    <h3>${escapeHtml(pageTitle)}</h3>
                     <span class="cms-page-url">/${page.url}</span>
                 </div>
                 <div class="cms-page-content">
-                    <p><strong>Contenido:</strong> ${escapeHtml(page.content || '').substring(0, 200)}${page.content && page.content.length > 200 ? '...' : ''}</p>
-                    <p><strong>Última actualización:</strong> ${new Date(page.updated_at).toLocaleString()}</p>
+                    <div class="cms-preview">
+                        <p><strong>Vista previa:</strong> ${escapeHtml(preview)}${textContent.length > 150 ? '...' : ''}</p>
+                    </div>
+                    ${editableElements.length > 0 ? `
+                        <div class="cms-edited-elements">
+                            <p><strong>Elementos editados:</strong></p>
+                            <ul>
+                                ${editableElements.map(el => `<li>${escapeHtml(el)}</li>`).join('')}
+                            </ul>
+                        </div>
+                    ` : ''}
+                    <p><strong>Última actualización:</strong> ${new Date(page.lastModified).toLocaleString()}</p>
                 </div>
                 <div class="cms-page-actions">
                     <button class="btn btn-primary btn-small" onclick="viewCMSPage('${page.url}')">Ver Página</button>
-                    <button class="btn btn-danger btn-small" onclick="confirmDeleteCMSPage('${page.id}', '${page.title || page.url}')">Eliminar</button>
+                    <button class="btn btn-secondary btn-small" onclick="editCMSPage('${page.id}')">Editar</button>
+                    <button class="btn btn-danger btn-small" onclick="confirmDeleteCMSPage('${page.id}', '${escapeHtml(pageTitle)}')">Eliminar</button>
                 </div>
             </div>
         `;
@@ -3049,9 +3138,95 @@ function displayCMSPages(pages) {
     container.innerHTML = html;
 }
 
+// Función para extraer texto legible del HTML
+function extractTextFromHTML(html) {
+    if (!html) return '';
+    
+    // Crear un elemento temporal para parsear el HTML
+    const temp = document.createElement('div');
+    temp.innerHTML = html;
+    
+    // Remover scripts y estilos
+    const scripts = temp.querySelectorAll('script, style');
+    scripts.forEach(el => el.remove());
+    
+    // Obtener texto y limpiar espacios
+    return temp.textContent || temp.innerText || ''
+        .replace(/\s+/g, ' ')
+        .trim();
+}
+
+// Función para extraer elementos editables del contenido
+function extractEditableElements(html) {
+    if (!html) return [];
+    
+    const elements = [];
+    const temp = document.createElement('div');
+    temp.innerHTML = html;
+    
+    // Buscar elementos con clases editables
+    const editableSelectors = [
+        '.editable-text',
+        '.editable-image',
+        '[contenteditable="true"]',
+        '.cms-editable'
+    ];
+    
+    editableSelectors.forEach(selector => {
+        const found = temp.querySelectorAll(selector);
+        found.forEach(el => {
+            const text = el.textContent || el.innerText || '';
+            if (text.trim().length > 0 && text.trim().length < 100) {
+                elements.push(text.trim());
+            }
+        });
+    });
+    
+    // Buscar títulos y encabezados
+    const headings = temp.querySelectorAll('h1, h2, h3, h4, h5, h6');
+    headings.forEach(heading => {
+        const text = heading.textContent || heading.innerText || '';
+        if (text.trim().length > 0) {
+            elements.push(`Título: ${text.trim()}`);
+        }
+    });
+    
+    return elements.slice(0, 5); // Máximo 5 elementos para no saturar
+}
+
 // Ver una página CMS
 function viewCMSPage(url) {
     window.open(`../../${url}`, '_blank');
+}
+
+// Editar una página CMS
+function editCMSPage(pageId) {
+    // Cargar la página específica
+    fetch('../../../CONTROLADOR/Cms/pages_manager.php', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+            action: 'getById',
+            pageId: pageId
+        })
+    })
+    .then(response => response.json())
+    .then(result => {
+        if (result.success && result.data) {
+            const page = result.data;
+            // Abrir la página en modo edición
+            const editUrl = `../../${page.url}?edit=true&cms_id=${pageId}`;
+            window.open(editUrl, '_blank');
+        } else {
+            alert('Error al cargar la página: ' + (result.message || 'Error desconocido'));
+        }
+    })
+    .catch(error => {
+        console.error('Error:', error);
+        alert('Error de conexión al cargar la página');
+    });
 }
 
 // Confirmar eliminación de página CMS individual
@@ -3075,17 +3250,76 @@ async function deleteCMSPage(id) {
             })
         });
         
+        if (!response.ok) {
+            throw new Error(`Error HTTP: ${response.status}`);
+        }
+        
         const result = await response.json();
         
         if (result.success) {
-            addToHistory('Página CMS eliminada', `Se eliminó la página: ${result.message}`);
-            loadCMSPages(); // Recargar la lista
+            addToHistory('Página CMS eliminada', `Se eliminó la página correctamente`);
+            // Mostrar mensaje de éxito
+            showNotification('Página eliminada correctamente', 'success');
+            // Recargar la lista después de un breve delay
+            setTimeout(() => {
+                loadCMSPages();
+            }, 500);
         } else {
-            alert('Error al eliminar la página: ' + result.message);
+            throw new Error(result.message || 'Error desconocido al eliminar');
         }
     } catch (error) {
-        alert('Error de conexión: ' + error.message);
+        console.error('Error eliminando página:', error);
+        showNotification('Error al eliminar la página: ' + error.message, 'error');
     }
+}
+
+// Función para mostrar notificaciones
+function showNotification(message, type = 'info') {
+    // Crear elemento de notificación
+    const notification = document.createElement('div');
+    notification.className = `notification notification-${type}`;
+    notification.style.cssText = `
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        padding: 12px 20px;
+        border-radius: 6px;
+        color: white;
+        font-weight: 500;
+        z-index: 10000;
+        max-width: 400px;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        transform: translateX(100%);
+        transition: transform 0.3s ease;
+    `;
+    
+    // Colores según el tipo
+    const colors = {
+        success: '#10b981',
+        error: '#ef4444',
+        warning: '#f59e0b',
+        info: '#3b82f6'
+    };
+    
+    notification.style.backgroundColor = colors[type] || colors.info;
+    notification.textContent = message;
+    
+    document.body.appendChild(notification);
+    
+    // Animar entrada
+    setTimeout(() => {
+        notification.style.transform = 'translateX(0)';
+    }, 100);
+    
+    // Remover después de 4 segundos
+    setTimeout(() => {
+        notification.style.transform = 'translateX(100%)';
+        setTimeout(() => {
+            if (notification.parentNode) {
+                notification.parentNode.removeChild(notification);
+            }
+        }, 300);
+    }, 4000);
 }
 
 // Confirmar eliminación de todas las páginas CMS
