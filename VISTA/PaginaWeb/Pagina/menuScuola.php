@@ -386,7 +386,10 @@
     document.querySelector('.close-button').addEventListener('click', () => {
         document.body.style.animation = 'slideOutToRight 0.5s ease-in forwards';
         setTimeout(() => {
-            window.location.href = 'index.php';
+            const params = new URLSearchParams(window.location.search);
+            const isAdmin = params.get('cms_admin_token') === 'true';
+            const target = isAdmin ? 'index.php?cms_admin_token=true' : 'index.php';
+            window.location.href = target;
         }, 500);
     });
 
