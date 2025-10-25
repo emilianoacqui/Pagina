@@ -4,10 +4,13 @@
 
   const STORAGE_KEY = 'admissions_announce_closed_until_v1';
   const now = Date.now();
-  try {
-    const until = parseInt(localStorage.getItem(STORAGE_KEY) || '0', 10);
-    if (until && now < until) return; // respetar pausa
-  } catch(_) {}
+  const isIndex = PAGE === '' || PAGE === 'index.php';
+  if (!isIndex) {
+    try {
+      const until = parseInt(localStorage.getItem(STORAGE_KEY) || '0', 10);
+      if (until && now < until) return; // respetar pausa en otras páginas
+    } catch(_) {}
+  }
 
   const params = new URLSearchParams(window.location.search);
   const isAdmin = params.get('cms_admin_token') === 'true';
@@ -22,8 +25,8 @@
         <img src="FOTOS/fotosPrincipales/ejemplo2.jpg" alt="Admisiones" loading="lazy" />
       </div>
       <div class="announce-body">
-        <h3 class="announce-title">Admisiones abiertas</h3>
-        <p class="announce-text">Conocé nuestra propuesta y agenda tu visita. ¡Te esperamos!</p>
+        <h3 class="announce-title">Admisiones 2026</h3>
+        <p class="announce-text">Te invitamos a conocer nuestra amplia propuesta educativa para acompañar el crecimiento de tus hijos.\nCompletando el formulario a continuación nos pondremos en contacto a la brevedad para asesorarte.</p>
         <div class="announce-actions">
           <button class="announce-btn announce-primary" data-action="go">Más información</button>
           <button class="announce-btn announce-secondary" data-action="later">Más tarde</button>
@@ -34,7 +37,9 @@
   const card = root.querySelector('.announce-card');
   const closeBtn = root.querySelector('.announce-close');
   const onClose = (hours) => {
-    try { localStorage.setItem(STORAGE_KEY, String(Date.now() + hours*60*60*1000)); } catch(_) {}
+    if (!isIndex) {
+      try { localStorage.setItem(STORAGE_KEY, String(Date.now() + hours*60*60*1000)); } catch(_) {}
+    }
     card.classList.remove('show');
     setTimeout(()=> root.remove(), 300);
   };
@@ -58,10 +63,10 @@
     setTimeout(()=> card.classList.add('show'), 50);
   };
 
-  // mostrar tras un pequeño delay para no molestar
+  // mostrar tras un delay: 5s en index, 1.2s en otras páginas
   if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', ()=> setTimeout(attach, 1200));
+    document.addEventListener('DOMContentLoaded', ()=> setTimeout(attach, isIndex ? 5000 : 1200));
   } else {
-    setTimeout(attach, 1200);
+    setTimeout(attach, isIndex ? 5000 : 1200);
   }
 })();

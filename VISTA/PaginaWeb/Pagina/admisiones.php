@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<?php if (session_status() === PHP_SESSION_NONE) { session_start(); } if (isset($_GET['lang']) && in_array($_GET['lang'], ['es','en','it'])) { $_SESSION['lang'] = $_GET['lang']; } $cl = $_SESSION['lang'] ?? 'es'; ?>
+<?php if (session_status() === PHP_SESSION_NONE) { session_start(); } if (isset($_GET['lang']) && in_array($_GET['lang'], ['es','en','it'])) { $_SESSION['lang'] = $_GET['lang']; } $cl = $_SESSION['lang'] ?? 'es'; require_once(__DIR__ . '/../../../MODELO/conexion.php'); ?>
 <html lang="<?php echo $cl; ?>">
 <head>
   <meta charset="UTF-8" />
@@ -10,10 +10,16 @@
 </head>
 <div id="cms-root"></div>
 <body>
+  <?php include __DIR__.'/includes/navbar.php'; ?>
   <div id="original-content">
     <section class="admissions-wrap">
       <div class="admissions-header">
         <h1 class="admissions-title"><?php $h=['es'=>'Contacto','en'=>'Contact','it'=>'Contatto']; echo $h[$cl]; ?></h1>
+        <nav aria-label="breadcrumb" style="margin:8px 0 10px 0; font-size:13px;">
+          <a href="index.php" style="color:#0A2452; text-decoration:none;">Inicio</a>
+          <span style="margin:0 6px; color:#888;">/</span>
+          <span style="color:#555;">Admisiones</span>
+        </nav>
         <p class="admissions-intro">
           <?php if ($cl==='es'): ?>
           Gracias por interesarte en la propuesta educativa de la Scuola Italiana di Montevideo. Te invitamos a realizar una visita guiada individual y así conocer más de cerca nuestra propuesta educativa y nuestras instalaciones. Por consultas acerca del proceso de admisiones, agradecemos completar el formulario a continuación y a la brevedad nos pondremos en contacto para ayudarte a continuar el proceso.
@@ -79,5 +85,14 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <script src="cms-admin.js"></script>
   <script src="analytics.js"></script>
+  <footer class="footer-bottom-new" style="margin-top:40px; background:#1B4F72; color:white;">
+    <div class="footer-container" style="display:flex; align-items:center; justify-content:space-between; max-width:1200px; margin:0 auto; padding:30px 5%;">
+      <div class="footer-left" style="display:flex; align-items:center; gap:20px;">
+        <div class="footer-logo"><img src="FOTOS/fotosPrincipales/logo2.png" alt="Scuola" style="height:60px;"></div>
+        <div class="footer-subtitle"><p style="margin:0; font-size:14px; color:#E8E8E8;">AMC Scuola Italiana di Montevideo</p></div>
+      </div>
+      <div class="footer-right" style="font-size:12px; color:#BDC3C7;">Desarrollado por SGE</div>
+    </div>
+  </footer>
 </body>
 </html>
