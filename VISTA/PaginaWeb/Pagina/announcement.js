@@ -14,7 +14,7 @@
 
   const params = new URLSearchParams(window.location.search);
   const isAdmin = params.get('cms_admin_token') === 'true';
-  const dest = 'admisiones.php' + (isAdmin ? '?cms_admin_token=true' : '');
+  const dest = 'popap.php' + (isAdmin ? '?cms_admin_token=true' : '');
 
   const root = document.createElement('div');
   root.className = 'announce-root';

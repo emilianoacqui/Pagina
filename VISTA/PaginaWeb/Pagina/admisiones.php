@@ -85,13 +85,45 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <script src="cms-admin.js"></script>
   <script src="analytics.js"></script>
-  <footer class="footer-bottom-new" style="margin-top:40px; background:#1B4F72; color:white;">
-    <div class="footer-container" style="display:flex; align-items:center; justify-content:space-between; max-width:1200px; margin:0 auto; padding:30px 5%;">
-      <div class="footer-left" style="display:flex; align-items:center; gap:20px;">
-        <div class="footer-logo"><img src="FOTOS/fotosPrincipales/logo2.png" alt="Scuola" style="height:60px;"></div>
-        <div class="footer-subtitle"><p style="margin:0; font-size:14px; color:#E8E8E8;">AMC Scuola Italiana di Montevideo</p></div>
+  <footer class="footer-bottom-new">
+    <div class="footer-container">
+      <div class="footer-left">
+        <div class="footer-logo">
+          <img src="FOTOS/fotosPrincipales/logo2.png" alt="Scuola Italiana di Montevideo">
+        </div>
+        <div class="footer-subtitle">
+          <p>AMC Scuola Italiana di Montevideo</p>
+        </div>
       </div>
-      <div class="footer-right" style="font-size:12px; color:#BDC3C7;">Desarrollado por SGE</div>
+      <div class="footer-center">
+        <div class="footer-section">
+          <?php $footerTitles = ['es' => 'Contacto','en' => 'Contact','it' => 'Contatto']; ?>
+          <h4><?php echo $footerTitles[$cl]; ?></h4>
+          <p>Gral. French 2380</p>
+          <p>CP 11500 - Montevideo, Uruguay</p>
+          <p>(+598) 2600 1527</p>
+          <p>info@scuolaitaliana.edu.uy</p>
+        </div>
+      </div>
+      <div class="footer-right">
+        <div class="footer-section">
+          <?php
+            $linksTitle = ['es' => 'Enlaces útiles','en' => 'Useful links','it' => 'Link utili'];
+            $linkItems = [
+              'es' => ['Política de privacidad','Requisitos técnicos','Accesibilidad'],
+              'en' => ['Privacy Policy','Technical Requirements','Accessibility'],
+              'it' => ['Informativa sulla privacy','Requisiti tecnici','Accessibilità'],
+            ];
+          ?>
+          <h4><?php echo $linksTitle[$cl]; ?></h4>
+          <p><?php echo $linkItems[$cl][0]; ?></p>
+          <p><?php echo $linkItems[$cl][1]; ?></p>
+          <p><?php echo $linkItems[$cl][2]; ?></p>
+        </div>
+      </div>
+    </div>
+    <div class="footer-info-bar">
+      <p>Desarrollado por el equipo SGE | Proyecto de apoyo 2002 - EE Informática</p>
     </div>
   </footer>
 </body>
