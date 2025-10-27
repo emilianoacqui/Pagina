@@ -580,7 +580,7 @@ body:not(.loading-cms-content) #cms-root {
             left: 0;
             width: 0%;
             height: 100%;
-            background: #1E90FF; /* azul más oscuro */
+            background: #1565C0; /* azul más oscuro */
             transition: width 1.8s ease-in-out;
             z-index: 1;
         }
