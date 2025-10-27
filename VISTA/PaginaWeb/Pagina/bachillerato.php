@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><?php $ba_meta=['es'=>'Bachillerato - Scuola Italiana di Montevideo','en'=>'Upper Secondary - Scuola Italiana di Montevideo','it'=>'Liceo - Scuola Italiana di Montevideo']; echo $ba_meta[$cl]; ?></title>
+    <title><?php $ba_meta=['es'=>'bachillerato - Scuola Italiana di Montevideo','en'=>'Upper Secondary - Scuola Italiana di Montevideo','it'=>'Liceo - Scuola Italiana di Montevideo']; echo $ba_meta[$cl]; ?></title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Merriweather+Sans:wght@400;700&family=Crimson+Pro:wght@400;600;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="breadcrumbs.css">

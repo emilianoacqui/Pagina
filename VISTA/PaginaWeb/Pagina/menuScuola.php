@@ -251,11 +251,11 @@
     <!-- Contenedor principal del menú -->
 <div class="menu-container">
   <div class="menu">
-    <div class="menu-item" onclick="window.location.href='acerca.php'" data-target="submenu1" data-img="FOTOS/fotosPrincipales/ejemplo1.jpg">
+    <div class="menu-item" onclick="window.location.href='acerca-scuola.php'" data-target="submenu1" data-img="FOTOS/fotosPrincipales/ejemplo1.jpg">
       Acerca Scuola Italiana
     </div>
 
-    <div class="menu-item" onclick="window.location.href='admision.php'" data-target="submenu2" data-img="FOTOS/fotosPrincipales/ejemplo2.jpg">
+    <div class="menu-item" onclick="window.location.href='admisiones.php'" data-target="submenu2" data-img="FOTOS/fotosPrincipales/ejemplo2.jpg">
       Admisión
     </div>
 
@@ -281,6 +281,8 @@
       <div class="submenu-panel">
         <div id="submenu1" class="submenu-content active">
           <ul>
+            <li><a href="acerca-scuola.php"><strong>Ir a Acerca Scuola Italiana</strong></a></li>
+            <li><a href="acerca-scuola.php">Acerca de la Scuola</a></li>
             <li><a href="acerca-bienvenido.php">Bienvenido a Scuola Italiana</a></li>
             <li><a href="acerca-mision-historia.php">Nuestra Misión e Historia</a></li>
             <li><a href="acerca-liderazgo-vision.php">Liderazgo y visión estratégica</a></li>
@@ -295,6 +297,7 @@
 
         <div id="submenu2" class="submenu-content">
           <ul>
+            <li><a href="admisiones.php"><strong>Ir a Admisión</strong></a></li>
             <li><a href="admision-requisitos.php">Requisitos de admisión</a></li>
             <li><a href="admision-fechas.php">Fechas clave</a></li>
             <li><a href="admision-contacto.php">Contacto de admisiones</a></li>
@@ -302,6 +305,7 @@
         </div>
         <div id="submenu3" class="submenu-content">
           <ul>
+            <li><a href="propuesta.php"><strong>Ir a Propuesta Educativa</strong></a></li>
             <li><a href="propuesta-niveles.php">Niveles y áreas</a></li>
             <li><a href="propuesta-plan-academico.php">Plan académico</a></li>
             <li><a href="propuesta-proyectos.php">Proyectos destacados</a></li>
@@ -309,12 +313,14 @@
         </div>
         <div id="submenu4" class="submenu-content">
           <ul>
+            <li><a href="mapa.php"><strong>Ir a Mapa del colegio</strong></a></li>
             <li><a href="mapa-campus.php">Mapa del campus</a></li>
             <li><a href="ubicaciones.php">Ubicaciones principales</a></li>
           </ul>
         </div>
         <div id="submenu5" class="submenu-content">
           <ul>
+            <li><a href="deportes.php"><strong>Ir a Deportes</strong></a></li>
             <li><a href="deportes-actividades.php">Actividades deportivas</a></li>
             <li><a href="deportes-competencias.php">Competencias</a></li>
             <li><a href="deportes-talleres.php">Talleres</a></li>
@@ -322,6 +328,7 @@
         </div>
         <div id="submenu6" class="submenu-content">
           <ul>
+            <li><a href="otra.php"><strong>Ir a Otra sección</strong></a></li>
             <li><a href="otra-historia.php">Historia institucional</a></li>
             <li><a href="otra-legado.php">Legado y valores</a></li>
             <li><a href="otra-documentos.php">Documentos y recursos</a></li>
@@ -386,7 +393,10 @@
     document.querySelector('.close-button').addEventListener('click', () => {
         document.body.style.animation = 'slideOutToRight 0.5s ease-in forwards';
         setTimeout(() => {
-            window.location.href = 'index.php';
+            const params = new URLSearchParams(window.location.search);
+            const isAdmin = params.get('cms_admin_token') === 'true';
+            const target = isAdmin ? 'index.php?cms_admin_token=true' : 'index.php';
+            window.location.href = target;
         }, 500);
     });
 
@@ -420,6 +430,30 @@
                 }
             });
         });
+
+        // Mobile: always prevent direct navigation on .menu-item. Only expand submenu and update image.
+        // Top links remain unchanged. This runs only on devices without hover.
+        const isTouchLike = window.matchMedia && window.matchMedia('(hover: none)').matches;
+        if (isTouchLike) {
+            items.forEach(item => {
+                item.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    e.stopImmediatePropagation();
+                    const target = item.getAttribute('data-target');
+                    const img = item.getAttribute('data-img');
+
+                    // Activate corresponding submenu
+                    contents.forEach(content => content.classList.remove('active'));
+                    const activeContent = document.getElementById(target);
+                    if (activeContent) activeContent.classList.add('active');
+
+                    // Update left image
+                    if (img) {
+                        leftDiv.style.backgroundImage = `url('${img}')`;
+                    }
+                }, true);
+            });
+        }
     });
 </script>
 
@@ -490,5 +524,7 @@
 
   <script src="cms-admin.js"></script>
   <script src="analytics.js"></script>
+  <link rel="stylesheet" href="../css/announcement.css">
+  <script src="announcement.js"></script>
 </body>
 </html>

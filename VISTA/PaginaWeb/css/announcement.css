@@ -1,0 +1,57 @@
+/* Non-intrusive admissions announcement */
+.announce-hidden { display: none !important; }
+
+.announce-root { position: fixed; z-index: 9999; }
+
+/* Desktop card (bottom-right) */
+.announce-card {
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
+  width: 320px;
+  max-width: calc(100vw - 40px);
+  background: #ffffff;
+  border: 1px solid rgba(0,0,0,0.06);
+  border-radius: 14px;
+  box-shadow: 0 12px 32px rgba(0,0,0,0.15);
+  overflow: hidden;
+  transform: translateY(20px);
+  opacity: 0;
+  transition: transform .4s ease, opacity .4s ease;
+  touch-action: pan-y;
+}
+.announce-card.show { transform: translateY(0); opacity: 1; }
+
+.announce-media { position: relative; height: 140px; overflow: hidden; background: #0A2452; }
+.announce-media img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+.announce-body { padding: 14px; }
+.announce-title { margin: 0 24px 8px 0; font-weight: 800; font-size: 16px; color: #0A2452; }
+.announce-text { margin: 0 0 12px 0; color: #333; font-size: 14px; line-height: 1.4; }
+
+.announce-actions { display: flex; gap: 8px; }
+.announce-btn { appearance: none; border: none; border-radius: 8px; padding: 10px 12px; font-weight: 700; cursor: pointer; font-size: 14px; }
+.announce-primary { background: #DC343C; color: #fff; }
+.announce-secondary { background: #EEF2F6; color: #0A2452; }
+
+.announce-close { position: absolute; top: 8px; right: 8px; background: rgba(255,255,255,0.95); border-radius: 999px; width: 32px; height: 32px; border: 1px solid rgba(0,0,0,0.1); display: grid; place-items: center; cursor: pointer; }
+.announce-close:hover { background: #fff; }
+
+/* Mobile banner (bottom) */
+@media (max-width: 640px) {
+  /* Right-aligned compact card (~50% width) */
+  .announce-card {
+    right: 10px;
+    left: auto;
+    width: 55vw;
+    max-width: 320px;
+    min-width: 240px;
+    bottom: 12px;
+  }
+  .announce-media { height: 80px; }
+  .announce-title { font-size: 14px; margin: 0 20px 6px 0; }
+  .announce-text { font-size: 12px; line-height: 1.35; margin-bottom: 10px; }
+  .announce-actions { gap: 6px; }
+  .announce-btn { padding: 8px 10px; font-size: 12px; }
+  .announce-close { width: 28px; height: 28px; }
+}
