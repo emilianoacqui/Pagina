@@ -1180,13 +1180,6 @@ async function savePageToServer(pageData) {
           </nav>
           
 
-          <!-- Breadcrumbs -->
-          <div class="breadcrumbs-container">
-              <div id="breadcrumbs">
-                  <a href="index.php">Inicio</a> / <span class="current">Nueva Página</span>
-              </div>
-          </div>
-
           <!-- Hero Section -->
           <section class="hero editable-image" style="background-image: url('https://images.unsplash.com/photo-1497486751825-1233686d5d80?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80'); background-size: cover; background-position: center;">
               <div class="hero-overlay"></div>
@@ -1339,18 +1332,38 @@ async function savePageToServer(pageData) {
               background-color: #F39C12;
           }
 
+          /* Navigation */
+          .navbar {
+              position: fixed;
+              top: 0;
+              left: 0;
+              width: 100%;
+              z-index: 1000;
+              background: rgba(10, 36, 82, 0.9);
+              height: 80px;
+          }
+          
+          .nav-container {
+              display: flex;
+              justify-content: space-between;
+              align-items: center;
+              padding: 15px 5%;
+              max-width: 1200px;
+              margin: 0 auto;
+              height: 100%;
+          }
+
           /* Hero Section */
           .hero {
     position: relative;
-    margin: 0;  /* Sin margen */
+    margin-top: 80px;  /* Compensar navbar fijo */
     padding: 0;
-    top: 0;  /* Pegado arriba */
-    height: 100vh;  /* Altura completa */
+    top: 0;
+    height: calc(100vh - 80px);  /* Altura completa menos navbar */
     display: flex;
     align-items: center;
     justify-content: center;
     overflow: hidden;
-    margin-bottom: 0;
 }
 
           .hero-background-container {
@@ -1372,28 +1385,6 @@ async function savePageToServer(pageData) {
               z-index: 2;
           }
 
-          /* Breadcrumbs */
-          .breadcrumbs-container {
-              background: #f8f9fa;
-              padding: 12px 0;
-              border-bottom: 1px solid #e5e7eb;
-          }
-          
-          #breadcrumbs {
-              max-width: 1200px;
-              margin: 0 auto;
-              padding: 0 20px;
-          }
-          
-          #breadcrumbs a {
-              color: #374151;
-              text-decoration: none;
-          }
-          
-          #breadcrumbs .current {
-              color: #6b7280;
-              font-weight: 500;
-          }
 
           .hero-content {
               position: relative;
@@ -1718,7 +1709,7 @@ async function savePageToServer(pageData) {
           </nav>
 
           <!-- Hero Section -->
-          <section class="hero-centered editable-image" style="background-image: url('https://images.unsplash.com/photo-1481627834876-b7833e8f5570?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80'); background-size: cover; background-position: center;">
+          <section class="hero-centered editable-image" style="background-image: url('https://images.unsplash.com/photo-1481627834876-b7833e8f5570?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80'); background-size: cover; background-position: center; margin-top: 80px;">
               <div class="hero-overlay"></div>
               <div class="hero-content-center">
                   <h1 class="hero-title-center editable-text">Título Centrado</h1>
@@ -1784,12 +1775,11 @@ async function savePageToServer(pageData) {
             /* Navigation */
           .hero-centered { 
     position: relative;
-    top: -80px;
-    height: calc(70vh + 80px); 
+    top: 0;
+    height: 70vh; 
     display: flex; 
     align-items: center; 
     justify-content: center; 
-    margin-bottom: -80px;
 }         
 
           .hero-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(27, 47, 111, 0.3); }
@@ -1845,7 +1835,7 @@ async function savePageToServer(pageData) {
           </nav>
 
           <!-- Hero Section -->
-          <section class="hero-list editable-image" style="background-image: url('https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80'); background-size: cover; background-position: center;">
+          <section class="hero-list editable-image" style="background-image: url('https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80'); background-size: cover; background-position: center; margin-top: 80px;">
               <div class="hero-overlay"></div>
               <div class="hero-content-left">
                   <h1 class="hero-title-left editable-text">Título de la Lista</h1>
@@ -1931,12 +1921,11 @@ async function savePageToServer(pageData) {
           /* Navigation */
           .hero-list { 
     position: relative;
-    top: -80px;
-    height: calc(60vh + 80px); 
+    top: 0;
+    height: 60vh; 
     display: flex; 
     align-items: center; 
     padding-left: 5%; 
-    margin-bottom: -80px;
 }
           .navbar { position: relative; background: rgba(10, 36, 82, 0.5); z-index: 1000; height: 80px; }
           .nav-container { display: flex; justify-content: space-between; align-items: center; padding: 15px 5%; max-width: 1200px; margin: 0 auto;  height: 100%; }
@@ -1995,7 +1984,7 @@ async function savePageToServer(pageData) {
           </nav>
 
           <!-- Hero Section -->
-          <section class="hero-gallery editable-image" style="background-image: url('https://images.unsplash.com/photo-1452587925148-ce544e77e70d?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80'); background-size: cover; background-position: center;">
+          <section class="hero-gallery editable-image" style="background-image: url('https://images.unsplash.com/photo-1452587925148-ce544e77e70d?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80'); background-size: cover; background-position: center; margin-top: 80px;">
               <div class="hero-overlay"></div>
               <div class="hero-content-gallery">
                   <h1 class="hero-title-gallery editable-text">Galería Visual</h1>
@@ -2085,12 +2074,11 @@ async function savePageToServer(pageData) {
           /* Navigation */
           .hero-gallery { 
     position: relative;
-    top: -80px;
-    height: calc(50vh + 80px); 
+    top: 0;
+    height: 50vh; 
     display: flex; 
     align-items: center; 
     justify-content: center; 
-    margin-bottom: -80px;
 }
 
           .hero-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(4, 155, 76, 0.5); }
@@ -2412,7 +2400,7 @@ if (editingPageId) {
         const json = await resp.json();
         if (!json.success) throw new Error(json.message || 'Error al subir');
         // Construir URL pública relativa desde esta página
-        const url = '../uploads/' + json.filename;
+        const url = 'VISTA/PaginaWeb/uploads/' + json.filename;
         document.getElementById('imageUrl').value = url;
         status.textContent = 'Subida exitosa. URL aplicada.';
       } catch (e) {
