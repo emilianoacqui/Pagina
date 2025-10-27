@@ -3,8 +3,13 @@
   if (PAGE === 'admisiones.php') return; // no mostrar en la página de admisiones
 
   const STORAGE_KEY = 'admissions_announce_closed_until_v1';
+  const SESSION_KEY = 'admissions_announce_closed_session_v1';
   const now = Date.now();
   const isIndex = PAGE === '' || PAGE === 'index.php';
+  // If user already closed during this browser/tab session, never show again until session ends
+  try {
+    if (sessionStorage.getItem(SESSION_KEY) === '1') return;
+  } catch(_) {}
   if (!isIndex) {
     try {
       const until = parseInt(localStorage.getItem(STORAGE_KEY) || '0', 10);
@@ -40,6 +45,8 @@
     if (!isIndex) {
       try { localStorage.setItem(STORAGE_KEY, String(Date.now() + hours*60*60*1000)); } catch(_) {}
     }
+    // Also remember for the current session across all pages (including index)
+    try { sessionStorage.setItem(SESSION_KEY, '1'); } catch(_) {}
     card.classList.remove('show');
     setTimeout(()=> root.remove(), 300);
   };
