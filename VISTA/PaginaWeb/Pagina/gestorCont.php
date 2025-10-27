@@ -1180,6 +1180,13 @@ async function savePageToServer(pageData) {
           </nav>
           
 
+          <!-- Breadcrumbs -->
+          <div class="breadcrumbs-container">
+              <div id="breadcrumbs">
+                  <a href="index.php">Inicio</a> / <span class="current">Nueva Página</span>
+              </div>
+          </div>
+
           <!-- Hero Section -->
           <section class="hero editable-image" style="background-image: url('https://images.unsplash.com/photo-1497486751825-1233686d5d80?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80'); background-size: cover; background-position: center;">
               <div class="hero-overlay"></div>
@@ -1335,13 +1342,15 @@ async function savePageToServer(pageData) {
           /* Hero Section */
           .hero {
     position: relative;
-    top: -80px;  /* Mover hacia arriba para compensar el header */
-    height: calc(100vh + 80px);  /* Aumentar altura para compensar */
+    margin: 0;  /* Sin margen */
+    padding: 0;
+    top: 0;  /* Pegado arriba */
+    height: 100vh;  /* Altura completa */
     display: flex;
     align-items: center;
     justify-content: center;
     overflow: hidden;
-    margin-bottom: -80px;  /* Evitar espacio extra */
+    margin-bottom: 0;
 }
 
           .hero-background-container {
@@ -1359,8 +1368,31 @@ async function savePageToServer(pageData) {
               left: 0;
               width: 100%;
               height: 100%;
-              background: transparent;
+              background: rgba(0, 0, 0, 0.3);
               z-index: 2;
+          }
+
+          /* Breadcrumbs */
+          .breadcrumbs-container {
+              background: #f8f9fa;
+              padding: 12px 0;
+              border-bottom: 1px solid #e5e7eb;
+          }
+          
+          #breadcrumbs {
+              max-width: 1200px;
+              margin: 0 auto;
+              padding: 0 20px;
+          }
+          
+          #breadcrumbs a {
+              color: #374151;
+              text-decoration: none;
+          }
+          
+          #breadcrumbs .current {
+              color: #6b7280;
+              font-weight: 500;
           }
 
           .hero-content {

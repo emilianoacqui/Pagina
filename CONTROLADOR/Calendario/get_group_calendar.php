@@ -1,6 +1,7 @@
 <?php
 session_start();
 require_once('../../MODELO/config/bootstrap.php');
+require_once('../../MODELO/Calendario/CalendarModel.php');
 
 header('Content-Type: application/json');
 
@@ -21,57 +22,21 @@ if (!$id_clase) {
 }
 
 try {
-    // Verificar que el profesor pertenece a esta clase
-    $stmt = $conn->prepare("
-        SELECT 1 FROM usuarios_clases 
-        WHERE id_usuario = ? AND id_clase = ? AND rol_en_clase = 'profesor'
-    ");
-    $stmt->bind_param("ii", $id_profesor, $id_clase);
-    $stmt->execute();
-    $stmt->store_result();
+    // Use CalendarModel
+    $calendarModel = new CalendarModel();
     
-    if ($stmt->num_rows === 0) {
+    // Verificar que el profesor pertenece a esta clase
+    if (!$calendarModel->verifyUserClassAccess($id_profesor, $id_clase, 'profesor')) {
         http_response_code(403);
         echo json_encode(['error' => 'No tienes acceso a esta clase']);
         exit;
     }
-    $stmt->close();
     
-    // Obtener información de la clase
-    $stmt = $conn->prepare("SELECT nombre, año FROM clases WHERE id_clase = ?");
-    $stmt->bind_param("i", $id_clase);
-    $stmt->execute();
-    $clase = $stmt->get_result()->fetch_assoc();
-    $stmt->close();
+    // Get class info
+    $clase = $calendarModel->getClassInfo($id_clase);
     
-    // Obtener todos los eventos de esta clase (de todos los profesores)
-    $stmt = $conn->prepare("
-        SELECT cal.id, cal.fecha, cal.tipo, cal.descripcion, u.nombre as profesor_nombre
-        FROM calendario cal
-        JOIN usuarios u ON cal.creado_por = u.id_usuario
-        WHERE cal.id_clase = ?
-        ORDER BY cal.fecha ASC
-    ");
-    $stmt->bind_param("i", $id_clase);
-    $stmt->execute();
-    $result = $stmt->get_result();
-    
-    $eventos = [];
-    while ($row = $result->fetch_assoc()) {
-        $eventos[] = [
-            'id' => $row['id'],
-            'title' => ucfirst($row['tipo']) . ' - ' . $row['profesor_nombre'],
-            'start' => $row['fecha'],
-            'allDay' => true,
-            'color' => getEventColor($row['tipo']),
-            'extendedProps' => [
-                'tipo' => $row['tipo'],
-                'profesor' => $row['profesor_nombre'],
-                'descripcion' => $row['descripcion']
-            ]
-        ];
-    }
-    $stmt->close();
+    // Get events for this class
+    $eventos = $calendarModel->getClassEvents($id_clase);
     
     echo json_encode([
         'clase' => $clase,
@@ -81,26 +46,5 @@ try {
 } catch (Exception $e) {
     http_response_code(500);
     echo json_encode(['error' => 'Error del servidor: ' . $e->getMessage()]);
-}
-
-function getEventColor($tipo) {
-    switch ($tipo) {
-        case 'tarea':
-            return '#3498db'; // Azul
-        case 'examen':
-            return '#e74c3c'; // Rojo
-        case 'prueba':
-            return '#9b59b6'; // Púrpura
-        case 'oral':
-            return '#e67e22'; // Naranja oscuro
-        case 'proyecto':
-            return '#27ae60'; // Verde
-        case 'entrega':
-            return '#f39c12'; // Naranja
-        case 'otro':
-            return '#95a5a6'; // Gris
-        default:
-            return '#95a5a6'; // Gris
-    }
 }
 ?>

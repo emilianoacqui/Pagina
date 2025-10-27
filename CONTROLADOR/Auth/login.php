@@ -1,6 +1,8 @@
 <?php
 header('Content-Type: application/json; charset=utf-8');
 require_once(__DIR__ . '/../../MODELO/config/bootstrap.php');
+require_once(__DIR__ . '/../../MODELO/Auth/UserModel.php');
+
 session_start();
 
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
@@ -16,6 +18,7 @@ if ($email === '' || $pass === '') {
   exit;
 }
 
+// Hardcoded gestor account
 if ($email === 'gestor@scuolaitaliana.edu.uy' && $pass === 'gestor123') {
   $_SESSION['id_usuario'] = 0;
   $_SESSION['nombre']     = 'Gestor';
@@ -25,22 +28,17 @@ if ($email === 'gestor@scuolaitaliana.edu.uy' && $pass === 'gestor123') {
   exit;
 }
 
-$stmt = $conn->prepare("SELECT id_usuario, nombre, email, password, rol FROM usuarios WHERE email=? LIMIT 1");
-if (!$stmt) {
-  echo json_encode(['ok' => false, 'error' => 'Error en la base de datos: ' . $conn->error]);
-  exit;
-}
-$stmt->bind_param("s", $email);
-$stmt->execute();
-$res = $stmt->get_result();
-$user = $res->fetch_assoc();
+// Use UserModel for authentication
+$userModel = new UserModel();
+$result = $userModel->authenticateUser($email, $pass);
 
-if (!$user || !password_verify($pass, $user['password'])) {
-  echo json_encode(['ok' => false, 'error' => 'Credenciales inválidas']);
+if (!$result['success']) {
+  echo json_encode(['ok' => false, 'error' => $result['error']]);
   exit;
 }
 
-/* Login OK: guardamos sesión */
+// Login OK: guardamos sesión
+$user = $result['user'];
 $_SESSION['id_usuario'] = $user['id_usuario'];
 $_SESSION['nombre']     = $user['nombre'];
 $_SESSION['email']      = $user['email'];

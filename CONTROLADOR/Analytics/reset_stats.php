@@ -1,5 +1,6 @@
 <?php
 require_once(__DIR__ . '/../../MODELO/config/bootstrap.php');
+require_once(__DIR__ . '/../../MODELO/Analytics/AnalyticsModel.php');
 
 header('Content-Type: application/json');
 
@@ -24,24 +25,21 @@ if ($confirm !== 'RESET_STATS') {
 }
 
 try {
-    // Eliminar todos los datos de analytics
-    $result = $conn->query("DELETE FROM page_analytics");
+    // Use AnalyticsModel to reset stats
+    $model = new AnalyticsModel($conn);
+    $result = $model->resetStats();
     
-    if ($result) {
-        // Obtener número de filas eliminadas
-        $deletedRows = $conn->affected_rows;
-        
+    if ($result['success']) {
         // Log de la acción
-        $logMessage = "Usuario " . $_SESSION['nombre'] . " (" . $_SESSION['rol'] . ") reseteó las estadísticas de analytics. Se eliminaron " . $deletedRows . " registros.";
+        $logMessage = "Usuario " . $_SESSION['nombre'] . " (" . $_SESSION['rol'] . ") reseteó las estadísticas de analytics.";
         error_log($logMessage);
         
         echo json_encode([
             'success' => true, 
-            'message' => "Estadísticas reseteadas correctamente. Se eliminaron $deletedRows registros.",
-            'deleted_rows' => $deletedRows
+            'message' => $result['message'] ?? 'Estadísticas reseteadas correctamente'
         ]);
     } else {
-        echo json_encode(['success' => false, 'message' => 'Error al resetear las estadísticas: ' . $conn->error]);
+        echo json_encode(['success' => false, 'message' => 'Error al resetear las estadísticas']);
     }
     
 } catch (Exception $e) {
