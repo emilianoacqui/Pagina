@@ -128,9 +128,9 @@
                 <h2 class="editable-text"><?php echo $copy['sec3_t'][$cl]; ?></h2>
                 <p class="editable-text"><?php echo $copy['sec3_p'][$cl]; ?></p>
                 <div class="offer-links">
-                    <a href="inicial.php" class="btn">Inicial</a>
-                    <a href="primaria.php" class="btn">Primaria</a>
-                    <a href="bachillerato.php" class="btn">Secundaria</a>
+                    <a href="menuInicial.php" class="btn">Inicial</a>
+                    <a href="Primaria.php" class="btn">Primaria</a>
+                    <a href="menuIntercambio.php" class="btn">Secundaria</a>
                 </div>
             </div>
             <div class="offer-image editable-image">
