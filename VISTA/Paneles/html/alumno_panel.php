@@ -2,6 +2,7 @@
 
 session_start();
 require_once('../../../MODELO/config/bootstrap.php');
+require_once('../../../MODELO/Paneles/StudentModel.php');
 
 /* seguridad: sólo alumnos */
 if (!isset($_SESSION['rol']) || $_SESSION['rol'] !== 'alumno') {
@@ -14,87 +15,37 @@ $mensaje_tipo = "ok"; // ok | error
 $id_alumno = intval($_SESSION['id_usuario']);
 
 /* ==========================
-   📌 CONSULTAS
+   📌 USAR MODELOS PARA OBTENER DATOS
 ========================== */
 
+$studentModel = new StudentModel();
+
 /* Clases asignadas al alumno */
-$clases_alumno = [];
-$stmt = $conn->prepare("
-    SELECT c.id_clase, c.nombre, c.`año`
-    FROM clases c
-    JOIN usuarios_clases uc ON c.id_clase = uc.id_clase
-    WHERE uc.id_usuario = ? AND uc.rol_en_clase = 'alumno'
-    ORDER BY c.`año`, c.nombre
-");
-$stmt->bind_param("i", $id_alumno);
-$stmt->execute();
-$res = $stmt->get_result();
-while ($r = $res->fetch_assoc()) { $clases_alumno[] = $r; }
-$stmt->close();
+$clases_alumno = $studentModel->getStudentClasses($id_alumno);
 
 /* Para mostrar profesores por clase */
 $profesores_por_clase = [];
 if (count($clases_alumno) > 0) {
     $ids = array_map(function($c){return intval($c['id_clase']);}, $clases_alumno);
-    $in = implode(',', $ids);
-    $sql = "
-      SELECT uc.id_clase, u.id_usuario, u.nombre, u.email
-      FROM usuarios_clases uc
-      JOIN usuarios u ON uc.id_usuario = u.id_usuario
-      WHERE uc.id_clase IN ($in) AND uc.rol_en_clase='profesor'
-      ORDER BY u.nombre
-    ";
-    $res = $conn->query($sql);
-    while ($row = $res->fetch_assoc()) {
-        $profesores_por_clase[$row['id_clase']][] = $row;
-    }
+    $profesores_por_clase = $studentModel->getTeachersByClass($ids);
 }
 
 /* Eventos: generales + de las clases del alumno */
 $eventos = [];
 if (count($clases_alumno) > 0) {
     $ids = array_map(function($c){return intval($c['id_clase']);}, $clases_alumno);
-    $in = implode(',', $ids);
-    $sql = "SELECT e.*, c.nombre AS clase_nombre
-            FROM eventos e
-            LEFT JOIN clases c ON e.id_clase = c.id_clase
-            WHERE e.tipo = 'general' OR (e.tipo='clase' AND e.id_clase IN ($in))
-            ORDER BY e.fecha DESC";
-    $res = $conn->query($sql);
-    while ($row = $res->fetch_assoc()) { $eventos[] = $row; }
+    $eventos = $studentModel->getEventsForClasses($ids);
 } else {
-    // si no tiene clases, muestra solo generales
-    $res = $conn->query("SELECT e.*, NULL AS clase_nombre FROM eventos e WHERE e.tipo='general' ORDER BY e.fecha DESC");
-    while ($row = $res->fetch_assoc()) { $eventos[] = $row; }
+    $eventos = $studentModel->getGeneralEvents();
 }
 
-/* Calendario: fechas de las clases del alumno (solo muestra tipo y fecha, no descripción privada) */
+/* Calendario: fechas de las clases del alumno */
 $calendario_por_clase = [];
-if (count($clases_alumno) > 0) {
-    $ids = array_map(function($c){return intval($c['id_clase']);}, $clases_alumno);
-    $in = implode(',', $ids);
-    $sql = "SELECT id_clase, fecha, tipo FROM calendario WHERE id_clase IN ($in) ORDER BY fecha ASC";
-    $res = $conn->query($sql);
-    while ($row = $res->fetch_assoc()) {
-        $calendario_por_clase[$row['id_clase']][] = $row;
-    }
-}
-
-/* Obtener fechas próximas (próximos 30 días) */
 $fechas_proximas = [];
-$fecha_actual = date('Y-m-d');
-$fecha_limite = date('Y-m-d', strtotime('+30 days'));
 if (count($clases_alumno) > 0) {
     $ids = array_map(function($c){return intval($c['id_clase']);}, $clases_alumno);
-    $in = implode(',', $ids);
-    $sql = "SELECT cal.fecha, cal.tipo, c.nombre as clase_nombre, c.año
-            FROM calendario cal
-            JOIN clases c ON cal.id_clase = c.id_clase
-            WHERE cal.id_clase IN ($in) 
-            AND cal.fecha BETWEEN '$fecha_actual' AND '$fecha_limite'
-            ORDER BY cal.fecha ASC";
-    $res = $conn->query($sql);
-    while ($row = $res->fetch_assoc()) { $fechas_proximas[] = $row; }
+    $calendario_por_clase = $studentModel->getCalendarByClass($ids);
+    $fechas_proximas = $studentModel->getUpcomingDates($ids);
 }
 
 ?>
