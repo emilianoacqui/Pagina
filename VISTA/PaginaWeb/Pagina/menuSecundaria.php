@@ -102,6 +102,14 @@
             </div>
         </section>
     </main>
+    <!-- Prueba 1: Mayúscula -->
+<a href="Bachillerato.php" class="program-button">
+
+<!-- Prueba 2: Si tienes extensión diferente -->
+<a href="bachillerato.html" class="program-button">
+
+<!-- Prueba 3: Ruta absoluta desde raíz del sitio -->
+<a href="/bachillerato.php" class="program-button">
 
     <!-- Footer -->
     <footer class="footer-bottom-new">
