@@ -1169,7 +1169,7 @@ async function savePageToServer(pageData) {
           <nav class="navbar">
               <div class="nav-container">
                   <div class="nav-logo">
-                      <img src="fotosPrincipales/logo2.png" alt="Scuola Italiana di Montevideo">
+                      <img src="FOTOS/fotosPrincipales/logo2.png" alt="Scuola Italiana di Montevideo" style="height: 120px;">
                   </div>
                   <div class="nav-menu-button" onclick="window.location.href='menuScuola.php'">
                       <span></span>
@@ -1341,82 +1341,20 @@ async function savePageToServer(pageData) {
 
           /* Navigation */
           .navbar {
-              position: fixed;
-              top: 0;
-              left: 0;
-              right: 0;
+              position: relative;
+              background: linear-gradient(135deg, #0A2452, #1B2F6F);
               height: 80px;
-              background: rgba(10, 36, 82, 0.5);
-              z-index: 1000;
-              transition: all 0.3s ease, transform 0.3s ease, opacity 0.3s ease;
           }
           
           .nav-container {
               display: flex;
               justify-content: space-between;
               align-items: center;
-              padding: 0 5%;
+              padding: 15px 5%;
               max-width: 1200px;
               margin: 0 auto;
               height: 100%;
           }
-
-          .nav-logo {
-              position: relative;
-              height: 100%;
-              overflow: visible;
-          }
-
-          .nav-logo img {
-              height: 120px;
-              width: auto;
-              position: absolute;
-              top: 50%;
-              transform: translateY(-50%);
-          }
-
-          .nav-menu-button {
-              display: flex;
-              flex-direction: column;
-              cursor: pointer;
-              padding: 8px;
-              transition: all 0.3s ease;
-          }
-
-          .nav-menu-button span {
-              width: 25px;
-              height: 3px;
-              background-color: white;
-              margin: 3px 0;
-              transition: 0.3s;
-              border-radius: 2px;
-          }
-
-          .nav-menu-button:hover span {
-              background-color: #F39C12;
-          }
-
-          /* Navbar scroll script */
-          <script>
-          let lastScrollTop = 0;
-
-          window.addEventListener('scroll', function() {
-              const navbar = document.querySelector('.navbar');
-              let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-              
-              if (scrollTop > lastScrollTop && scrollTop > 100) {
-                  // Scrolling down y ya bajó más de 100px
-                  navbar.style.transform = 'translateY(-100%)';
-                  navbar.style.opacity = '0';
-              } else {
-                  // Scrolling up o está en el top
-                  navbar.style.transform = 'translateY(0)';
-                  navbar.style.opacity = '1';
-              }
-              
-              lastScrollTop = scrollTop;
-          });
-          </script>
 
           /* Breadcrumbs below hero */
           .breadcrumbs-below-hero {
@@ -1443,15 +1381,14 @@ async function savePageToServer(pageData) {
 
           /* Hero Section */
           .hero {
-              position: relative;
-              top: 0;
-              height: 100vh;
-              margin-top: 80px;
-              display: flex;
-              align-items: center;
-              justify-content: center;
-              overflow: hidden;
-          }
+    position: relative;
+    top: 0;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
 
           .hero-background-container {
               position: absolute;
@@ -1785,7 +1722,7 @@ async function savePageToServer(pageData) {
           <nav class="navbar">
               <div class="nav-container">
                   <div class="nav-logo">
-                      <img src="fotosPrincipales/logo2.png" alt="Scuola Italiana di Montevideo">
+                      <img src="FOTOS/fotosPrincipales/logo2.png" alt="Scuola Italiana di Montevideo" style="height: 120px;">
                   </div>
                   <div class="nav-menu-button" onclick="window.location.href='menuScuola.php'">
                       <span></span>
@@ -1868,14 +1805,13 @@ async function savePageToServer(pageData) {
 
             /* Navigation */
           .hero-centered { 
-              position: relative;
-              top: 0;
-              height: 70vh; 
-              margin-top: 80px;
-              display: flex; 
-              align-items: center; 
-              justify-content: center; 
-          }         
+    position: relative;
+    top: 0;
+    height: 70vh; 
+    display: flex; 
+    align-items: center; 
+    justify-content: center; 
+}         
 
           .hero-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(27, 47, 111, 0.3); }
           .hero-content-center { text-align: center; color: white; z-index: 2; position: relative; max-width: 800px; padding: 0 20px; }
@@ -1919,7 +1855,7 @@ async function savePageToServer(pageData) {
           <nav class="navbar">
               <div class="nav-container">
                   <div class="nav-logo">
-                      <img src="fotosPrincipales/logo2.png" alt="Scuola Italiana di Montevideo">
+                      <img src="FOTOS/fotosPrincipales/logo2.png" alt="Scuola Italiana di Montevideo" style="height: 120px;">
                   </div>
                   <div class="nav-menu-button" onclick="window.location.href='menuScuola.php'">
                       <span></span>
@@ -2022,14 +1958,13 @@ async function savePageToServer(pageData) {
 
           /* Navigation */
           .hero-list { 
-              position: relative;
-              top: 0;
-              height: 60vh; 
-              margin-top: 80px;
-              display: flex; 
-              align-items: center; 
-              padding-left: 5%; 
-          }
+    position: relative;
+    top: 0;
+    height: 60vh; 
+    display: flex; 
+    align-items: center; 
+    padding-left: 5%; 
+}
           .navbar { position: relative; background: rgba(10, 36, 82, 0.5); z-index: 1000; height: 80px; }
           .nav-container { display: flex; justify-content: space-between; align-items: center; padding: 15px 5%; max-width: 1200px; margin: 0 auto;  height: 100%; }
           .hero-content-left { position: relative; color: white; z-index: 2; max-width: 600px; }
@@ -2076,7 +2011,7 @@ async function savePageToServer(pageData) {
           <nav class="navbar">
               <div class="nav-container">
                   <div class="nav-logo">
-                      <img src="fotosPrincipales/logo2.png" alt="Scuola Italiana di Montevideo">
+                      <img src="FOTOS/fotosPrincipales/logo2.png" alt="Scuola Italiana di Montevideo" style="height: 120px;">
                   </div>
                   <div class="nav-menu-button" onclick="window.location.href='menuScuola.php'">
                       <span></span>
@@ -2183,14 +2118,13 @@ async function savePageToServer(pageData) {
 
           /* Navigation */
           .hero-gallery { 
-              position: relative;
-              top: 0;
-              height: 50vh; 
-              margin-top: 80px;
-              display: flex; 
-              align-items: center; 
-              justify-content: center; 
-          }
+    position: relative;
+    top: 0;
+    height: 50vh; 
+    display: flex; 
+    align-items: center; 
+    justify-content: center; 
+}
 
           .hero-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(4, 155, 76, 0.5); }
           .hero-content-gallery { text-align: center; color: white; z-index: 2; position: relative; }
