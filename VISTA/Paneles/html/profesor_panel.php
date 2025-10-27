@@ -179,7 +179,7 @@ $clases_select = $clases_prof;
   <?php endif; ?>
 
   <!-- SECCIÓN: Clases -->
-  <section id="seccionClases" class="card" style="display:block">
+  <section id="seccionClases" class="card" style="display:none">
     <h1>Mis Clases</h1>
     <?php if(count($clases_prof)===0): ?>
       <p class="small">No estás asignado a ninguna clase. Contactá a coordinación para que te asignen.</p>
@@ -211,7 +211,7 @@ $clases_select = $clases_prof;
   </section>
 
   <!-- SECCIÓN: Calendario -->
-  <section id="seccionCalendario" class="card" style="display:none">
+  <section id="seccionCalendario" class="card" style="display:block">
     <h1>Calendario – Agregar fecha</h1>
 
     <?php if(count($clases_select)===0): ?>
@@ -574,6 +574,16 @@ function inicializarCalendario() {
   });
 
   calendar.render();
+
+  // Cargar inicialmente todas las tareas del profesor (todas sus clases)
+  fetch('../../../CONTROLADOR/Calendario/get_calendar_events.php')
+    .then(response => response.json())
+    .then(data => {
+      if (Array.isArray(data)) {
+        calendar.addEventSource(data);
+      }
+    })
+    .catch(err => console.error('Error cargando eventos iniciales:', err));
 }
 
 /* ===== Links en localStorage ===== */
@@ -621,8 +631,13 @@ document.querySelectorAll('.nav a').forEach(a => {
   }
 });
 
-/* Por defecto mostrar Clases */
-mostrarSeccion('seccionClases');
+/* Por defecto mostrar Calendario */
+mostrarSeccion('seccionCalendario');
+
+// Inicializar calendario al cargar
+document.addEventListener('DOMContentLoaded', function(){
+  setTimeout(() => inicializarCalendario(), 200);
+});
 
 /* Event listeners */
 document.addEventListener('DOMContentLoaded', function() {
