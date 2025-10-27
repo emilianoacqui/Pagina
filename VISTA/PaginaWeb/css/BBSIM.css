@@ -405,4 +405,10 @@
             .content-row {
                 gap: 30px;
             }
+
+            /* Header stack reductions to avoid overflow */
+            .color-bands { height: 320px; }
+            .green-band, .red-band { height: 160px; }
+            .hero-image { max-width: 95vw; }
+            .tabs-navigation { margin-top: 240px; }
         }

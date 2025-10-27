@@ -130,7 +130,7 @@
                 <div class="offer-links">
                     <a href="menuInicial.php" class="btn">Inicial</a>
                     <a href="Primaria.php" class="btn">Primaria</a>
-                    <a href="menuIntercambio.php" class="btn">Secundaria</a>
+                    <a href="menuSecundaria.php" class="btn">Secundaria</a>
                 </div>
             </div>
             <div class="offer-image editable-image">

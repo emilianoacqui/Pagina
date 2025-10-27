@@ -49,7 +49,7 @@
                     'en' => 'In the first years of Secondary, we continue the work started in Primary with reflective practices, autonomy and increasing academic rigor to pursue higher studies.',
                     'it' => 'Nei primi anni della Secondaria, proseguiamo il lavoro iniziato in Primaria con pratiche riflessive, autonomia e crescente rigore accademico per proseguire gli studi superiori.',
                 ],
-                'bach_h' => [ 'es' => 'Bachillerato', 'en' => 'High School', 'it' => 'Liceo' ],
+                'bach_h' => [ 'es' => 'bachillerato', 'en' => 'High School', 'it' => 'Liceo' ],
                 'bach_p' => [
                     'es' => 'En el Segundo Ciclo se consolidan métodos de estudio autónomo e investigación. Buscamos formar personas cultas, críticas y creativas, capaces de enfrentar problemas con actitud racional.',
                     'en' => 'In the Second Cycle we consolidate autonomous study methods and research. We aim to form cultured, critical and creative people able to face problems with a rational mindset.',
