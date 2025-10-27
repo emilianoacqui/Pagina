@@ -251,7 +251,7 @@
     <!-- Contenedor principal del menú -->
 <div class="menu-container">
   <div class="menu">
-    <div class="menu-item" onclick="window.location.href='acerca.php'" data-target="submenu1" data-img="FOTOS/fotosPrincipales/ejemplo1.jpg">
+    <div class="menu-item" onclick="window.location.href='acerca-scuola.php'" data-target="submenu1" data-img="FOTOS/fotosPrincipales/ejemplo1.jpg">
       Acerca Scuola Italiana
     </div>
 
@@ -281,6 +281,7 @@
       <div class="submenu-panel">
         <div id="submenu1" class="submenu-content active">
           <ul>
+            <li><a href="acerca-scuola.php">Acerca de la Scuola</a></li>
             <li><a href="acerca-bienvenido.php">Bienvenido a Scuola Italiana</a></li>
             <li><a href="acerca-mision-historia.php">Nuestra Misión e Historia</a></li>
             <li><a href="acerca-liderazgo-vision.php">Liderazgo y visión estratégica</a></li>
