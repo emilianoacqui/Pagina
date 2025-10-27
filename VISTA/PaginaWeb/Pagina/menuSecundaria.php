@@ -77,7 +77,7 @@
                     <div class="program-info">
                         <h3><?php echo $ms['pc_h'][$cl]; ?></h3>
                         <p><?php echo $ms['pc_p'][$cl]; ?></p>
-                            <a href="primerCiclo.php" class="program-button" style="display: inline-block; text-decoration: none;">
+                            <a href="/Pagina/VISTA/PaginaWeb/Pagina/primerCiclo.php" class="program-button" style="display: inline-block; text-decoration: none;">
     <?php echo $ms['see_program'][$cl]; ?>
 </a>
 
@@ -94,7 +94,7 @@
                         <h3><?php echo $ms['pc_h'][$cl]; ?></h3>
                         <p><?php echo $ms['pc_p'][$cl]; ?></p>
                         
-                            <a href="bachillerato.php" class="program-button" style="display: inline-block; text-decoration: none;">
+                            <a href="/Pagina/VISTA/PaginaWeb/Pagina/bachillerato.php" class="program-button" style="display: inline-block; text-decoration: none;">
     <?php echo $ms['see_program'][$cl]; ?>
 </a>
 
