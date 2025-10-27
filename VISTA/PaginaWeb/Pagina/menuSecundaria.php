@@ -71,32 +71,31 @@
             <div class="programs-container">
                 <!-- Casa dei Bambini -->
                 <div class="program-section">
-                    <div class="program-image">
-                        <img src="FOTOS/fotosClases/Primerciclo1.jpg" alt="Casa dei Bambini">
-                    </div>
-                    <div class="program-info">
-                        <h3><?php echo $ms['pc_h'][$cl]; ?></h3>
-                        <p><?php echo $ms['pc_p'][$cl]; ?></p>
-                            <a href="/Pagina/VISTA/PaginaWeb/Pagina/primerCiclo.php" class="program-button" style="display: inline-block; text-decoration: none;">
-    <?php echo $ms['see_program'][$cl]; ?>
-</a>
+    <div class="program-image">
+        <img src="FOTOS/fotosClases/Primerciclo1.jpg" alt="Casa dei Bambini">
+    </div>
+    <div class="program-info">
+        <h3><?php echo $ms['pc_h'][$cl]; ?></h3>
+        <p><?php echo $ms['pc_p'][$cl]; ?></p>
+        <a href="primerCiclo.php" class="program-button" style="display: inline-block; text-decoration: none;">
+            <?php echo $ms['see_program'][$cl]; ?>
+        </a>
+    </div>
+</div>
 
-                        
-                    </div>
-                </div>
-
-                <!-- BBSIM -->
+                
                 <div class="program-section">
-                    <div class="program-image">
-                        <img src="FOTOS/fotosClases/bachillerato1.jpg" alt="BBSIM">
-                    </div>
-                    <div class="program-info">
-                        <h3><?php echo $ms['pc_h'][$cl]; ?></h3>
-                        <p><?php echo $ms['pc_p'][$cl]; ?></p>
-                        
-                            <a href="/Pagina/VISTA/PaginaWeb/Pagina/bachillerato.php" class="program-button" style="display: inline-block; text-decoration: none;">
-    <?php echo $ms['see_program'][$cl]; ?>
-</a>
+    <div class="program-image">
+        <img src="FOTOS/fotosClases/bachillerato1.jpg" alt="BBSIM">
+    </div>
+    <div class="program-info">
+        <h3><?php echo $ms['bach_h'][$cl]; ?></h3>
+        <p><?php echo $ms['bach_p'][$cl]; ?></p>
+        <a href="bachillerato.php" class="program-button" style="display: inline-block; text-decoration: none;">
+            <?php echo $ms['see_program'][$cl]; ?>
+        </a>
+    </div>
+</div>
 
                         
                     </div>
