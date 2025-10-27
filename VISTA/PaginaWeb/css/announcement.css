@@ -39,6 +39,19 @@
 
 /* Mobile banner (bottom) */
 @media (max-width: 640px) {
-  .announce-card { right: 10px; left: 10px; width: auto; bottom: 12px; }
-  .announce-media { height: 110px; }
+  /* Right-aligned compact card (~50% width) */
+  .announce-card {
+    right: 10px;
+    left: auto;
+    width: 55vw;
+    max-width: 320px;
+    min-width: 240px;
+    bottom: 12px;
+  }
+  .announce-media { height: 80px; }
+  .announce-title { font-size: 14px; margin: 0 20px 6px 0; }
+  .announce-text { font-size: 12px; line-height: 1.35; margin-bottom: 10px; }
+  .announce-actions { gap: 6px; }
+  .announce-btn { padding: 8px 10px; font-size: 12px; }
+  .announce-close { width: 28px; height: 28px; }
 }
