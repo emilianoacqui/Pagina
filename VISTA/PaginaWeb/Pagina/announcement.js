@@ -57,6 +57,60 @@
     }
   });
 
+  // Swipe to dismiss (mobile-like notification)
+  let startX = 0;
+  let currentX = 0;
+  let dragging = false;
+  const threshold = 100; // px to trigger dismiss
+  const maxFade = 0.6; // max opacity reduction
+
+  const onTouchStart = (e) => {
+    const touch = e.touches && e.touches[0];
+    if (!touch) return;
+    dragging = true;
+    startX = touch.clientX;
+    currentX = startX;
+    card.style.transition = 'none';
+  };
+
+  const onTouchMove = (e) => {
+    if (!dragging) return;
+    const touch = e.touches && e.touches[0];
+    if (!touch) return;
+    currentX = touch.clientX;
+    const dx = Math.max(0, currentX - startX); // only allow right swipe
+    card.style.transform = `translateX(${dx}px)`;
+    const fade = Math.min(dx / 200, maxFade);
+    card.style.opacity = String(1 - fade);
+  };
+
+  const onTouchEnd = () => {
+    if (!dragging) return;
+    dragging = false;
+    const dx = Math.max(0, currentX - startX);
+    card.style.transition = 'transform .25s ease, opacity .25s ease';
+    if (dx > threshold) {
+      // fling out and close
+      card.style.transform = `translateX(${Math.max(dx, 360)}px)`;
+      card.style.opacity = '0';
+      setTimeout(()=> onClose(24), 200);
+    } else {
+      // restore
+      card.style.transform = '';
+      card.style.opacity = '';
+      // remove inline transition after it completes
+      const cleanup = () => {
+        card.style.transition = '';
+        card.removeEventListener('transitionend', cleanup);
+      };
+      card.addEventListener('transitionend', cleanup);
+    }
+  };
+
+  card.addEventListener('touchstart', onTouchStart, { passive: true });
+  card.addEventListener('touchmove', onTouchMove, { passive: true });
+  card.addEventListener('touchend', onTouchEnd, { passive: true });
+
   const attach = () => {
     document.body.appendChild(root);
     // animación suave

@@ -1077,6 +1077,11 @@ body:not(.loading-cms-content) #cms-root {
         font-size: 11px;
     }
 
+    .projects-section .project-item .project-image {
+        width: 100%;
+        height: 170px !important;
+    }
+
     .project-image {
         width: 100%;
         height: 200px;
