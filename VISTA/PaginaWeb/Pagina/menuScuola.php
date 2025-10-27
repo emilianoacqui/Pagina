@@ -281,6 +281,7 @@
       <div class="submenu-panel">
         <div id="submenu1" class="submenu-content active">
           <ul>
+            <li><a href="acerca-scuola.php"><strong>Ir a Acerca Scuola Italiana</strong></a></li>
             <li><a href="acerca-scuola.php">Acerca de la Scuola</a></li>
             <li><a href="acerca-bienvenido.php">Bienvenido a Scuola Italiana</a></li>
             <li><a href="acerca-mision-historia.php">Nuestra Misión e Historia</a></li>
@@ -296,6 +297,7 @@
 
         <div id="submenu2" class="submenu-content">
           <ul>
+            <li><a href="admisiones.php"><strong>Ir a Admisión</strong></a></li>
             <li><a href="admision-requisitos.php">Requisitos de admisión</a></li>
             <li><a href="admision-fechas.php">Fechas clave</a></li>
             <li><a href="admision-contacto.php">Contacto de admisiones</a></li>
@@ -303,6 +305,7 @@
         </div>
         <div id="submenu3" class="submenu-content">
           <ul>
+            <li><a href="propuesta.php"><strong>Ir a Propuesta Educativa</strong></a></li>
             <li><a href="propuesta-niveles.php">Niveles y áreas</a></li>
             <li><a href="propuesta-plan-academico.php">Plan académico</a></li>
             <li><a href="propuesta-proyectos.php">Proyectos destacados</a></li>
@@ -310,12 +313,14 @@
         </div>
         <div id="submenu4" class="submenu-content">
           <ul>
+            <li><a href="mapa.php"><strong>Ir a Mapa del colegio</strong></a></li>
             <li><a href="mapa-campus.php">Mapa del campus</a></li>
             <li><a href="ubicaciones.php">Ubicaciones principales</a></li>
           </ul>
         </div>
         <div id="submenu5" class="submenu-content">
           <ul>
+            <li><a href="deportes.php"><strong>Ir a Deportes</strong></a></li>
             <li><a href="deportes-actividades.php">Actividades deportivas</a></li>
             <li><a href="deportes-competencias.php">Competencias</a></li>
             <li><a href="deportes-talleres.php">Talleres</a></li>
@@ -323,6 +328,7 @@
         </div>
         <div id="submenu6" class="submenu-content">
           <ul>
+            <li><a href="otra.php"><strong>Ir a Otra sección</strong></a></li>
             <li><a href="otra-historia.php">Historia institucional</a></li>
             <li><a href="otra-legado.php">Legado y valores</a></li>
             <li><a href="otra-documentos.php">Documentos y recursos</a></li>
@@ -425,59 +431,28 @@
             });
         });
 
-        // Mobile: first tap expands (shows submenu/image), second tap navigates.
-        // Do not alter top links; only apply to left .menu-item options.
+        // Mobile: always prevent direct navigation on .menu-item. Only expand submenu and update image.
+        // Top links remain unchanged. This runs only on devices without hover.
         const isTouchLike = window.matchMedia && window.matchMedia('(hover: none)').matches;
         if (isTouchLike) {
             items.forEach(item => {
                 item.addEventListener('click', (e) => {
-                    // Intercept inline onclick in capture phase by preventing and stopping propagation
-                }, true);
-                item.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    e.stopImmediatePropagation();
                     const target = item.getAttribute('data-target');
                     const img = item.getAttribute('data-img');
-                    const firstTap = item.getAttribute('data-first-tap') === 'true';
 
-                    if (!firstTap) {
-                        // First tap: prevent navigation, show submenu and update image
-                        e.preventDefault();
-                        e.stopImmediatePropagation();
+                    // Activate corresponding submenu
+                    contents.forEach(content => content.classList.remove('active'));
+                    const activeContent = document.getElementById(target);
+                    if (activeContent) activeContent.classList.add('active');
 
-                        // Reset other items' first-tap state
-                        items.forEach(it => it.removeAttribute('data-first-tap'));
-                        item.setAttribute('data-first-tap', 'true');
-
-                        // Activate corresponding submenu
-                        contents.forEach(content => content.classList.remove('active'));
-                        const activeContent = document.getElementById(target);
-                        if (activeContent) activeContent.classList.add('active');
-
-                        // Update left image
-                        if (img) {
-                            leftDiv.style.backgroundImage = `url('${img}')`;
-                        }
-
-                        // Auto-reset after a short delay if user doesn't confirm with second tap
-                        clearTimeout(item._tapResetTimer);
-                        item._tapResetTimer = setTimeout(() => {
-                            item.removeAttribute('data-first-tap');
-                        }, 3000);
-                    } else {
-                        // Second tap: allow navigation (inline onclick will run)
-                        // Clear state for cleanliness
-                        item.removeAttribute('data-first-tap');
+                    // Update left image
+                    if (img) {
+                        leftDiv.style.backgroundImage = `url('${img}')`;
                     }
-                });
+                }, true);
             });
-
-            // Tapping outside resets the first-tap state
-            document.body.addEventListener('click', (ev) => {
-                const path = ev.composedPath ? ev.composedPath() : [];
-                const tappedMenuItem = path.find && path.find(el => el && el.classList && el.classList.contains('menu-item'));
-                if (!tappedMenuItem) {
-                    items.forEach(it => it.removeAttribute('data-first-tap'));
-                }
-            }, true);
         }
     });
 </script>
