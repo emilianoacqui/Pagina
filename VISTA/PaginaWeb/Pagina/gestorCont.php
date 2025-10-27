@@ -1189,6 +1189,13 @@ async function savePageToServer(pageData) {
               </div>
           </section>
 
+          <!-- Breadcrumbs below hero -->
+          <div class="breadcrumbs-below-hero">
+              <div id="breadcrumbs">
+                  <a href="index.php">Inicio</a> / <span class="current">Nueva Página</span>
+              </div>
+          </div>
+
           <!-- Main Content -->
           <main class="main-content">
               <div class="container">
@@ -1334,12 +1341,8 @@ async function savePageToServer(pageData) {
 
           /* Navigation */
           .navbar {
-              position: fixed;
-              top: 0;
-              left: 0;
-              width: 100%;
-              z-index: 1000;
-              background: rgba(10, 36, 82, 0.9);
+              position: relative;
+              background: linear-gradient(135deg, #0A2452, #1B2F6F);
               height: 80px;
           }
           
@@ -1353,13 +1356,34 @@ async function savePageToServer(pageData) {
               height: 100%;
           }
 
+          /* Breadcrumbs below hero */
+          .breadcrumbs-below-hero {
+              background: #f8f9fa;
+              padding: 16px 0;
+              border-bottom: 1px solid #e5e7eb;
+          }
+          
+          .breadcrumbs-below-hero #breadcrumbs {
+              max-width: 1200px;
+              margin: 0 auto;
+              padding: 0 20px;
+          }
+          
+          .breadcrumbs-below-hero #breadcrumbs a {
+              color: #374151;
+              text-decoration: none;
+          }
+          
+          .breadcrumbs-below-hero #breadcrumbs .current {
+              color: #6b7280;
+              font-weight: 500;
+          }
+
           /* Hero Section */
           .hero {
     position: relative;
-    margin-top: 80px;  /* Compensar navbar fijo */
-    padding: 0;
     top: 0;
-    height: calc(100vh - 80px);  /* Altura completa menos navbar */
+    height: 100vh;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -1709,13 +1733,20 @@ async function savePageToServer(pageData) {
           </nav>
 
           <!-- Hero Section -->
-          <section class="hero-centered editable-image" style="background-image: url('https://images.unsplash.com/photo-1481627834876-b7833e8f5570?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80'); background-size: cover; background-position: center; margin-top: 80px;">
+          <section class="hero-centered editable-image" style="background-image: url('https://images.unsplash.com/photo-1481627834876-b7833e8f5570?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80'); background-size: cover; background-position: center;">
               <div class="hero-overlay"></div>
               <div class="hero-content-center">
                   <h1 class="hero-title-center editable-text">Título Centrado</h1>
                   <p class="hero-subtitle-center editable-text">Descripción centrada del contenido principal</p>
               </div>
           </section>
+
+          <!-- Breadcrumbs below hero -->
+          <div class="breadcrumbs-below-hero">
+              <div id="breadcrumbs">
+                  <a href="index.php">Inicio</a> / <span class="current">Nueva Página</span>
+              </div>
+          </div>
 
           <!-- Main Content -->
           <main class="main-centered">
@@ -1835,13 +1866,20 @@ async function savePageToServer(pageData) {
           </nav>
 
           <!-- Hero Section -->
-          <section class="hero-list editable-image" style="background-image: url('https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80'); background-size: cover; background-position: center; margin-top: 80px;">
+          <section class="hero-list editable-image" style="background-image: url('https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80'); background-size: cover; background-position: center;">
               <div class="hero-overlay"></div>
               <div class="hero-content-left">
                   <h1 class="hero-title-left editable-text">Título de la Lista</h1>
                   <p class="hero-subtitle-left editable-text">Una colección organizada de elementos o información</p>
               </div>
           </section>
+
+          <!-- Breadcrumbs below hero -->
+          <div class="breadcrumbs-below-hero">
+              <div id="breadcrumbs">
+                  <a href="index.php">Inicio</a> / <span class="current">Nueva Página</span>
+              </div>
+          </div>
 
           <!-- Main Content -->
           <main class="main-list">
@@ -1984,13 +2022,20 @@ async function savePageToServer(pageData) {
           </nav>
 
           <!-- Hero Section -->
-          <section class="hero-gallery editable-image" style="background-image: url('https://images.unsplash.com/photo-1452587925148-ce544e77e70d?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80'); background-size: cover; background-position: center; margin-top: 80px;">
+          <section class="hero-gallery editable-image" style="background-image: url('https://images.unsplash.com/photo-1452587925148-ce544e77e70d?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80'); background-size: cover; background-position: center;">
               <div class="hero-overlay"></div>
               <div class="hero-content-gallery">
                   <h1 class="hero-title-gallery editable-text">Galería Visual</h1>
                   <p class="hero-subtitle-gallery editable-text">Una colección de imágenes organizadas visualmente</p>
               </div>
           </section>
+
+          <!-- Breadcrumbs below hero -->
+          <div class="breadcrumbs-below-hero">
+              <div id="breadcrumbs">
+                  <a href="index.php">Inicio</a> / <span class="current">Nueva Página</span>
+              </div>
+          </div>
 
           <!-- Main Content -->
           <main class="main-gallery">
