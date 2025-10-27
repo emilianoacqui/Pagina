@@ -8,6 +8,10 @@
 </head>
 <body>
     <div class="container">
+        <a class="back-link" href="../PaginaWeb/Pagina/index.php" aria-label="Volver al sitio">
+            <span class="back-icon" aria-hidden="true">🚪</span>
+            <span class="back-text">Volver a la página</span>
+        </a>
         <div class="flag-accent"></div>
         
         <!-- Pantalla de Registro -->

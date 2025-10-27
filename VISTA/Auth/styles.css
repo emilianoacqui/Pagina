@@ -25,6 +25,48 @@ body {
     position: relative;
 }
 
+/* Back to site link */
+.back-link {
+    position: absolute;
+    top: 10px;
+    left: 12px;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    text-decoration: none;
+    color: #64748b;
+    font-weight: 600;
+    font-size: 13px;
+    background: #f8fafc;
+    border: 1px solid #e5e7eb;
+    border-radius: 999px;
+    padding: 6px 10px;
+    transition: background .2s ease, border-color .2s ease, color .2s ease, transform .2s ease;
+    z-index: 2;
+}
+.back-link:hover {
+    background: #ffffff;
+    border-color: #d1d5db;
+    color: #374151;
+}
+.back-icon {
+    display: inline-flex;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: #e5e7eb;
+    color: #6b7280;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    line-height: 1;
+}
+
+@media (max-width: 480px) {
+    .back-link { top: 8px; left: 8px; font-size: 12px; padding: 5px 9px; }
+    .back-icon { width: 18px; height: 18px; font-size: 11px; }
+}
+
 .header {
     background: white;
     color: #1e293b;
