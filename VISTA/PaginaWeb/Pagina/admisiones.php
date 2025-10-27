@@ -91,43 +91,6 @@
     <div class="footer-container">
       <div class="footer-left">
         <div class="footer-logo">
-          <img src="FOTOS/fotosPrincipales/logo2.png" alt="Scuola Italiana di Montevideo">
-        </div>
-        <div class="footer-subtitle">
-          <p>AMC Scuola Italiana di Montevideo</p>
-        </div>
-      </div>
-      <div class="footer-center">
-        <div class="footer-section">
-          <?php $footerTitles = ['es' => 'Contacto','en' => 'Contact','it' => 'Contatto']; ?>
-          <h4><?php echo $footerTitles[$cl]; ?></h4>
-          <p>Gral. French 2380</p>
-          <p>CP 11500 - Montevideo, Uruguay</p>
-          <p>(+598) 2600 1527</p>
-          <p>info@scuolaitaliana.edu.uy</p>
-        </div>
-      </div>
-      <div class="footer-right">
-        <div class="footer-section">
-          <?php
-            $linksTitle = ['es' => 'Enlaces útiles','en' => 'Useful links','it' => 'Link utili'];
-            $linkItems = [
-              'es' => ['Política de privacidad','Requisitos técnicos','Accesibilidad'],
-              'en' => ['Privacy Policy','Technical Requirements','Accessibility'],
-              'it' => ['Informativa sulla privacy','Requisiti tecnici','Accessibilità'],
-            ];
-          ?>
-          <h4><?php echo $linksTitle[$cl]; ?></h4>
-          <p><?php echo $linkItems[$cl][0]; ?></p>
-          <p><?php echo $linkItems[$cl][1]; ?></p>
-          <p><?php echo $linkItems[$cl][2]; ?></p>
-        </div>
-      </div>
-    </div>
-    <div class="footer-info-bar">
-      <p>Desarrollado por el equipo SGE | Proyecto de apoyo 2002 - EE Informática</p>
-    </div>
-  </footer>
 
 <script>
 document.getElementById('admisionForm').addEventListener('submit', function(e) {
