@@ -407,11 +407,11 @@
             }
 
             /* Header stack reductions to avoid overflow */
-            .color-bands { height: 260px; }
-            .green-band, .red-band { height: 130px; }
-            .hero-section { top: 0; left: 50%; transform: translateX(-50%); width: 100%; padding: 0 10px; box-sizing: border-box; }
-            .hero-image { width: 100%; max-width: 100%; }
-            .tabs-navigation { margin-top: 180px; }
+            .color-bands { display: none; height: 0; }
+            .green-band, .red-band { height: 0; }
+            .hero-section { position: relative; top: 0; left: 0; transform: none; width: 100%; padding: 0; box-sizing: border-box; aspect-ratio: 16/9; overflow: hidden; }
+            .hero-image { width: 100%; height: 100%; max-width: none; object-fit: cover; }
+            .tabs-navigation { margin-top: 12px; }
 
             /* Footer responsive layout */
             .footer-container { flex-direction: column; gap: 25px; text-align: center; }
