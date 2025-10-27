@@ -92,7 +92,7 @@
                         <h3><?php echo $ms['pc_h'][$cl]; ?></h3>
                         <p><?php echo $ms['pc_p'][$cl]; ?></p>
                         
-                            <a href="segundoCiclo.php" class="program-button" style="display: inline-block; text-decoration: none;">
+                            <a href="Bachillerato.php" class="program-button" style="display: inline-block; text-decoration: none;">
     <?php echo $ms['see_program'][$cl]; ?>
 </a>
 
