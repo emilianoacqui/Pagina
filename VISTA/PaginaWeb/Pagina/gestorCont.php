@@ -1342,7 +1342,7 @@ async function savePageToServer(pageData) {
           /* Navigation */
           .navbar {
               position: relative;
-              background: linear-gradient(135deg, #0A2452, #1B2F6F);
+              background: rgba(10, 36, 82, 0.5);
               height: 80px;
           }
           
