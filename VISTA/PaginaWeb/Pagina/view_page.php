@@ -1,6 +1,6 @@
 <?php
 // view_page.php - MEJORADO PARA LOCALHOST
-require_once 'PagesManagerClass.php';
+require_once '../../../MODELO/Gestor/PagesManagerClass.php';
 
 $pageId = $_GET['id'] ?? null;
 if (!$pageId) {

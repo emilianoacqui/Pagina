@@ -1,3 +1,3 @@
 <?php
-require_once(__DIR__ . '/../../MODELO/Gestor/view_page.php');
+require_once(__DIR__ . '/../../VISTA/PaginaWeb/Pagina/view_page.php');
 

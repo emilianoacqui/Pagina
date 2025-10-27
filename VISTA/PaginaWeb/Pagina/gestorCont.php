@@ -1131,7 +1131,7 @@ async function savePageToServer(pageData) {
 
     function openInSite(pageId) {
       // Abrir la página específica en modo visualización directa
-      window.open('../../../MODELO/Gestor/view_page.php?id=' + pageId + '&cms_admin_token=true', '_blank');
+      window.open('view_page.php?id=' + pageId + '&cms_admin_token=true', '_blank');
     }
 
     function openFullPageEditor() {
@@ -1140,7 +1140,7 @@ async function savePageToServer(pageData) {
         return;
       }
       // Abrir el visor de página en modo edición dentro del sitio
-      window.open('../../../MODELO/Gestor/view_page.php?id=' + editingPageId + '&cms_admin_token=true', '_blank');
+      window.open('view_page.php?id=' + editingPageId + '&cms_admin_token=true', '_blank');
     }
 
     function setModo(modo) {
