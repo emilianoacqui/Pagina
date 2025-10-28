@@ -35,6 +35,9 @@
     .fc .fc-view-harness{ height:auto !important; }
     .fc .fc-scrollgrid{ width:100% !important; }
     @media (max-width: 768px){
+      /* Limitar altura del calendario y permitir scroll si no entra completo */
+      .calendar-container{ max-height: calc(100dvh - 140px); overflow-y:auto; -webkit-overflow-scrolling: touch; }
+      .fc .fc-view-harness{ min-height:auto !important; }
       .fc .fc-toolbar{ flex-wrap: wrap; gap:8px; }
       .fc .fc-toolbar-title{ font-size:14px; }
       .fc .fc-button{ padding:3px 7px; font-size:11px; }

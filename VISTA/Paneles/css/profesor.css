@@ -28,6 +28,8 @@ body.sidebar-collapsed .backdrop{display:block;position:fixed;inset:0;background
 .fc .fc-view-harness{ height:auto !important; }
 .fc .fc-scrollgrid{ width:100% !important; }
 @media (max-width:768px){
+  /* Limitar altura del calendario y permitir scroll si no entra completo */
+  .calendar-container{ max-height: calc(100dvh - 140px); overflow-y:auto; -webkit-overflow-scrolling:touch }
   .fc .fc-toolbar{flex-wrap:wrap;gap:8px}
   .fc .fc-toolbar-title{font-size:16px}
   .fc .fc-button{padding:4px 8px;font-size:12px}
