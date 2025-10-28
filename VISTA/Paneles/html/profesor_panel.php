@@ -95,6 +95,7 @@ $clases_select = $clases_prof;
 <html lang="es">
 <head>
 <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Panel Profesor - Scuola Italiana di Montevideo</title>
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="../css/profesor.css">   
@@ -607,7 +608,11 @@ function toggleSidebarProfesor(){
   document.addEventListener('DOMContentLoaded', function(){
     try{
       const saved = localStorage.getItem('sidebarCollapsed_profesor');
-      if (saved === '1') document.body.classList.add('sidebar-collapsed');
+      if (saved === '1') {
+        document.body.classList.add('sidebar-collapsed');
+      } else if (saved === null && window.matchMedia('(max-width: 768px)').matches) {
+        document.body.classList.add('sidebar-collapsed');
+      }
     }catch(e){}
     // Backdrop click to close
     const backdrop = document.getElementById('backdrop');

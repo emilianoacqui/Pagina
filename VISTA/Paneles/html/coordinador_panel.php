@@ -299,6 +299,7 @@ while ($row = $res->fetch_assoc()) { $eventos_arr[] = $row; }
 <html lang="es">
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Panel del Coordinador</title>
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="../css/coordinador.css">   
@@ -1114,7 +1115,11 @@ while ($row = $res->fetch_assoc()) { $eventos_arr[] = $row; }
     document.addEventListener('DOMContentLoaded', function(){
       try{
         const saved = localStorage.getItem('sidebarCollapsed_coordinador');
-        if (saved === '1') document.body.classList.add('sidebar-collapsed');
+        if (saved === '1') {
+          document.body.classList.add('sidebar-collapsed');
+        } else if (saved === null && window.matchMedia('(max-width: 768px)').matches) {
+          document.body.classList.add('sidebar-collapsed');
+        }
       }catch(e){}
       // Backdrop click para cerrar
       const backdrop = document.getElementById('backdrop');
