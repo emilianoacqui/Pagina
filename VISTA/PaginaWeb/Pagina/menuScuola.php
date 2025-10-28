@@ -226,13 +226,11 @@
   }
 }
 
-    /* Neutralizar apariencia y click de enlaces en submenús */
+    /* Neutralizar apariencia de enlaces en submenús (pero mantenerlos clickeables) */
     .submenu a,
     .submenu-content a {
       color: inherit;
       text-decoration: none;
-      pointer-events: none;
-      cursor: default;
     }
 
   </style>
