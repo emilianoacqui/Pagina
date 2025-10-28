@@ -374,6 +374,17 @@
         }
 
         @media (max-width: 768px) {
+            /* Make hero fully fluid on small screens */
+            .hero-section {
+                aspect-ratio: auto;
+            }
+
+            .hero-image {
+                width: 100%;
+                height: auto;
+                box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+                border-radius: 8px;
+            }
             .nav-logo img {
                 height: 80px;
                 top: 10px;
