@@ -100,6 +100,7 @@ $clases_select = $clases_prof;
 <link rel="stylesheet" href="../css/profesor.css">   
 </head>
 <body>
+<button class="sidebar-toggle" onclick="toggleSidebarProfesor()">☰ Menú</button>
 
 <aside class="sidebar">
   <h2>Profesor</h2>
@@ -595,6 +596,18 @@ document.addEventListener('DOMContentLoaded', function() {
 
 /* pequeños helpers */
 function q(sel){ return document.querySelector(sel); }
+
+function toggleSidebarProfesor(){
+    document.body.classList.toggle('sidebar-collapsed');
+    const collapsed = document.body.classList.contains('sidebar-collapsed');
+    try{ localStorage.setItem('sidebarCollapsed_profesor', collapsed ? '1' : '0'); }catch(e){}
+  }
+  document.addEventListener('DOMContentLoaded', function(){
+    try{
+      const saved = localStorage.getItem('sidebarCollapsed_profesor');
+      if (saved === '1') document.body.classList.add('sidebar-collapsed');
+    }catch(e){}
+  });
 </script>
 
 <!-- FullCalendar JS -->

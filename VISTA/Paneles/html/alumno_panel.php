@@ -59,6 +59,8 @@ if (count($clases_alumno) > 0) {
 
 </head>
 <body>
+  <button class="sidebar-toggle" onclick="toggleSidebar()">☰ Menú</button>
+
   <aside class="sidebar">
     <h2>Alumno</h2>
     <nav class="nav">
@@ -509,5 +511,18 @@ if (count($clases_alumno) > 0) {
   
   <!-- FullCalendar JS -->
   <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.10/index.global.min.js"></script>
+  <script>
+    function toggleSidebar(){
+      document.body.classList.toggle('sidebar-collapsed');
+      const collapsed = document.body.classList.contains('sidebar-collapsed');
+      try{ localStorage.setItem('sidebarCollapsed_alumno', collapsed ? '1' : '0'); }catch(e){}
+    }
+    document.addEventListener('DOMContentLoaded', function(){
+      try{
+        const saved = localStorage.getItem('sidebarCollapsed_alumno');
+        if (saved === '1') document.body.classList.add('sidebar-collapsed');
+      }catch(e){}
+    });
+  </script>
 </body>
 </html>
