@@ -488,7 +488,7 @@ function inicializarCalendario() {
     expandRows: true,
     dayMaxEventRows: true,
     contentHeight: 'auto',
-    aspectRatio: isMobile ? 0.78 : 1.35,
+    aspectRatio: isMobile ? 0.7 : 1.35,
     headerToolbar: isMobile ? { left: 'prev,next', center: 'title', right: 'today' } : { left: 'prev,next today', center: 'title', right: 'dayGridMonth,listWeek' },
     initialView: 'dayGridMonth',
     buttonText: { today: 'Hoy', month: 'Mes', week: 'Semana', list: 'Lista' },
@@ -534,7 +534,7 @@ function inicializarCalendario() {
       if (nowMobile !== lastIsMobile) {
         lastIsMobile = nowMobile;
       }
-      calendar.setOption('aspectRatio', nowMobile ? 0.78 : 1.35);
+      calendar.setOption('aspectRatio', nowMobile ? 0.7 : 1.35);
     }
   });
 }
@@ -635,6 +635,22 @@ function toggleSidebarProfesor(){
         });
       }
     });
+    // Swipe para cerrar sidebar en móvil
+    let touchStartX = null, touchStartY = null;
+    document.addEventListener('touchstart', (e)=>{
+      if (!e.touches || e.touches.length !== 1) return;
+      touchStartX = e.touches[0].clientX;
+      touchStartY = e.touches[0].clientY;
+    }, {passive:true});
+    document.addEventListener('touchend', (e)=>{
+      if (touchStartX === null) return;
+      const dx = (e.changedTouches && e.changedTouches[0].clientX) - touchStartX;
+      const dy = (e.changedTouches && e.changedTouches[0].clientY) - touchStartY;
+      if (Math.abs(dx) > 50 && Math.abs(dy) < 50 && dx < 0 && window.matchMedia('(max-width: 768px)').matches) {
+        document.body.classList.add('sidebar-collapsed');
+      }
+      touchStartX = touchStartY = null;
+    }, {passive:true});
   });
 </script>
 
