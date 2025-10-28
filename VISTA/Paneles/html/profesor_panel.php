@@ -2,6 +2,7 @@
 
 session_start();
 require_once('../../../MODELO/config/bootstrap.php');
+require_once('../../../MODELO/Paneles/TeacherModel.php');
 
 /* seguridad: sólo profesores */
 if (!isset($_SESSION['rol']) || $_SESSION['rol'] !== 'profesor') {
@@ -14,21 +15,19 @@ $mensaje_tipo = "ok"; // ok | error
 $id_profesor = intval($_SESSION['id_usuario']);
 
 /* ==========================
-   📌 ACCIONES DEL PROFESOR
+   📌 ACCIONES DEL PROFESOR - USAR MODELO
    - Crear/Eliminar fecha en calendario
 ========================== */
+$teacherModel = new TeacherModel();
+
 if (isset($_POST['crear_fecha'])) {
     $id_clase = intval($_POST['id_clase']);
     $fecha = $_POST['fecha'] ?? '';
     $tipo = in_array($_POST['tipo'] ?? '', ['tarea','examen','prueba','oral','proyecto','entrega','otro']) ? $_POST['tipo'] : 'otro';
     $descripcion = trim($_POST['descripcion'] ?? '');
 
-    // Validar: el profesor debe pertenecer a la clase
-    $stmt = $conn->prepare("SELECT 1 FROM usuarios_clases WHERE id_usuario=? AND id_clase=? AND rol_en_clase='profesor' LIMIT 1");
-    $stmt->bind_param("ii", $id_profesor, $id_clase);
-    $stmt->execute();
-    $stmt->store_result();
-    if ($stmt->num_rows === 0) {
+    // Validar usando modelo
+    if (!$teacherModel->verifyClassAccess($id_profesor, $id_clase)) {
         $mensaje = "⌐ No estás autorizado para agregar fechas a esta clase.";
         $mensaje_tipo = "error";
     } else {
@@ -36,114 +35,56 @@ if (isset($_POST['crear_fecha'])) {
             $mensaje = "⚠️ Seleccioná una fecha.";
             $mensaje_tipo = "error";
         } else {
-            $stmt2 = $conn->prepare("INSERT INTO calendario (id_clase, fecha, tipo, descripcion, creado_por) VALUES (?, ?, ?, ?, ?)");
-            $stmt2->bind_param("isssi", $id_clase, $fecha, $tipo, $descripcion, $id_profesor);
-            if ($stmt2->execute()) {
+            $result = $teacherModel->addCalendarEvent($id_clase, $fecha, $tipo, $descripcion, $id_profesor);
+            if ($result['success']) {
                 $mensaje = "✅ Fecha agregada al calendario.";
             } else {
-                $mensaje = "⌐ Error al guardar: " . $stmt2->error;
+                $mensaje = "⌐ Error al guardar.";
                 $mensaje_tipo = "error";
             }
-            $stmt2->close();
         }
     }
-    $stmt->close();
 }
 
 if (isset($_POST['eliminar_fecha'])) {
     $id = intval($_POST['id_fecha']);
-    // Verificar que la fecha exista y la creó este profesor o pertenece a su clase
-    $stmt = $conn->prepare("
-        SELECT c.id_clase
-        FROM calendario c
-        JOIN usuarios_clases uc ON c.id_clase = uc.id_clase
-        WHERE c.id = ? AND uc.id_usuario = ? AND uc.rol_en_clase='profesor' LIMIT 1
-    ");
-    $stmt->bind_param("ii", $id, $id_profesor);
-    $stmt->execute();
-    $stmt->store_result();
-    if ($stmt->num_rows === 0) {
-        $mensaje = "⌐ No podés eliminar esa fecha (no existe o no tenés permisos).";
-        $mensaje_tipo = "error";
+    $result = $teacherModel->deleteCalendarEvent($id, $id_profesor);
+    if ($result['success']) {
+        $mensaje = "🗑️ Fecha eliminada.";
     } else {
-        $stmt2 = $conn->prepare("DELETE FROM calendario WHERE id = ?");
-        $stmt2->bind_param("i", $id);
-        if ($stmt2->execute()) {
-            $mensaje = "🗑️ Fecha eliminada.";
-        } else {
-            $mensaje = "⌐ No se pudo eliminar.";
-            $mensaje_tipo = "error";
-        }
-        $stmt2->close();
+        $mensaje = "⌐ " . ($result['error'] ?? 'No se pudo eliminar.');
+        $mensaje_tipo = "error";
     }
-    $stmt->close();
 }
 
 /* ==========================
-   📌 CONSULTAS
+   📌 USAR MODELOS PARA OBTENER DATOS
 ========================== */
 
 /* Clases asignadas al profesor */
-$clases_prof = [];
-$stmt = $conn->prepare("
-    SELECT c.id_clase, c.nombre, c.`año`
-    FROM clases c
-    JOIN usuarios_clases uc ON c.id_clase = uc.id_clase
-    WHERE uc.id_usuario = ? AND uc.rol_en_clase = 'profesor'
-    ORDER BY c.`año`, c.nombre
-");
-$stmt->bind_param("i", $id_profesor);
-$stmt->execute();
-$res = $stmt->get_result();
-while ($r = $res->fetch_assoc()) { $clases_prof[] = $r; }
-$stmt->close();
+$clases_prof = $teacherModel->getTeacherClasses($id_profesor);
 
-/* Para mostrar alumnos por clase (pre-cargar en una estructura) */
+/* Para mostrar alumnos por clase */
 $alumnos_por_clase = [];
 if (count($clases_prof) > 0) {
     $ids = array_map(function($c){return intval($c['id_clase']);}, $clases_prof);
-    $in = implode(',', $ids);
-    $sql = "
-      SELECT uc.id_clase, u.id_usuario, u.nombre, u.email
-      FROM usuarios_clases uc
-      JOIN usuarios u ON uc.id_usuario = u.id_usuario
-      WHERE uc.id_clase IN ($in) AND uc.rol_en_clase='alumno'
-      ORDER BY u.nombre
-    ";
-    $res = $conn->query($sql);
-    while ($row = $res->fetch_assoc()) {
-        $alumnos_por_clase[$row['id_clase']][] = $row;
-    }
+    $alumnos_por_clase = $teacherModel->getStudentsByClass($ids);
 }
 
 /* Eventos: generales + de las clases del profesor */
 $eventos = [];
 if (count($clases_prof) > 0) {
     $ids = array_map(function($c){return intval($c['id_clase']);}, $clases_prof);
-    $in = implode(',', $ids);
-    $sql = "SELECT e.*, c.nombre AS clase_nombre
-            FROM eventos e
-            LEFT JOIN clases c ON e.id_clase = c.id_clase
-            WHERE e.tipo = 'general' OR (e.tipo='clase' AND e.id_clase IN ($in))
-            ORDER BY e.fecha DESC";
-    $res = $conn->query($sql);
-    while ($row = $res->fetch_assoc()) { $eventos[] = $row; }
+    $eventos = $teacherModel->getEventsForClasses($ids);
 } else {
-    // si no tiene clases, muestra solo generales
-    $res = $conn->query("SELECT e.*, NULL AS clase_nombre FROM eventos e WHERE e.tipo='general' ORDER BY e.fecha DESC");
-    while ($row = $res->fetch_assoc()) { $eventos[] = $row; }
+    $eventos = $teacherModel->getGeneralEvents();
 }
 
 /* Calendario: fechas de las clases del profesor */
 $calendario_por_clase = [];
 if (count($clases_prof) > 0) {
     $ids = array_map(function($c){return intval($c['id_clase']);}, $clases_prof);
-    $in = implode(',', $ids);
-    $sql = "SELECT * FROM calendario WHERE id_clase IN ($in) ORDER BY fecha DESC";
-    $res = $conn->query($sql);
-    while ($row = $res->fetch_assoc()) {
-        $calendario_por_clase[$row['id_clase']][] = $row;
-    }
+    $calendario_por_clase = $teacherModel->getCalendarByClass($ids);
 }
 
 /* Para el selector de clases en el formulario */
@@ -179,7 +120,7 @@ $clases_select = $clases_prof;
   <?php endif; ?>
 
   <!-- SECCIÓN: Clases -->
-  <section id="seccionClases" class="card" style="display:block">
+  <section id="seccionClases" class="card" style="display:none">
     <h1>Mis Clases</h1>
     <?php if(count($clases_prof)===0): ?>
       <p class="small">No estás asignado a ninguna clase. Contactá a coordinación para que te asignen.</p>
@@ -211,7 +152,7 @@ $clases_select = $clases_prof;
   </section>
 
   <!-- SECCIÓN: Calendario -->
-  <section id="seccionCalendario" class="card" style="display:none">
+  <section id="seccionCalendario" class="card" style="display:block">
     <h1>Calendario – Agregar fecha</h1>
 
     <?php if(count($clases_select)===0): ?>
@@ -574,6 +515,16 @@ function inicializarCalendario() {
   });
 
   calendar.render();
+
+  // Cargar inicialmente todas las tareas del profesor (todas sus clases)
+  fetch('../../../CONTROLADOR/Calendario/get_calendar_events.php')
+    .then(response => response.json())
+    .then(data => {
+      if (Array.isArray(data)) {
+        calendar.addEventSource(data);
+      }
+    })
+    .catch(err => console.error('Error cargando eventos iniciales:', err));
 }
 
 /* ===== Links en localStorage ===== */
@@ -621,8 +572,13 @@ document.querySelectorAll('.nav a').forEach(a => {
   }
 });
 
-/* Por defecto mostrar Clases */
-mostrarSeccion('seccionClases');
+/* Por defecto mostrar Calendario */
+mostrarSeccion('seccionCalendario');
+
+// Inicializar calendario al cargar
+document.addEventListener('DOMContentLoaded', function(){
+  setTimeout(() => inicializarCalendario(), 200);
+});
 
 /* Event listeners */
 document.addEventListener('DOMContentLoaded', function() {

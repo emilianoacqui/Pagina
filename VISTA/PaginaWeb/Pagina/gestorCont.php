@@ -1131,7 +1131,7 @@ async function savePageToServer(pageData) {
 
     function openInSite(pageId) {
       // Abrir la página específica en modo visualización directa
-      window.open('../../../MODELO/Gestor/view_page.php?id=' + pageId + '&cms_admin_token=true', '_blank');
+      window.open('view_page.php?id=' + pageId + '&cms_admin_token=true', '_blank');
     }
 
     function openFullPageEditor() {
@@ -1140,7 +1140,7 @@ async function savePageToServer(pageData) {
         return;
       }
       // Abrir el visor de página en modo edición dentro del sitio
-      window.open('../../../MODELO/Gestor/view_page.php?id=' + editingPageId + '&cms_admin_token=true', '_blank');
+      window.open('view_page.php?id=' + editingPageId + '&cms_admin_token=true', '_blank');
     }
 
     function setModo(modo) {
@@ -1188,6 +1188,13 @@ async function savePageToServer(pageData) {
                   <p class="hero-subtitle editable-text">Subtítulo descriptivo que explica el contenido de esta página</p>
               </div>
           </section>
+
+          <!-- Breadcrumbs below hero -->
+          <div class="breadcrumbs-below-hero">
+              <div id="breadcrumbs">
+                  <a href="index.php">Inicio</a> / <span class="current">Nueva Página</span>
+              </div>
+          </div>
 
           <!-- Main Content -->
           <main class="main-content">
@@ -1332,16 +1339,55 @@ async function savePageToServer(pageData) {
               background-color: #F39C12;
           }
 
+          /* Navigation */
+          .navbar {
+              position: relative;
+              background: rgba(10, 36, 82, 0.5);
+              height: 80px;
+          }
+          
+          .nav-container {
+              display: flex;
+              justify-content: space-between;
+              align-items: center;
+              padding: 15px 5%;
+              max-width: 1200px;
+              margin: 0 auto;
+              height: 100%;
+          }
+
+          /* Breadcrumbs below hero */
+          .breadcrumbs-below-hero {
+              background: #f8f9fa;
+              padding: 16px 0;
+              border-bottom: 1px solid #e5e7eb;
+          }
+          
+          .breadcrumbs-below-hero #breadcrumbs {
+              max-width: 1200px;
+              margin: 0 auto;
+              padding: 0 20px;
+          }
+          
+          .breadcrumbs-below-hero #breadcrumbs a {
+              color: #374151;
+              text-decoration: none;
+          }
+          
+          .breadcrumbs-below-hero #breadcrumbs .current {
+              color: #6b7280;
+              font-weight: 500;
+          }
+
           /* Hero Section */
           .hero {
     position: relative;
-    top: -80px;  /* Mover hacia arriba para compensar el header */
-    height: calc(100vh + 80px);  /* Aumentar altura para compensar */
+    top: 0;
+    height: 100vh;
     display: flex;
     align-items: center;
     justify-content: center;
     overflow: hidden;
-    margin-bottom: -80px;  /* Evitar espacio extra */
 }
 
           .hero-background-container {
@@ -1359,9 +1405,10 @@ async function savePageToServer(pageData) {
               left: 0;
               width: 100%;
               height: 100%;
-              background: transparent;
+              background: rgba(0, 0, 0, 0.3);
               z-index: 2;
           }
+
 
           .hero-content {
               position: relative;
@@ -1694,6 +1741,13 @@ async function savePageToServer(pageData) {
               </div>
           </section>
 
+          <!-- Breadcrumbs below hero -->
+          <div class="breadcrumbs-below-hero">
+              <div id="breadcrumbs">
+                  <a href="index.php">Inicio</a> / <span class="current">Nueva Página</span>
+              </div>
+          </div>
+
           <!-- Main Content -->
           <main class="main-centered">
               <div class="container">
@@ -1752,12 +1806,11 @@ async function savePageToServer(pageData) {
             /* Navigation */
           .hero-centered { 
     position: relative;
-    top: -80px;
-    height: calc(70vh + 80px); 
+    top: 0;
+    height: 70vh; 
     display: flex; 
     align-items: center; 
     justify-content: center; 
-    margin-bottom: -80px;
 }         
 
           .hero-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(27, 47, 111, 0.3); }
@@ -1820,6 +1873,13 @@ async function savePageToServer(pageData) {
                   <p class="hero-subtitle-left editable-text">Una colección organizada de elementos o información</p>
               </div>
           </section>
+
+          <!-- Breadcrumbs below hero -->
+          <div class="breadcrumbs-below-hero">
+              <div id="breadcrumbs">
+                  <a href="index.php">Inicio</a> / <span class="current">Nueva Página</span>
+              </div>
+          </div>
 
           <!-- Main Content -->
           <main class="main-list">
@@ -1899,12 +1959,11 @@ async function savePageToServer(pageData) {
           /* Navigation */
           .hero-list { 
     position: relative;
-    top: -80px;
-    height: calc(60vh + 80px); 
+    top: 0;
+    height: 60vh; 
     display: flex; 
     align-items: center; 
     padding-left: 5%; 
-    margin-bottom: -80px;
 }
           .navbar { position: relative; background: rgba(10, 36, 82, 0.5); z-index: 1000; height: 80px; }
           .nav-container { display: flex; justify-content: space-between; align-items: center; padding: 15px 5%; max-width: 1200px; margin: 0 auto;  height: 100%; }
@@ -1970,6 +2029,13 @@ async function savePageToServer(pageData) {
                   <p class="hero-subtitle-gallery editable-text">Una colección de imágenes organizadas visualmente</p>
               </div>
           </section>
+
+          <!-- Breadcrumbs below hero -->
+          <div class="breadcrumbs-below-hero">
+              <div id="breadcrumbs">
+                  <a href="index.php">Inicio</a> / <span class="current">Nueva Página</span>
+              </div>
+          </div>
 
           <!-- Main Content -->
           <main class="main-gallery">
@@ -2053,12 +2119,11 @@ async function savePageToServer(pageData) {
           /* Navigation */
           .hero-gallery { 
     position: relative;
-    top: -80px;
-    height: calc(50vh + 80px); 
+    top: 0;
+    height: 50vh; 
     display: flex; 
     align-items: center; 
     justify-content: center; 
-    margin-bottom: -80px;
 }
 
           .hero-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(4, 155, 76, 0.5); }
@@ -2380,7 +2445,7 @@ if (editingPageId) {
         const json = await resp.json();
         if (!json.success) throw new Error(json.message || 'Error al subir');
         // Construir URL pública relativa desde esta página
-        const url = '../uploads/' + json.filename;
+        const url = 'VISTA/PaginaWeb/uploads/' + json.filename;
         document.getElementById('imageUrl').value = url;
         status.textContent = 'Subida exitosa. URL aplicada.';
       } catch (e) {

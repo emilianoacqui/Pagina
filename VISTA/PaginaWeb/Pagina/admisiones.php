@@ -33,30 +33,32 @@
 
       <div class="admissions-grid">
         <div class="admissions-left">
-          <form class="contact-form" onsubmit="event.preventDefault(); this.classList.add('sent');">
-            <input type="text" placeholder="<?php echo $cl==='es'?'Nombre y Apellido*':($cl==='en'?'Full name*':'Nome e cognome*'); ?>" required>
-            <input type="email" placeholder="E-mail*" required>
-            <input type="tel" placeholder="<?php echo $cl==='es'?'Teléfono/Celular*':($cl==='en'?'Phone*':'Telefono/Cellulare*'); ?>" required>
-            <select required>
+          <form class="contact-form" id="admisionForm" method="POST" action="../../../CONTROLADOR/Admisiones/procesar_admision.php">
+            <input type="text" name="nombre" placeholder="<?php echo $cl==='es'?'Nombre y Apellido*':($cl==='en'?'Full name*':'Nome e cognome*'); ?>" required>
+            <input type="email" name="email" placeholder="E-mail*" required>
+            <input type="tel" name="telefono" placeholder="<?php echo $cl==='es'?'Teléfono/Celular*':($cl==='en'?'Phone*':'Telefono/Cellulare*'); ?>" required>
+            <select name="nivel" required>
               <option value="">Admisiones</option>
-              <option>Inicial</option>
-              <option>Primaria</option>
-              <option>Secundaria</option>
-              <option>Actividades extracurriculares</option>
+              <option value="Inicial">Inicial</option>
+              <option value="Primaria">Primaria</option>
+              <option value="Secundaria">Secundaria</option>
+              <option value="Actividades extracurriculares">Actividades extracurriculares</option>
             </select>
-            <textarea rows="5" placeholder="<?php echo $cl==='es'?'Mensaje*':($cl==='en'?'Message*':'Messaggio*'); ?>" required></textarea>
+            <textarea name="mensaje" rows="5" placeholder="<?php echo $cl==='es'?'Mensaje*':($cl==='en'?'Message*':'Messaggio*'); ?>" required></textarea>
 
             <fieldset class="survey">
               <legend><?php echo $cl==='es'?'¿Cómo te enteraste de nuestra propuesta educativa?':'How did you hear about us?'; ?></legend>
-              <label><input type="checkbox"> Recomendación</label>
-              <label><input type="checkbox"> Exalumno</label>
-              <label><input type="checkbox"> Redes sociales/Web</label>
-              <label><input type="checkbox"> Publicidad vía pública</label>
-              <label><input type="checkbox"> Otro</label>
+              <label><input type="checkbox" name="como_se_entero[]" value="Recomendación"> Recomendación</label>
+              <label><input type="checkbox" name="como_se_entero[]" value="Exalumno"> Exalumno</label>
+              <label><input type="checkbox" name="como_se_entero[]" value="Redes sociales/Web"> Redes sociales/Web</label>
+              <label><input type="checkbox" name="como_se_entero[]" value="Publicidad vía pública"> Publicidad vía pública</label>
+              <label><input type="checkbox" name="como_se_entero[]" value="Otro"> Otro</label>
             </fieldset>
 
             <button type="submit" class="btn-submit">ENVIAR</button>
           </form>
+
+          <div id="mensaje-resultado" style="display: none; margin-top: 20px; padding: 15px; border-radius: 5px;"></div>
 
           <ul class="contact-icons">
             <li><i class="fa-solid fa-location-dot"></i> Gral. French 2380 – Montevideo, CP: 11500</li>
@@ -89,42 +91,44 @@
     <div class="footer-container">
       <div class="footer-left">
         <div class="footer-logo">
-          <img src="FOTOS/fotosPrincipales/logo2.png" alt="Scuola Italiana di Montevideo">
-        </div>
-        <div class="footer-subtitle">
-          <p>AMC Scuola Italiana di Montevideo</p>
-        </div>
-      </div>
-      <div class="footer-center">
-        <div class="footer-section">
-          <?php $footerTitles = ['es' => 'Contacto','en' => 'Contact','it' => 'Contatto']; ?>
-          <h4><?php echo $footerTitles[$cl]; ?></h4>
-          <p>Gral. French 2380</p>
-          <p>CP 11500 - Montevideo, Uruguay</p>
-          <p>(+598) 2600 1527</p>
-          <p>info@scuolaitaliana.edu.uy</p>
-        </div>
-      </div>
-      <div class="footer-right">
-        <div class="footer-section">
-          <?php
-            $linksTitle = ['es' => 'Enlaces útiles','en' => 'Useful links','it' => 'Link utili'];
-            $linkItems = [
-              'es' => ['Política de privacidad','Requisitos técnicos','Accesibilidad'],
-              'en' => ['Privacy Policy','Technical Requirements','Accessibility'],
-              'it' => ['Informativa sulla privacy','Requisiti tecnici','Accessibilità'],
-            ];
-          ?>
-          <h4><?php echo $linksTitle[$cl]; ?></h4>
-          <p><?php echo $linkItems[$cl][0]; ?></p>
-          <p><?php echo $linkItems[$cl][1]; ?></p>
-          <p><?php echo $linkItems[$cl][2]; ?></p>
-        </div>
-      </div>
-    </div>
-    <div class="footer-info-bar">
-      <p>Desarrollado por el equipo SGE | Proyecto de apoyo 2002 - EE Informática</p>
-    </div>
-  </footer>
+
+<script>
+document.getElementById('admisionForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    
+    const formData = new FormData(this);
+    const mensajeDiv = document.getElementById('mensaje-resultado');
+    
+    // Mostrar loading
+    mensajeDiv.style.display = 'block';
+    mensajeDiv.style.backgroundColor = '#f0f8ff';
+    mensajeDiv.style.color = '#0066cc';
+    mensajeDiv.innerHTML = 'Enviando solicitud...';
+    
+    fetch('../../../CONTROLADOR/Admisiones/procesar_admision.php', {
+        method: 'POST',
+        body: formData
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            mensajeDiv.style.backgroundColor = '#d4edda';
+            mensajeDiv.style.color = '#155724';
+            mensajeDiv.innerHTML = data.message;
+            document.getElementById('admisionForm').reset();
+        } else {
+            mensajeDiv.style.backgroundColor = '#f8d7da';
+            mensajeDiv.style.color = '#721c24';
+            mensajeDiv.innerHTML = 'Error: ' + data.error;
+        }
+    })
+    .catch(error => {
+        mensajeDiv.style.backgroundColor = '#f8d7da';
+        mensajeDiv.style.color = '#721c24';
+        mensajeDiv.innerHTML = 'Error de conexión. Intenta nuevamente.';
+    });
+});
+</script>
+
 </body>
 </html>

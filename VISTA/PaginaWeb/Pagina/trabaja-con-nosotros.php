@@ -61,7 +61,7 @@
             <h1 class="form-title"><?php echo $tn['form_t'][$cl]; ?></h1>
             <p class="form-subtitle"><?php echo $tn['form_s'][$cl]; ?></p>
 
-            <form action="../../../CONTROLADOR/Jobs/apply.php" method="POST" enctype="multipart/form-data">
+            <form action="../../../CONTROLADOR/Jobs/procesar_trabajo.php" method="POST" enctype="multipart/form-data">
                 <div class="form-group">
                     <label for="nombre"><?php echo $tn['lbl_name'][$cl]; ?></label>
                     <input type="text" id="nombre" name="nombre" class="form-control" required>

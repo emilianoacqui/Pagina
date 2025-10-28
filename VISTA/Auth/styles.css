@@ -37,6 +37,7 @@ body {
     text-decoration: none;
     color: #64748b;
     font-weight: 600;
+    z-index: 1000;
     font-size: 13px;
     background: #f8fafc;
     border: 1px solid #e5e7eb;
@@ -64,7 +65,7 @@ body {
 }
 
 @media (max-width: 480px) {
-    .back-link { top: 8px; left: 8px; font-size: 12px; padding: 5px 9px; }
+    .back-link { top: 8px; left: 50%; font-size: 12px; padding: 5px 9px; }
     .back-icon { width: 18px; height: 18px; font-size: 11px; }
 }
 

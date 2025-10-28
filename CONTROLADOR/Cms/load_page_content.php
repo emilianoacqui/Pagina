@@ -7,7 +7,7 @@ $pageUrl = $_GET['pageUrl'] ?? '';
 
 if ($pageUrl) {
     $manager = new PagesManager();
-    $pageId = 'existing_' . jsHash($pageUrl);
+    $pageId = 'existing_' . PagesManager::jsHash($pageUrl);
     $savedPage = $manager->getPage($pageId);
     // Si no encontró por id, buscar por URL
     if (!$savedPage) {
@@ -37,17 +37,5 @@ if ($pageUrl) {
         'success' => false,
         'message' => 'URL no especificada'
     ]);
-}
-
-// Hash simple compatible con el usado en JavaScript
-function jsHash($str) {
-    $hash = 0;
-    if (strlen($str) == 0) return $hash;
-    for ($i = 0; $i < strlen($str); $i++) {
-        $char = ord($str[$i]);
-        $hash = (($hash << 5) - $hash) + $char;
-        $hash = $hash & $hash; // Convert to 32-bit integer
-    }
-    return abs($hash);
 }
 ?>
