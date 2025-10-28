@@ -12,16 +12,16 @@
   <link rel="shortcut icon" href="/Pagina/favicon.ico">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.10/index.global.min.css">
   <style>
-    .calendar-container{ width:100%; max-width:100%; margin:40px auto; overflow-x:auto; -webkit-overflow-scrolling:touch }
-    #fc-escolar{ min-width:720px; background:#fff; border-radius:12px; box-shadow:0 10px 25px rgba(0,0,0,0.08); padding:8px }
+    .calendar-container{ width:100%; max-width:100%; margin:40px auto; overflow-x:hidden }
+    #fc-escolar{ width:100%; background:#fff; border-radius:12px; box-shadow:0 10px 25px rgba(0,0,0,0.08); padding:6px }
     @media (max-width:768px){
-      .calendar-container{ margin:20px auto }
-      .fc .fc-toolbar{ flex-wrap:wrap; gap:8px }
-      .fc .fc-toolbar-title{ font-size:16px }
-      .fc .fc-button{ padding:4px 8px; font-size:12px }
-      .fc .fc-col-header-cell-cushion{ padding:6px 0 }
-      .fc .fc-daygrid-day-number{ padding:4px }
-      .fc .fc-daygrid-event{ font-size:12px; padding:1px 2px }
+      .calendar-container{ margin:16px auto }
+      .fc .fc-toolbar{ flex-wrap:wrap; gap:6px }
+      .fc .fc-toolbar-title{ font-size:14px }
+      .fc .fc-button{ padding:3px 7px; font-size:11px }
+      .fc .fc-col-header-cell-cushion{ padding:4px 0; font-size:12px }
+      .fc .fc-daygrid-day-number{ padding:2px; font-size:12px }
+      .fc .fc-daygrid-event{ font-size:11px; padding:1px 2px }
     }
   </style>
 </head>
@@ -198,9 +198,10 @@
       expandRows: true,
       dayMaxEventRows: true,
       contentHeight: 'auto',
-      aspectRatio: isMobile ? 0.9 : 1.35,
+      aspectRatio: isMobile ? 0.56 : 1.35,
       headerToolbar: isMobile ? { left: 'prev,next', center: 'title', right: 'today' } : { left: 'prev,next today', center: 'title', right: 'dayGridMonth,listWeek' },
       initialView: 'dayGridMonth',
+      dayHeaderFormat: { weekday: 'short' },
       buttonText: { today:'Hoy', month:'Mes', week:'Semana', list:'Lista' },
       events: function(info, success, failure){
         fetch('../../../CONTROLADOR/Calendario/get_calendar_events.php')
