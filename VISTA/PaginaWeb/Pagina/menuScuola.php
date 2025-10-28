@@ -499,7 +499,60 @@
             });
         }
     });
-</script>
+    </script>
+
+    <script>
+    function buildSearchIndex() {
+        const submenuLinks = Array.from(document.querySelectorAll('.submenu-content a'));
+        const quickLinks = Array.from(document.querySelectorAll('#submenu li a'));
+        const links = [...submenuLinks, ...quickLinks];
+        return links.map(a => ({ text: a.textContent.trim(), href: a.getAttribute('href') }));
+    }
+
+    function setupSearch() {
+        const input = document.getElementById('menu-search');
+        const results = document.getElementById('search-results');
+        if (!input || !results) return;
+        let index = buildSearchIndex();
+
+        const observer = new MutationObserver(() => { index = buildSearchIndex(); });
+        observer.observe(document.body, { subtree: true, childList: true });
+
+        function render(items) {
+            if (!items.length) {
+                results.innerHTML = '<li style="padding:6px 12px; color:#6b7280;">Sin resultados</li>';
+                results.style.display = 'block';
+                return;
+            }
+            results.innerHTML = items.slice(0, 8)
+                .map(it => `<li><a href="${it.href}">${it.text}</a></li>`)
+                .join('');
+            results.style.display = 'block';
+        }
+
+        input.addEventListener('input', () => {
+            const q = input.value.trim().toLowerCase();
+            if (q.length < 1) { results.style.display = 'none'; return; }
+            const filtered = index.filter(it => it.text.toLowerCase().includes(q));
+            render(filtered);
+        });
+
+        input.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter') {
+                const first = results.querySelector('li a');
+                if (first) {
+                    window.location.href = first.getAttribute('href');
+                }
+            }
+        });
+
+        document.addEventListener('click', (e) => {
+            if (!results.contains(e.target) && e.target !== input) {
+                results.style.display = 'none';
+            }
+        });
+    }
+    </script>
 
   <style>
 .quality-icon {
