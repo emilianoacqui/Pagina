@@ -287,7 +287,6 @@
 </head>
 <div id="cms-root"></div>
 <body>
-  <div id="original-content">
   <div class="left" style="background-image: url('FOTOS/fotosPrincipales/ejemplo1.jpg');">
     <div class="curve"></div>
   </div>
@@ -426,6 +425,7 @@
     async function updateMenu() {
         savedPages = await loadPagesFromServer();
         const submenu = document.getElementById("submenu");
+        const isAdmin = new URLSearchParams(window.location.search).get('cms_admin_token') === 'true';
         
         if (!Array.isArray(savedPages) || savedPages.length === 0) {
             submenu.innerHTML = "<li style=\"padding:8px 15px;\">No hay páginas creadas</li>";
@@ -435,7 +435,8 @@
         // Enlaces Rápidos: mostrar páginas creadas
         submenu.innerHTML = savedPages.map(page => {
             const label = page.name || ('Página ' + page.id);
-            return `<li><a href=\"../../../MODELO/Gestor/view_page.php?id=${page.id}\" style=\"text-decoration:none; color:#2c3e50; display:block; padding:8px 15px;\">${label}</a></li>`;
+            const token = isAdmin ? '&cms_admin_token=true' : '';
+            return `<li><a href=\"../../../MODELO/Gestor/view_page.php?id=${page.id}${token}\" style=\"text-decoration:none; color:#2c3e50; display:block; padding:8px 15px;\">${label}</a></li>`;
         }).join('');
     }
 
@@ -512,6 +513,27 @@
                     // Update left image
                     if (img) {
                         leftDiv.style.backgroundImage = `url('${img}')`;
+                    }
+                }, true);
+            });
+        }
+
+        // Mantener modo admin al navegar desde items que usan onclick con window.location.href
+        const params = new URLSearchParams(window.location.search);
+        const isAdmin = params.get('cms_admin_token') === 'true';
+        if (isAdmin) {
+            document.querySelectorAll('.menu-item').forEach(item => {
+                item.addEventListener('click', (e) => {
+                    const onclick = item.getAttribute('onclick');
+                    const m = onclick && onclick.match(/'([^']+)'/);
+                    if (m && m[1]) {
+                        e.preventDefault();
+                        e.stopImmediatePropagation();
+                        let href = m[1];
+                        if (!href.includes('cms_admin_token=true')) {
+                            href += (href.includes('?') ? '&' : '?') + 'cms_admin_token=true';
+                        }
+                        window.location.href = href;
                     }
                 }, true);
             });
