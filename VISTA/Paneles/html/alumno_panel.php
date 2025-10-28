@@ -328,9 +328,10 @@ if (count($clases_alumno) > 0) {
         locale: 'es',
         expandRows: true,
         dayMaxEventRows: true,
-        height: 'auto',
-        headerToolbar: isMobile ? { left: 'prev,next', center: 'title', right: 'listWeek,dayGridMonth' } : { left: 'prev,next today', center: 'title', right: 'dayGridMonth,listWeek' },
-        initialView: isMobile ? 'listWeek' : 'dayGridMonth',
+        contentHeight: 'auto',
+        aspectRatio: isMobile ? 0.78 : 1.35,
+        headerToolbar: isMobile ? { left: 'prev,next', center: 'title', right: 'today' } : { left: 'prev,next today', center: 'title', right: 'dayGridMonth,listWeek' },
+        initialView: 'dayGridMonth',
         buttonText: { today: 'Hoy', month: 'Mes', week: 'Semana', list: 'Lista' },
         events: function(info, successCallback, failureCallback) {
           fetch('../../../CONTROLADOR/Calendario/get_calendar_events.php')
@@ -368,13 +369,15 @@ if (count($clases_alumno) > 0) {
       calendar = new FullCalendar.Calendar(calendarEl, baseOptions);
       calendar.render();
 
-      // Cambiar vista dinámicamente al redimensionar
+      // Ajustar proporción dinámicamente al redimensionar sin cambiar de vista
       let lastIsMobile = isMobile;
       window.addEventListener('resize', () => {
         const nowMobile = window.matchMedia('(max-width: 768px)').matches;
-        if (nowMobile !== lastIsMobile && calendar) {
-          lastIsMobile = nowMobile;
-          calendar.changeView(nowMobile ? 'listWeek' : 'dayGridMonth');
+        if (calendar) {
+          if (nowMobile !== lastIsMobile) {
+            lastIsMobile = nowMobile;
+          }
+          calendar.setOption('aspectRatio', nowMobile ? 0.78 : 1.35);
         }
       });
     }
