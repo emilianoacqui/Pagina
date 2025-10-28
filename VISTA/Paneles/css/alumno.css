@@ -31,12 +31,13 @@
       .sidebar-toggle{ display:block; }
     }
     /* FullCalendar responsive tweaks */
-    .calendar-container{ width:100%; max-width:100%; overflow-x:hidden; }
+    .calendar-container{ width:100%; max-width:100%; overflow-x:auto; -webkit-overflow-scrolling:touch; }
     .fc .fc-view-harness{ height:auto !important; }
     .fc .fc-scrollgrid{ width:100% !important; }
     @media (max-width: 768px){
-      /* Limitar altura del calendario y permitir scroll si no entra completo */
-      .calendar-container{ max-height: calc(100dvh - 140px); overflow-y:auto; -webkit-overflow-scrolling: touch; }
+      /* Scroll horizontal si no entra completo el mes */
+      .calendar-container{ overflow-x:auto; overflow-y:visible; max-height:none; }
+      .fc .fc-scrollgrid{ min-width: 720px !important; }
       .fc .fc-view-harness{ min-height:auto !important; }
       .fc .fc-toolbar{ flex-wrap: wrap; gap:8px; }
       .fc .fc-toolbar-title{ font-size:14px; }

@@ -23,13 +23,14 @@ body.sidebar-collapsed .backdrop{display:block;position:fixed;inset:0;background
   .sidebar{width:180px;padding:16px 12px}
   .sidebar-toggle{display:block}
 }
-.calendar-container{width:100%}
+.calendar-container{width:100%; overflow-x:auto; -webkit-overflow-scrolling:touch}
 /* Mejoras de FullCalendar para responsividad y evitar desbordes */
 .fc .fc-view-harness{ height:auto !important; }
 .fc .fc-scrollgrid{ width:100% !important; }
 @media (max-width:768px){
-  /* Limitar altura del calendario y permitir scroll si no entra completo */
-  .calendar-container{ max-height: calc(100dvh - 140px); overflow-y:auto; -webkit-overflow-scrolling:touch }
+  /* Scroll horizontal si no entra completo el mes */
+  .calendar-container{ overflow-x:auto; overflow-y:visible; max-height:none }
+  .fc .fc-scrollgrid{ min-width:720px !important }
   .fc .fc-toolbar{flex-wrap:wrap;gap:8px}
   .fc .fc-toolbar-title{font-size:16px}
   .fc .fc-button{padding:4px 8px;font-size:12px}
