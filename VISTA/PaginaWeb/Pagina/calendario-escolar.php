@@ -83,7 +83,7 @@
       'sec2_p' => [
         'es'=>'Descarga el calendario completo con todas las actividades del año.',
         'en'=>'Download the full calendar with all activities of the year.',
-        'it'=>'Scarica il calendario completo con tutte le attività dell’anno.'
+        'it'=>'Scarica il calendario completo con tutte le attività dell'anno.'
       ],
       'contact' => ['es'=>'Contacto','en'=>'Contact','it'=>'Contatto']
     ];
@@ -96,6 +96,9 @@
       <p class="editable-text"><?php echo $copy['hero_s'][$cl]; ?></p>
     </div>
   </section>
+
+  <!-- Breadcrumbs -->
+  <div id="breadcrumbs" class="breadcrumbs-container"></div>
 
   <!-- Calendario institucional (eventos de Coordinación) -->
   <section class="about-section">
@@ -113,9 +116,6 @@
       </div>
     </div>
   </section>
-
-  <!-- Breadcrumbs -->
-  <div id="breadcrumbs" class="breadcrumbs-container"></div>
 
   <!-- Próximas fechas -->
   <section class="about-section">
