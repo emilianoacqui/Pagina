@@ -13,7 +13,7 @@ body.sidebar-collapsed .sidebar{transform:translateX(-100%)}
 body.sidebar-collapsed .main{margin-left:0}
 
 /* Toggle button */
-.sidebar-toggle{position:fixed;top:14px;left:14px;z-index:1100;background:#0f172a;color:#fff;border:1px solid #334155;border-radius:8px;padding:8px 10px;cursor:pointer;box-shadow:0 4px 12px rgba(0,0,0,0.2)}
+.sidebar-toggle{position:fixed;top:14px;left:14px;z-index:1100;background:#0f172a;color:#fff;border:1px solid #334155;border-radius:8px;padding:6px 10px;cursor:pointer;box-shadow:0 4px 12px rgba(0,0,0,0.2);font-size:14px;display:none}
 .sidebar-toggle:hover{background:#16213a}
 .card{background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:32px;margin-bottom:32px;box-shadow:0 10px 25px rgba(0,0,0,0.08);transition:all 0.3s ease}
 .card:hover{transform:translateY(-2px);box-shadow:0 20px 40px rgba(0,0,0,0.12)}
@@ -164,10 +164,12 @@ th{background:var(--light);font-weight:600;color:var(--text)}
 }
 
 /* Mobile */
-@media(max-width:720px){
-  .sidebar{width:220px}
-  .main{padding:16px;margin-left:220px}
-  .card{padding:20px}
+@media(max-width:768px){
+  .sidebar-toggle{display:block}
+  .sidebar{width:220px;transform:translateX(-100%)} /* oculto por defecto */
+  body.sidebar-collapsed .sidebar{transform:translateX(0)} /* mostrar con toggle */
+  .main{padding:16px;margin-left:0}
+  .card{padding:18px}
   .form-row > *{flex:1 1 100%}
   .event-grid{grid-template-columns:1fr}
   .table-wrap{overflow-x:auto}
@@ -176,6 +178,7 @@ th{background:var(--light);font-weight:600;color:var(--text)}
   .calendar-container{padding:12px}
   .fc-toolbar-title{font-size:1rem !important}
   .fc-button{font-size:12px !important;padding:6px 10px !important}
+  h1{font-size:22px}
 }
 
 /* Extra small phones */

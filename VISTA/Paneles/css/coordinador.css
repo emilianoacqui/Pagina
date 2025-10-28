@@ -34,7 +34,7 @@
     body.sidebar-collapsed .main{margin-left:0}
 
     /* Toggle button */
-    .sidebar-toggle{position:fixed;top:14px;left:14px;z-index:1100;background:#0f172a;color:#fff;border:1px solid #334155;border-radius:8px;padding:8px 10px;cursor:pointer;box-shadow:0 4px 12px rgba(0,0,0,0.2)}
+    .sidebar-toggle{position:fixed;top:14px;left:14px;z-index:1100;background:#0f172a;color:#fff;border:1px solid #334155;border-radius:8px;padding:6px 10px;cursor:pointer;box-shadow:0 4px 12px rgba(0,0,0,0.2);font-size:14px;display:none}
     .sidebar-toggle:hover{background:#16213a}
     .msg{font-weight:500;margin-bottom:20px;padding:16px 20px;border-radius:12px;border:1px solid transparent;box-shadow:0 2px 8px rgba(0,0,0,0.1)}
     .msg.ok{background:linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);color:#166534;border-color:#bbf7d0}
@@ -108,10 +108,13 @@
     }
 
     /* Mobile */
-    @media (max-width: 720px){
-      .sidebar{display:none}
-      .main{padding:16px}
-      .card{padding:20px}
+    @media (max-width: 768px){
+      .sidebar-toggle{display:block}
+      .sidebar{width:220px; transform: translateX(-100%);} /* oculto por defecto */
+      body.sidebar-collapsed .sidebar{transform: translateX(0);} /* mostrar con toggle */
+      .main{padding:16px; margin-left:0}
+      .card{padding:18px}
+      .card h1{font-size:22px}
       .form-row>*{flex:1 1 100%}
       .event-grid{grid-template-columns:1fr}
       .table-wrap{overflow-x:auto}
