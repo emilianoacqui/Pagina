@@ -17,17 +17,17 @@
       --gradient-warning: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
     }
     *{box-sizing:border-box}
-    body{margin:0;font-family:'Poppins',sans-serif;background:linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);color:var(--text);display:flex;min-height:100vh;line-height:1.6}
+    body{margin:0;font-family:'Poppins',sans-serif;background:linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);color:var(--text);min-height:100vh;line-height:1.6}
 
     /* Sidebar */
-    .sidebar{width:280px;background:linear-gradient(180deg, #0f172a 0%, #1e293b 100%);color:#F9FAFB;min-height:100vh;padding:32px 24px;position:sticky;top:0;border-right:1px solid #334155;box-shadow:4px 0 20px rgba(0,0,0,0.1)}
+    .sidebar{width:280px;background:linear-gradient(180deg, #0f172a 0%, #1e293b 100%);color:#F9FAFB;height:100vh;padding:32px 24px;position:fixed;top:0;left:0;overflow-y:auto;border-right:1px solid #334155;box-shadow:4px 0 20px rgba(0,0,0,0.1)}
     .sidebar h2{font-size:22px;margin:0 0 32px;text-align:center;font-weight:700;background:var(--gradient-primary);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
     .nav a{display:flex;align-items:center;color:#cbd5e1;text-decoration:none;margin:8px 0;padding:12px 16px;border-radius:12px;transition:all 0.3s ease;font-size:14px;font-weight:500;position:relative}
     .nav a:hover,.nav a.active{background:rgba(59,130,246,0.15);color:#60a5fa;transform:translateX(4px);box-shadow:0 4px 12px rgba(59,130,246,0.2)}
     .nav a.active::before{content:'';position:absolute;left:0;top:50%;transform:translateY(-50%);width:4px;height:20px;background:var(--accent);border-radius:0 2px 2px 0}
 
     /* Main */
-    .main{flex:1;padding:40px;max-width:1400px;margin:0 auto}
+    .main{padding:40px;max-width:1400px;margin:0 auto;margin-left:280px}
     .msg{font-weight:500;margin-bottom:20px;padding:16px 20px;border-radius:12px;border:1px solid transparent;box-shadow:0 2px 8px rgba(0,0,0,0.1)}
     .msg.ok{background:linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);color:#166534;border-color:#bbf7d0}
     .msg.error{background:linear-gradient(135deg, #fef2f2 0%, #fee2e2 100%);color:#dc2626;border-color:#fecaca}
