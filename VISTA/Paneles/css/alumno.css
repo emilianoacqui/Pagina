@@ -25,7 +25,12 @@
     .sidebar-toggle:hover { background: #111c36; transform: translateY(-1px); }
     /* Backdrop para modo móvil */
     .backdrop{ display:none; }
-    body.sidebar-collapsed .backdrop{ display:block; position:fixed; inset:0; background:rgba(15,23,42,0.5); backdrop-filter: blur(2px); z-index:900; }
+    @media (max-width: 768px){
+      body.sidebar-collapsed .backdrop{ display:block; position:fixed; inset:0; background:rgba(15,23,42,0.5); backdrop-filter: blur(2px); z-index:900; }
+    }
+    @media (min-width: 769px){
+      body.sidebar-collapsed .backdrop{ display:none !important; }
+    }
     @media (max-width: 768px){
       .sidebar{ width:180px; padding:16px 12px; }
       .sidebar-toggle{ display:block; }
