@@ -31,13 +31,17 @@
       .sidebar-toggle{ display:block; }
     }
     /* FullCalendar responsive tweaks */
-    .calendar-container{ width:100%; }
+    .calendar-container{ width:100%; max-width:100%; overflow-x:hidden; }
+    .fc .fc-view-harness{ height:auto !important; }
+    .fc .fc-scrollgrid{ width:100% !important; }
     @media (max-width: 768px){
       .fc .fc-toolbar{ flex-wrap: wrap; gap:8px; }
       .fc .fc-toolbar-title{ font-size:16px; }
       .fc .fc-button{ padding:4px 8px; font-size:12px; }
+      .fc .fc-button-group{ flex-wrap:wrap; }
       .fc .fc-col-header-cell-cushion{ padding:6px 0; }
       .fc .fc-daygrid-day-number{ padding:4px; }
+      .fc .fc-daygrid-event{ font-size:12px; padding:1px 2px; }
     }
     .msg { font-weight: 500; margin-bottom: 20px; padding: 16px 20px; border-radius: 12px; border:1px solid transparent; font-size: 14px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
     .msg.ok { background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%); color: #166534; border-color:#bbf7d0; }

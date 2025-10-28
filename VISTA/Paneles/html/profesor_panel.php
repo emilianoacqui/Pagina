@@ -482,20 +482,15 @@ function inicializarCalendario() {
   const calendarEl = document.getElementById('calendar');
   if (!calendarEl) return;
 
-  calendar = new FullCalendar.Calendar(calendarEl, {
-    initialView: 'dayGridMonth',
+  const isMobile = window.matchMedia('(max-width: 768px)').matches;
+  const baseOptions = {
     locale: 'es',
-    headerToolbar: {
-      left: 'prev,next today',
-      center: 'title',
-      right: 'dayGridMonth,listWeek'
-    },
-    buttonText: {
-      today: 'Hoy',
-      month: 'Mes',
-      week: 'Semana',
-      list: 'Lista'
-    },
+    expandRows: true,
+    dayMaxEventRows: true,
+    height: 'auto',
+    headerToolbar: isMobile ? { left: 'prev,next', center: 'title', right: 'listWeek,dayGridMonth' } : { left: 'prev,next today', center: 'title', right: 'dayGridMonth,listWeek' },
+    initialView: isMobile ? 'listWeek' : 'dayGridMonth',
+    buttonText: { today: 'Hoy', month: 'Mes', week: 'Semana', list: 'Lista' },
     events: [], // Se cargarán dinámicamente
     eventClick: function(info) {
       const event = info.event;
@@ -513,11 +508,11 @@ function inicializarCalendario() {
       alert(mensaje);
     },
     eventDisplay: 'block',
-    height: 'auto',
     dayMaxEvents: 3,
     moreLinkClick: 'popover'
-  });
+  };
 
+  calendar = new FullCalendar.Calendar(calendarEl, baseOptions);
   calendar.render();
 
   // Cargar inicialmente todas las tareas del profesor (todas sus clases)
@@ -529,6 +524,16 @@ function inicializarCalendario() {
       }
     })
     .catch(err => console.error('Error cargando eventos iniciales:', err));
+
+  // Cambiar vista dinámicamente al redimensionar
+  let lastIsMobile = isMobile;
+  window.addEventListener('resize', () => {
+    const nowMobile = window.matchMedia('(max-width: 768px)').matches;
+    if (nowMobile !== lastIsMobile && calendar) {
+      lastIsMobile = nowMobile;
+      calendar.changeView(nowMobile ? 'listWeek' : 'dayGridMonth');
+    }
+  });
 }
 
 /* ===== Links en localStorage ===== */
