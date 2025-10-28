@@ -14,14 +14,22 @@ body.sidebar-collapsed .sidebar{transform:translateX(-100%)}
 body.sidebar-collapsed .main{margin-left:0}
 
 /* Toggle button */
-.sidebar-toggle{position:fixed;top:14px;left:14px;z-index:1100;background:#0f172a;color:#fff;border:1px solid #334155;border-radius:8px;padding:6px 10px;cursor:pointer;box-shadow:0 4px 12px rgba(0,0,0,0.2);font-size:14px;display:none}
-.sidebar-toggle:hover{background:#16213a}
+.sidebar-toggle{position:fixed;top:12px;left:12px;z-index:1100;background:#0f172a;color:#fff;border:1px solid #334155;width:42px;height:42px;border-radius:50%;display:none;align-items:center;justify-content:center;cursor:pointer;box-shadow:0 8px 20px rgba(0,0,0,0.25);font-size:18px;padding:0}
+.sidebar-toggle:hover{background:#111c36;transform:translateY(-1px)}
 /* Backdrop para modo móvil */
 .backdrop{display:none}
 body.sidebar-collapsed .backdrop{display:block;position:fixed;inset:0;background:rgba(15,23,42,0.5);backdrop-filter:blur(2px);z-index:900}
 @media (max-width:768px){
   .sidebar{width:180px;padding:16px 12px}
   .sidebar-toggle{display:block}
+}
+.calendar-container{width:100%}
+@media (max-width:768px){
+  .fc .fc-toolbar{flex-wrap:wrap;gap:8px}
+  .fc .fc-toolbar-title{font-size:16px}
+  .fc .fc-button{padding:4px 8px;font-size:12px}
+  .fc .fc-col-header-cell-cushion{padding:6px 0}
+  .fc .fc-daygrid-day-number{padding:4px}
 }
 .card{background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:32px;margin-bottom:32px;box-shadow:0 10px 25px rgba(0,0,0,0.08);transition:all 0.3s ease}
 .card:hover{transform:translateY(-2px);box-shadow:0 20px 40px rgba(0,0,0,0.12)}

@@ -101,7 +101,7 @@ $clases_select = $clases_prof;
 <link rel="stylesheet" href="../css/profesor.css">   
 </head>
 <body>
-<button class="sidebar-toggle" onclick="toggleSidebarProfesor()">☰ Menú</button>
+<button class="sidebar-toggle" onclick="toggleSidebarProfesor()" aria-label="Abrir menú">☰</button>
 
 <div class="backdrop" id="backdrop"></div>
 

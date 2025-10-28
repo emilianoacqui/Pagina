@@ -60,7 +60,7 @@ if (count($clases_alumno) > 0) {
 
 </head>
 <body>
-  <button class="sidebar-toggle" onclick="toggleSidebar()">☰ Menú</button>
+  <button class="sidebar-toggle" onclick="toggleSidebar()" aria-label="Abrir menú">☰</button>
   <div class="backdrop" id="backdrop"></div>
 
   <aside class="sidebar">
