@@ -72,7 +72,7 @@
     ];
   ?>
 
-  <section class="hero-about editable-image" style="background-image: linear-gradient(rgba(0,0,0,0.35), rgba(0,0,0,0.35)), url('FOTOS/fotosPrincipales/ejemplo5.jpg');">
+  <section class="hero-about editable-image" style="background-image: linear-gradient(rgba(0,0,0,0.35), rgba(0,0,0,0.35)), url('FOTOS/fotosDeportes/futbol1.jpg');">
     <div class="hero-content">
       <h1 class="editable-text"><?php echo $copy['hero_t'][$cl]; ?></h1>
       <p class="editable-text"><?php echo $copy['hero_s'][$cl]; ?></p>
@@ -92,7 +92,7 @@
           </div>
         </div>
         <div class="about-image editable-image">
-          <img src="FOTOS/fotosPrincipales/ejemplo2.jpg" alt="Actividades deportivas">
+          <img src="FOTOS/fotosDeportes/volley1.jpg" alt="Actividades deportivas">
         </div>
       </div>
     </div>
@@ -108,7 +108,7 @@
         </div>
       </div>
       <div class="offer-image editable-image">
-        <img src="FOTOS/fotosPrincipales/ejemplo4.jpg" alt="Competencias">
+        <img src="FOTOS/fotosDeportes/futbol2.jpg" alt="Competencias">
       </div>
     </div>
   </section>
@@ -124,7 +124,7 @@
           </div>
         </div>
         <div class="about-image editable-image">
-          <img src="FOTOS/fotosPrincipales/portada1.jpg" alt="Talleres">
+          <img src="FOTOS/fotosDeportes/gimnacia.jpg" alt="Talleres">
         </div>
       </div>
     </div>

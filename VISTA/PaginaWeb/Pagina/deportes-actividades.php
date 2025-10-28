@@ -35,7 +35,7 @@
       'contact'=>['es'=>'Contacto','en'=>'Contact','it'=>'Contatto']
     ];
   ?>
-  <section class="hero-about editable-image" style="background-image: linear-gradient(rgba(0,0,0,0.35), rgba(0,0,0,0.35)), url('FOTOS/fotosPrincipales/ejemplo2.jpg');">
+  <section class="hero-about editable-image" style="background-image: linear-gradient(rgba(0,0,0,0.35), rgba(0,0,0,0.35)), url('FOTOS/fotosDeportes/futbol1.jpg');">
     <div class="hero-content">
       <h1 class="editable-text"><?php echo $copy['hero_t'][$cl]; ?></h1>
       <p class="editable-text"><?php echo $copy['hero_s'][$cl]; ?></p>
@@ -50,7 +50,7 @@
           <p class="editable-text"><?php echo $copy['sec1_p'][$cl]; ?></p>
         </div>
         <div class="about-image editable-image">
-          <img src="FOTOS/fotosPrincipales/ejemplo1.jpg" alt="Disciplinas">
+          <img src="FOTOS/fotosDeportes/volley1.jpg" alt="Disciplinas">
         </div>
       </div>
     </div>
@@ -62,7 +62,7 @@
         <p class="editable-text"><?php echo $copy['sec2_p'][$cl]; ?></p>
       </div>
       <div class="offer-image editable-image">
-        <img src="FOTOS/fotosPrincipales/ejemplo3.jpg" alt="Horarios y categorías">
+        <img src="FOTOS/fotosDeportes/futbol2.jpg" alt="Horarios y categorías">
       </div>
     </div>
   </section>

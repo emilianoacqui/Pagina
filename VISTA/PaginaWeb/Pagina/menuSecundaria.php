@@ -49,7 +49,7 @@
                     'en' => 'In the first years of Secondary, we continue the work started in Primary with reflective practices, autonomy and increasing academic rigor to pursue higher studies.',
                     'it' => 'Nei primi anni della Secondaria, proseguiamo il lavoro iniziato in Primaria con pratiche riflessive, autonomia e crescente rigore accademico per proseguire gli studi superiori.',
                 ],
-                'bach_h' => [ 'es' => 'bachillerato', 'en' => 'High School', 'it' => 'Liceo' ],
+                'bach_h' => [ 'es' => 'Bachillerato', 'en' => 'High School', 'it' => 'Liceo' ],
                 'bach_p' => [
                     'es' => 'En el Segundo Ciclo se consolidan métodos de estudio autónomo e investigación. Buscamos formar personas cultas, críticas y creativas, capaces de enfrentar problemas con actitud racional.',
                     'en' => 'In the Second Cycle we consolidate autonomous study methods and research. We aim to form cultured, critical and creative people able to face problems with a rational mindset.',
@@ -83,16 +83,16 @@
     </div>
 </div>
 
-                <!-- BBSIM -->
+                <!-- Bachillerato -->
                 <div class="program-section">
                     <div class="program-image">
                         <img src="FOTOS/fotosClases/bachillerato1.jpg" alt="BBSIM">
                     </div>
                     <div class="program-info">
-                        <h3><?php echo $ms['pc_h'][$cl]; ?></h3>
-                        <p><?php echo $ms['pc_p'][$cl]; ?></p>
+                        <h3><?php echo $ms['bach_h'][$cl]; ?></h3>
+                        <p><?php echo $ms['bach_p'][$cl]; ?></p>
                         
-                            <a href="bachillerato.php" class="program-button" style="display: inline-block; text-decoration: none;">
+                            <a href="Bachillerato.php" class="program-button" style="display: inline-block; text-decoration: none;">
     <?php echo $ms['see_program'][$cl]; ?>
 </a>
 
