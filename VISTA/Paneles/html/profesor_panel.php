@@ -635,22 +635,6 @@ function toggleSidebarProfesor(){
         });
       }
     });
-    // Swipe para cerrar sidebar en móvil
-    let touchStartX = null, touchStartY = null;
-    document.addEventListener('touchstart', (e)=>{
-      if (!e.touches || e.touches.length !== 1) return;
-      touchStartX = e.touches[0].clientX;
-      touchStartY = e.touches[0].clientY;
-    }, {passive:true});
-    document.addEventListener('touchend', (e)=>{
-      if (touchStartX === null) return;
-      const dx = (e.changedTouches && e.changedTouches[0].clientX) - touchStartX;
-      const dy = (e.changedTouches && e.changedTouches[0].clientY) - touchStartY;
-      if (Math.abs(dx) > 50 && Math.abs(dy) < 50 && dx < 0 && window.matchMedia('(max-width: 768px)').matches) {
-        document.body.classList.add('sidebar-collapsed');
-      }
-      touchStartX = touchStartY = null;
-    }, {passive:true});
   });
 </script>
 
