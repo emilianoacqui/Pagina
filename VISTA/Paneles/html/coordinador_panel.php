@@ -305,6 +305,8 @@ while ($row = $res->fetch_assoc()) { $eventos_arr[] = $row; }
 
 </head>
 <body>
+  <button class="sidebar-toggle" onclick="toggleSidebarCoord()">☰ Menú</button>
+
   <aside class="sidebar">
     <h2>Coordinador</h2>
     <nav class="nav">
@@ -1101,5 +1103,19 @@ while ($row = $res->fetch_assoc()) { $eventos_arr[] = $row; }
       }
     });
   </script>
+  <script>
+    function toggleSidebarCoord(){
+      document.body.classList.toggle('sidebar-collapsed');
+      const collapsed = document.body.classList.contains('sidebar-collapsed');
+      try{ localStorage.setItem('sidebarCollapsed_coordinador', collapsed ? '1' : '0'); }catch(e){}
+    }
+    document.addEventListener('DOMContentLoaded', function(){
+      try{
+        const saved = localStorage.getItem('sidebarCollapsed_coordinador');
+        if (saved === '1') document.body.classList.add('sidebar-collapsed');
+      }catch(e){}
+    });
+  </script>
+
 </body>
 </html>
