@@ -287,6 +287,7 @@
 </head>
 <div id="cms-root"></div>
 <body>
+  <div id="original-content">
   <div class="left" style="background-image: url('FOTOS/fotosPrincipales/ejemplo1.jpg');">
     <div class="curve"></div>
   </div>
