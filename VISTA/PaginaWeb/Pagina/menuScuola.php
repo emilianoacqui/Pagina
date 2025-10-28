@@ -266,6 +266,23 @@
     #search-results li a { display: block; color: #2c3e50; }
     #search-results li:hover { background: #f3f4f6; }
 
+    /* Mobile adjustments for search */
+    @media (max-width: 768px) {
+      .top-menu {
+        flex-wrap: wrap;
+        gap: 12px;
+        padding: 12px 0 0 0;
+      }
+      .top-menu .search-wrapper { width: 100%; }
+      .top-menu input#menu-search { width: 100%; min-width: 0; }
+      #search-results {
+        left: 0;
+        right: auto;
+        min-width: 100%;
+        max-height: 50vh;
+      }
+    }
+
   </style>
 </head>
 <div id="cms-root"></div>
