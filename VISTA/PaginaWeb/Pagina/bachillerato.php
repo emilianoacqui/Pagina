@@ -39,7 +39,7 @@
 
         <!-- Hero Image -->
         <section class="hero-section">
-            <img src="FOTOS/fotosClases/bachillerato1.jpg" alt="Casa dei Bambini" class="hero-image">
+            <img src="FOTOS/fotosClases/bachillerato1.jpg" alt="Bachillerato" class="hero-image">
         </section>
         <div id="breadcrumbs" class="breadcrumbs-container"></div>
 
