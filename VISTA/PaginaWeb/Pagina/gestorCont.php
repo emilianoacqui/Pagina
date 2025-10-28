@@ -1032,7 +1032,8 @@ require_once('auth_check.php');
             throw new Error('Error del servidor: ' + response.status);
         }
         
-        const pages = await response.json();
+        const result = await response.json();
+        const pages = (result && result.success && Array.isArray(result.data)) ? result.data : [];
         console.log(' Páginas cargadas:', pages);
         
         // 🔥 FILTRAR: Mostrar solo páginas creadas, no las existentes editadas

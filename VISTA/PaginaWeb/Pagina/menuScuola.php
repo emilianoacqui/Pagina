@@ -405,15 +405,16 @@
 
     async function loadPagesFromServer() {
         try {
-            const response = await fetch('../../../MODELO/Gestor/pages_manager.php', {
+            const response = await fetch('../../../CONTROLADOR/Cms/pages_manager.php', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/x-www-form-urlencoded',
                 },
                 body: 'action=getAll'
             });
-            const pages = await response.json();
-            return Array.isArray(pages) ? pages : [];
+            const result = await response.json();
+            const pages = (result && result.success && Array.isArray(result.data)) ? result.data : [];
+            return pages;
         } catch (error) {
             console.error('Error cargando páginas:', error);
             // Fallback a localStorage
@@ -436,13 +437,13 @@
         submenu.innerHTML = savedPages.map(page => {
             const label = page.name || ('Página ' + page.id);
             const token = isAdmin ? '&cms_admin_token=true' : '';
-            return `<li><a href=\"../../../MODELO/Gestor/view_page.php?id=${page.id}${token}\" style=\"text-decoration:none; color:#2c3e50; display:block; padding:8px 15px;\">${label}</a></li>`;
+            return `<li><a href=\"view_page.php?id=${page.id}${token}\" style=\"text-decoration:none; color:#2c3e50; display:block; padding:8px 15px;\">${label}</a></li>`;
         }).join('');
     }
 
     function viewPage(id) {
         // Navegación normal
-        window.location.href = `../../../MODELO/Gestor/view_page.php?id=${id}`;
+        window.location.href = `view_page.php?id=${id}`;
     }
 
     function toggleMenu(event) {
