@@ -10,6 +10,20 @@
   <link rel="stylesheet" href="../css/acerca-scuola.css">
   <link rel="icon" type="image/png" href="/Pagina/favicon.png">
   <link rel="shortcut icon" href="/Pagina/favicon.ico">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.10/index.global.min.css">
+  <style>
+    .calendar-container{ width:100%; max-width:100%; margin:40px auto; overflow-x:auto; -webkit-overflow-scrolling:touch }
+    #fc-escolar{ min-width:720px; background:#fff; border-radius:12px; box-shadow:0 10px 25px rgba(0,0,0,0.08); padding:8px }
+    @media (max-width:768px){
+      .calendar-container{ margin:20px auto }
+      .fc .fc-toolbar{ flex-wrap:wrap; gap:8px }
+      .fc .fc-toolbar-title{ font-size:16px }
+      .fc .fc-button{ padding:4px 8px; font-size:12px }
+      .fc .fc-col-header-cell-cushion{ padding:6px 0 }
+      .fc .fc-daygrid-day-number{ padding:4px }
+      .fc .fc-daygrid-event{ font-size:12px; padding:1px 2px }
+    }
+  </style>
 </head>
 <div id="cms-root"></div>
 <body>
@@ -80,6 +94,23 @@
     <div class="hero-content">
       <h1 class="editable-text"><?php echo $copy['hero_t'][$cl]; ?></h1>
       <p class="editable-text"><?php echo $copy['hero_s'][$cl]; ?></p>
+    </div>
+  </section>
+
+  <!-- Calendario institucional (eventos de Coordinación) -->
+  <section class="about-section">
+    <div class="container">
+      <div class="about-grid">
+        <div class="about-text">
+          <h2 class="editable-text">Calendario institucional</h2>
+          <p class="editable-text">Eventos publicados por la Coordinación.</p>
+        </div>
+        <div class="about-image" style="width:100%">
+          <div class="calendar-container">
+            <div id="fc-escolar"></div>
+          </div>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -156,6 +187,35 @@
 </div>
 
 <script src="breadcrumbs.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.10/index.global.min.js"></script>
+<script>
+  document.addEventListener('DOMContentLoaded', function(){
+    const el = document.getElementById('fc-escolar');
+    if (!el) return;
+    const isMobile = window.matchMedia('(max-width:768px)').matches;
+    const cal = new FullCalendar.Calendar(el, {
+      locale: 'es',
+      expandRows: true,
+      dayMaxEventRows: true,
+      contentHeight: 'auto',
+      aspectRatio: isMobile ? 0.9 : 1.35,
+      headerToolbar: isMobile ? { left: 'prev,next', center: 'title', right: 'today' } : { left: 'prev,next today', center: 'title', right: 'dayGridMonth,listWeek' },
+      initialView: 'dayGridMonth',
+      buttonText: { today:'Hoy', month:'Mes', week:'Semana', list:'Lista' },
+      events: function(info, success, failure){
+        fetch('../../../CONTROLADOR/Calendario/get_calendar_events.php')
+          .then(r=>r.json())
+          .then(data=> Array.isArray(data) ? success(data) : failure('Formato inválido'))
+          .catch(err=>failure(err));
+      },
+      eventClick: function(info){
+        const ev = info.event; const p = ev.extendedProps||{};
+        alert(`📅 ${ev.title}\n${p.clase?('📚 '+p.clase+'\n'):''}${p.descripcion?('📝 '+p.descripcion):''}`);
+      }
+    });
+    cal.render();
+  });
+</script>
 <script src="cms-admin.js"></script>
 <script src="analytics.js"></script>
 </body>

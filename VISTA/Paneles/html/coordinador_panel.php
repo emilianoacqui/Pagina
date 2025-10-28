@@ -306,7 +306,7 @@ while ($row = $res->fetch_assoc()) { $eventos_arr[] = $row; }
 
 </head>
 <body>
-  <button class="sidebar-toggle" onclick="toggleSidebarCoord()">☰ Menú</button>
+  <button class="sidebar-toggle" onclick="toggleSidebarCoord()" aria-label="Abrir menú">☰</button>
 
   <div class="backdrop" id="backdrop"></div>
 
