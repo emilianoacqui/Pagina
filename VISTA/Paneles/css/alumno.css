@@ -43,6 +43,17 @@
       .fc .fc-daygrid-day-number{ padding:4px; }
       .fc .fc-daygrid-event{ font-size:12px; padding:1px 2px; }
     }
+    /* Compactar calendario y contenedores en móvil */
+    @media (max-width: 768px){
+      .main{ padding:12px; }
+      .card{ padding:16px; margin-bottom:16px; }
+      h1{ font-size:20px; }
+      .calendar-view-controls{ display:flex; gap:8px; }
+      .calendar-view-controls .btn{ padding:8px 10px; font-size:12px; }
+      .calendar-container{ margin:0; }
+      .table-wrap{ margin:0; }
+      input, select, button{ padding:10px 12px; font-size:13px; }
+    }
     .msg { font-weight: 500; margin-bottom: 20px; padding: 16px 20px; border-radius: 12px; border:1px solid transparent; font-size: 14px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
     .msg.ok { background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%); color: #166534; border-color:#bbf7d0; }
     .msg.error { background: linear-gradient(135deg, #fef2f2 0%, #fee2e2 100%); color: #dc2626; border-color:#fecaca; }
