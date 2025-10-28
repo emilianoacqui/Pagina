@@ -428,13 +428,16 @@
         const submenu = document.getElementById("submenu");
         const isAdmin = new URLSearchParams(window.location.search).get('cms_admin_token') === 'true';
         
-        if (!Array.isArray(savedPages) || savedPages.length === 0) {
+        // Solo mostrar páginas creadas por plantillas (no ediciones de páginas existentes)
+        const createdPages = (Array.isArray(savedPages) ? savedPages : []).filter(p => p && p.template && p.template !== 'existing_page');
+
+        if (!Array.isArray(createdPages) || createdPages.length === 0) {
             submenu.innerHTML = "<li style=\"padding:8px 15px;\">No hay páginas creadas</li>";
             return;
         }
 
         // Enlaces Rápidos: mostrar páginas creadas
-        submenu.innerHTML = savedPages.map(page => {
+        submenu.innerHTML = createdPages.map(page => {
             const label = page.name || ('Página ' + page.id);
             const token = isAdmin ? '&cms_admin_token=true' : '';
             return `<li><a href=\"view_page.php?id=${page.id}${token}\" style=\"text-decoration:none; color:#2c3e50; display:block; padding:8px 15px;\">${label}</a></li>`;
