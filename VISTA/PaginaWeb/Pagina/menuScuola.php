@@ -18,6 +18,7 @@
       padding: 0;
     }
 
+
     body {
   font-family: 'Arial', sans-serif;
   display: flex;
@@ -233,6 +234,38 @@
       text-decoration: none;
     }
 
+    /* Search styles */
+    .top-menu .search-wrapper { position: relative; }
+    .top-menu input#menu-search {
+      padding: 6px 10px;
+      border: 1px solid #d0d5dd;
+      border-radius: 6px;
+      outline: none;
+      font-size: 14px;
+      min-width: 180px;
+    }
+    .top-menu input#menu-search:focus { border-color: #94a3b8; box-shadow: 0 0 0 3px rgba(148,163,184,0.25); }
+    #search-results {
+      position: absolute;
+      top: 36px;
+      right: 0;
+      list-style: none;
+      margin: 6px 0 0 0;
+      padding: 6px 0;
+      background: #fff;
+      border: 1px solid #e5e7eb;
+      border-radius: 6px;
+      box-shadow: 0 10px 16px rgba(0,0,0,0.08);
+      max-height: 260px;
+      overflow: auto;
+      display: none;
+      z-index: 20;
+      min-width: 260px;
+    }
+    #search-results li { padding: 6px 12px; }
+    #search-results li a { display: block; color: #2c3e50; }
+    #search-results li:hover { background: #f3f4f6; }
+
   </style>
 </head>
 <div id="cms-root"></div>
@@ -249,7 +282,10 @@
         <ul id="submenu" class="submenu"></ul>
       </div>
       <span>Calendario</span>
-      <span>Buscar</span>
+      <div class="search-wrapper">
+        <input id="menu-search" type="text" placeholder="Buscar..." autocomplete="off" />
+        <ul id="search-results"></ul>
+      </div>
       <span>Otros</span>
     </div>
     <div class="close-button">✕</div>
@@ -409,6 +445,7 @@
 
     document.addEventListener("DOMContentLoaded", async () => {
         await updateMenu();
+        setupSearch();
 
         // Cerrar dropdown al click fuera
         document.body.addEventListener('click', () => {
