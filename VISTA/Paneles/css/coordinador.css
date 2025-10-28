@@ -82,5 +82,42 @@
     .notification.error{background:#ef4444}
 
     /* Responsive */
-    @media (max-width: 900px){.sidebar{width:220px}}
-    @media (max-width: 720px){.sidebar{display:none}.main{padding:16px}}
+    /* Tablet large */
+    @media (max-width: 1024px){
+      .sidebar{width:240px}
+      .main{padding:28px}
+      .card{padding:24px}
+      .card h1{font-size:24px}
+      .event-grid{grid-template-columns:repeat(auto-fill,minmax(220px,1fr))}
+    }
+
+    /* Tablet */
+    @media (max-width: 900px){
+      .sidebar{width:220px}
+      .nav a{font-size:13px;padding:10px 12px}
+      .event-card img{height:130px}
+      th,td{font-size:13px}
+    }
+
+    /* Mobile */
+    @media (max-width: 720px){
+      .sidebar{display:none}
+      .main{padding:16px}
+      .card{padding:20px}
+      .form-row>*{flex:1 1 100%}
+      .event-grid{grid-template-columns:1fr}
+      .table-wrap{overflow-x:auto}
+      table{min-width:520px}
+      .filters{gap:8px}
+      input,select,button{padding:12px 14px}
+    }
+
+    /* Extra small */
+    @media (max-width: 480px){
+      body{line-height:1.5}
+      .main{padding:12px}
+      .card{padding:16px}
+      .card h1{font-size:20px}
+      .event-card img{height:110px}
+      .filters{padding:10px}
+    }
