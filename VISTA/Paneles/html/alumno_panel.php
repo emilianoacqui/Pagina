@@ -329,9 +329,10 @@ if (count($clases_alumno) > 0) {
         expandRows: true,
         dayMaxEventRows: true,
         contentHeight: 'auto',
-        aspectRatio: isMobile ? 0.7 : 1.35,
+        aspectRatio: isMobile ? 0.56 : 1.35,
         headerToolbar: isMobile ? { left: 'prev,next', center: 'title', right: 'today' } : { left: 'prev,next today', center: 'title', right: 'dayGridMonth,listWeek' },
         initialView: 'dayGridMonth',
+        dayHeaderFormat: { weekday: 'short' },
         buttonText: { today: 'Hoy', month: 'Mes', week: 'Semana', list: 'Lista' },
         events: function(info, successCallback, failureCallback) {
           fetch('../../../CONTROLADOR/Calendario/get_calendar_events.php')
@@ -377,7 +378,8 @@ if (count($clases_alumno) > 0) {
           if (nowMobile !== lastIsMobile) {
             lastIsMobile = nowMobile;
           }
-          calendar.setOption('aspectRatio', nowMobile ? 0.78 : 1.35);
+          calendar.setOption('aspectRatio', nowMobile ? 0.56 : 1.35);
+          calendar.setOption('headerToolbar', nowMobile ? { left: 'prev,next', center: 'title', right: 'today' } : { left: 'prev,next today', center: 'title', right: 'dayGridMonth,listWeek' });
         }
       });
     }
