@@ -60,6 +60,7 @@ if (count($clases_alumno) > 0) {
 </head>
 <body>
   <button class="sidebar-toggle" onclick="toggleSidebar()">☰ Menú</button>
+  <div class="backdrop" id="backdrop"></div>
 
   <aside class="sidebar">
     <h2>Alumno</h2>
@@ -522,6 +523,19 @@ if (count($clases_alumno) > 0) {
         const saved = localStorage.getItem('sidebarCollapsed_alumno');
         if (saved === '1') document.body.classList.add('sidebar-collapsed');
       }catch(e){}
+      // Cerrar menú al hacer click en backdrop
+      const backdrop = document.getElementById('backdrop');
+      if (backdrop) { backdrop.addEventListener('click', () => { document.body.classList.remove('sidebar-collapsed'); }); }
+      // Cerrar con ESC
+      document.addEventListener('keydown', (e)=>{ if(e.key==='Escape'){ document.body.classList.add('sidebar-collapsed'); } });
+      // Cerrar al navegar en mobile
+      document.querySelectorAll('.nav a').forEach(a=>{
+        if (a.getAttribute('href') !== '../../../CONTROLADOR/Auth/logout.php') {
+          a.addEventListener('click', ()=>{
+            if (window.matchMedia('(max-width: 768px)').matches) { document.body.classList.add('sidebar-collapsed'); }
+          });
+        }
+      });
     });
   </script>
 </body>

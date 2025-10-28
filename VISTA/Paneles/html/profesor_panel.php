@@ -102,6 +102,8 @@ $clases_select = $clases_prof;
 <body>
 <button class="sidebar-toggle" onclick="toggleSidebarProfesor()">☰ Menú</button>
 
+<div class="backdrop" id="backdrop"></div>
+
 <aside class="sidebar">
   <h2>Profesor</h2>
   <nav class="nav">
@@ -607,6 +609,19 @@ function toggleSidebarProfesor(){
       const saved = localStorage.getItem('sidebarCollapsed_profesor');
       if (saved === '1') document.body.classList.add('sidebar-collapsed');
     }catch(e){}
+    // Backdrop click to close
+    const backdrop = document.getElementById('backdrop');
+    if(backdrop){ backdrop.addEventListener('click', ()=>{ document.body.classList.remove('sidebar-collapsed'); }); }
+    // ESC to close
+    document.addEventListener('keydown', (e)=>{ if(e.key==='Escape'){ document.body.classList.add('sidebar-collapsed'); } });
+    // Close on nav click in mobile
+    document.querySelectorAll('.nav a').forEach(a=>{
+      if (a.getAttribute('href') !== '../../../CONTROLADOR/Auth/logout.php') {
+        a.addEventListener('click', ()=>{
+          if (window.matchMedia('(max-width: 768px)').matches) { document.body.classList.add('sidebar-collapsed'); }
+        });
+      }
+    });
   });
 </script>
 

@@ -307,6 +307,8 @@ while ($row = $res->fetch_assoc()) { $eventos_arr[] = $row; }
 <body>
   <button class="sidebar-toggle" onclick="toggleSidebarCoord()">☰ Menú</button>
 
+  <div class="backdrop" id="backdrop"></div>
+
   <aside class="sidebar">
     <h2>Coordinador</h2>
     <nav class="nav">
@@ -1114,6 +1116,19 @@ while ($row = $res->fetch_assoc()) { $eventos_arr[] = $row; }
         const saved = localStorage.getItem('sidebarCollapsed_coordinador');
         if (saved === '1') document.body.classList.add('sidebar-collapsed');
       }catch(e){}
+      // Backdrop click para cerrar
+      const backdrop = document.getElementById('backdrop');
+      if (backdrop) { backdrop.addEventListener('click', () => { document.body.classList.remove('sidebar-collapsed'); }); }
+      // Cerrar con ESC
+      document.addEventListener('keydown', (e)=>{ if(e.key==='Escape'){ document.body.classList.add('sidebar-collapsed'); } });
+      // Cerrar al navegar (en móvil)
+      document.querySelectorAll('.nav a').forEach(a=>{
+        if (a.getAttribute('href') !== '../../../CONTROLADOR/Auth/logout.php') {
+          a.addEventListener('click', ()=>{
+            if (window.matchMedia('(max-width: 768px)').matches) { document.body.classList.add('sidebar-collapsed'); }
+          });
+        }
+      });
     });
   </script>
 
