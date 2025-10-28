@@ -127,7 +127,7 @@
 
     .submenu li:hover {
       background-color: #eaeaea;
-      text-decoration: underline;
+      text-decoration: none;
     }
 
     /* Otros spans en menú superior */
@@ -210,7 +210,7 @@
     }
 
     .submenu-content li:hover {
-      text-decoration: underline;
+      text-decoration: none;
     }
 
     @keyframes fadeIn {
@@ -225,6 +225,15 @@
     transform: translateX(100%);
   }
 }
+
+    /* Neutralizar apariencia y click de enlaces en submenús */
+    .submenu a,
+    .submenu-content a {
+      color: inherit;
+      text-decoration: none;
+      pointer-events: none;
+      cursor: default;
+    }
 
   </style>
 </head>
@@ -374,13 +383,13 @@
         // Enlaces Rápidos: mostrar páginas creadas
         submenu.innerHTML = savedPages.map(page => {
             const label = page.name || ('Página ' + page.id);
-            return `<li><a href=\"view_page.php?id=${page.id}\" style=\"text-decoration:none; color:#2c3e50; display:block; padding:8px 15px;\">${label}</a></li>`;
+            return `<li><a href=\"../../../MODELO/Gestor/view_page.php?id=${page.id}\" style=\"text-decoration:none; color:#2c3e50; display:block; padding:8px 15px;\">${label}</a></li>`;
         }).join('');
     }
 
     function viewPage(id) {
         // Navegación normal
-        window.location.href = `view_page.php?id=${id}`;
+        window.location.href = `../../../MODELO/Gestor/view_page.php?id=${id}`;
     }
 
     function toggleMenu(event) {
