@@ -392,6 +392,7 @@
             <li><a href="otra-historia.php">Historia institucional</a></li>
             <li><a href="otra-legado.php">Legado y valores</a></li>
             <li><a href="otra-documentos.php">Documentos y recursos</a></li>
+            <li><a href="fisica.php" style="opacity:0.8; font-weight:400;">Laboratorio de Física</a></li>
           </ul>
         </div>
       </div>
