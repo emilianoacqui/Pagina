@@ -267,6 +267,11 @@
         <header>
             <h1>Laboratorio de Física</h1>
             <p class="subtitle">Simulaciones interactivas de las Leyes de Newton y Gravedad</p>
+            <nav aria-label="breadcrumb" style="margin:8px 0 10px 0; font-size:13px;">
+                <a href="index.php" style="color:#0A2452; text-decoration:none;">Inicio</a>
+                <span style="margin:0 6px; color:#888;">/</span>
+                <span style="color:#555;">Laboratorio de Física</span>
+            </nav>
         </header>
 
         <div class="experiments-grid">
