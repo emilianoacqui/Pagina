@@ -11,12 +11,14 @@
             box-sizing: border-box;
         }
 
+        html, body { height: 100%; }
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
             background: #f5f7fa;
             min-height: 100vh;
-            padding: 40px 20px;
             color: #2c3e50;
+            display: flex;
+            flex-direction: column;
         }
 
         /* Navbar (from index.php minimal) */
@@ -27,16 +29,9 @@
         .nav-menu-button { display: flex; flex-direction: column; cursor: pointer; padding: 8px; transition: all 0.3s ease; }
         .nav-menu-button span { width: 25px; height: 3px; background-color: white; margin: 3px 0; transition: 0.3s; border-radius: 2px; }
         .nav-menu-button:hover span { background-color: #F39C12; }
-        .nav-login-btn { background: #0A2452; color: #FFFFFF; padding: 10px 18px; border-radius: 18px; text-decoration: none; font-size: 14px; border: 1px solid rgba(255, 255, 255, 0.6); transition: background 0.3s ease, transform 0.2s ease, color 0.3s ease; }
-        .nav-login-btn:hover { background: #F39C12; color: #0A2452; transform: translateY(-1px); }
-        .lang-wrapper { position: relative; }
-        .lang-dropdown-mini { position: absolute; right: 0; top: 110%; background: #ffffff; border: 1px solid rgba(0,0,0,0.1); border-radius: 8px; box-shadow: 0 8px 16px rgba(0,0,0,0.15); display: none; min-width: 120px; overflow: hidden; z-index: 1001; }
-        .lang-wrapper.open .lang-dropdown-mini { display: block; }
-        .lang-dropdown-mini a { display: block; padding: 8px 12px; text-decoration: none; font-size: 16px; border-bottom: 1px solid rgba(0,0,0,0.06); background: #ffffff; color: #0A2452; text-align: center; }
-        .lang-dropdown-mini a:last-child { border-bottom: none; }
 
         /* Footer (from index.php minimal) */
-        .footer-bottom-new { background: #1B4F72; color: white; padding: 0; margin-top: 60px; }
+        .footer-bottom-new { background: #1B4F72; color: white; padding: 0; margin-top: auto; }
         .footer-container { display: flex; align-items: center; justify-content: space-between; padding: 30px 5%; max-width: 1200px; margin: 0 auto; }
         .footer-left { flex: 1; display: flex; align-items: center; gap: 20px; }
         .footer-logo img { height: 60px; width: auto; }
@@ -266,30 +261,9 @@
     </style>
 </head>
 <body>
-    <nav class="navbar">
-        <div class="nav-container">
-            <div class="nav-logo">
-                <img src="FOTOS/fotosPrincipales/logo2.png" alt="Scuola Italiana di Montevideo">
-            </div>
-            <div style="display:flex; align-items:center; gap:12px;">
-                <a href="../../Auth/index.php" class="nav-login-btn">Ingresar</a>
-                <div class="lang-wrapper" id="langWrap">
-                    <a href="#" class="nav-login-btn" id="langBtn" aria-haspopup="true" aria-expanded="false">ES</a>
-                    <div class="lang-dropdown-mini" id="langDrop">
-                        <a href="?lang=en">EN</a>
-                        <a href="?lang=it">IT</a>
-                    </div>
-                </div>
-            </div>
-            <div class="nav-menu-button" onclick="window.location.href='menuScuola.php'">
-                <span></span>
-                <span></span>
-                <span></span>
-            </div>
-        </div>
-    </nav>
+    <?php include __DIR__.'/includes/navbar.php'; ?>
 
-    <div class="container" style="margin-top:120px;">
+    <div class="container" style="margin-top:120px; flex: 1 0 auto; padding: 40px 20px;">
         <header>
             <h1>Laboratorio de Física</h1>
             <p class="subtitle">Simulaciones interactivas de las Leyes de Newton y Gravedad</p>
@@ -529,31 +503,6 @@
     </footer>
 
     <script>
-        // Language dropdown toggle (minimal)
-        document.addEventListener('DOMContentLoaded', function() {
-            const langWrap = document.getElementById('langWrap');
-            const langBtn = document.getElementById('langBtn');
-            if (langWrap && langBtn) {
-                langBtn.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    e.stopPropagation();
-                    langWrap.classList.toggle('open');
-                    langBtn.setAttribute('aria-expanded', langWrap.classList.contains('open') ? 'true' : 'false');
-                });
-                document.addEventListener('click', function(e) {
-                    if (!langWrap.contains(e.target)) {
-                        langWrap.classList.remove('open');
-                        langBtn.setAttribute('aria-expanded', 'false');
-                    }
-                });
-                document.addEventListener('keydown', function(e) {
-                    if (e.key === 'Escape') {
-                        langWrap.classList.remove('open');
-                        langBtn.setAttribute('aria-expanded', 'false');
-                    }
-                });
-            }
-        });
         // Experimento 1: Inercia y Fricción
         let canvas1 = document.getElementById('canvas1');
         let ctx1 = canvas1.getContext('2d');
