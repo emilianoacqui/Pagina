@@ -16,7 +16,7 @@
             <div class="nav-logo">
                 <img src="FOTOS/fotosPrincipales/logo2.png" alt="Scuola Italiana di Montevideo">
             </div>
-            <div class="nav-menu-button" onclick="alert('Navegación al menú')">
+            <div class="nav-menu-button" id="menuBtn" onclick="window.location.href='menuScuola.php'" style="cursor: pointer;">
                 <span></span>
                 <span></span>
                 <span></span>
@@ -95,7 +95,7 @@
             ],
         ];
     ?>
-    <section class="hero-section">
+    <section class="hero-section" style="background-image: url('FOTOS/fotosPrincipales/FotoScuola1.jpg');">
         <div class="hero-overlay">
             <h1 class="hero-title"><?php echo $vm['hero_t'][$cl]; ?></h1>
         </div>
@@ -220,7 +220,7 @@
         <div class="footer-container">
             <div class="footer-Aleft">
                 <div class="footer-logo">
-                    <img src="https://images.unsplash.com/photo-1599742744838-c3f7a6d0d8b0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=100&q=80" alt="Scuola Italiana di Montevideo" style="height: 60px;">
+                    <img src="FOTOS/fotosPrincipales/logotipo.png" alt="Scuola Italiana di Montevideo" style="height: 60px;">
                 </div>
                 <div class="footer-subtitle">
                     <p>Scuola Italiana di Montevideo</p>
@@ -255,6 +255,16 @@
     </footer>
 
     <script>
+        // Asegurar que el botón del menú redirija correctamente
+        document.addEventListener('DOMContentLoaded', function() {
+            const menuBtn = document.getElementById('menuBtn');
+            if (menuBtn) {
+                menuBtn.addEventListener('click', function() {
+                    window.location.href = 'menuScuola.php';
+                });
+            }
+        });
+        
         let lastScrollTop = 0;
 
         window.addEventListener('scroll', function() {

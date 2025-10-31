@@ -78,9 +78,11 @@
             width: 100%;
             height: 100vh;
             position: relative;
-            background: url('FOTOS/fotosPrincipales/FotoScuola1.jpg') center/cover;
+            background: url('../Pagina/FOTOS/fotosPrincipales/FotoScuola1.jpg') center/cover;
             margin-top: 0px;
-            
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
         }
 
         .hero-overlay {
