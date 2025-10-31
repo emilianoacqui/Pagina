@@ -351,31 +351,116 @@
         }
 
         /* Responsive Design */
+        @media (max-width: 1024px) {
+            .hero {
+                height: 70vh;
+            }
+            
+            .hero-title {
+                font-size: clamp(2rem, 6vw, 4rem);
+            }
+            
+            .hero-subtitle {
+                font-size: 1rem;
+                padding: 0 20px;
+            }
+            
+            .features {
+                padding: 60px 0;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+                margin-bottom: 40px;
+            }
+            
+            .features-grid {
+                gap: 30px;
+            }
+        }
+
         @media (max-width: 768px) {
+            /* Navigation */
+            .navbar {
+                height: 70px;
+            }
+            
+            .nav-container {
+                padding: 0 4%;
+            }
+            
+            .nav-logo img {
+                height: 90px;
+            }
+            
+            .nav-menu-button span {
+                width: 22px;
+                height: 2.5px;
+            }
+
+            /* Hero Section */
+            .hero {
+                height: 60vh;
+                margin-top: 70px;
+            }
+
+            .hero-title {
+                font-size: clamp(1.8rem, 8vw, 2.5rem);
+                margin-bottom: 15px;
+                padding: 0 20px;
+            }
+
+            .hero-subtitle {
+                font-size: 0.95rem;
+                padding: 0 30px;
+            }
+
+            /* Main Content */
             .intro-grid,
             .content-grid {
                 grid-template-columns: 1fr;
-                gap: 40px;
+                gap: 30px;
+            }
+
+            .features {
+                padding: 50px 0;
             }
 
             .features-grid {
                 grid-template-columns: 1fr;
+                gap: 25px;
+                padding: 0 10px;
             }
-
-            .hero-title {
-                font-size: 2.5rem;
+            
+            .feature-card {
+                padding: 30px 20px;
+            }
+            
+            .feature-card h3 {
+                font-size: 1.3rem;
+            }
+            
+            .feature-card p {
+                font-size: 0.95rem;
             }
 
             .intro-text h2,
             .content-text h2,
             .section-title {
-                font-size: 2rem;
+                font-size: 1.75rem;
+                padding: 0 20px;
+            }
+            
+            .section-title {
+                margin-bottom: 35px;
             }
 
+            /* Footer */
             .footer-container {
                 flex-direction: column;
-                gap: 30px;
+                gap: 25px;
                 text-align: center;
+                padding: 25px 4%;
             }
             
             .footer-Aleft {
@@ -387,5 +472,79 @@
             .footer-right {
                 padding: 0;
                 width: 100%;
+            }
+            
+            .footer-section {
+                margin-bottom: 20px;
+            }
+            
+            .footer-info-bar {
+                padding: 12px 4%;
+            }
+            
+            .footer-info-bar p {
+                font-size: 11px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .navbar {
+                height: 60px;
+            }
+            
+            .nav-logo img {
+                height: 75px;
+            }
+            
+            .hero {
+                height: 50vh;
+                margin-top: 60px;
+            }
+            
+            .hero-title {
+                font-size: 1.5rem;
+            }
+            
+            .hero-subtitle {
+                font-size: 0.85rem;
+            }
+            
+            .features {
+                padding: 40px 0;
+            }
+            
+            .section-title {
+                font-size: 1.5rem;
+                margin-bottom: 30px;
+            }
+            
+            .feature-card {
+                padding: 25px 15px;
+            }
+            
+            .feature-card h3 {
+                font-size: 1.2rem;
+                margin-bottom: 12px;
+            }
+            
+            .feature-card p {
+                font-size: 0.9rem;
+                line-height: 1.5;
+            }
+            
+            .footer-container {
+                padding: 20px 4%;
+            }
+            
+            .footer-logo img {
+                height: 50px;
+            }
+            
+            .footer-section h4 {
+                font-size: 15px;
+            }
+            
+            .footer-section p {
+                font-size: 13px;
             }
         }

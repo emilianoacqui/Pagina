@@ -55,6 +55,7 @@
     cursor: pointer;
     padding: 8px;
     transition: all 0.3s ease;
+    z-index: 1001;
 }
 
 .nav-menu-button span {
@@ -68,6 +69,65 @@
 
 .nav-menu-button:hover span {
     background-color: #F39C12;
+}
+
+/* Responsive Header */
+@media (max-width: 1024px) {
+    .nav-container {
+        padding: 0 4%;
+    }
+    
+    .nav-logo img {
+        height: 100px;
+    }
+}
+
+@media (max-width: 768px) {
+    .navbar {
+        height: 70px;
+    }
+    
+    .nav-container {
+        padding: 0 4%;
+    }
+    
+    .nav-logo img {
+        height: 90px;
+    }
+    
+    .nav-menu-button {
+        padding: 6px;
+    }
+    
+    .nav-menu-button span {
+        width: 22px;
+        height: 2.5px;
+        margin: 2.5px 0;
+    }
+}
+
+@media (max-width: 480px) {
+    .navbar {
+        height: 60px;
+    }
+    
+    .nav-container {
+        padding: 0 3%;
+    }
+    
+    .nav-logo img {
+        height: 75px;
+    }
+    
+    .nav-menu-button {
+        padding: 5px;
+    }
+    
+    .nav-menu-button span {
+        width: 20px;
+        height: 2px;
+        margin: 2px 0;
+    }
 }
 </style>
 

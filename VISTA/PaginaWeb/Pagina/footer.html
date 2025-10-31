@@ -105,13 +105,21 @@
 }
 
 /* Responsive */
+@media (max-width: 1024px) {
+    .footer-container {
+        padding: 25px 4%;
+    }
+}
+
 @media (max-width: 768px) {
     .footer-container {
         flex-direction: column;
-        gap: 30px;
+        gap: 25px;
         text-align: center;
+        padding: 25px 4%;
     }
     
+    .footer-Aleft,
     .footer-left {
         flex-direction: column;
         gap: 10px;
@@ -125,6 +133,56 @@
     
     .footer-section {
         margin-bottom: 20px;
+    }
+    
+    .footer-section h4 {
+        font-size: 15px;
+    }
+    
+    .footer-section p {
+        font-size: 13px;
+    }
+    
+    .footer-info-bar {
+        padding: 12px 4%;
+    }
+    
+    .footer-info-bar p {
+        font-size: 11px;
+    }
+}
+
+@media (max-width: 480px) {
+    .footer-container {
+        padding: 20px 4%;
+        gap: 20px;
+    }
+    
+    .footer-logo img {
+        height: 50px;
+    }
+    
+    .footer-subtitle p {
+        font-size: 12px;
+    }
+    
+    .footer-section h4 {
+        font-size: 14px;
+        margin-bottom: 8px;
+    }
+    
+    .footer-section p {
+        font-size: 12px;
+        margin: 6px 0;
+    }
+    
+    .footer-info-bar {
+        padding: 10px 4%;
+    }
+    
+    .footer-info-bar p {
+        font-size: 10px;
+        line-height: 1.4;
     }
 }
 /* MEJORAS PARA VIVIR LA SCUOLA */

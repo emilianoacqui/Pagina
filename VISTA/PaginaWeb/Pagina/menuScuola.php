@@ -29,6 +29,13 @@
   animation: slideInFromRight 0.5s ease-out forwards;
 }
 
+    @media (max-width: 768px) {
+      body {
+        overflow-y: auto;
+        overflow-x: hidden;
+      }
+    }
+
 @keyframes slideInFromRight {
   from {
     transform: translateX(100%);
@@ -268,18 +275,84 @@
 
     /* Mobile adjustments for search */
     @media (max-width: 768px) {
+      body {
+        flex-direction: column;
+        overflow-y: auto;
+      }
+      
       .top-menu {
         flex-wrap: wrap;
-        gap: 12px;
-        padding: 12px 0 0 0;
+        gap: 10px;
+        padding: 10px 0 8px 0;
+        font-size: 14px;
       }
-      .top-menu .search-wrapper { width: 100%; }
-      .top-menu input#menu-search { width: 100%; min-width: 0; }
+      
+      .top-menu > span, .menu-dropdown {
+        font-size: 14px;
+      }
+      
+      .top-menu .search-wrapper { 
+        width: 100%; 
+        order: -1;
+      }
+      
+      .top-menu input#menu-search { 
+        width: 100%; 
+        min-width: 0; 
+        font-size: 14px;
+      }
+      
       #search-results {
-        left: 0;
-        right: auto;
-        min-width: 100%;
+        left: 0 !important;
+        right: 0 !important;
+        min-width: 100% !important;
+        max-width: 100% !important;
         max-height: 50vh;
+      }
+      
+      .left {
+        display: none !important;
+      }
+      
+      .right {
+        width: 100% !important;
+        padding: 15px 12px !important;
+      }
+      
+      .menu-container {
+        flex-direction: column !important;
+        padding-top: 8px !important;
+      }
+      
+      .menu, .submenu-panel {
+        width: 100% !important;
+      }
+      
+      .submenu-panel {
+        padding-left: 0 !important;
+      }
+      
+      .close-button {
+        z-index: 100 !important;
+      }
+    }
+    
+    @media (max-width: 640px) {
+      .menu-item {
+        font-size: 16px;
+        padding: 12px 14px;
+      }
+      
+      .submenu-content {
+        font-size: 14px;
+      }
+      
+      .close-button {
+        top: 8px !important;
+        right: 12px !important;
+        width: 32px !important;
+        height: 32px !important;
+        line-height: 28px !important;
       }
     }
 
