@@ -456,10 +456,15 @@
     }
 
 
-    // Cerrar con transición
+    // Cerrar con transición: volver a la página anterior si existe, si no, ir a index
     document.querySelector('.close-button').addEventListener('click', () => {
         document.body.style.animation = 'slideOutToRight 0.5s ease-in forwards';
         setTimeout(() => {
+            const hasReferrer = document.referrer && new URL(document.referrer, window.location.origin).origin === window.location.origin;
+            if (hasReferrer && window.history.length > 1) {
+                window.history.back();
+                return;
+            }
             const params = new URLSearchParams(window.location.search);
             const isAdmin = params.get('cms_admin_token') === 'true';
             const target = isAdmin ? 'index.php?cms_admin_token=true' : 'index.php';
