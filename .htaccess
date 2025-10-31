@@ -4,6 +4,29 @@ DirectoryIndex index.html index.php index.htm
 # Desactivar listado de directorios
 Options -Indexes
 
+# Redireccionar todo a la carpeta src manteniendo la estructura de URLs
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    
+    # Si la solicitud no es para un archivo existente
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME} !-d
+    
+    # Si no es el index.html raíz
+    RewriteCond %{REQUEST_URI} !^/index\.html$
+    
+    # Redirigir a src manteniendo la ruta solicitada
+    RewriteRule ^(.*)$ src/$1 [L]
+</IfModule>
+
+# Asegurar que PHP maneje las rutas y mantener parámetros en redirecciones
+<IfModule mod_rewrite.c>
+    # Esta regla se mantiene para compatibilidad con las rutas antiguas
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteRule ^(.*)$ src/VISTA/PaginaWeb/Pagina/index.php?url=$1 [QSA,L]
+</IfModule>
+
 # Asegurar que PHP maneje las rutas y mantener parámetros en redirecciones
 <IfModule mod_rewrite.c>
   RewriteEngine On
