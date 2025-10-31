@@ -113,10 +113,10 @@
                 'ver_programa' => ['es' => 'Ver programa', 'en' => 'See program', 'it' => 'Vedi programma'],
             ];
         ?>
-        <section class="hero-inicial">
+        <section class="hero-inicial" style="background-image: linear-gradient(rgba(10, 36, 82, 0.7), rgba(27, 79, 114, 0.7)), url('FOTOS/fotosDeportes/futbol1.jpg'); background-size: cover; background-position: center;">
             <div class="hero-content">
                 <h1 class="hero-title"><?php echo $md['hero'][$cl]; ?></h1>
-                <p class="hero-subtitle" style="margin-top:10px; color:#555; font-size:1rem;"><?php echo $md['intro'][$cl]; ?></p>
+                <p class="hero-subtitle" style="margin-top:10px; color:#fff; font-size:1rem;"><?php echo $md['intro'][$cl]; ?></p>
             </div>
         </section>
         <div id="breadcrumbs" class="breadcrumbs-container"></div>
@@ -156,7 +156,7 @@
                 <!-- Hockey -->
                 <div class="program-section">
                     <div class="program-image">
-                        <img src="FOTOS/fotosDeportes/futbol1.jpg" alt="Hockey">
+                        <img src="FOTOS/fotosPrincipales/hockey.jpg" alt="Hockey">
         </div>
                     <div class="program-info">
                         <h3><?php echo $md['hockey_h'][$cl]; ?></h3>

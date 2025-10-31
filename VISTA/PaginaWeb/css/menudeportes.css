@@ -64,7 +64,9 @@ body {
 .hero-inicial {
     position: relative;
     height: 60vh;
-    background: linear-gradient(135deg, #0A2452 0%, #1B4F72 100%);
+    background: linear-gradient(rgba(10, 36, 82, 0.7), rgba(27, 79, 114, 0.7)), url('../Pagina/FOTOS/fotosDeportes/futbol1.jpg');
+    background-size: cover;
+    background-position: center;
     display: flex;
     align-items: center;
     justify-content: center;
