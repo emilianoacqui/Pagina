@@ -20,7 +20,7 @@
             <div class="nav-logo">
                 <img src="FOTOS/fotosPrincipales/logo2.png" alt="Scuola Italiana di Montevideo" style="height: 120px;">
             </div>
-            <div class="nav-menu-button" onclick="window.location.href='menuScuola.php'">
+            <div class="nav-menu-button" id="menuBtn" onclick="window.location.href='menuScuola.php'" style="cursor: pointer;">
                 <span></span>
                 <span></span>
                 <span></span>
@@ -100,7 +100,7 @@
                     <p class="editable-text"><?php echo $copy['sec1_p'][$cl]; ?></p>
                 </div>
                 <div class="about-image editable-image">
-                    <img src="FOTOS/fotosPrincipales/historia.jpg" alt="Historia de la Scuola">
+                    <img src="FOTOS/fotosPrincipales/FotoScuola1.jpg" alt="Historia de la Scuola">
                 </div>
             </div>
         </div>
@@ -173,6 +173,17 @@
     </footer>
 </div>
 
+<script>
+    // Asegurar que el botón del menú redirija correctamente
+    document.addEventListener('DOMContentLoaded', function() {
+        const menuBtn = document.getElementById('menuBtn');
+        if (menuBtn) {
+            menuBtn.addEventListener('click', function() {
+                window.location.href = 'menuScuola.php';
+            });
+        }
+    });
+</script>
 <script src="breadcrumbs.js"></script>
 <script src="cms-admin.js"></script>
 <script src="analytics.js"></script>
