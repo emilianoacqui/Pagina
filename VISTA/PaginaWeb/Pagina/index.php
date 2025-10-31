@@ -1698,15 +1698,40 @@ body:not(.loading-cms-content) #cms-root {
                         <?php
                             $linksTitle = ['es' => 'Enlaces útiles','en' => 'Useful links','it' => 'Link utili'];
                             $linkItems = [
-                                'es' => ['Política de privacidad','Requisitos técnicos','Accesibilidad'],
-                                'en' => ['Privacy Policy','Technical Requirements','Accessibility'],
-                                'it' => ['Informativa sulla privacy','Requisiti tecnici','Accessibilità'],
+                                [
+                                    'href' => 'politica-privacidad.php',
+                                    'label' => [
+                                        'es' => 'Política de privacidad',
+                                        'en' => 'Privacy Policy',
+                                        'it' => 'Informativa sulla privacy',
+                                    ],
+                                ],
+                                [
+                                    'href' => 'requisitos-tecnicos.php',
+                                    'label' => [
+                                        'es' => 'Requisitos técnicos',
+                                        'en' => 'Technical Requirements',
+                                        'it' => 'Requisiti tecnici',
+                                    ],
+                                ],
+                                [
+                                    'href' => 'accesibilidad.php',
+                                    'label' => [
+                                        'es' => 'Accesibilidad',
+                                        'en' => 'Accessibility',
+                                        'it' => 'Accessibilità',
+                                    ],
+                                ],
                             ];
                         ?>
                         <h4><?php echo $linksTitle[$cl]; ?></h4>
-                        <p><?php echo $linkItems[$cl][0]; ?></p>
-                        <p><?php echo $linkItems[$cl][1]; ?></p>
-                        <p><?php echo $linkItems[$cl][2]; ?></p>
+                        <?php foreach ($linkItems as $item): ?>
+                            <p>
+                                <a href="<?php echo htmlspecialchars($item['href']); ?>" style="color: inherit; text-decoration: none;">
+                                    <?php echo htmlspecialchars($item['label'][$cl] ?? $item['label']['es']); ?>
+                                </a>
+                            </p>
+                        <?php endforeach; ?>
                     </div>
                 </div>
             </div>

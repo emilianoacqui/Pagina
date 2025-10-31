@@ -1,9 +1,408 @@
 <!DOCTYPE html>
-<?php if (session_status() === PHP_SESSION_NONE) { session_start(); } if (isset($_GET['lang']) && in_array($_GET['lang'], ['es','en','it'])) { $_SESSION['lang'] = $_GET['lang']; } $cl = $_SESSION['lang'] ?? 'es'; ?>
+<?php
+if (session_status() === PHP_SESSION_NONE) {
+  session_start();
+}
+if (isset($_GET['lang']) && in_array($_GET['lang'], ['es', 'en', 'it'], true)) {
+  $_SESSION['lang'] = $_GET['lang'];
+}
+$cl = $_SESSION['lang'] ?? 'es';
+
+$ms_meta = [
+  'es' => 'Menú Scuola Italiana',
+  'en' => 'Scuola Italiana Menu',
+  'it' => 'Menu Scuola Italiana',
+];
+
+if (!function_exists('ms_tr')) {
+  function ms_tr(array $map, string $lang): string
+  {
+    if (isset($map[$lang]) && is_string($map[$lang])) {
+      return $map[$lang];
+    }
+    if (isset($map['es']) && is_string($map['es'])) {
+      return $map['es'];
+    }
+    $first = reset($map);
+    return is_string($first) ? $first : '';
+  }
+}
+
+$uiText = [
+  'quick_links' => [
+    'es' => 'Enlaces Rápidos',
+    'en' => 'Quick Links',
+    'it' => 'Collegamenti Rapidi',
+  ],
+  'calendar' => [
+    'es' => 'Calendario',
+    'en' => 'Calendar',
+    'it' => 'Calendario',
+  ],
+  'others' => [
+    'es' => 'Otros',
+    'en' => 'Others',
+    'it' => 'Altri',
+  ],
+  'search_placeholder' => [
+    'es' => 'Buscar...',
+    'en' => 'Search...',
+    'it' => 'Cerca...',
+  ],
+];
+
+$menuItems = [
+  [
+    'id' => 'submenu1',
+    'image' => 'FOTOS/fotosPrincipales/ejemplo1.jpg',
+    'link' => 'acerca-scuola.php',
+    'label' => [
+      'es' => 'Acerca Scuola Italiana',
+      'en' => 'About Scuola Italiana',
+      'it' => 'Informazioni sulla Scuola Italiana',
+    ],
+    'submenu' => [
+      [
+        'href' => 'acerca-scuola.php',
+        'label' => [
+          'es' => 'Ir a Acerca Scuola Italiana',
+          'en' => 'Go to About Scuola Italiana',
+          'it' => 'Vai a Informazioni sulla Scuola Italiana',
+        ],
+        'strong' => true,
+      ],
+      [
+        'href' => 'acerca-scuola.php',
+        'label' => [
+          'es' => 'Acerca de la Scuola',
+          'en' => 'About the School',
+          'it' => 'Informazioni sulla scuola',
+        ],
+      ],
+      [
+        'href' => 'acerca-bienvenido.php',
+        'label' => [
+          'es' => 'Bienvenido a Scuola Italiana',
+          'en' => 'Welcome to Scuola Italiana',
+          'it' => 'Benvenuti alla Scuola Italiana',
+        ],
+      ],
+      [
+        'href' => 'acerca-mision-historia.php',
+        'label' => [
+          'es' => 'Nuestra Misión e Historia',
+          'en' => 'Our Mission and History',
+          'it' => 'La nostra missione e storia',
+        ],
+      ],
+      [
+        'href' => 'acerca-liderazgo-vision.php',
+        'label' => [
+          'es' => 'Liderazgo y visión estratégica',
+          'en' => 'Leadership and Strategic Vision',
+          'it' => 'Leadership e visione strategica',
+        ],
+      ],
+      [
+        'href' => 'acerca-personal.php',
+        'label' => [
+          'es' => 'Nuestro personal docente y administrativo',
+          'en' => 'Our Teaching and Administrative Staff',
+          'it' => 'Il nostro personale docente e amministrativo',
+        ],
+      ],
+      [
+        'href' => 'acerca-carreras.php',
+        'label' => [
+          'es' => 'Carreras',
+          'en' => 'Careers',
+          'it' => 'Carriere',
+        ],
+      ],
+      [
+        'href' => 'acerca-campus.php',
+        'label' => [
+          'es' => 'Explora nuestro campus',
+          'en' => 'Explore Our Campus',
+          'it' => 'Esplora il nostro campus',
+        ],
+      ],
+      [
+        'href' => 'acerca-comunidad.php',
+        'label' => [
+          'es' => 'Voces de la comunidad',
+          'en' => 'Voices of the Community',
+          'it' => 'Voci della comunità',
+        ],
+      ],
+      [
+        'href' => 'acerca-equidad-participacion.php',
+        'label' => [
+          'es' => 'Equidad y participación comunitaria',
+          'en' => 'Equity and Community Engagement',
+          'it' => 'Equità e partecipazione della comunità',
+        ],
+      ],
+      [
+        'href' => 'calendario-escolar.php',
+        'label' => [
+          'es' => 'Calendario escolar',
+          'en' => 'School Calendar',
+          'it' => 'Calendario scolastico',
+        ],
+      ],
+    ],
+  ],
+  [
+    'id' => 'submenu2',
+    'image' => 'FOTOS/fotosPrincipales/ejemplo2.jpg',
+    'link' => 'admisiones.php',
+    'label' => [
+      'es' => 'Admisión',
+      'en' => 'Admission',
+      'it' => 'Ammissione',
+    ],
+    'submenu' => [
+      [
+        'href' => 'admisiones.php',
+        'label' => [
+          'es' => 'Ir a Admisión',
+          'en' => 'Go to Admission',
+          'it' => 'Vai a Ammissione',
+        ],
+        'strong' => true,
+      ],
+      [
+        'href' => 'admision-requisitos.php',
+        'label' => [
+          'es' => 'Requisitos de admisión',
+          'en' => 'Admission Requirements',
+          'it' => 'Requisiti di ammissione',
+        ],
+      ],
+      [
+        'href' => 'admision-fechas.php',
+        'label' => [
+          'es' => 'Fechas clave',
+          'en' => 'Key Dates',
+          'it' => 'Date importanti',
+        ],
+      ],
+      [
+        'href' => 'admision-contacto.php',
+        'label' => [
+          'es' => 'Contacto de admisiones',
+          'en' => 'Admissions Contact',
+          'it' => 'Contatti per l\'ammissione',
+        ],
+      ],
+    ],
+  ],
+  [
+    'id' => 'submenu3',
+    'image' => 'FOTOS/fotosPrincipales/ejemplo3.jpg',
+    'link' => 'propuesta.php',
+    'label' => [
+      'es' => 'Propuesta Educativa',
+      'en' => 'Educational Program',
+      'it' => 'Offerta formativa',
+    ],
+    'submenu' => [
+      [
+        'href' => 'propuesta.php',
+        'label' => [
+          'es' => 'Ir a Propuesta Educativa',
+          'en' => 'Go to Educational Program',
+          'it' => 'Vai a Offerta formativa',
+        ],
+        'strong' => true,
+      ],
+      [
+        'href' => 'propuesta-niveles.php',
+        'label' => [
+          'es' => 'Niveles y áreas',
+          'en' => 'Levels and Areas',
+          'it' => 'Livelli e aree',
+        ],
+      ],
+      [
+        'href' => 'propuesta-plan-academico.php',
+        'label' => [
+          'es' => 'Plan académico',
+          'en' => 'Academic Plan',
+          'it' => 'Piano accademico',
+        ],
+      ],
+      [
+        'href' => 'propuesta-proyectos.php',
+        'label' => [
+          'es' => 'Proyectos destacados',
+          'en' => 'Featured Projects',
+          'it' => 'Progetti principali',
+        ],
+      ],
+    ],
+  ],
+  [
+    'id' => 'submenu4',
+    'image' => 'FOTOS/fotosPrincipales/ejemplo4.jpg',
+    'link' => 'mapa.php',
+    'label' => [
+      'es' => 'Mapa del colegio',
+      'en' => 'School Map',
+      'it' => 'Mappa della scuola',
+    ],
+    'submenu' => [
+      [
+        'href' => 'mapa.php',
+        'label' => [
+          'es' => 'Ir a Mapa del colegio',
+          'en' => 'Go to School Map',
+          'it' => 'Vai a Mappa della scuola',
+        ],
+        'strong' => true,
+      ],
+      [
+        'href' => 'mapa-campus.php',
+        'label' => [
+          'es' => 'Mapa del campus',
+          'en' => 'Campus Map',
+          'it' => 'Mappa del campus',
+        ],
+      ],
+      [
+        'href' => 'ubicaciones.php',
+        'label' => [
+          'es' => 'Ubicaciones principales',
+          'en' => 'Main Locations',
+          'it' => 'Posizioni principali',
+        ],
+      ],
+    ],
+  ],
+  [
+    'id' => 'submenu5',
+    'image' => 'FOTOS/fotosPrincipales/ejemplo5.jpg',
+    'link' => 'deportes.php',
+    'label' => [
+      'es' => 'Deportes',
+      'en' => 'Sports',
+      'it' => 'Sport',
+    ],
+    'submenu' => [
+      [
+        'href' => 'deportes.php',
+        'label' => [
+          'es' => 'Ir a Deportes',
+          'en' => 'Go to Sports',
+          'it' => 'Vai a Sport',
+        ],
+        'strong' => true,
+      ],
+      [
+        'href' => 'deportes-actividades.php',
+        'label' => [
+          'es' => 'Actividades deportivas',
+          'en' => 'Sports Activities',
+          'it' => 'Attività sportive',
+        ],
+      ],
+      [
+        'href' => 'deportes-competencias.php',
+        'label' => [
+          'es' => 'Competencias',
+          'en' => 'Competitions',
+          'it' => 'Competizioni',
+        ],
+      ],
+      [
+        'href' => 'deportes-talleres.php',
+        'label' => [
+          'es' => 'Talleres',
+          'en' => 'Workshops',
+          'it' => 'Laboratori',
+        ],
+      ],
+    ],
+  ],
+  [
+    'id' => 'submenu6',
+    'image' => 'FOTOS/fotosPrincipales/ejemplo6.jpg',
+    'link' => 'otra.php',
+    'label' => [
+      'es' => 'Otra sección',
+      'en' => 'Other Section',
+      'it' => 'Altra sezione',
+    ],
+    'submenu' => [
+      [
+        'href' => 'otra.php',
+        'label' => [
+          'es' => 'Ir a Otra sección',
+          'en' => 'Go to Other Section',
+          'it' => 'Vai a Altra sezione',
+        ],
+        'strong' => true,
+      ],
+      [
+        'href' => 'otra-historia.php',
+        'label' => [
+          'es' => 'Historia institucional',
+          'en' => 'Institutional History',
+          'it' => 'Storia istituzionale',
+        ],
+      ],
+      [
+        'href' => 'otra-legado.php',
+        'label' => [
+          'es' => 'Legado y valores',
+          'en' => 'Legacy and Values',
+          'it' => 'Eredità e valori',
+        ],
+      ],
+      [
+        'href' => 'otra-documentos.php',
+        'label' => [
+          'es' => 'Documentos y recursos',
+          'en' => 'Documents and Resources',
+          'it' => 'Documenti e risorse',
+        ],
+      ],
+      [
+        'href' => 'fisica.php',
+        'label' => [
+          'es' => 'Laboratorio de Física',
+          'en' => 'Physics Laboratory',
+          'it' => 'Laboratorio di fisica',
+        ],
+        'attributes' => 'style="opacity:0.8; font-weight:400;"',
+      ],
+    ],
+  ],
+];
+
+$jsText = [
+  'no_pages' => [
+    'es' => 'No hay páginas creadas',
+    'en' => 'No pages created',
+    'it' => 'Nessuna pagina creata',
+  ],
+  'no_results' => [
+    'es' => 'Sin resultados',
+    'en' => 'No results',
+    'it' => 'Nessun risultato',
+  ],
+  'page_fallback' => [
+    'es' => 'Página ',
+    'en' => 'Page ',
+    'it' => 'Pagina ',
+  ],
+];
+?>
 <html lang="<?php echo $cl; ?>">
 <head>
   <meta charset="UTF-8" />
-  <title><?php $ms_meta=['es'=>'Menú Scuola Italiana','en'=>'Scuola Italiana Menu','it'=>'Menu Scuola Italiana']; echo $ms_meta[$cl]; ?></title>
+  <title><?php echo htmlspecialchars(ms_tr($ms_meta, $cl)); ?></title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <link rel="icon" type="image/png" href="/Pagina/VISTA/PaginaWeb/Pagina/FOTOS/fotosPrincipales/logotipo.png">
   <link rel="shortcut icon" href="/Pagina/favicon.ico">
@@ -368,105 +767,49 @@
     <!-- Menú superior con dropdown -->
     <div class="top-menu">
       <div class="menu-dropdown" onclick="toggleMenu(event)">
-        Enlaces Rápidos
+        <?php echo htmlspecialchars(ms_tr($uiText['quick_links'], $cl)); ?>
         <ul id="submenu" class="submenu"></ul>
       </div>
-      <span>Calendario</span>
+      <span><?php echo htmlspecialchars(ms_tr($uiText['calendar'], $cl)); ?></span>
       <div class="search-wrapper">
-        <input id="menu-search" type="text" placeholder="Buscar..." autocomplete="off" />
+        <input id="menu-search" type="text" placeholder="<?php echo htmlspecialchars(ms_tr($uiText['search_placeholder'], $cl)); ?>" autocomplete="off" />
         <ul id="search-results"></ul>
       </div>
-      <span>Otros</span>
+      <span><?php echo htmlspecialchars(ms_tr($uiText['others'], $cl)); ?></span>
     </div>
     <div class="close-button">✕</div>
 
     <!-- Contenedor principal del menú -->
-    <!-- Contenedor principal del menú -->
 <div class="menu-container">
   <div class="menu">
-    <div class="menu-item" onclick="window.location.href='acerca-scuola.php'" data-target="submenu1" data-img="FOTOS/fotosPrincipales/ejemplo1.jpg">
-      Acerca Scuola Italiana
+        <?php foreach ($menuItems as $item): ?>
+          <div
+            class="menu-item"
+            onclick="window.location.href='<?php echo htmlspecialchars($item['link'], ENT_QUOTES); ?>'"
+            data-target="<?php echo htmlspecialchars($item['id']); ?>"
+            data-img="<?php echo htmlspecialchars($item['image']); ?>"
+          >
+            <?php echo htmlspecialchars(ms_tr($item['label'], $cl)); ?>
     </div>
-
-    <div class="menu-item" onclick="window.location.href='admisiones.php'" data-target="submenu2" data-img="FOTOS/fotosPrincipales/ejemplo2.jpg">
-      Admisión
-    </div>
-
-    <div class="menu-item" onclick="window.location.href='propuesta.php'" data-target="submenu3" data-img="FOTOS/fotosPrincipales/ejemplo3.jpg">
-      Propuesta Educativa
-    </div>
-
-    <div class="menu-item" onclick="window.location.href='mapa.php'" data-target="submenu4" data-img="FOTOS/fotosPrincipales/ejemplo4.jpg">
-      Mapa del colegio
-    </div>
-
-    <div class="menu-item" onclick="window.location.href='deportes.php'" data-target="submenu5" data-img="FOTOS/fotosPrincipales/ejemplo5.jpg">
-      Deportes
-    </div>
-
-    <div class="menu-item" onclick="window.location.href='otra.php'" data-target="submenu6" data-img="FOTOS/fotosPrincipales/ejemplo6.jpg">
-      Otra sección
-    </div>
+        <?php endforeach; ?>
   </div>
 
-
-
       <div class="submenu-panel">
-        <div id="submenu1" class="submenu-content active">
-          <ul>
-            <li><a href="acerca-scuola.php"><strong>Ir a Acerca Scuola Italiana</strong></a></li>
-            <li><a href="acerca-scuola.php">Acerca de la Scuola</a></li>
-            <li><a href="acerca-bienvenido.php">Bienvenido a Scuola Italiana</a></li>
-            <li><a href="acerca-mision-historia.php">Nuestra Misión e Historia</a></li>
-            <li><a href="acerca-liderazgo-vision.php">Liderazgo y visión estratégica</a></li>
-            <li><a href="acerca-personal.php">Nuestro personal docente y administrativo</a></li>
-            <li><a href="acerca-carreras.php">Carreras</a></li>
-            <li><a href="acerca-campus.php">Explora nuestro campus</a></li>
-            <li><a href="acerca-comunidad.php">Voces de la comunidad</a></li>
-            <li><a href="acerca-equidad-participacion.php">Equidad y participación comunitaria</a></li>
-            <li><a href="calendario-escolar.php">Calendario escolar</a></li>
+        <?php foreach ($menuItems as $index => $item): ?>
+          <div id="<?php echo htmlspecialchars($item['id']); ?>" class="submenu-content<?php echo $index === 0 ? ' active' : ''; ?>">
+            <ul>
+              <?php foreach ($item['submenu'] as $submenu): ?>
+                <li>
+                  <a href="<?php echo htmlspecialchars($submenu['href']); ?>"<?php echo !empty($submenu['attributes']) ? ' ' . $submenu['attributes'] : ''; ?>>
+                    <?php if (!empty($submenu['strong'])): ?><strong><?php endif; ?>
+                    <?php echo htmlspecialchars(ms_tr($submenu['label'], $cl)); ?>
+                    <?php if (!empty($submenu['strong'])): ?></strong><?php endif; ?>
+                  </a>
+                </li>
+              <?php endforeach; ?>
           </ul>
         </div>
-
-        <div id="submenu2" class="submenu-content">
-          <ul>
-            <li><a href="admisiones.php"><strong>Ir a Admisión</strong></a></li>
-            <li><a href="admision-requisitos.php">Requisitos de admisión</a></li>
-            <li><a href="admision-fechas.php">Fechas clave</a></li>
-            <li><a href="admision-contacto.php">Contacto de admisiones</a></li>
-          </ul>
-        </div>
-        <div id="submenu3" class="submenu-content">
-          <ul>
-            <li><a href="propuesta.php"><strong>Ir a Propuesta Educativa</strong></a></li>
-            <li><a href="propuesta-niveles.php">Niveles y áreas</a></li>
-            <li><a href="propuesta-plan-academico.php">Plan académico</a></li>
-            <li><a href="propuesta-proyectos.php">Proyectos destacados</a></li>
-          </ul>
-        </div>
-        <div id="submenu4" class="submenu-content">
-          <ul>
-            <li><a href="mapa.php"><strong>Ir a Mapa del colegio</strong></a></li>
-            <li><a href="mapa-campus.php">Mapa del campus</a></li>
-            <li><a href="ubicaciones.php">Ubicaciones principales</a></li>
-          </ul>
-        </div>
-        <div id="submenu5" class="submenu-content">
-          <ul>
-            <li><a href="deportes.php"><strong>Ir a Deportes</strong></a></li>
-            <li><a href="deportes-actividades.php">Actividades deportivas</a></li>
-            <li><a href="deportes-competencias.php">Competencias</a></li>
-            <li><a href="deportes-talleres.php">Talleres</a></li>
-          </ul>
-        </div>
-        <div id="submenu6" class="submenu-content">
-          <ul>
-            <li><a href="otra.php"><strong>Ir a Otra sección</strong></a></li>
-            <li><a href="otra-historia.php">Historia institucional</a></li>
-            <li><a href="otra-legado.php">Legado y valores</a></li>
-            <li><a href="otra-documentos.php">Documentos y recursos</a></li>
-          </ul>
-        </div>
+        <?php endforeach; ?>
       </div>
     </div>
   </div>
@@ -474,6 +817,11 @@
   
 <script>
     // Dropdown minimalista - VERSIÓN CORREGIDA
+    const msTranslations = <?php echo json_encode([
+        'noPages' => ms_tr($jsText['no_pages'], $cl),
+        'noResults' => ms_tr($jsText['no_results'], $cl),
+        'pageFallback' => ms_tr($jsText['page_fallback'], $cl),
+    ], JSON_UNESCAPED_UNICODE | JSON_HEX_TAG | JSON_HEX_APOS | JSON_HEX_AMP | JSON_HEX_QUOT); ?>;
     let savedPages = [];
 
     async function loadPagesFromServer() {
@@ -505,15 +853,14 @@
         const createdPages = (Array.isArray(savedPages) ? savedPages : []).filter(p => p && p.template && p.template !== 'existing_page');
 
         if (!Array.isArray(createdPages) || createdPages.length === 0) {
-            submenu.innerHTML = "<li style=\"padding:8px 15px;\">No hay páginas creadas</li>";
+            submenu.innerHTML = `<li style="padding:8px 15px;">${msTranslations.noPages}</li>`;
             return;
         }
 
-        // Enlaces Rápidos: mostrar páginas creadas
         submenu.innerHTML = createdPages.map(page => {
-            const label = page.name || ('Página ' + page.id);
+            const label = page.name || (msTranslations.pageFallback + page.id);
             const token = isAdmin ? '&cms_admin_token=true' : '';
-            return `<li><a href=\"view_page.php?id=${page.id}${token}\" style=\"text-decoration:none; color:#2c3e50; display:block; padding:8px 15px;\">${label}</a></li>`;
+            return `<li><a href="view_page.php?id=${page.id}${token}" style="text-decoration:none; color:#2c3e50; display:block; padding:8px 15px;">${label}</a></li>`;
         }).join('');
     }
 
@@ -528,10 +875,15 @@
     }
 
 
-    // Cerrar con transición
+    // Cerrar con transición: volver a la página anterior si existe, si no, ir a index
     document.querySelector('.close-button').addEventListener('click', () => {
         document.body.style.animation = 'slideOutToRight 0.5s ease-in forwards';
         setTimeout(() => {
+            const hasReferrer = document.referrer && new URL(document.referrer, window.location.origin).origin === window.location.origin;
+            if (hasReferrer && window.history.length > 1) {
+                window.history.back();
+                return;
+            }
             const params = new URLSearchParams(window.location.search);
             const isAdmin = params.get('cms_admin_token') === 'true';
             const target = isAdmin ? 'index.php?cms_admin_token=true' : 'index.php';
@@ -637,7 +989,7 @@
 
         function render(items) {
             if (!items.length) {
-                results.innerHTML = '<li style="padding:6px 12px; color:#6b7280;">Sin resultados</li>';
+                results.innerHTML = `<li style="padding:6px 12px; color:#6b7280;">${msTranslations.noResults}</li>`;
                 results.style.display = 'block';
                 return;
             }
