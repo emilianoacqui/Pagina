@@ -983,7 +983,6 @@
                 }
                 ctx6.stroke();
             }
-            
             if (projectile6.active) {
                 ctx6.beginPath();
                 ctx6.arc(projectile6.x, projectile6.y, 8, 0, Math.PI * 2);
