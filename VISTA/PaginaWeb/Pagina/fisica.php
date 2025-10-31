@@ -11,7 +11,10 @@
             box-sizing: border-box;
         }
 
-        html, body { height: 100%; }
+        html, body { 
+            height: 100%; 
+            overflow-x: hidden;
+        }
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
             background: #f5f7fa;
@@ -19,6 +22,9 @@
             color: #2c3e50;
             display: flex;
             flex-direction: column;
+            overflow-x: hidden;
+            width: 100%;
+            max-width: 100vw;
         }
 
         /* Navbar (from index.php minimal) */
@@ -45,6 +51,8 @@
         .container {
             max-width: 1400px;
             margin: 0 auto;
+            width: 100%;
+            box-sizing: border-box;
         }
 
         header {
@@ -70,6 +78,12 @@
             grid-template-columns: repeat(auto-fit, minmax(520px, 1fr));
             gap: 30px;
             margin-bottom: 30px;
+        }
+        
+        @media (max-width: 1024px) {
+            .experiments-grid {
+                grid-template-columns: 1fr;
+            }
         }
 
         .experiment-card {
@@ -247,15 +261,296 @@
             color: #2d3748;
         }
 
-        @media (max-width: 768px) {
+        /* Responsive Design */
+        @media (max-width: 1024px) {
             .experiments-grid {
                 grid-template-columns: 1fr;
+                gap: 25px;
             }
+            
+            .container {
+                padding: 30px 20px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            /* Navbar responsive */
+            .navbar {
+                height: 70px;
+            }
+            
+            .nav-container {
+                padding: 0 4%;
+            }
+            
+            .nav-logo img {
+                height: 90px;
+            }
+            
+            .nav-menu-button span {
+                width: 22px;
+                height: 2.5px;
+            }
+            
+            /* Container adjustments */
+            .container {
+                margin-top: 100px !important;
+                padding: 30px 15px !important;
+            }
+            
+            /* Header */
             h1 {
-                font-size: 2em;
+                font-size: 1.8em;
+                margin-bottom: 6px;
             }
+            
+            .subtitle {
+                font-size: 1em;
+            }
+            
+            /* Grid */
+            .experiments-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+                margin-bottom: 20px;
+            }
+            
+            /* Cards */
             .experiment-card {
-                padding: 24px;
+                padding: 20px;
+                border-radius: 6px;
+            }
+            
+            .experiment-title {
+                font-size: 1.3em;
+                flex-wrap: wrap;
+                gap: 8px;
+            }
+            
+            .law-badge {
+                font-size: 0.45em;
+                padding: 3px 10px;
+            }
+            
+            .experiment-description {
+                font-size: 0.9em;
+                margin-bottom: 20px;
+            }
+            
+            /* Canvas responsive */
+            .canvas-container {
+                padding: 15px;
+                margin: 20px 0;
+                overflow-x: auto;
+            }
+            
+            canvas {
+                max-width: 100%;
+                height: auto;
+            }
+            
+            /* Ajustar tamaño de canvas para móvil */
+            #canvas1, #canvas2, #canvas3, #canvas4, #canvas5, #canvas6 {
+                width: 100% !important;
+                max-width: 100% !important;
+            }
+            
+            /* Controls */
+            .controls {
+                flex-direction: column;
+                gap: 12px;
+                margin-top: 20px;
+            }
+            
+            .control-group {
+                min-width: 100%;
+                width: 100%;
+            }
+            
+            label {
+                font-size: 0.85em;
+            }
+            
+            button {
+                width: 100%;
+                padding: 12px 20px;
+                font-size: 0.9em;
+            }
+            
+            /* Formula and info boxes */
+            .formula {
+                font-size: 0.85em;
+                padding: 10px 14px;
+                margin: 14px 0;
+                word-break: break-word;
+            }
+            
+            .info-box {
+                font-size: 0.85em;
+                padding: 12px 14px;
+                margin-top: 16px;
+            }
+            
+            /* Footer responsive */
+            .footer-container {
+                flex-direction: column;
+                gap: 25px;
+                text-align: center;
+                padding: 25px 4% !important;
+            }
+            
+            .footer-left {
+                flex-direction: column;
+                gap: 10px;
+            }
+            
+            .footer-center,
+            .footer-right {
+                padding: 0;
+                width: 100%;
+            }
+            
+            .footer-section {
+                margin-bottom: 20px;
+            }
+            
+            .footer-section h4 {
+                font-size: 15px;
+            }
+            
+            .footer-section p {
+                font-size: 13px;
+            }
+            
+            .footer-info-bar {
+                padding: 12px 4%;
+            }
+            
+            .footer-info-bar p {
+                font-size: 11px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            /* Navbar más pequeño */
+            .navbar {
+                height: 60px;
+            }
+            
+            .nav-container {
+                padding: 0 3%;
+            }
+            
+            .nav-logo img {
+                height: 75px;
+            }
+            
+            .nav-menu-button span {
+                width: 20px;
+                height: 2px;
+                margin: 2px 0;
+            }
+            
+            /* Container */
+            .container {
+                margin-top: 80px !important;
+                padding: 20px 12px !important;
+            }
+            
+            /* Header más pequeño */
+            h1 {
+                font-size: 1.5em;
+            }
+            
+            .subtitle {
+                font-size: 0.9em;
+            }
+            
+            /* Cards más compactas */
+            .experiment-card {
+                padding: 16px;
+            }
+            
+            .experiment-title {
+                font-size: 1.1em;
+            }
+            
+            .experiment-description {
+                font-size: 0.85em;
+                margin-bottom: 16px;
+            }
+            
+            /* Canvas container */
+            .canvas-container {
+                padding: 12px;
+                margin: 16px 0;
+            }
+            
+            /* Controls más compactos */
+            .controls {
+                gap: 10px;
+                margin-top: 16px;
+            }
+            
+            label {
+                font-size: 0.8em;
+                margin-bottom: 6px;
+            }
+            
+            button {
+                padding: 10px 16px;
+                font-size: 0.85em;
+            }
+            
+            .value-display {
+                font-size: 0.8em;
+                padding: 2px 8px;
+            }
+            
+            /* Formula y info más pequeños */
+            .formula {
+                font-size: 0.8em;
+                padding: 8px 12px;
+                margin: 12px 0;
+            }
+            
+            .info-box {
+                font-size: 0.8em;
+                padding: 10px 12px;
+                margin-top: 14px;
+            }
+            
+            /* Footer más compacto */
+            .footer-container {
+                padding: 20px 4% !important;
+                gap: 20px;
+            }
+            
+            .footer-logo img {
+                height: 50px;
+            }
+            
+            .footer-subtitle p {
+                font-size: 12px;
+            }
+            
+            .footer-section h4 {
+                font-size: 14px;
+                margin-bottom: 8px;
+            }
+            
+            .footer-section p {
+                font-size: 12px;
+                margin: 6px 0;
+            }
+            
+            .footer-info-bar {
+                padding: 10px 4%;
+            }
+            
+            .footer-info-bar p {
+                font-size: 10px;
+                line-height: 1.4;
             }
         }
     </style>
@@ -508,6 +803,48 @@
     </footer>
 
     <script>
+        // Función para ajustar canvas responsive
+        function resizeCanvas(canvas, defaultWidth, defaultHeight) {
+            const container = canvas.parentElement;
+            const maxWidth = container.clientWidth - 40; // padding
+            
+            if (window.innerWidth <= 768) {
+                canvas.width = Math.min(maxWidth, defaultWidth);
+                canvas.height = (canvas.width / defaultWidth) * defaultHeight;
+            } else {
+                canvas.width = defaultWidth;
+                canvas.height = defaultHeight;
+            }
+        }
+        
+        // Ajustar todos los canvas al cargar y al redimensionar
+        window.addEventListener('resize', function() {
+            resizeCanvas(document.getElementById('canvas1'), 500, 250);
+            resizeCanvas(document.getElementById('canvas2'), 500, 250);
+            resizeCanvas(document.getElementById('canvas3'), 500, 300);
+            resizeCanvas(document.getElementById('canvas4'), 500, 350);
+            resizeCanvas(document.getElementById('canvas5'), 500, 350);
+            resizeCanvas(document.getElementById('canvas6'), 500, 300);
+            
+            // Redibujar después de redimensionar
+            if (typeof resetExp1 === 'function') resetExp1();
+            if (typeof resetExp2 === 'function') resetExp2();
+            if (typeof resetExp3 === 'function') resetExp3();
+            if (typeof resetExp4 === 'function') resetExp4();
+            if (typeof drawPendulum5 === 'function') drawPendulum5();
+            if (typeof resetExp6 === 'function') resetExp6();
+        });
+        
+        // Ajustar al cargar la página
+        window.addEventListener('load', function() {
+            resizeCanvas(document.getElementById('canvas1'), 500, 250);
+            resizeCanvas(document.getElementById('canvas2'), 500, 250);
+            resizeCanvas(document.getElementById('canvas3'), 500, 300);
+            resizeCanvas(document.getElementById('canvas4'), 500, 350);
+            resizeCanvas(document.getElementById('canvas5'), 500, 350);
+            resizeCanvas(document.getElementById('canvas6'), 500, 300);
+        });
+        
         // Experimento 1: Inercia y Fricción
         let canvas1 = document.getElementById('canvas1');
         let ctx1 = canvas1.getContext('2d');
