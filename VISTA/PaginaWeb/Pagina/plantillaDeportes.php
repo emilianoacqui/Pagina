@@ -199,7 +199,7 @@
         <div class="footer-container">
             <div class="footer-left">
                 <div class="footer-logo">
-                    <img src="FOTOS/fotosPrincipales/logo2.png" alt="Scuola Italiana di Montevideo" style="height: 60px;">
+                    <img src="FOTOS/fotosPrincipales/logotipo.png" alt="Scuola Italiana di Montevideo" style="height: 60px;">
                 </div>
                 <div class="footer-subtitle">
                     <p>AMC Scuola Italiana di Montevideo</p>

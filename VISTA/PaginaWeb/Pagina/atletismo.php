@@ -96,7 +96,7 @@
                     </p>
                 </div>
                 <div class="sport-info-image">
-                    <img src="FOTOS/fotosDeportes/atletismo1.jpg" alt="<?php echo $atletismo_titles[$cl]; ?>">
+                    <img src="FOTOS/fotosDeportes/futbol2.jpg" alt="<?php echo $atletismo_titles[$cl]; ?>">
                 </div>
             </div>
 
@@ -202,13 +202,13 @@
                     </h2>
                     <div class="gallery-grid">
                         <div class="gallery-item">
-                            <img src="FOTOS/fotosDeportes/atletismo1.jpg" alt="<?php echo $atletismo_titles[$cl]; ?>">
+                            <img src="FOTOS/fotosDeportes/futbol2.jpg" alt="<?php echo $atletismo_titles[$cl]; ?>">
                         </div>
                         <div class="gallery-item">
-                            <img src="FOTOS/fotosDeportes/atletismo2.jpg" alt="<?php echo $atletismo_titles[$cl]; ?>">
+                            <img src="FOTOS/fotosDeportes/futbol1.jpg" alt="<?php echo $atletismo_titles[$cl]; ?>">
                         </div>
                         <div class="gallery-item">
-                            <img src="FOTOS/fotosDeportes/atletismo3.jpg" alt="<?php echo $atletismo_titles[$cl]; ?>">
+                            <img src="FOTOS/fotosDeportes/volley1.jpg" alt="<?php echo $atletismo_titles[$cl]; ?>">
                         </div>
                     </div>
                 </div>
@@ -221,7 +221,7 @@
         <div class="footer-container">
             <div class="footer-left">
                 <div class="footer-logo">
-                    <img src="FOTOS/fotosPrincipales/logo2.png" alt="Scuola Italiana di Montevideo" style="height: 60px;">
+                    <img src="FOTOS/fotosPrincipales/logotipo.png" alt="Scuola Italiana di Montevideo" style="height: 60px;">
                 </div>
                 <div class="footer-subtitle">
                     <p>Scuola Italiana di Montevideo</p>

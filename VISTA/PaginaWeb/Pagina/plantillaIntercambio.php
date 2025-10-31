@@ -27,7 +27,7 @@
           </nav>
 
           <!-- Hero Section -->
-          <section class="hero-centered editable-image" style="background-image: url('https://images.unsplash.com/photo-1481627834876-b7833e8f5570?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80'); background-size: cover; background-position: center;">
+          <section class="hero-centered editable-image" style="background-image: url('FOTOS/fotosIntercambio/avion-fondo.jpg'); background-size: cover; background-position: center;">
               <div class="hero-overlay"></div>
               <div class="hero-content-center">
                   <h1 class="hero-title-center editable-text">Título Centrado</h1>
@@ -171,7 +171,7 @@
     <div class="footer-container">
         <div class="footer-left">
             <div class="footer-logo">
-                <img src="FOTOS/fotosPrincipales/logo2.png" alt="Scuola Italiana di Montevideo" style="height: 60px;">
+                <img src="FOTOS/fotosPrincipales/logotipo.png" alt="Scuola Italiana di Montevideo" style="height: 60px;">
             </div>
             <div class="footer-subtitle">
                 <p>AMC Scuola Italiana di Montevideo</p>

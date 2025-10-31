@@ -28,7 +28,7 @@
           </nav>
 
           <!-- Hero Section -->
-          <section class="hero-gallery editable-image" style="background-image: url('https://images.unsplash.com/photo-1452587925148-ce544e77e70d?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80'); background-size: cover; background-position: center;">
+          <section class="hero-gallery editable-image" style="background-image: url('FOTOS/fotosIntercambio/italia.jpg'); background-size: cover; background-position: center;">
               <div class="hero-overlay"></div>
               <div class="hero-content-gallery">
                   <h1 class="hero-title-gallery editable-text"><?php $htg=['es'=>'Galería Visual','en'=>'Visual Gallery','it'=>'Galleria Visiva']; echo $htg[$cl]; ?></h1>
@@ -109,7 +109,7 @@
     <div class="footer-container">
         <div class="footer-Aleft">
             <div class="footer-logo">
-                <img src="FOTOS/fotosPrincipales/logo2.png" alt="Scuola Italiana di Montevideo" style="height: 60px;">
+                <img src="FOTOS/fotosPrincipales/logotipo.png" alt="Scuola Italiana di Montevideo" style="height: 60px;">
             </div>
             <div class="footer-subtitle">
                 <p>Scuola Italiana di Montevideo</p>

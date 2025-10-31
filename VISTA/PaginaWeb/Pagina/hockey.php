@@ -77,7 +77,7 @@
                         <p><?php echo $hockey['info_p2'][$cl]; ?></p>
                     </div>
                     <div class="sport-info-image">
-                        <img src="FOTOS/fotosDeportes/hockey1.jpg" alt="Hockey Scuola Italiana">
+                        <img src="FOTOS/fotosDeportes/futbol1.jpg" alt="Hockey Scuola Italiana">
                     </div>
                 </div>
             </section>
@@ -111,13 +111,13 @@
                 <h2 style="text-align: center; font-size: 2.5rem; color: #0A2452; margin-bottom: 20px;"><?php echo $hockey['gallery_t'][$cl]; ?></h2>
                 <div class="gallery-grid">
                     <div class="gallery-item">
-                        <img src="FOTOS/fotosDeportes/hockey1.jpg" alt="Hockey 1">
+                        <img src="FOTOS/fotosDeportes/futbol1.jpg" alt="Hockey 1">
                     </div>
                     <div class="gallery-item">
-                        <img src="FOTOS/fotosDeportes/hockey2.png" alt="Hockey 2">
+                        <img src="FOTOS/fotosDeportes/futbol2.jpg" alt="Hockey 2">
                     </div>
                     <div class="gallery-item">
-                        <img src="FOTOS/fotosDeportes/hockey1.jpg" alt="Hockey 3">
+                        <img src="FOTOS/fotosDeportes/volley1.jpg" alt="Hockey 3">
                     </div>
                 </div>
             </section>
@@ -129,7 +129,7 @@
         <div class="footer-container">
             <div class="footer-left">
                 <div class="footer-logo">
-                    <img src="FOTOS/fotosPrincipales/logo2.png" alt="Scuola Italiana di Montevideo" style="height: 60px;">
+                    <img src="FOTOS/fotosPrincipales/logotipo.png" alt="Scuola Italiana di Montevideo" style="height: 60px;">
                 </div>
                 <div class="footer-subtitle">
                     <p>AMC Scuola Italiana di Montevideo</p>

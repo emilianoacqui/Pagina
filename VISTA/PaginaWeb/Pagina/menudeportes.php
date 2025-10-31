@@ -23,7 +23,7 @@
     <nav class="navbar">
         <div class="nav-container">
             <div class="nav-logo">
-                <img src="FOTOS/fotosPrincipales/logo2.png" alt="Scuola Italiana di Montevideo">
+                <img src="FOTOS/fotosPrincipales/logo2.png" alt="Scuola Italiana di Montevideo" style="height: 120px;">
             </div>
             <div class="nav-menu-button" onclick="window.location.href='menuScuola.php'">
                 <span></span>
@@ -141,7 +141,7 @@
                 <!-- Handball -->
                 <div class="program-section">
                     <div class="program-image">
-                        <img src="FOTOS/fotosDeportes/handball1.jpg" alt="Handball">
+                        <img src="FOTOS/fotosDeportes/volley1.jpg" alt="Handball">
         </div>
                     <div class="program-info">
                         <h3><?php echo $md['handball_h'][$cl]; ?></h3>
@@ -156,7 +156,7 @@
                 <!-- Hockey -->
                 <div class="program-section">
                     <div class="program-image">
-                        <img src="FOTOS/fotosDeportes/hockey1.jpg" alt="Hockey">
+                        <img src="FOTOS/fotosDeportes/futbol1.jpg" alt="Hockey">
         </div>
                     <div class="program-info">
                         <h3><?php echo $md['hockey_h'][$cl]; ?></h3>
@@ -201,7 +201,7 @@
                 <!-- Atletismo -->
                 <div class="program-section">
                     <div class="program-image">
-                        <img src="FOTOS/fotosDeportes/atletismo1.jpg" alt="Atletismo">
+                        <img src="FOTOS/fotosDeportes/futbol2.jpg" alt="Atletismo">
         </div>
                     <div class="program-info">
                         <h3><?php echo $md['atletismo_h'][$cl]; ?></h3>
