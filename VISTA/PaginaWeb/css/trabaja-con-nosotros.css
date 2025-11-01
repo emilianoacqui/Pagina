@@ -40,12 +40,12 @@
         }
 
         .nav-logo img {
-            height: 120px;
+            height: 80px;
             width: auto;
             position: absolute;
             top: 50%;
             transform: translateY(-50%);
-            max-width: 200px;
+            max-width: 160px;
         }
 
         .nav-menu-button {
@@ -77,6 +77,8 @@
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 40px;
+            min-height: calc(100vh - 300px); /* Asegura que el contenido ocupe al menos el alto de la pantalla menos el footer */
+            align-content: flex-start;
 
 .form-section {
     background: white;
@@ -301,22 +303,36 @@ textarea.form-control {
     font-size: 0.95em;
 }
 
-/* Footer */
+/* Footer Styles */
 .footer-bottom-new {
-    background: #1B4F72;
+    background: #0A2452;
     color: white;
-    padding: 0;
-    margin: 0;
+    padding: 40px 5% 0;
+    position: relative;
+    width: 100%;
+    margin-top: auto;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+#original-content {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
 }
 
 .footer-container {
     display: flex;
-    align-items: center;
     justify-content: space-between;
     max-width: 1200px;
     margin: 0 auto;
-    padding: 30px 5%;
     flex-wrap: wrap;
+    gap: 30px;
+    padding: 0 20px;
 }
 
 .footer-Aleft {
@@ -373,26 +389,6 @@ textarea.form-control {
 }
 
 /* Responsive */
-@media (max-width: 768px) {
-    .footer-container {
-        flex-direction: column;
-        gap: 30px;
-        text-align: center;
-    }
-    
-    .footer-Aleft {
-        flex-direction: column;
-        gap: 10px;
-    }
-    
-    .footer-center,
-    .footer-right {
-        padding: 0;
-        width: 100%;
-    }
-}
-
-/* Responsive */
 
 @media (max-width: 1024px) {
     .main-container {
@@ -426,6 +422,21 @@ textarea.form-control {
         width: 100%;
         padding: 20px 0;
         border-top: 1px solid rgba(255,255,255,0.1);
+    }
+}
+
+@media (max-width: 992px) {
+    .main-container {
+        grid-template-columns: 1fr;
+        padding: 20px 5%;
+    }
+    
+    .form-section, .info-panel {
+        width: 100%;
+    }
+    
+    .info-panel {
+        margin-top: 40px;
     }
 }
 
@@ -683,4 +694,4 @@ textarea.form-control {
                 padding-bottom: 25px;
             }
         }
-         }
+     }
