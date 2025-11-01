@@ -1689,7 +1689,7 @@ body:not(.loading-cms-content) #cms-root {
                         <p>Gral. French 2380</p>
                         <p>CP 11500 - Montevideo, Uruguay</p>
                         <p>(+598) 2600 1527</p>
-                        <p>info@scuolaitaliana.edu.uya</p>
+                        <p>info@scuolaitaliana.edu.uy</p>
                     </div>
                 </div>
                 
