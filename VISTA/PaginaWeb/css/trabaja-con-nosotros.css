@@ -306,137 +306,89 @@ textarea.form-control {
     background: #1B4F72;
     color: white;
     padding: 0;
-    margin-top: 60px;
-    width: 100%;
-    box-sizing: border-box;
+    margin: 0;
 }
 
 .footer-container {
     display: flex;
+    align-items: center;
     justify-content: space-between;
     max-width: 1200px;
     margin: 0 auto;
-    padding: 40px 20px;
+    padding: 30px 5%;
     flex-wrap: wrap;
-    gap: 30px;
 }
 
 .footer-Aleft {
     flex: 1;
-    min-width: 250px;
     display: flex;
-    flex-direction: column;
-    gap: 15px;
+    align-items: center;
+    gap: 20px;
 }
 
 .footer-logo img {
-    height: 70px;
+    height: 60px;
     width: auto;
-    margin-bottom: 10px;
 }
 
 .footer-subtitle p {
     margin: 0;
-    font-size: 15px;
+    font-size: 14px;
     color: #E8E8E8;
-    line-height: 1.5;
 }
 
 .footer-center,
 .footer-right {
     flex: 1;
-    min-width: 200px;
-    padding: 0 15px;
+    padding: 0 20px;
 }
 
 .footer-section h4 {
     color: white;
-    font-size: 18px;
+    font-size: 16px;
     font-weight: 600;
-    margin-bottom: 20px;
-    position: relative;
-    padding-bottom: 10px;
-}
-
-.footer-section h4::after {
-    content: '';
-    position: absolute;
-    left: 0;
-    bottom: 0;
-    width: 50px;
-    height: 2px;
-    background: #F39C12;
+    margin-bottom: 10px;
+    border-bottom: 1px solid rgba(255,255,255,0.2);
+    padding-bottom: 5px;
 }
 
 .footer-section p {
-    margin: 12px 0;
-    font-size: 15px;
+    margin: 8px 0;
+    font-size: 14px;
     color: #E8E8E8;
-    line-height: 1.6;
-    transition: color 0.3s ease;
-}
-
-.footer-section p:hover {
-    color: #F39C12;
-    cursor: pointer;
+    line-height: 1.4;
 }
 
 .footer-info-bar {
     background: #154360;
     text-align: center;
-    padding: 15px 20px;
+    padding: 15px 5%;
     border-top: 1px solid rgba(255,255,255,0.1);
-    font-size: 14px;
-    color: #BDC3C7;
 }
 
 .footer-info-bar p {
     margin: 0;
-    font-size: 13px;
+    font-size: 12px;
     color: #BDC3C7;
 }
 
-/* Responsive Footer */
-@media (max-width: 1024px) {
-    .footer-container {
-        padding: 40px 20px;
-    }
-    
-    .footer-Aleft,
-    .footer-center,
-    .footer-right {
-        flex: 1 1 45%;
-        margin-bottom: 20px;
-    }
-}
-
+/* Responsive */
 @media (max-width: 768px) {
     .footer-container {
         flex-direction: column;
         gap: 30px;
-        padding: 30px 20px;
+        text-align: center;
     }
     
-    .footer-Aleft,
+    .footer-Aleft {
+        flex-direction: column;
+        gap: 10px;
+    }
+    
     .footer-center,
     .footer-right {
-        width: 100%;
-        text-align: center;
         padding: 0;
-    }
-    
-    .footer-section h4::after {
-        left: 50%;
-        transform: translateX(-50%);
-    }
-    
-    .footer-logo {
-        display: flex;
-        justify-content: center;
-    }
-    
-    .footer-subtitle p {
-        text-align: center;
+        width: 100%;
     }
 }
 
