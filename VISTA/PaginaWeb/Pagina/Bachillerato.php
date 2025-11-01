@@ -93,7 +93,7 @@
                         'Promuovere la coscienza ecologica e la tutela dell’ambiente.',
                     ],
                 ],
-                'scuola_h' => ['es'=>'SCUOLA SECONDARIA DI I GRADO ITALIANA','en'=>'ITALIAN LOWER SECONDARY SCHOOL','it'=>'SCUOLA SECONDARIA DI I GRADO ITALIANA'],
+                'scuola_h' => ['es'=>'SCUOLA SECONDARIA DI II GRADO ITALIANA','en'=>'ITALIAN LOWER SECONDARY SCHOOL','it'=>'SCUOLA SECONDARIA DI I GRADO ITALIANA'],
                 'scuola_p' => [
                     'es' => 'Nuestro Plan de Estudios Integrado, reconocido por Italia y Uruguay, permite continuar en el Bachillerato Internacional Europeo. Al finalizar se obtiene doble titulación, habilitando estudios terciarios en Uruguay, Italia y otros países donde es reconocido.',
                     'en' => 'Our Integrated Study Plan, recognized by Italy and Uruguay, enables continuation in the European International Baccalaureate. Upon completion, students obtain a dual diploma allowing tertiary studies in Uruguay, Italy and other countries where it is recognized.',
