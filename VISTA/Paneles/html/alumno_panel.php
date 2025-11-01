@@ -256,7 +256,7 @@ if (count($clases_alumno) > 0) {
 
       <div class="form-row" style="margin: 16px 0;">
         <input id="linkTitulo" type="text" placeholder="Nombre del link (ej. Classroom 3°A)" />
-        <input id="linkUrl" type="url" placeholder="https://..." pattern="https?://.+" title="Debe ser una URL válida que comience con http:// o https://" />
+        <input id="linkUrl" type="url" placeholder="https://..." />
         <button id="btnAgregarLink" class="btn">Agregar Link</button>
       </div>
 
@@ -400,78 +400,26 @@ if (count($clases_alumno) > 0) {
       arr.forEach((l, i) => {
         const div = document.createElement('div');
         div.className = 'link-card';
-        
-        // Sanitizar la URL y el título para prevenir XSS
-        const url = l.url.replace(/[^a-zA-Z0-9-._~:/?#@!$&'()*+,;=]/g, '');
-        const titulo = l.title.replace(/[<>]/g, '');
-        
-        // Crear elementos de forma segura
-        const enlace = document.createElement('a');
-        enlace.href = url;
-        enlace.target = '_blank';
-        enlace.rel = 'noopener noreferrer';
-        enlace.textContent = titulo;
-        
-        const boton = document.createElement('button');
-        boton.textContent = '✕';
-        boton.title = 'Eliminar link';
-        boton.onclick = function() { borrarLink(${i}); };
-        
-        div.appendChild(enlace);
-        div.appendChild(boton);
+        div.innerHTML = `
+          <a href="${l.url}" target="_blank">${l.title}</a>
+          <button onclick="borrarLink(${i})" title="Eliminar link">✕</button>
+        `;
         cont.appendChild(div);
       });
-    }
-    
-    function validarURL(url) {
-      try {
-        // Verificar que sea una URL válida
-        new URL(url);
-        
-        // Verificar que el protocolo sea http o https
-        if (!url.startsWith('http://') && !url.startsWith('https://')) {
-          return { valido: false, mensaje: 'La URL debe comenzar con http:// o https://' };
-        }
-        
-        // Verificar que el dominio sea válido (opcional, puedes personalizar según necesidades)
-        const dominio = new URL(url).hostname;
-        if (!dominio.includes('.')) {
-          return { valido: false, mensaje: 'El dominio de la URL no es válido' };
-        }
-        
-        return { valido: true };
-      } catch (e) {
-        return { valido: false, mensaje: 'La URL ingresada no es válida' };
-      }
     }
     
     function agregarLink(e) {
       e.preventDefault();
       const title = document.getElementById('linkTitulo').value.trim();
-      let url = document.getElementById('linkUrl').value.trim();
+      const url = document.getElementById('linkUrl').value.trim();
       
-      // Validar campos vacíos
       if (!title || !url) {
         alert('⚠️ Completa el título y la URL del link');
         return;
       }
       
-      // Agregar https:// si no tiene protocolo (pero solo si parece una URL válida)
-      if (!url.match(/^https?:\/\//) && url.includes('.')) {
-        url = 'https://' + url;
-        document.getElementById('linkUrl').value = url;
-      }
-      
-      // Validar URL
-      const validacion = validarURL(url);
-      if (!validacion.valido) {
-        alert(`⚠️ ${validacion.mensaje}`);
-        return;
-      }
-      
-      // Validar título (no debe contener código HTML o JavaScript)
-      if (title.includes('<') || title.includes('>') || title.includes('script') || title.includes('on')) {
-        alert('⚠️ El título contiene caracteres no permitidos');
+      if (!url.startsWith('http://') && !url.startsWith('https://')) {
+        alert('⚠️ La URL debe comenzar con http:// o https://');
         return;
       }
       
