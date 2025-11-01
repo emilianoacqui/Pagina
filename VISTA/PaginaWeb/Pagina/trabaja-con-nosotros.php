@@ -7,7 +7,7 @@
     <title><?php $tn_meta=['es'=>'Trabaja con Nosotros - Scuola Italiana di Montevideo','en'=>'Work with Us - Scuola Italiana di Montevideo','it'=>'Lavora con Noi - Scuola Italiana di Montevideo']; echo $tn_meta[$cl]; ?></title>
     <link href="https://fonts.googleapis.com/css2?family=Merriweather+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="breadcrumbs.css">
-    <link rel="stylesheet" href="../css/trabaja-con-nosotros.css">
+    <link rel="stylesheet" href="/Pagina/VISTA/PaginaWeb/css/trabaja-con-nosotros.css">
     <link rel="icon" type="image/png" href="/Pagina/VISTA/PaginaWeb/Pagina/FOTOS/fotosPrincipales/logotipo.png">
     <link rel="shortcut icon" href="/Pagina/favicon.ico">
 </head>
