@@ -144,7 +144,7 @@
                     <?php $mi_contact = ['es' => 'Contacto','en' => 'Contact','it' => 'Contatto']; ?>
                     <h4><?php echo $mi_contact[$cl]; ?></h4>
 
-                    <p>Av. Brasil 3149, Montevideo</p>
+                    <p>Gral. French 2380</p>
                     <p>(+598) 2621 4822 / 2622 1422</p>
                     <p>info@scuolaitaliana.edu.uy</p>
                 </div>
