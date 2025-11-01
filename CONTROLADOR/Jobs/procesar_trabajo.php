@@ -10,8 +10,27 @@ $email = trim($_POST['email'] ?? '');
 $celular = trim($_POST['celular'] ?? '');
 $mensaje = trim($_POST['mensaje'] ?? '');
 
+// Validar campos obligatorios
 if ($nombre === '' || $email === '' || $mensaje === '') {
-    echo json_encode(['success' => false, 'message' => 'Campos obligatorios faltantes']);
+    echo json_encode(['success' => false, 'message' => 'Por favor complete todos los campos obligatorios']);
+    exit;
+}
+
+// Validar que el mensaje no contenga URLs inválidas
+if (preg_match('/\b(https?:\/\/|www\.)[^\s]+/i', $mensaje)) {
+    echo json_encode(['success' => false, 'message' => 'No se permiten enlaces web en el mensaje']);
+    exit;
+}
+
+// Validar que el nombre no contenga URLs
+if (preg_match('/\b(https?:\/\/|www\.)[^\s]+/i', $nombre)) {
+    echo json_encode(['success' => false, 'message' => 'El nombre no puede contener enlaces web']);
+    exit;
+}
+
+// Validar que el celular solo contenga números, espacios, guiones y paréntesis
+if (!empty($celular) && !preg_match('/^[0-9\s\-()]+$/', $celular)) {
+    echo json_encode(['success' => false, 'message' => 'El número de celular contiene caracteres inválidos']);
     exit;
 }
 
