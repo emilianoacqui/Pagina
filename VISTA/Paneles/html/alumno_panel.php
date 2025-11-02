@@ -562,3 +562,21 @@ if (count($clases_alumno) > 0) {
   </script>
 </body>
 </html>
+
+<?php
+/**
+ * Normaliza y valida una URL. Devuelve URL con esquema o false.
+ */
+function normalize_url(string $url) {
+    $url = trim($url);
+    if ($url === '') return false;
+    if (!preg_match('#^https?://#i', $url)) {
+        $url = 'http://' . $url;
+    }
+    $san = filter_var($url, FILTER_SANITIZE_URL);
+    if ($san === false) return false;
+    if (!filter_var($san, FILTER_VALIDATE_URL)) return false;
+    $parts = parse_url($san);
+    if (!in_array(strtolower($parts['scheme'] ?? ''), ['http','https'], true)) return false;
+    return $san;
+}
