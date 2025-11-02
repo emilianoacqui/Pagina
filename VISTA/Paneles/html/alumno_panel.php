@@ -418,8 +418,15 @@ if (count($clases_alumno) > 0) {
         return;
       }
       
+      // Validar que la URL comience con http:// o https://
       if (!url.startsWith('http://') && !url.startsWith('https://')) {
         alert('⚠️ La URL debe comenzar con http:// o https://');
+        return;
+      }
+      
+      // Validar que la URL no sea solo http:// o https://
+      if (url === 'http://' || url === 'https://' || url.match(/^https?:\/\/$/) || !url.replace(/^https?:\/\//, '').trim()) {
+        alert('⚠️ Por favor ingresa una URL válida después de http:// o https://');
         return;
       }
       
