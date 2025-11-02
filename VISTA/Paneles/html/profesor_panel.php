@@ -543,6 +543,27 @@ function inicializarCalendario() {
 
 /* ===== Links en localStorage ===== */
 const LS_KEY = 'prof_links_<?php echo $id_profesor; ?>';
+
+// Función para verificar si una URL es accesible
+async function verificarURL(url) {
+  try {
+    // Usamos el endpoint del servidor para verificar la URL
+    const response = await fetch('../../../CONTROLADOR/verificar_url.php', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded',
+      },
+      body: `url=${encodeURIComponent(url)}`
+    });
+    
+    const data = await response.json();
+    return data.valida;
+  } catch (error) {
+    console.error('Error al verificar la URL:', error);
+    return false;
+  }
+}
+
 function cargarLinks() {
   const cont = document.getElementById('misLinks');
   cont.innerHTML = '';
@@ -555,18 +576,69 @@ function cargarLinks() {
     cont.appendChild(div);
   });
 }
-function agregarLink(e) {
+
+async function agregarLink(e) {
   e.preventDefault();
   const title = document.getElementById('linkTitulo').value.trim();
   const url = document.getElementById('linkUrl').value.trim();
-  if (!title || !url) return alert('Completá título y URL');
-  let arr = JSON.parse(localStorage.getItem(LS_KEY) || '[]');
-  arr.push({title, url});
-  localStorage.setItem(LS_KEY, JSON.stringify(arr));
-  document.getElementById('linkTitulo').value = '';
-  document.getElementById('linkUrl').value = '';
-  cargarLinks();
+  const btn = document.getElementById('btnAgregarLink');
+  const originalText = btn.textContent;
+  
+  if (!title || !url) {
+    alert('⚠️ Completa el título y la URL del link');
+    return;
+  }
+  
+  // Validar formato básico de URL
+  if (!url.startsWith('http://') && !url.startsWith('https://')) {
+    alert('⚠️ La URL debe comenzar con http:// o https://');
+    return;
+  }
+  
+  if (url === 'http://' || url === 'https://' || url.match(/^https?:\/\/$/) || !url.replace(/^https?:\/\//, '').trim()) {
+    alert('⚠️ Por favor ingresa una URL válida después de http:// o https://');
+    return;
+  }
+  
+  // Mostrar indicador de carga
+  btn.textContent = 'Verificando...';
+  btn.disabled = true;
+  
+  try {
+    // Verificar si la URL es accesible
+    const esValida = await verificarURL(url);
+    
+    if (!esValida) {
+      alert('⚠️ La URL no es accesible o no es válida. Verifica que la dirección sea correcta.');
+      btn.textContent = originalText;
+      btn.disabled = false;
+      return;
+    }
+    
+    // Si la URL es válida, guardar el enlace
+    let arr = JSON.parse(localStorage.getItem(LS_KEY) || '[]');
+    arr.push({title, url});
+    localStorage.setItem(LS_KEY, JSON.stringify(arr));
+    
+    document.getElementById('linkTitulo').value = '';
+    document.getElementById('linkUrl').value = '';
+    cargarLinks();
+    
+    // Mostrar confirmación
+    btn.textContent = '✅ Agregado';
+    setTimeout(() => {
+      btn.textContent = originalText;
+      btn.disabled = false;
+    }, 1500);
+    
+  } catch (error) {
+    console.error('Error:', error);
+    alert('⚠️ Ocurrió un error al verificar la URL. Intenta nuevamente.');
+    btn.textContent = originalText;
+    btn.disabled = false;
+  }
 }
+
 function borrarLink(i) {
   let arr = JSON.parse(localStorage.getItem(LS_KEY) || '[]');
   arr.splice(i,1);
